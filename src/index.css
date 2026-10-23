@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-uoh-maroon: #8B1E24;
+    --color-uoh-maroon-dark: #641318;
+    --color-uoh-maroon-light: #A82931;
+    --color-uoh-gold: #C59B27;
+    --color-uoh-gold-light: #DFC066;
+    --color-uoh-gold-dark: #977313;
+    --color-uoh-navy: #0F2537;
+    --color-uoh-navy-dark: #081521;
+    --color-uoh-navy-light: #1D3E5B;
+    --color-uoh-ivory: #FAF8F5;
+    --color-uoh-ivory-dark: #EFE9E0;
+    --navbar-height: 104px;
+  }
+
+  html {
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    color: #0F2537;
+    background-color: #FAF8F5;
+  }
+
+  /* Academic base font size set to 18px (text-lg) as requested */
+  body {
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: "Instrument Serif", Georgia, Cambria, serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+@theme {
+  --color-uoh-maroon: #8B1E24;
+  --color-uoh-maroon-dark: #641318;
+  --color-uoh-maroon-light: #A82931;
+  --color-uoh-gold: #C59B27;
+  --color-uoh-gold-light: #DFC066;
+  --color-uoh-gold-dark: #977313;
+  --color-uoh-navy: #0F2537;
+  --color-uoh-navy-dark: #081521;
+  --color-uoh-navy-light: #1D3E5B;
+  --color-uoh-ivory: #FAF8F5;
+  --color-uoh-ivory-dark: #EFE9E0;
+
+  --font-serif: "Instrument Serif", Georgia, Cambria, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-brand: "Outfit", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Outfit", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+/* Premium Brand Typography Utility */
+.font-brand, .brand-title {
+  font-family: "Outfit", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+.brand-title {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+/* Custom Academic Utilities & Glassmorphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 155, 39, 0.2);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 37, 55, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 155, 39, 0.25);
+}
+
+.academic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Subtle Shimmer Effect for Flagship Grant */
+@keyframes subtle-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-badge {
+  background: linear-gradient(90deg, #8B1E24 0%, #A82931 50%, #8B1E24 100%);
+  background-size: 200% 100%;
+  animation: subtle-shimmer 4s infinite linear;
+}
+
+/* Custom Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #C59B27;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8B1E24;
+}
