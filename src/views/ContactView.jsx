@@ -58,8 +58,8 @@ export default function ContactView() {
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
           Opportunities &amp; Contact
         </h1>
-        <p className="text-[#0F2537]/80 text-base sm:text-lg">
-          Join NeuraXlab under our active 2026–2029 extramural nanotherapy grant, apply for graduate research positions, or connect with Dr. Venkata Prasuja Nakka.
+        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
+          Join NeuroXlab under our active 2026–2029 extramural nanotherapy grant, apply for graduate research positions, or connect with Dr. Venkata Prasuja Nakka.
         </p>
       </div>
 
@@ -69,7 +69,7 @@ export default function ContactView() {
           <h2 className="font-serif text-3xl font-bold text-[#0F2537]">
             Active Funded Openings &amp; Fellowships
           </h2>
-          <p className="text-xs text-[#0F2537]/70 mt-1">
+          <p className="text-sm text-[#0F2537]/70 mt-1">
             Funded under the 2026–2029 Nanotherapy Extramural Project and University of Hyderabad institutional fellowships.
           </p>
         </div>
@@ -81,7 +81,7 @@ export default function ContactView() {
               className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-gray-200 hover:border-[#8B1E24] shadow-sm hover:shadow-xl transition-all flex flex-col justify-between space-y-4"
             >
               <div className="space-y-3">
-                <span className="text-[11px] font-mono font-bold text-[#8B1E24] bg-[#8B1E24]/10 px-2.5 py-1 rounded-full uppercase inline-block">
+                <span className="text-xs font-mono font-bold text-[#8B1E24] bg-[#8B1E24]/10 px-2.5 py-1 rounded-full uppercase inline-block">
                   {pos.openings}
                 </span>
 
@@ -89,11 +89,11 @@ export default function ContactView() {
                   {pos.title}
                 </h3>
 
-                <p className="text-xs text-[#C59B27] font-semibold">
+                <p className="text-sm text-[#C59B27] font-semibold">
                   {pos.project}
                 </p>
 
-                <div className="space-y-2 text-xs text-[#0F2537]/80 pt-2 border-t border-gray-100">
+                <div className="space-y-2 text-sm text-[#0F2537]/80 pt-2 border-t border-gray-100">
                   <p>
                     <strong className="text-[#0F2537]">Fellowship:</strong> {pos.fellowship}
                   </p>
@@ -104,7 +104,7 @@ export default function ContactView() {
                     <strong className="text-[#0F2537]">Eligibility:</strong> {pos.eligibility}
                   </p>
                   {pos.desirable && (
-                    <p className="text-[#0F2537]/70 italic">
+                    <p className="text-[#0F2537]/75 italic">
                       <strong className="text-[#0F2537] not-italic">Desirable:</strong> {pos.desirable}
                     </p>
                   )}
@@ -112,12 +112,12 @@ export default function ContactView() {
               </div>
 
               <div className="pt-3 border-t border-gray-100 flex items-center justify-between">
-                <span className="text-[11px] font-mono text-emerald-700 font-semibold">
+                <span className="text-xs sm:text-sm font-mono text-emerald-700 font-semibold">
                   {pos.deadline}
                 </span>
                 <a
                   href="#application-form"
-                  className="px-3 py-1.5 rounded-lg bg-[#8B1E24] text-white text-xs font-bold hover:bg-[#641318] transition-colors"
+                  className="px-3.5 py-2 rounded-lg bg-[#8B1E24] text-white text-sm font-bold hover:bg-[#641318] transition-colors"
                 >
                   Apply Below
                 </a>
@@ -138,7 +138,7 @@ export default function ContactView() {
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
               Submit Your Fellowship or Research Inquiry
             </h2>
-            <p className="text-xs text-[#0F2537]/75">
+            <p className="text-sm sm:text-base text-[#0F2537]/75">
               Applications are reviewed continuously by Dr. Venkata Prasuja Nakka and shortlisted candidates are invited for institutional interviews.
             </p>
           </div>
@@ -151,13 +151,13 @@ export default function ContactView() {
               <h3 className="font-serif text-2xl font-bold text-emerald-900">
                 Application Submitted Successfully!
               </h3>
-              <p className="text-sm text-emerald-800 max-w-md mx-auto leading-relaxed">
-                Thank you, <strong>{formData.name}</strong>. Your inquiry for <strong>{formData.position}</strong> has been logged. We have prepared a direct confirmation copy addressed to Dr. Nakka at <span className="font-mono text-xs">prasuja@uohyd.ac.in</span>.
+              <p className="text-base text-emerald-800 max-w-md mx-auto leading-relaxed">
+                Thank you, <strong>{formData.name}</strong>. Your inquiry for <strong>{formData.position}</strong> has been logged. We have prepared a direct confirmation copy addressed to Dr. Nakka at <span className="font-mono text-xs sm:text-sm">prasuja@uohyd.ac.in</span>.
               </p>
               <div className="pt-2">
                 <a
-                  href={`mailto:prasuja@uohyd.ac.in?subject=NeuraXlab Application: ${encodeURIComponent(formData.position)} - ${encodeURIComponent(formData.name)}&body=Dear Dr. Nakka,%0D%0A%0D%0AI have submitted my inquiry for the ${encodeURIComponent(formData.position)} position.%0D%0A%0D%0AQualification: ${encodeURIComponent(formData.qualification)}%0D%0APhone: ${encodeURIComponent(formData.phone)}%0D%0ACV Link: ${encodeURIComponent(formData.cvUrl)}%0D%0A%0D%0AStatement:%0D%0A${encodeURIComponent(formData.statement)}%0D%0A%0D%0ASincerely,%0D%0A${encodeURIComponent(formData.name)}`}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#8B1E24] text-white text-xs font-bold hover:bg-[#641318] shadow transition-all"
+                  href={`mailto:prasuja@uohyd.ac.in?subject=NeuroXlab Application: ${encodeURIComponent(formData.position)} - ${encodeURIComponent(formData.name)}&body=Dear Dr. Nakka,%0D%0A%0D%0AI have submitted my inquiry for the ${encodeURIComponent(formData.position)} position.%0D%0A%0D%0AQualification: ${encodeURIComponent(formData.qualification)}%0D%0APhone: ${encodeURIComponent(formData.phone)}%0D%0ACV Link: ${encodeURIComponent(formData.cvUrl)}%0D%0A%0D%0AStatement:%0D%0A${encodeURIComponent(formData.statement)}%0D%0A%0D%0ASincerely,%0D%0A${encodeURIComponent(formData.name)}`}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#8B1E24] text-white text-sm font-bold hover:bg-[#641318] shadow transition-all"
                 >
                   <Mail className="w-4 h-4" />
                   <span>Send Direct Email Copy to PI</span>
@@ -165,7 +165,7 @@ export default function ContactView() {
               </div>
               <button
                 onClick={() => setSubmitted(false)}
-                className="text-xs text-emerald-700 underline block mx-auto pt-2"
+                className="text-sm text-emerald-700 underline block mx-auto pt-2"
               >
                 Submit another inquiry
               </button>
@@ -174,7 +174,7 @@ export default function ContactView() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-[#0F2537] mb-1">
+                  <label className="block text-sm font-bold text-[#0F2537] mb-1.5">
                     Full Name *
                   </label>
                   <input
@@ -184,12 +184,12 @@ export default function ContactView() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="e.g. Dr. Rajesh Sharma"
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8B1E24] text-sm bg-[#FAF8F5]/50"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8B1E24] text-sm sm:text-base bg-[#FAF8F5]/50"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#0F2537] mb-1">
+                  <label className="block text-sm font-bold text-[#0F2537] mb-1.5">
                     Email Address *
                   </label>
                   <input
@@ -199,14 +199,14 @@ export default function ContactView() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="applicant@gmail.com"
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8B1E24] text-sm bg-[#FAF8F5]/50"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8B1E24] text-sm sm:text-base bg-[#FAF8F5]/50"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-[#0F2537] mb-1">
+                  <label className="block text-sm font-bold text-[#0F2537] mb-1.5">
                     Contact Phone Number *
                   </label>
                   <input
@@ -216,19 +216,19 @@ export default function ContactView() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+91-9876543210"
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8B1E24] text-sm bg-[#FAF8F5]/50"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8B1E24] text-sm sm:text-base bg-[#FAF8F5]/50"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#0F2537] mb-1">
+                  <label className="block text-sm font-bold text-[#0F2537] mb-1.5">
                     Position Interested In *
                   </label>
                   <select
                     name="position"
                     value={formData.position}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8B1E24] text-sm bg-[#FAF8F5]/50"
+                    className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8B1E24] text-sm sm:text-base bg-[#FAF8F5]/50"
                   >
                     <option>Junior Research Fellow (JRF / SRF) - 2026–2029 Grant</option>
                     <option>Postdoctoral Research Fellow (PDF)</option>
@@ -239,7 +239,7 @@ export default function ContactView() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#0F2537] mb-1">
+                <label className="block text-sm font-bold text-[#0F2537] mb-1.5">
                   Highest Degree &amp; National Exam Qualification (NET/GATE/DBT/ICMR) *
                 </label>
                 <input
@@ -254,7 +254,7 @@ export default function ContactView() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#0F2537] mb-1">
+                <label className="block text-sm font-bold text-[#0F2537] mb-1.5">
                   Curriculum Vitae (Google Drive / Dropbox / Web Link) *
                 </label>
                 <input
@@ -266,13 +266,13 @@ export default function ContactView() {
                   placeholder="https://drive.google.com/file/d/.../view?usp=sharing"
                   className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8B1E24] text-sm bg-[#FAF8F5]/50"
                 />
-                <span className="text-[11px] text-[#0F2537]/60 block mt-0.5">
+                <span className="text-xs text-[#0F2537]/65 block mt-0.5">
                   Please ensure link sharing permissions are set to 'Anyone with link can view'.
                 </span>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#0F2537] mb-1">
+                <label className="block text-sm font-bold text-[#0F2537] mb-1.5">
                   Research Statement / Statement of Purpose (Brief) *
                 </label>
                 <textarea
@@ -281,7 +281,7 @@ export default function ContactView() {
                   required
                   value={formData.statement}
                   onChange={handleChange}
-                  placeholder="Summarize your prior research background in animal stroke surgery, nanoparticles, Western blotting, or metagenomics, and why you wish to join NeuraXlab..."
+                  placeholder="Summarize your prior research background in animal stroke surgery, nanoparticles, Western blotting, or metagenomics, and why you wish to join NeuroXlab..."
                   className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8B1E24] text-sm bg-[#FAF8F5]/50 leading-relaxed"
                 />
               </div>
@@ -317,13 +317,14 @@ export default function ContactView() {
               </h3>
             </div>
 
-            <div className="space-y-4 text-xs sm:text-sm text-white/85">
+            <div className="space-y-4 text-sm text-white/90">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#C59B27] mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="font-bold text-white">Room No. F75C, First Floor</p>
+                  <p className="text-[#E0B84C] font-semibold">Department of Systems and Computational Biology</p>
                   <p>SLS Annex Building, School of Life Sciences</p>
-                  <p className="text-[#E0B84C]">University of Hyderabad</p>
+                  <p>University of Hyderabad</p>
                   <p>Prof. C.R. Rao Road, Gachibowli</p>
                   <p>Hyderabad – 500046, Telangana, India</p>
                 </div>
@@ -332,7 +333,7 @@ export default function ContactView() {
               <div className="flex items-center gap-3 pt-2 border-t border-white/10">
                 <Phone className="w-5 h-5 text-[#C59B27] flex-shrink-0" />
                 <div>
-                  <p className="text-[11px] text-white/60">Direct Office Telephone</p>
+                  <p className="text-xs text-white/60">Direct Office Telephone</p>
                   <a href="tel:+914023134581" className="font-mono hover:text-[#E0B84C]">
                     +91-40-23134581
                   </a>
@@ -342,7 +343,7 @@ export default function ContactView() {
               <div className="flex items-start gap-3 pt-2 border-t border-white/10">
                 <Mail className="w-5 h-5 text-[#C59B27] mt-0.5 flex-shrink-0" />
                 <div className="space-y-1">
-                  <p className="text-[11px] text-white/60">Official Correspondence</p>
+                  <p className="text-xs text-white/60">Official Correspondence</p>
                   <a href="mailto:prasuja@uohyd.ac.in" className="font-mono hover:text-[#E0B84C] block">
                     prasuja@uohyd.ac.in
                   </a>
@@ -355,7 +356,7 @@ export default function ContactView() {
                 href="https://maps.google.com/?q=School+of+Life+Sciences+University+of+Hyderabad"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2.5 px-4 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-xs font-bold text-white flex items-center justify-center gap-2 transition-all border border-[#C59B27]/40"
+                className="w-full py-2.5 px-4 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-sm font-bold text-white flex items-center justify-center gap-2 transition-all border border-[#C59B27]/40"
               >
                 <Navigation className="w-4 h-4 text-[#E0B84C]" />
                 <span>Open in Google Maps</span>
@@ -370,36 +371,36 @@ export default function ContactView() {
               <span>Campus Transit &amp; Access Guide</span>
             </h4>
 
-            <div className="space-y-3 text-xs text-[#0F2537]/80">
+            <div className="space-y-3.5 text-sm text-[#0F2537]/80 leading-relaxed">
               <div className="flex items-start gap-3">
-                <Plane className="w-4 h-4 text-[#C59B27] mt-0.5 flex-shrink-0" />
+                <Plane className="w-4 h-4 text-[#C59B27] mt-1 flex-shrink-0" />
                 <div>
                   <strong className="text-[#0F2537]">Rajiv Gandhi Int'l Airport (RGIA):</strong>
-                  <p className="text-[#0F2537]/70">~32 km via Outer Ring Road (ORR) Exit 19 towards Gachibowli (approx. 40 mins by prepaid taxi).</p>
+                  <p className="text-[#0F2537]/70 text-sm">~32 km via Outer Ring Road (ORR) Exit 19 towards Gachibowli (approx. 40 mins by prepaid taxi).</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Train className="w-4 h-4 text-[#C59B27] mt-0.5 flex-shrink-0" />
+                <Train className="w-4 h-4 text-[#C59B27] mt-1 flex-shrink-0" />
                 <div>
                   <strong className="text-[#0F2537]">Nearest Railway Station (Lingampally):</strong>
-                  <p className="text-[#0F2537]/70">~3.5 km from Main Campus Gate. Auto-rickshaws and city buses operate frequently.</p>
+                  <p className="text-[#0F2537]/70 text-sm">~3.5 km from Main Campus Gate. Auto-rickshaws and city buses operate frequently.</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Car className="w-4 h-4 text-[#C59B27] mt-0.5 flex-shrink-0" />
+                <Car className="w-4 h-4 text-[#C59B27] mt-1 flex-shrink-0" />
                 <div>
                   <strong className="text-[#0F2537]">Secunderabad / Nampally Hub:</strong>
-                  <p className="text-[#0F2537]/70">~22 km via Mehdipatnam - Gachibowli - Prof. C.R. Rao Road.</p>
+                  <p className="text-[#0F2537]/70 text-sm">~22 km via Mehdipatnam - Gachibowli - Prof. C.R. Rao Road.</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Clock className="w-4 h-4 text-[#C59B27] mt-0.5 flex-shrink-0" />
+                <Clock className="w-4 h-4 text-[#C59B27] mt-1 flex-shrink-0" />
                 <div>
                   <strong className="text-[#0F2537]">Lab Visiting Hours:</strong>
-                  <p className="text-[#0F2537]/70">Monday – Friday: 09:30 AM to 05:30 PM (Prior appointment recommended).</p>
+                  <p className="text-[#0F2537]/70 text-sm">Monday – Friday: 09:30 AM to 05:30 PM (Prior appointment recommended).</p>
                 </div>
               </div>
             </div>

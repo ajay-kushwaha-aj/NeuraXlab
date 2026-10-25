@@ -18,13 +18,13 @@ export default function ImageLightboxModal({ isOpen, imageSrc, title, caption, o
         <div className="flex items-center justify-between px-6 py-4 bg-[#081521] border-b border-white/10 text-white">
           <div className="flex items-center gap-2">
             <ZoomIn className="w-5 h-5 text-[#C59B27]" />
-            <h3 className="font-serif text-lg text-white font-medium">
+            <h3 className="font-serif text-xl sm:text-2xl text-white font-medium">
               {title || 'Scientific Diagram / Gallery View'}
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition-colors"
             aria-label="Close image preview"
           >
             <X className="w-6 h-6" />
@@ -40,7 +40,7 @@ export default function ImageLightboxModal({ isOpen, imageSrc, title, caption, o
         </div>
 
         {caption && (
-          <div className="px-6 py-4 bg-[#0F2537] text-white/90 border-t border-white/10 text-sm leading-relaxed">
+          <div className="px-6 py-4 bg-[#0F2537] text-white/90 border-t border-white/10 text-sm sm:text-base leading-relaxed">
             <p>{caption}</p>
           </div>
         )}

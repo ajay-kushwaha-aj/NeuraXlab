@@ -35,7 +35,7 @@ export default function TeamView({ setActiveTab }) {
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
           Meet the Team
         </h1>
-        <p className="text-[#0F2537]/80 text-base sm:text-lg">
+        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
           A multidisciplinary collective of neurobiologists, nanotechnologists, biochemists, and systems biologists dedicated to unravelling acute CNS injury mechanisms.
         </p>
       </div>
@@ -65,11 +65,11 @@ export default function TeamView({ setActiveTab }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Left Column: Photo & Contact Telemetry */}
             <div className="lg:col-span-4 space-y-6">
-              <div className="relative rounded-2xl overflow-hidden border-4 border-[#C59B27] shadow-xl bg-[#0F2537] aspect-square max-w-[320px] mx-auto">
+              <div className="relative rounded-2xl overflow-hidden border-4 border-[#C59B27] shadow-xl bg-[#0F2537] aspect-square max-w-[320px] mx-auto group">
                 <img
                   src={pi.avatar}
                   alt={pi.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
@@ -79,7 +79,8 @@ export default function TeamView({ setActiveTab }) {
                   <MapPin className="w-4 h-4 text-[#8B1E24] mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="font-bold text-[#0F2537]">Room No. F75C, SLS Annex Building</p>
-                    <p className="text-[#0F2537]/70">School of Life Sciences, University of Hyderabad</p>
+                    <p className="font-semibold text-[#8B1E24]">Department of Systems and Computational Biology</p>
+                    <p className="text-[#0F2537]/75 font-medium">School of Life Sciences, University of Hyderabad</p>
                     <p className="text-[#0F2537]/70">Prof. C.R. Rao Road, Gachibowli, Hyderabad – 500046</p>
                   </div>
                 </div>
@@ -98,27 +99,6 @@ export default function TeamView({ setActiveTab }) {
                       prasuja@uohyd.ac.in
                     </a>
                   </div>
-                </div>
-
-                <div className="pt-2 border-t border-gray-200 flex flex-col gap-2">
-                  <a
-                    href={LAB_INFO.pi.scholarUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between text-[#8B1E24] hover:underline font-semibold"
-                  >
-                    <span>Google Scholar Profile (1,900+ Citations)</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                  <a
-                    href={LAB_INFO.pi.researchGateUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between text-[#0F2537]/80 hover:underline"
-                  >
-                    <span>ResearchGate Profile</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
                 </div>
               </div>
             </div>
@@ -186,6 +166,84 @@ export default function TeamView({ setActiveTab }) {
             </div>
           </div>
         </div>
+
+        {/* Horizontal Bottom Bar: Scholarly & Professional Profiles */}
+        <div className="border-t border-gray-200 bg-[#FAF8F5] px-6 sm:px-8 py-4">
+          <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#8B1E24]" />
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#8B1E24]">
+                Scholarly &amp; Professional Profiles:
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 flex-grow">
+              <a
+                href={LAB_INFO.pi.scholarUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#4285F4] hover:bg-[#4285F4]/5 transition-all text-[#0F2537] shadow-sm group"
+                title="View Google Scholar Citations"
+              >
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="w-5 h-5 rounded-full bg-[#4285F4]/10 text-[#4285F4] flex items-center justify-center font-bold text-xs shrink-0">G</span>
+                  <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#4285F4] truncate">Google Scholar</span>
+                </div>
+                <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#4285F4] shrink-0" />
+              </a>
+
+              <a
+                href={LAB_INFO.pi.researchGateUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#00CCBB] hover:bg-[#00CCBB]/5 transition-all text-[#0F2537] shadow-sm group"
+                title="View ResearchGate Profile"
+              >
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="w-5 h-5 rounded-full bg-[#00CCBB]/10 text-[#009B8D] flex items-center justify-center font-bold text-xs shrink-0">RG</span>
+                  <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#009B8D] truncate">ResearchGate</span>
+                </div>
+                <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#009B8D] shrink-0" />
+              </a>
+
+              <a
+                href={LAB_INFO.pi.linkedInUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#0077B5] hover:bg-[#0077B5]/5 transition-all text-[#0F2537] shadow-sm group"
+                title="View LinkedIn Profile"
+              >
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="w-5 h-5 rounded-full bg-[#0077B5]/10 text-[#0077B5] flex items-center justify-center font-bold text-xs shrink-0">in</span>
+                  <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#0077B5] truncate">LinkedIn</span>
+                </div>
+                <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#0077B5] shrink-0" />
+              </a>
+
+              <div className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-gray-50 border border-dashed border-gray-300 text-[#0F2537]/80 shadow-sm">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="w-5 h-5 rounded-full bg-[#A6CE39]/20 text-[#6B8E23] flex items-center justify-center font-bold text-[11px] shrink-0">iD</span>
+                  <span className="font-medium text-xs truncate">ORCID</span>
+                </div>
+                <span className="text-[10px] font-mono bg-amber-50 text-amber-700 px-2 py-0.5 rounded border border-amber-200 font-semibold shrink-0">will provide</span>
+              </div>
+
+              <a
+                href={LAB_INFO.pi.scopusUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#E86C00] hover:bg-[#E86C00]/5 transition-all text-[#0F2537] shadow-sm group"
+                title="View Scopus Profile"
+              >
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="w-5 h-5 rounded-full bg-[#E86C00]/10 text-[#E86C00] flex items-center justify-center font-bold text-xs shrink-0">Sc</span>
+                  <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#E86C00] truncate">Scopus Profile</span>
+                </div>
+                <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#E86C00] shrink-0" />
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* 2. Research Roster & Category Filters */}
@@ -241,35 +299,35 @@ export default function TeamView({ setActiveTab }) {
                     />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono font-bold uppercase text-[#8B1E24] bg-[#8B1E24]/10 px-2 py-0.5 rounded">
+                    <span className="text-xs font-mono font-bold uppercase text-[#8B1E24] bg-[#8B1E24]/10 px-2.5 py-0.5 rounded-md">
                       {member.category}
                     </span>
-                    <h3 className="font-serif text-xl font-bold text-[#0F2537] mt-1">
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] mt-1">
                       {member.name}
                     </h3>
-                    <p className="text-xs font-medium text-[#C59B27]">
+                    <p className="text-sm font-bold text-[#C59B27]">
                       {member.role}
                     </p>
-                    <p className="text-[11px] text-[#0F2537]/60">
+                    <p className="text-xs sm:text-sm text-[#0F2537]/70 font-medium">
                       {member.qualification}
                     </p>
                   </div>
                 </div>
 
-                <p className="text-xs text-[#0F2537]/80 leading-relaxed border-t border-gray-100 pt-3">
+                <p className="text-sm text-[#0F2537]/80 leading-relaxed border-t border-gray-100 pt-3">
                   {member.bio}
                 </p>
 
                 {member.researchInterests && (
                   <div className="space-y-1.5">
-                    <p className="text-[11px] font-bold text-[#0F2537] uppercase tracking-wider">
+                    <p className="text-xs font-bold text-[#0F2537] uppercase tracking-wider">
                       Specialization:
                     </p>
                     <div className="flex flex-wrap gap-1.5">
                       {member.researchInterests.map((int, i) => (
                         <span
                           key={i}
-                          className="text-[10px] px-2 py-0.5 rounded bg-[#FAF8F5] text-[#0F2537]/80 border border-gray-200"
+                          className="text-xs px-2.5 py-1 rounded bg-[#FAF8F5] text-[#0F2537]/80 border border-gray-200 font-medium"
                         >
                           {int}
                         </span>
@@ -280,11 +338,11 @@ export default function TeamView({ setActiveTab }) {
               </div>
 
               {member.contact && (
-                <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-[#0F2537]/70">
-                  <span className="font-mono text-[11px]">{member.contact.email}</span>
+                <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs sm:text-sm text-[#0F2537]/75">
+                  <span className="font-mono text-xs sm:text-sm">{member.contact.email}</span>
                   <a
                     href={`mailto:${member.contact.email}`}
-                    className="p-1 rounded hover:bg-gray-100 text-[#8B1E24]"
+                    className="p-1.5 rounded hover:bg-gray-100 text-[#8B1E24]"
                     title="Send Email"
                   >
                     <Mail className="w-4 h-4" />
@@ -296,12 +354,12 @@ export default function TeamView({ setActiveTab }) {
         </div>
       </section>
 
-      {/* 3. Join the NeuraXlab Banner */}
+      {/* 3. Join the NeuroXlab Banner */}
       <section className="bg-gradient-to-r from-[#8B1E24] to-[#641318] text-white rounded-3xl p-8 sm:p-12 border-2 border-[#C59B27] shadow-xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 text-center md:text-left">
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">
-              Interested in Joining NeuraXlab?
+              Interested in Joining NeuroXlab?
             </h3>
             <p className="text-sm text-white/85 max-w-2xl leading-relaxed">
               We welcome motivated CSIR/UGC-NET JRFs, DBT-BET fellows, PMRF scholars, and postdoctoral applicants who are eager to conduct breakthrough research in systems neuroscience.

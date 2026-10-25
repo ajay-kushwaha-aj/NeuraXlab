@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
  * NeuralCanvas: A clean, minimal, high-aesthetic neural simulation
  * positioned strictly in vacant peripheral areas (left & right flanks)
  * outside the central editorial text column. Muted, sophisticated palette
- * matching University of Hyderabad & NeuraXlab identities.
+ * matching University of Hyderabad & NeuroXlab identities.
  */
 export default function NeuralCanvas() {
   const canvasRef = useRef(null);

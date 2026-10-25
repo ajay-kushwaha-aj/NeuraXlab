@@ -11,7 +11,7 @@ import {
   BookOpen,
   ChevronRight
 } from 'lucide-react';
-import NeuraXlabLogo from './NeuraXlabLogo';
+import NeuroXlabLogo from './NeuroXlabLogo';
 import { LAB_INFO } from '../data/labData';
 
 export default function Footer({ setActiveTab }) {
@@ -41,11 +41,14 @@ export default function Footer({ setActiveTab }) {
       <div className="bg-[#081521] py-8 border-b border-white/10 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <NeuraXlabLogo className="w-13 h-13" withFrame={true} />
+            <NeuroXlabLogo className="w-13 h-13" withFrame={true} />
             <div>
-              <h3 className="brand-title text-2xl font-extrabold text-white tracking-tight">
-                Neura<span className="text-[#C59B27]">X</span>lab
+              <h3 className="brand-title text-2xl font-extrabold text-white tracking-tight leading-none">
+                Neuro<span className="text-[#C59B27]">X</span>lab
               </h3>
+              <p className="text-xs text-[#E0B84C] font-semibold mt-1">
+                Department of Systems and Computational Biology
+              </p>
             </div>
           </div>
 
@@ -77,18 +80,18 @@ export default function Footer({ setActiveTab }) {
             <h4 className="font-serif text-lg font-bold text-[#C59B27] tracking-wider uppercase">
               Affiliation
             </h4>
-            <div className="text-sm text-white/80 space-y-2 leading-relaxed">
+            <div className="text-sm text-white/85 space-y-2 leading-relaxed">
               <p className="font-semibold text-white">
                 School of Life Sciences
               </p>
-              <p className="text-[#E0B84C]">
+              <p className="text-[#E0B84C] font-medium">
                 University of Hyderabad (IoE)
               </p>
-              <p className="text-xs text-white/60">
+              <p className="text-xs text-white/70">
                 Central University established by an Act of Parliament, 1974 • NAAC A++ (CGPA 3.72)
               </p>
             </div>
-            <div className="pt-2 space-y-1.5 text-xs">
+            <div className="pt-2 space-y-2 text-sm">
               <a
                 href="https://uohyd.ac.in"
                 target="_blank"
@@ -98,14 +101,14 @@ export default function Footer({ setActiveTab }) {
                 <span>Visit uohyd.ac.in Portal</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
-              <div className="flex items-center gap-3 pt-1 text-white/70">
+              <div className="flex items-center gap-3 pt-1 text-white/80">
                 <a
-                  href="https://scholar.google.com/citations?user=f3v4i5IAAAAJ"
+                  href="https://scholar.google.co.in/citations?user=mVnNpwIAAAAJ&hl=en"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 hover:text-[#C59B27]"
+                  className="inline-flex items-center gap-1.5 hover:text-[#C59B27]"
                 >
-                  <GraduationCap className="w-3.5 h-3.5 text-[#C59B27]" />
+                  <GraduationCap className="w-4 h-4 text-[#C59B27]" />
                   <span>Google Scholar</span>
                 </a>
               </div>
@@ -117,7 +120,7 @@ export default function Footer({ setActiveTab }) {
             <h4 className="font-serif text-lg font-bold text-[#C59B27] tracking-wider uppercase">
               Navigation
             </h4>
-            <ul className="space-y-2.5 text-xs text-white/80">
+            <ul className="space-y-2.5 text-sm text-white/85">
               {[
                 { id: 'home', label: 'Home' },
                 { id: 'research', label: 'Research' },
@@ -132,7 +135,7 @@ export default function Footer({ setActiveTab }) {
                     onClick={() => navigateTo(item.id)}
                     className="group inline-flex items-center gap-2 hover:text-[#E0B84C] transition-colors text-left font-medium"
                   >
-                    <ChevronRight className="w-3 h-3 text-[#C59B27]/70 group-hover:text-[#E0B84C] group-hover:translate-x-0.5 transition-all shrink-0" />
+                    <ChevronRight className="w-3.5 h-3.5 text-[#C59B27]/70 group-hover:text-[#E0B84C] group-hover:translate-x-0.5 transition-all shrink-0" />
                     <span>{item.label}</span>
                   </button>
                 </li>
@@ -145,25 +148,25 @@ export default function Footer({ setActiveTab }) {
             <h4 className="font-serif text-lg font-bold text-[#C59B27] tracking-wider uppercase">
               Core Thrust Areas
             </h4>
-            <ul className="space-y-2 text-xs text-white/75">
+            <ul className="space-y-2.5 text-sm text-white/80 leading-relaxed">
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] mt-1.5 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] mt-2 flex-shrink-0" />
                 <span>Microbiota-Gut-Brain Axis in Ischemic Stroke</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] mt-1.5 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] mt-2 flex-shrink-0" />
                 <span>Endoplasmic Reticulum (ER) Stress &amp; UPR Signaling</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] mt-1.5 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] mt-2 flex-shrink-0" />
                 <span>Nano-Formulated SCFAs &amp; Edaravone (2026–2029 Grant)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] mt-1.5 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] mt-2 flex-shrink-0" />
                 <span>Non-coding RNAs (lncRNAs, piRNAs, miR-29c)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] mt-1.5 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] mt-2 flex-shrink-0" />
                 <span>Brain-Kidney Crosstalk (HIF1α–ZEB2–TRPC6 Axis)</span>
               </li>
             </ul>
@@ -174,11 +177,12 @@ export default function Footer({ setActiveTab }) {
             <h4 className="font-serif text-lg font-bold text-[#C59B27] tracking-wider uppercase">
               Laboratory Office
             </h4>
-            <div className="text-xs text-white/80 space-y-2.5">
+            <div className="text-sm text-white/85 space-y-3 leading-relaxed">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#C59B27] mt-0.5 flex-shrink-0" />
-                <div>
+                <MapPin className="w-4 h-4 text-[#C59B27] mt-1 flex-shrink-0" />
+                <div className="space-y-0.5">
                   <p className="font-semibold text-white">Room No. F75C, SLS Annex Building</p>
+                  <p className="text-[#E0B84C] font-medium">Department of Systems and Computational Biology</p>
                   <p>School of Life Sciences, University of Hyderabad</p>
                   <p>Prof. C.R. Rao Road, Gachibowli</p>
                   <p>Hyderabad – 500046, Telangana, India</p>
@@ -187,13 +191,13 @@ export default function Footer({ setActiveTab }) {
 
               <div className="flex items-center gap-2.5 pt-1">
                 <Phone className="w-4 h-4 text-[#C59B27] flex-shrink-0" />
-                <a href="tel:+914023134581" className="hover:text-white transition-colors">
+                <a href="tel:+914023134581" className="hover:text-white transition-colors font-mono">
                   +91-40-23134581
                 </a>
               </div>
 
               <div className="flex items-start gap-2.5 pt-1">
-                <Mail className="w-4 h-4 text-[#C59B27] mt-0.5 flex-shrink-0" />
+                <Mail className="w-4 h-4 text-[#C59B27] mt-1 flex-shrink-0" />
                 <div>
                   <a href="mailto:prasuja@uohyd.ac.in" className="block hover:text-white transition-colors font-mono">
                     prasuja@uohyd.ac.in
@@ -204,15 +208,37 @@ export default function Footer({ setActiveTab }) {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Attribution */}
-        <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-white/60 gap-4">
-          <p>
-            © {new Date().getFullYear()} NeuraXlab (Dr. Venkata Prasuja Nakka). All rights reserved.
-          </p>
-          <div className="flex items-center gap-4">
-            <span>School of Life Sciences</span>
-            <span>•</span>
-            <span>University of Hyderabad (Institution of Eminence)</span>
+        {/* Bottom Bar: Copyright & Institutional Attribution & Developer Credit */}
+        <div className="border-t border-white/10 mt-12 pt-6 pb-2 space-y-3">
+          <div className="flex flex-col lg:flex-row items-center justify-between text-xs text-white/75 gap-3">
+            {/* Left: Lab Copyright */}
+            <p className="text-center lg:text-left text-white/80">
+              © {new Date().getFullYear()} NeuroXlab (Dr. Venkata Prasuja Nakka). All rights reserved.
+            </p>
+
+            {/* Right: Institutional Line */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-end gap-x-2.5 gap-y-1 text-white/80">
+              <span className="text-[#E0B84C] font-medium">Department of Systems and Computational Biology</span>
+              <span className="text-white/40 hidden sm:inline">•</span>
+              <span>School of Life Sciences</span>
+              <span className="text-white/40 hidden sm:inline">•</span>
+              <span>University of Hyderabad (Institution of Eminence)</span>
+            </div>
+          </div>
+
+          {/* Right Down Corner in Last: Made by Ajay Kushwaha */}
+          <div className="flex justify-end pt-1">
+            <p className="text-[11px] text-white/60 tracking-wide text-right">
+              Made by{' '}
+              <a
+                href="https://ajaykushwaha.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#E0B84C] hover:text-white underline underline-offset-2 transition-colors font-semibold"
+              >
+                Ajay Kushwaha
+              </a>
+            </p>
           </div>
         </div>
       </div>

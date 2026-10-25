@@ -220,7 +220,7 @@ export default function ActivitiesPage() {
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
           Activities &amp; Facilities Gallery
         </h1>
-        <p className="text-[#0F2537]/80 text-base sm:text-lg">
+        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
           Chronicle of national workshops and symposia organized by Dr. Venkata Prasuja Nakka, invited scientific lectures, and technical specifications of our laboratory suites.
         </p>
 
@@ -290,20 +290,20 @@ export default function ActivitiesPage() {
                       {ev.title}
                     </h3>
 
-                    <div className="space-y-1 text-xs text-[#0F2537]/80">
+                    <div className="space-y-1 text-sm text-[#0F2537]/80">
                       <p><strong className="text-[#0F2537]">Role:</strong> {ev.role}</p>
-                      <p className="flex items-center gap-1.5 text-[#8B1E24] font-medium">
-                        <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+                      <p className="flex items-center gap-1.5 text-[#8B1E24] font-semibold">
+                        <MapPin className="w-4 h-4 flex-shrink-0" />
                         <span>{ev.venue}</span>
                       </p>
                     </div>
 
-                    <p className="text-xs sm:text-sm text-[#0F2537]/75 leading-relaxed bg-[#FAF8F5] p-4 rounded-2xl border border-gray-100">
+                    <p className="text-sm text-[#0F2537]/85 leading-relaxed bg-[#FAF8F5] p-4 sm:p-5 rounded-2xl border border-gray-100">
                       {ev.description}
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-gray-100 text-[11px] text-[#0F2537]/60 font-mono">
+                  <div className="pt-3 border-t border-gray-100 text-xs text-[#0F2537]/70 font-mono">
                     Official Institutional Event • University of Hyderabad
                   </div>
                 </div>
@@ -326,31 +326,31 @@ export default function ActivitiesPage() {
               {invitedTalks.map((talk, idx) => (
                 <div
                   key={idx}
-                  className="bg-white rounded-3xl p-6 border-2 border-[#C59B27]/40 shadow-sm hover:shadow-lg transition-all space-y-3 flex flex-col justify-between"
+                  className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-[#C59B27]/40 shadow-sm hover:shadow-lg transition-all space-y-3 flex flex-col justify-between"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-xs font-mono text-[#8B1E24] font-bold">
                       <span className="flex items-center gap-1">
-                        <Mic className="w-3.5 h-3.5" />
+                        <Mic className="w-4 h-4" />
                         <span>Invited Keynote</span>
                       </span>
                       <span>{talk.date}</span>
                     </div>
 
-                    <h3 className="font-serif text-xl font-bold text-[#0F2537] leading-snug">
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] leading-snug">
                       "{talk.topic}"
                     </h3>
 
-                    <p className="text-xs font-semibold text-[#C59B27]">
+                    <p className="text-sm font-semibold text-[#C59B27]">
                       {talk.venue}
                     </p>
 
-                    <p className="text-xs text-[#0F2537]/75 leading-relaxed">
+                    <p className="text-sm text-[#0F2537]/85 leading-relaxed">
                       {talk.summary}
                     </p>
                   </div>
 
-                  <div className="pt-2 border-t border-gray-100 text-[10px] text-[#0F2537]/60 font-mono">
+                  <div className="pt-2 border-t border-gray-100 text-xs text-[#0F2537]/70 font-mono">
                     Host: {talk.host}
                   </div>
                 </div>
@@ -367,7 +367,7 @@ export default function ActivitiesPage() {
               <h2 className="font-serif text-3xl font-bold text-[#0F2537]">
                 International Conferences Attended
               </h2>
-              <p className="text-xs text-[#0F2537]/70 mt-1">
+              <p className="text-sm text-[#0F2537]/75 mt-1">
                 SfN San Diego, Indo-Taiwan Symposium, IPS National Congress, and NBRC Neuroscience Conventions.
               </p>
             </div>
@@ -379,16 +379,16 @@ export default function ActivitiesPage() {
                   className="bg-[#FAF8F5] rounded-2xl p-5 border border-gray-200 space-y-2.5 flex flex-col justify-between"
                 >
                   <div className="space-y-2">
-                    <span className="text-[10px] font-mono font-bold uppercase text-[#8B1E24] bg-white px-2 py-0.5 rounded border border-gray-200">
+                    <span className="text-xs font-mono font-bold uppercase text-[#8B1E24] bg-white px-2.5 py-0.5 rounded border border-gray-200">
                       {conf.badge}
                     </span>
-                    <h4 className="font-serif text-base font-bold text-[#0F2537] leading-snug">
+                    <h4 className="font-serif text-lg font-bold text-[#0F2537] leading-snug">
                       {conf.conference}
                     </h4>
-                    <p className="text-xs font-semibold text-[#C59B27]">{conf.location}</p>
-                    <p className="text-xs text-[#0F2537]/75 italic">"{conf.presentation}"</p>
+                    <p className="text-sm font-bold text-[#C59B27]">{conf.location}</p>
+                    <p className="text-sm text-[#0F2537]/85 italic">"{conf.presentation}"</p>
                   </div>
-                  <div className="pt-2 border-t border-gray-200 text-[10px] text-[#0F2537]/60 font-mono">
+                  <div className="pt-2 border-t border-gray-200 text-xs text-[#0F2537]/70 font-mono">
                     {conf.collaborators}
                   </div>
                 </div>
@@ -400,17 +400,17 @@ export default function ActivitiesPage() {
           <section className="bg-white rounded-3xl p-8 border border-gray-200 shadow-md space-y-4">
             <div className="flex items-center gap-2">
               <GraduationCap className="w-6 h-6 text-[#8B1E24]" />
-              <h3 className="font-serif text-2xl font-bold text-[#0F2537]">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
                 UGC-HRDC Faculty &amp; Career Development Courses
               </h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
               {hrdcCourses.map((c, i) => (
-                <div key={i} className="p-4 rounded-2xl bg-[#FAF8F5] border border-gray-200 space-y-1.5">
+                <div key={i} className="p-5 rounded-2xl bg-[#FAF8F5] border border-gray-200 space-y-2">
                   <span className="text-xs font-mono font-bold text-[#8B1E24] uppercase">{c.period}</span>
-                  <h4 className="font-serif text-lg font-bold text-[#0F2537]">{c.course}</h4>
-                  <p className="text-xs font-semibold text-[#C59B27]">{c.institution}</p>
-                  <p className="text-xs text-[#0F2537]/75">{c.focus}</p>
+                  <h4 className="font-serif text-xl font-bold text-[#0F2537]">{c.course}</h4>
+                  <p className="text-sm font-bold text-[#C59B27]">{c.institution}</p>
+                  <p className="text-sm text-[#0F2537]/85 leading-relaxed">{c.focus}</p>
                 </div>
               ))}
             </div>
@@ -430,7 +430,7 @@ export default function ActivitiesPage() {
             <h2 className="font-serif text-3xl font-bold text-[#0F2537]">
               Laboratory Facilities &amp; Technical Specifications
             </h2>
-            <p className="text-xs text-[#0F2537]/70 mt-1">
+            <p className="text-sm text-[#0F2537]/75 mt-1">
               Room F75C, SLS Annex Building, School of Life Sciences, University of Hyderabad.
             </p>
           </div>
@@ -458,7 +458,7 @@ export default function ActivitiesPage() {
                         openLightbox(
                           fac.image,
                           fac.title,
-                          `${fac.room} • Technical Specifications Core Facility at NeuraXlab.`
+                          `${fac.room} • Technical Specifications Core Facility at NeuroXlab.`
                         )
                       }
                       className="absolute bottom-3 right-3 p-2 rounded-xl bg-black/60 text-white hover:bg-[#8B1E24] transition-colors"
@@ -467,7 +467,7 @@ export default function ActivitiesPage() {
                       <Maximize2 className="w-4 h-4" />
                     </button>
                     <div className="absolute bottom-3 left-4 text-white">
-                      <span className="text-[11px] font-mono text-[#E0B84C] font-semibold">{fac.room}</span>
+                      <span className="text-xs font-mono text-[#E0B84C] font-semibold">{fac.room}</span>
                     </div>
                   </div>
 
@@ -481,10 +481,10 @@ export default function ActivitiesPage() {
                       <span className="text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
                         Core Instrument Configurations &amp; Capabilities:
                       </span>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2.5">
                         {fac.specifications.map((spec, i) => (
-                          <li key={i} className="flex items-start gap-2.5 text-xs text-[#0F2537]/85 leading-relaxed">
-                            <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-0.5" />
+                          <li key={i} className="flex items-start gap-2.5 text-sm text-[#0F2537]/85 leading-relaxed">
+                            <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-1" />
                             <span>{spec}</span>
                           </li>
                         ))}
@@ -494,7 +494,7 @@ export default function ActivitiesPage() {
                 </div>
 
                 <div className="px-6 sm:px-8 py-3.5 bg-[#FAF8F5] border-t border-gray-100 text-xs font-mono text-[#0F2537]/60 flex items-center justify-between">
-                  <span>NeuraXlab Core Instrumentation</span>
+                  <span>NeuroXlab Core Instrumentation</span>
                   <span className="text-[#8B1E24] font-bold">Room F75C SLS Annex</span>
                 </div>
               </div>

@@ -20,16 +20,29 @@
     font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
     color: #0F2537;
     background-color: #FAF8F5;
+    font-size: 16px; /* Standard crisp root scale */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Academic base font size set to 18px (text-lg) as requested */
+  /* Academic base typography set for comfortable reading */
   body {
-    font-size: 1.125rem;
-    line-height: 1.75;
+    font-size: 1rem;
+    line-height: 1.68;
+    color: #0F2537;
+    letter-spacing: -0.006em;
   }
 
-  h1, h2, h3, .font-serif {
-    font-family: "Instrument Serif", Georgia, Cambria, serif;
+  /* Enhanced paragraph readability defaults */
+  p {
+    line-height: 1.65;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-serif, .font-heading {
+    font-family: "Fraunces", Georgia, serif;
+    font-optical-sizing: auto;
+    letter-spacing: -0.015em;
   }
 
   code, pre, .font-mono {
@@ -50,16 +63,29 @@
   --color-uoh-ivory: #FAF8F5;
   --color-uoh-ivory-dark: #EFE9E0;
 
-  --font-serif: "Instrument Serif", Georgia, Cambria, serif;
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-heading: "Fraunces", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
-  --font-brand: "Outfit", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --font-display: "Outfit", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-brand: "Fraunces", "Outfit", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces", "Outfit", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.375rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.625rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.875rem;
 }
 
 /* Premium Brand Typography Utility */
 .font-brand, .brand-title {
-  font-family: "Outfit", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  font-family: "Fraunces", "Outfit", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  font-optical-sizing: auto;
 }
 
 .brand-title {
@@ -80,6 +106,16 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(197, 155, 39, 0.25);
+}
+
+.body-lead {
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+.body-reading {
+  font-size: 1.05rem;
+  line-height: 1.75;
 }
 
 .academic-badge {
@@ -120,4 +156,29 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #8B1E24;
+}
+
+/* Upward Scrolling Points Ticker with Pause on Hover */
+@keyframes scrollUpward {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll-up {
+  animation: scrollUpward 32s linear infinite;
+}
+
+.ticker-wrapper:hover .animate-scroll-up,
+.animate-scroll-up:hover {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-up {
+    animation: none;
+  }
 }

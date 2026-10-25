@@ -175,12 +175,12 @@ export default function ResearchArticlesPage() {
       <div className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
           <BookOpen className="w-3.5 h-3.5" />
-          <span>Thematic Syntheses &amp; Academic Compendia</span>
+          <span>Department of Systems and Computational Biology</span>
         </div>
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
           Research Articles &amp; Book Chapters
         </h1>
-        <p className="text-[#0F2537]/80 text-base sm:text-lg">
+        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
           Thematic deep-dives into Dr. Venkata Prasuja Nakka's landmark molecular discoveries, 5 authoritative authored book chapters, and international conference proceedings.
         </p>
       </div>
@@ -243,20 +243,20 @@ export default function ResearchArticlesPage() {
               <h3 className="font-serif text-3xl font-bold text-[#0F2537] mt-2">
                 {activeDive.title}
               </h3>
-              <p className="text-xs font-semibold text-[#C59B27] mt-1">
+              <p className="text-sm font-semibold text-[#C59B27] mt-1">
                 Published across: {activeDive.citation}
               </p>
             </div>
-            <div className="text-xs font-mono text-[#0F2537]/70 bg-[#FAF8F5] px-3 py-2 rounded-xl border border-gray-200">
+            <div className="text-sm font-mono text-[#0F2537]/75 bg-[#FAF8F5] px-3.5 py-2 rounded-xl border border-gray-200">
               {activeDive.leadAuthor}
             </div>
           </div>
 
-          <div className="bg-[#FAF8F5] p-5 rounded-2xl border border-gray-200 space-y-2">
+          <div className="bg-[#FAF8F5] p-6 rounded-2xl border border-gray-200 space-y-2.5">
             <span className="text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
               Translational Impact &amp; Paradigm Shift:
             </span>
-            <p className="text-sm text-[#0F2537]/85 leading-relaxed">
+            <p className="text-base text-[#0F2537]/85 leading-relaxed font-normal">
               {activeDive.impact}
             </p>
           </div>
@@ -265,10 +265,10 @@ export default function ResearchArticlesPage() {
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#0F2537]">
               Key Mechanistic Insights:
             </h4>
-            <div className="grid grid-cols-1 gap-2.5">
+            <div className="grid grid-cols-1 gap-3">
               {activeDive.mechanisms.map((mech, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100 text-xs sm:text-sm text-[#0F2537]/85">
-                  <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-0.5" />
+                <div key={idx} className="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50 border border-gray-100 text-sm text-[#0F2537]/85 leading-relaxed">
+                  <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-1" />
                   <span>{mech}</span>
                 </div>
               ))}
@@ -310,16 +310,16 @@ export default function ResearchArticlesPage() {
                     <span className="text-xs font-mono text-[#8B1E24] bg-[#FAF8F5] px-2.5 py-0.5 rounded border border-[#C59B27]/40 font-semibold">
                       {book.badge}
                     </span>
-                    <span className="text-xs font-mono text-[#0F2537]/60">
+                    <span className="text-xs sm:text-sm font-mono text-[#0F2537]/70">
                       {book.publisher} • {book.year}
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-2xl font-bold text-[#0F2537] leading-snug">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537] leading-snug">
                     {book.title}
                   </h3>
 
-                  <p className="text-xs text-[#8B1E24] font-semibold">
+                  <p className="text-sm text-[#8B1E24] font-semibold">
                     {book.authors}
                   </p>
                 </div>
@@ -329,7 +329,7 @@ export default function ResearchArticlesPage() {
                     href={book.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#0F2537] hover:bg-[#8B1E24] transition-colors shadow flex-shrink-0"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-[#0F2537] hover:bg-[#8B1E24] transition-colors shadow flex-shrink-0"
                   >
                     <span>Publisher Portal</span>
                     <ExternalLink className="w-3.5 h-3.5 text-[#E0B84C]" />
@@ -337,11 +337,11 @@ export default function ResearchArticlesPage() {
                 )}
               </div>
 
-              <p className="text-xs sm:text-sm text-[#0F2537]/80 leading-relaxed bg-[#FAF8F5] p-4 rounded-xl border border-gray-100">
+              <p className="text-sm text-[#0F2537]/85 leading-relaxed bg-[#FAF8F5] p-4 sm:p-5 rounded-2xl border border-gray-100">
                 {book.summary}
               </p>
 
-              <div className="flex flex-wrap items-center justify-between text-xs text-[#0F2537]/60 font-mono pt-2 border-t border-gray-100 gap-2">
+              <div className="flex flex-wrap items-center justify-between text-xs text-[#0F2537]/70 font-mono pt-2 border-t border-gray-100 gap-2">
                 <span>ISBN: {book.isbn}</span>
                 {book.doi && <span>DOI: {book.doi}</span>}
                 <span>Indexed in Scopus &amp; Google Scholar</span>
@@ -362,7 +362,7 @@ export default function ResearchArticlesPage() {
           <h2 className="font-serif text-3xl font-bold text-[#0F2537]">
             International Conference Proceedings (Berlin, San Francisco, Taiwan)
           </h2>
-          <p className="text-xs text-[#0F2537]/70 mt-1">
+          <p className="text-sm text-[#0F2537]/75 mt-1">
             Major peer-reviewed presentations delivered at apex international neuroscience conferences.
           </p>
         </div>
@@ -371,35 +371,35 @@ export default function ResearchArticlesPage() {
           {conferenceProceedings.map((conf) => (
             <div
               key={conf.id}
-              className="bg-white rounded-3xl p-6 border-2 border-gray-200 hover:border-[#8B1E24] shadow-sm hover:shadow-lg transition-all space-y-4 flex flex-col justify-between"
+              className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-gray-200 hover:border-[#8B1E24] shadow-sm hover:shadow-lg transition-all space-y-4 flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono font-bold uppercase bg-[#8B1E24] text-white px-2 py-0.5 rounded">
+                  <span className="text-xs font-mono font-bold uppercase bg-[#8B1E24] text-white px-2.5 py-0.5 rounded-md">
                     {conf.scope}
                   </span>
                   <Globe2 className="w-4 h-4 text-[#C59B27]" />
                 </div>
 
-                <div className="flex items-center gap-1.5 text-xs font-bold text-[#8B1E24]">
-                  <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+                <div className="flex items-center gap-1.5 text-sm font-bold text-[#8B1E24]">
+                  <MapPin className="w-4 h-4 flex-shrink-0" />
                   <span>{conf.city}</span>
                 </div>
 
-                <h3 className="font-serif text-xl font-bold text-[#0F2537] leading-snug">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] leading-snug">
                   {conf.title}
                 </h3>
 
-                <p className="text-xs text-[#0F2537]/75">
+                <p className="text-sm text-[#0F2537]/85 leading-relaxed">
                   <strong>Congress:</strong> {conf.conference}
                 </p>
 
-                <p className="text-xs text-[#0F2537]/60">
+                <p className="text-sm text-[#0F2537]/75">
                   <strong>Authors:</strong> {conf.authors}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-gray-100 text-[11px] font-mono text-[#C59B27] font-semibold">
+              <div className="pt-3 border-t border-gray-100 text-xs sm:text-sm font-mono text-[#C59B27] font-semibold">
                 {conf.date}
               </div>
             </div>

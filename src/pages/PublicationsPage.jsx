@@ -15,6 +15,7 @@ import {
   Award
 } from 'lucide-react';
 import BibtexModal from '../components/BibtexModal';
+import { LAB_INFO } from '../data/labData';
 
 export default function PublicationsPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -425,12 +426,12 @@ export default function PublicationsPage() {
       <div className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
           <BookOpen className="w-3.5 h-3.5" />
-          <span>Peer-Reviewed Journal Literature</span>
+          <span>Department of Systems and Computational Biology</span>
         </div>
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
           Publications Repository
         </h1>
-        <p className="text-[#0F2537]/80 text-base sm:text-lg">
+        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
           Complete archive of all 14 peer-reviewed journal articles, impact factor badges, expandable abstracts, verified metrics, and active 2026–2029 extramural grant.
         </p>
       </div>
@@ -445,7 +446,7 @@ export default function PublicationsPage() {
             <p className="text-xs text-[#0F2537]/70 font-semibold">Total Verified Citations</p>
           </div>
           <a
-            href="https://scholar.google.com/citations?user=f3v4i5IAAAAJ"
+            href={LAB_INFO.pi.scholarUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="w-10 h-10 rounded-xl bg-[#8B1E24]/10 text-[#8B1E24] flex items-center justify-center hover:bg-[#8B1E24] hover:text-white transition-colors"
@@ -501,20 +502,20 @@ export default function PublicationsPage() {
       {/* 2026-2029 Flagship Grant Intervention Banner */}
       <div className="bg-gradient-to-r from-[#FAF8F5] to-white rounded-3xl p-6 sm:p-8 border-2 border-[#C59B27] shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B1E24] text-white text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E24] text-white text-xs font-bold uppercase tracking-wider">
             <Flame className="w-3.5 h-3.5 text-[#E0B84C]" />
             <span>Active Extramural Research Project (27-Jan-2026 to 26-Jan-2029)</span>
           </div>
           <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537]">
             Therapeutic potential of nano-formulated short-chain fatty acids and edaravone in stroke-induced gut dysbiosis and its bidirectional impact on stroke recovery
           </h3>
-          <p className="text-xs text-[#0F2537]/75">
+          <p className="text-sm text-[#0F2537]/75 leading-relaxed">
             PI: Dr. Venkata Prasuja Nakka • School of Life Sciences, University of Hyderabad • Budget: ₹38,50,000 INR
           </p>
         </div>
         <div className="px-5 py-3 rounded-2xl bg-[#0F2537] text-white text-xs font-mono font-bold text-center flex-shrink-0 border border-[#C59B27]">
           <span className="text-[#E0B84C] block uppercase text-[10px]">Grant Status</span>
-          <span>Active 3-Year Award</span>
+          <span className="text-sm">Active 3-Year Award</span>
         </div>
       </div>
 
@@ -545,7 +546,7 @@ export default function PublicationsPage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
                   selectedCategory === cat
                     ? 'bg-[#8B1E24] text-white shadow-sm'
                     : 'bg-[#FAF8F5] text-[#0F2537]/75 hover:text-[#0F2537] hover:bg-gray-100'
@@ -557,11 +558,11 @@ export default function PublicationsPage() {
           </div>
         </div>
 
-        <div className="text-xs text-[#0F2537]/60 flex items-center justify-between pt-1">
+        <div className="text-xs sm:text-sm text-[#0F2537]/70 flex items-center justify-between pt-1">
           <span>
             Displaying <strong>{filteredArticles.length}</strong> of {allFourteenArticles.length} peer-reviewed articles
           </span>
-          <span className="font-mono">Central Life Sciences Repository</span>
+          <span className="font-mono text-xs">Central Life Sciences Repository</span>
         </div>
       </div>
 
@@ -580,7 +581,7 @@ export default function PublicationsPage() {
                   <span className="text-xs font-mono font-bold text-white bg-[#8B1E24] px-3 py-1 rounded-full">
                     {pub.journal}
                   </span>
-                  <span className="text-xs font-mono text-[#0F2537]/70 font-semibold">
+                  <span className="text-xs font-mono text-[#0F2537]/75 font-semibold">
                     {pub.year}
                   </span>
                   {pub.impactFactor && (
@@ -594,18 +595,18 @@ export default function PublicationsPage() {
                   <span className="text-xs font-mono font-bold text-[#C59B27] bg-[#FAF8F5] px-2.5 py-1 rounded border border-[#C59B27]/40">
                     {pub.citations} Citations
                   </span>
-                  <span className="text-xs font-mono text-[#0F2537]/60 hidden sm:inline">
+                  <span className="text-xs font-mono text-[#0F2537]/70 hidden sm:inline">
                     {pub.volume}
                   </span>
                 </div>
               </div>
 
               {/* Title & Authors */}
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] leading-snug">
                   {pub.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#0F2537]/80">
+                <p className="text-sm text-[#0F2537]/80">
                   <strong className="text-[#0F2537]">Authors:</strong> {pub.authors}
                 </p>
               </div>
@@ -614,14 +615,14 @@ export default function PublicationsPage() {
               <div>
                 <button
                   onClick={() => toggleAbstract(pub.id)}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B1E24] hover:text-[#641318] focus:outline-none"
+                  className="inline-flex items-center gap-1.5 text-sm font-bold text-[#8B1E24] hover:text-[#641318] focus:outline-none"
                 >
                   <span>{isExpanded ? 'Hide Abstract' : 'Read Abstract'}</span>
-                  {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                  {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </button>
 
                 {isExpanded && (
-                  <p className="text-xs sm:text-sm text-[#0F2537]/80 leading-relaxed bg-[#FAF8F5] p-4 rounded-2xl border border-gray-100 mt-2 animate-in fade-in duration-150">
+                  <p className="text-sm text-[#0F2537]/80 leading-relaxed bg-[#FAF8F5] p-5 rounded-2xl border border-gray-100 mt-2 animate-in fade-in duration-150">
                     {pub.abstract}
                   </p>
                 )}
@@ -633,19 +634,19 @@ export default function PublicationsPage() {
                   {pub.tags.map((t, i) => (
                     <span
                       key={i}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-gray-100 text-[#0F2537]/70"
+                      className="text-xs font-mono px-2.5 py-1 rounded-md bg-gray-100 text-[#0F2537]/80 font-medium"
                     >
                       #{t}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2.5">
                   <button
                     onClick={() => openBibtex(pub)}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold text-[#8B1E24] bg-[#8B1E24]/10 hover:bg-[#8B1E24] hover:text-white transition-all shadow-sm"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold text-[#8B1E24] bg-[#8B1E24]/10 hover:bg-[#8B1E24] hover:text-white transition-all shadow-sm"
                   >
-                    <Quote className="w-3.5 h-3.5" />
+                    <Quote className="w-4 h-4" />
                     <span>Cite / BibTeX</span>
                   </button>
 
@@ -653,10 +654,10 @@ export default function PublicationsPage() {
                     href={`https://doi.org/${pub.doi}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold text-[#0F2537] hover:bg-[#FAF8F5] border border-gray-200 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold text-[#0F2537] hover:bg-[#FAF8F5] border border-gray-200 transition-colors"
                   >
                     <span>DOI Link</span>
-                    <ExternalLink className="w-3 h-3 text-[#C59B27]" />
+                    <ExternalLink className="w-3.5 h-3.5 text-[#C59B27]" />
                   </a>
                 </div>
               </div>

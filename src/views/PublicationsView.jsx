@@ -60,12 +60,12 @@ export default function PublicationsView() {
       <div className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
           <BookOpen className="w-3.5 h-3.5" />
-          <span>Peer-Reviewed Literature</span>
+          <span>Department of Systems and Computational Biology</span>
         </div>
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
           Research Publications
         </h1>
-        <p className="text-[#0F2537]/80 text-base sm:text-lg">
+        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
           Discover our peer-reviewed findings in high-impact journals including Stroke (AHA), Molecular Neurobiology, and JCBFM, with one-click BibTeX export.
         </p>
       </div>
@@ -212,14 +212,14 @@ export default function PublicationsView() {
                 <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] leading-snug">
                   {pub.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#0F2537]/80">
+                <p className="text-sm text-[#0F2537]/80">
                   <strong className="text-[#0F2537]">Authors:</strong> {pub.authors}
                 </p>
               </div>
 
               {/* Abstract Preview */}
               {pub.abstract && (
-                <p className="text-xs sm:text-sm text-[#0F2537]/75 leading-relaxed bg-[#FAF8F5] p-4 rounded-xl border border-gray-100">
+                <p className="text-sm text-[#0F2537]/80 leading-relaxed bg-[#FAF8F5] p-4 rounded-xl border border-gray-100">
                   {pub.abstract}
                 </p>
               )}

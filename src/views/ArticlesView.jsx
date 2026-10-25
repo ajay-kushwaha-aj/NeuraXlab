@@ -25,7 +25,7 @@ export default function ArticlesView() {
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
           Research Articles &amp; Book Chapters
         </h1>
-        <p className="text-[#0F2537]/80 text-base sm:text-lg">
+        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
           Scholarly treatises, authoritative methodology chapters, and standardized laboratory protocols authored by Dr. Venkata Prasuja Nakka across leading international publishers.
         </p>
       </div>
@@ -37,11 +37,11 @@ export default function ArticlesView() {
             <h2 className="font-serif text-3xl font-bold text-[#0F2537]">
               Authored Books &amp; Specialized Chapters
             </h2>
-            <p className="text-xs text-[#0F2537]/70 mt-0.5">
+            <p className="text-sm sm:text-base text-[#0F2537]/70 mt-1">
               Published with Cambridge Scholars Publishing, Elsevier (Methods in Enzymology), and Springer Nature.
             </p>
           </div>
-          <span className="hidden sm:inline-block text-xs font-mono font-semibold text-[#8B1E24] bg-[#FAF8F5] px-3 py-1 rounded-lg border border-[#C59B27]/40">
+          <span className="hidden sm:inline-block text-xs sm:text-sm font-mono font-semibold text-[#8B1E24] bg-[#FAF8F5] px-3.5 py-1.5 rounded-lg border border-[#C59B27]/40">
             {BOOK_CHAPTERS.length} Volumes Documented
           </span>
         </div>
@@ -55,13 +55,13 @@ export default function ArticlesView() {
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-xs font-mono font-bold text-white bg-[#8B1E24] px-3 py-1 rounded-full uppercase">
+                    <span className="text-xs sm:text-sm font-mono font-bold text-white bg-[#8B1E24] px-3 py-1 rounded-full uppercase">
                       {book.category}
                     </span>
-                    <span className="text-xs font-mono text-[#0F2537]/70 bg-[#FAF8F5] px-2.5 py-1 rounded border border-gray-200">
+                    <span className="text-xs sm:text-sm font-mono text-[#0F2537]/70 bg-[#FAF8F5] px-2.5 py-1 rounded border border-gray-200">
                       {book.publisher}
                     </span>
-                    <span className="text-xs font-mono text-[#0F2537]/70">
+                    <span className="text-xs sm:text-sm font-mono text-[#0F2537]/70">
                       Year: {book.year}
                     </span>
                   </div>
@@ -70,7 +70,7 @@ export default function ArticlesView() {
                     {book.title}
                   </h3>
 
-                  <p className="text-xs text-[#8B1E24] font-semibold">
+                  <p className="text-sm sm:text-base text-[#8B1E24] font-semibold">
                     Authors / Editors: {book.authors}
                   </p>
                 </div>
@@ -80,7 +80,7 @@ export default function ArticlesView() {
                     href={book.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#0F2537] hover:bg-[#8B1E24] transition-colors shadow flex-shrink-0"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold text-white bg-[#0F2537] hover:bg-[#8B1E24] transition-colors shadow flex-shrink-0"
                   >
                     <span>Publisher Portal</span>
                     <ExternalLink className="w-3.5 h-3.5 text-[#E0B84C]" />
@@ -88,18 +88,18 @@ export default function ArticlesView() {
                 )}
               </div>
 
-              <p className="text-sm sm:text-base text-[#0F2537]/85 leading-relaxed bg-[#FAF8F5] p-5 rounded-2xl border border-gray-100">
+              <p className="text-sm sm:text-base text-[#0F2537]/85 leading-relaxed bg-[#FAF8F5] p-4 sm:p-5 rounded-2xl border border-gray-100">
                 {book.summary}
               </p>
 
               {/* Highlights & Table of Contents Topics */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#0F2537]">
+                <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0F2537]">
                   Key Thematic Sections &amp; Protocols Covered:
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {book.highlights.map((h, i) => (
-                    <div key={i} className="flex items-start gap-2 text-xs text-[#0F2537]/80">
+                    <div key={i} className="flex items-start gap-2 text-sm text-[#0F2537]/85">
                       <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-0.5" />
                       <span>{h}</span>
                     </div>
@@ -108,7 +108,7 @@ export default function ArticlesView() {
               </div>
 
               {/* Bibliographic Telemetry */}
-              <div className="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between text-xs text-[#0F2537]/60 font-mono gap-2">
+              <div className="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between text-xs sm:text-sm text-[#0F2537]/70 font-mono gap-2">
                 <span>ISBN: {book.isbn}</span>
                 {book.doi && <span>DOI: {book.doi}</span>}
                 <span>Location: SLS Annex Library / UoH Institutional Repository</span>
@@ -121,14 +121,14 @@ export default function ArticlesView() {
       {/* 2. Standardized Laboratory Methodologies & Protocols */}
       <section className="space-y-8">
         <div className="space-y-2 border-b border-gray-200 pb-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+          <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#8B1E24]">
             Preclinical Experimental Platform
           </span>
           <h2 className="font-serif text-3xl font-bold text-[#0F2537]">
             Standard Operating Procedures &amp; Methodologies
           </h2>
-          <p className="text-xs text-[#0F2537]/70">
-            Validated bench protocols optimized at NeuraXlab for reproducibility in translational stroke research.
+          <p className="text-sm sm:text-base text-[#0F2537]/70">
+            Validated bench protocols optimized at NeuroXlab for reproducibility in translational stroke research.
           </p>
         </div>
 
@@ -140,17 +140,17 @@ export default function ArticlesView() {
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono font-bold uppercase text-[#8B1E24] bg-[#8B1E24]/10 px-2.5 py-1 rounded-md">
+                  <span className="text-xs font-mono font-bold uppercase text-[#8B1E24] bg-[#8B1E24]/10 px-2.5 py-1 rounded-md">
                     {method.topic}
                   </span>
                   <FileText className="w-4 h-4 text-[#C59B27]" />
                 </div>
 
-                <h3 className="font-serif text-xl font-bold text-[#0F2537] leading-snug">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] leading-snug">
                   {method.title}
                 </h3>
 
-                <p className="text-xs text-[#0F2537]/80 leading-relaxed">
+                <p className="text-sm text-[#0F2537]/85 leading-relaxed">
                   {method.description}
                 </p>
               </div>
@@ -160,16 +160,16 @@ export default function ArticlesView() {
                   {method.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#FAF8F5] text-[#0F2537]/75 border border-gray-200"
+                      className="text-xs font-mono px-2 py-0.5 rounded bg-[#FAF8F5] text-[#0F2537]/75 border border-gray-200"
                     >
                       #{tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between text-xs text-[#8B1E24] font-semibold pt-1">
-                  <span>NeuraXlab SOP Repository</span>
-                  <span className="text-[11px] text-[#0F2537]/60">SLS Annex Lab F75C</span>
+                <div className="flex items-center justify-between text-sm text-[#8B1E24] font-semibold pt-1">
+                  <span>NeuroXlab SOP Repository</span>
+                  <span className="text-xs text-[#0F2537]/60">SLS Annex Lab F75C</span>
                 </div>
               </div>
             </div>
@@ -179,11 +179,11 @@ export default function ArticlesView() {
 
       {/* Institutional Open Access Notice */}
       <section className="bg-[#FAF8F5] rounded-2xl p-6 sm:p-8 border border-gray-200 text-center space-y-2">
-        <h3 className="font-serif text-xl font-bold text-[#0F2537]">
+        <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537]">
           Open Science &amp; Resource Sharing Policy
         </h3>
-        <p className="text-xs text-[#0F2537]/75 max-w-2xl mx-auto leading-relaxed">
-          NeuraXlab adheres to the open science principles endorsed by the University of Hyderabad. All protocols, bioinformatic workflows, and 16S microbiome pipeline scripts are accessible to academic researchers upon request to <a href="mailto:prasuja@uohyd.ac.in" className="text-[#8B1E24] font-mono underline">prasuja@uohyd.ac.in</a>.
+        <p className="text-sm text-[#0F2537]/80 max-w-2xl mx-auto leading-relaxed">
+          NeuroXlab adheres to the open science principles endorsed by the University of Hyderabad. All protocols, bioinformatic workflows, and 16S microbiome pipeline scripts are accessible to academic researchers upon request to <a href="mailto:prasuja@uohyd.ac.in" className="text-[#8B1E24] font-mono underline">prasuja@uohyd.ac.in</a>.
         </p>
       </section>
     </div>

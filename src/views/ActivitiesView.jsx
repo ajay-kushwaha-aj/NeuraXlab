@@ -53,7 +53,7 @@ export default function ActivitiesView() {
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
           Activities, Workshops &amp; Gallery
         </h1>
-        <p className="text-[#0F2537]/80 text-base sm:text-lg">
+        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
           Convening national skill development workshops in biosciences, delivering invited neuroscience lectures at SNCI and NEHU, and presenting at international Society for Neuroscience (SfN) conventions.
         </p>
       </div>
@@ -119,27 +119,27 @@ export default function ActivitiesView() {
                   <h3 className="font-serif text-2xl font-bold text-[#0F2537] leading-snug">
                     {act.title}
                   </h3>
-                  <div className="flex items-center gap-4 text-xs text-[#0F2537]/60 font-mono pt-1">
+                  <div className="flex items-center gap-4 text-xs sm:text-sm text-[#0F2537]/70 font-mono pt-1">
                     <span>Role: {act.role}</span>
                     <span>•</span>
                     <span>Date: {act.date}</span>
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#0F2537]/80 leading-relaxed bg-[#FAF8F5] p-4 rounded-2xl border border-gray-100">
+                <p className="text-sm sm:text-base text-[#0F2537]/85 leading-relaxed bg-[#FAF8F5] p-5 rounded-2xl border border-gray-100">
                   {act.summary}
                 </p>
 
                 {/* Highlights */}
                 {act.highlights && (
                   <div className="space-y-2 pt-1">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#0F2537]">
+                    <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0F2537]">
                       Event Key Highlights:
                     </p>
                     <ul className="space-y-1.5">
                       {act.highlights.map((h, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs text-[#0F2537]/80">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#8B1E24] flex-shrink-0 mt-0.5" />
+                        <li key={i} className="flex items-start gap-2 text-sm text-[#0F2537]/85">
+                          <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-0.5" />
                           <span>{h}</span>
                         </li>
                       ))}
@@ -149,8 +149,8 @@ export default function ActivitiesView() {
               </div>
             </div>
 
-            <div className="px-6 sm:px-8 py-4 bg-[#FAF8F5] border-t border-gray-100 text-xs text-[#0F2537]/60 flex items-center justify-between">
-              <span>NeuraXlab Academic Outreach Archive</span>
+            <div className="px-6 sm:px-8 py-4 bg-[#FAF8F5] border-t border-gray-100 text-xs sm:text-sm text-[#0F2537]/70 flex items-center justify-between">
+              <span>NeuroXlab Academic Outreach Archive</span>
               <span className="font-medium text-[#8B1E24]">University of Hyderabad</span>
             </div>
           </div>
@@ -167,7 +167,7 @@ export default function ActivitiesView() {
                 Laboratory Facilities &amp; Campus Glimpses
               </h2>
             </div>
-            <p className="text-xs text-[#0F2537]/70 mt-1">
+            <p className="text-sm sm:text-base text-[#0F2537]/70 mt-1">
               Visual glimpses of research suites, stereotaxic stroke surgery workstations, and UoH campus life.
             </p>
           </div>
@@ -226,13 +226,13 @@ export default function ActivitiesView() {
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
               <div className="absolute bottom-3 left-3 right-3 text-white">
-                <span className="text-[10px] font-mono uppercase bg-[#8B1E24] px-2 py-0.5 rounded font-bold">
+                <span className="text-xs font-mono uppercase bg-[#8B1E24] px-2 py-0.5 rounded font-bold">
                   {item.tag}
                 </span>
-                <p className="font-serif text-base font-bold text-white mt-1">
+                <p className="font-serif text-base sm:text-lg font-bold text-white mt-1">
                   {item.title}
                 </p>
-                <p className="text-[11px] text-white/75 truncate">
+                <p className="text-xs sm:text-sm text-white/80 line-clamp-2">
                   {item.desc}
                 </p>
               </div>

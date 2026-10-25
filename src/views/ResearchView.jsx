@@ -47,12 +47,12 @@ export default function ResearchView({ setActiveTab }) {
       <div className="text-center max-w-4xl mx-auto space-y-4">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
           <Layers className="w-3.5 h-3.5" />
-          <span>Systems &amp; Molecular Neuroscience Research</span>
+          <span>Department of Systems and Computational Biology</span>
         </div>
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
           Research Projects &amp; Collaborations
         </h1>
-        <p className="text-[#0F2537]/80 text-base sm:text-lg leading-relaxed">
+        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
           Advancing preclinical stroke neuroprotection through the convergence of gut microbiome ecology, organellar stress resolution, non-coding RNA epigenetics, and nanomedicine.
         </p>
       </div>
@@ -103,10 +103,10 @@ export default function ResearchView({ setActiveTab }) {
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
             <div className="absolute bottom-4 left-6 right-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-white">
               <div>
-                <p className="font-serif text-xl font-bold text-[#E0B84C]">
+                <p className="font-serif text-xl sm:text-2xl font-bold text-[#E0B84C]">
                   Dual-Action Nanotherapy: Gut Microbiota &amp; Cerebral Protection
                 </p>
-                <p className="text-xs text-white/80">
+                <p className="text-xs sm:text-sm text-white/90">
                   Microbiome restoration, mucosal tight junction repair, blood-brain barrier rescue, and suppression of neuronal ER stress.
                 </p>
               </div>
@@ -118,9 +118,9 @@ export default function ResearchView({ setActiveTab }) {
                     'High-resolution biomedical schematic illustrating the bidirectional loop between stroke-induced gut dysbiosis, systemic endotoxemia, and targeted nano-formulated SCFA and edaravone neuroprotection.'
                   )
                 }
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#8B1E24] hover:bg-[#A82931] text-white text-xs font-semibold shadow transition-all flex-shrink-0"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-white text-sm font-semibold shadow transition-all flex-shrink-0"
               >
-                <Maximize2 className="w-3.5 h-3.5" />
+                <Maximize2 className="w-4 h-4" />
                 <span>Enlarge Scientific Schematic</span>
               </button>
             </div>
@@ -139,7 +139,7 @@ export default function ResearchView({ setActiveTab }) {
               <ul className="space-y-3">
                 {FLAGSHIP_GRANT.objectives.map((obj, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-[#0F2537]/85 leading-relaxed">
-                    <span className="w-5 h-5 rounded-full bg-[#8B1E24] text-white text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">
+                    <span className="w-5 h-5 rounded-full bg-[#8B1E24] text-white text-xs flex items-center justify-center flex-shrink-0 mt-1 font-bold">
                       {i + 1}
                     </span>
                     <span>{obj}</span>
@@ -171,13 +171,13 @@ export default function ResearchView({ setActiveTab }) {
           <div className="bg-[#0F2537] text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 border border-[#C59B27]/40">
             <div>
               <span className="text-xs uppercase tracking-wider text-[#E0B84C] font-mono">Fellowship Openings</span>
-              <p className="font-serif text-lg font-bold">
+              <p className="font-serif text-base sm:text-lg font-bold">
                 Junior Research Fellow (JRF) &amp; Postdoc positions are currently open under this grant.
               </p>
             </div>
             <button
               onClick={() => setActiveTab('contact')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-xs font-bold text-white transition-all shadow whitespace-nowrap"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-sm font-bold text-white transition-all shadow whitespace-nowrap"
             >
               <span>Apply for Project Positions</span>
               <ArrowRight className="w-4 h-4 text-[#E0B84C]" />
@@ -195,7 +195,7 @@ export default function ResearchView({ setActiveTab }) {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#0F2537]">
             The 4 Core Research Pillars
           </h2>
-          <p className="text-sm text-[#0F2537]/70">
+          <p className="text-base sm:text-lg text-[#0F2537]/80 leading-relaxed">
             Select a pillar below to inspect detailed biological questions, organellar mechanisms, and experimental platforms.
           </p>
         </div>
@@ -261,10 +261,10 @@ export default function ResearchView({ setActiveTab }) {
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
               <div className="absolute bottom-4 left-6 right-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-white">
                 <div>
-                  <p className="font-serif text-xl font-bold text-[#E0B84C]">
+                  <p className="font-serif text-xl sm:text-2xl font-bold text-[#E0B84C]">
                     Organelle Proteostasis: ER Stress, BiP/GRP78 &amp; UPR Signaling
                   </p>
-                  <p className="text-xs text-white/80">
+                  <p className="text-xs sm:text-sm text-white/90">
                     The molecular triad of PERK, IRE1α, and ATF6 dictating neuronal survival vs. apoptosis.
                   </p>
                 </div>
@@ -276,9 +276,9 @@ export default function ResearchView({ setActiveTab }) {
                       'Detailed cellular biology render depicting BiP/GRP78 dissociation, phospho-eIF2α translation inhibition, and autophagosomal clearance mechanisms during cerebral ischemia-reperfusion.'
                     )
                   }
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#8B1E24] hover:bg-[#A82931] text-white text-xs font-semibold shadow transition-all flex-shrink-0"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-white text-sm font-semibold shadow transition-all flex-shrink-0"
                 >
-                  <Maximize2 className="w-3.5 h-3.5" />
+                  <Maximize2 className="w-4 h-4" />
                   <span>Enlarge Cellular Render</span>
                 </button>
               </div>
@@ -288,13 +288,13 @@ export default function ResearchView({ setActiveTab }) {
           {/* Two-Column Breakdown: Inquiries vs Experimental Tools */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-[#FAF8F5] rounded-2xl p-6 sm:p-8 border border-gray-200 space-y-4">
-              <h4 className="font-serif text-xl font-bold text-[#0F2537] flex items-center gap-2">
+              <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] flex items-center gap-2">
                 <span>Biological Inquiries</span>
               </h4>
               <ul className="space-y-3">
                 {selectedPillar.keyQuestions.map((q, idx) => (
                   <li key={idx} className="flex items-start gap-2.5 text-sm text-[#0F2537]/85 leading-relaxed">
-                    <span className="text-[#8B1E24] font-bold text-base">•</span>
+                    <span className="text-[#8B1E24] font-bold text-lg">•</span>
                     <span>{q}</span>
                   </li>
                 ))}
@@ -302,12 +302,12 @@ export default function ResearchView({ setActiveTab }) {
             </div>
 
             <div className="bg-[#FAF8F5] rounded-2xl p-6 sm:p-8 border border-gray-200 space-y-4">
-              <h4 className="font-serif text-xl font-bold text-[#0F2537] flex items-center gap-2">
+              <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] flex items-center gap-2">
                 <span>Specialized Experimental Platforms</span>
               </h4>
               <ul className="space-y-3">
                 {selectedPillar.experimentalTools.map((tool, idx) => (
-                  <li key={idx} className="flex items-center gap-2.5 text-sm text-[#0F2537]/85">
+                  <li key={idx} className="flex items-center gap-2.5 text-sm text-[#0F2537]/85 leading-relaxed">
                     <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0" />
                     <span>{tool}</span>
                   </li>
@@ -327,7 +327,7 @@ export default function ResearchView({ setActiveTab }) {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#0F2537]">
             Research Collaborations
           </h2>
-          <p className="text-sm text-[#0F2537]/70">
+          <p className="text-base sm:text-lg text-[#0F2537]/80 leading-relaxed">
             Translational partnerships with world-renowned neurological research institutions and national apex laboratories.
           </p>
         </div>
@@ -336,34 +336,34 @@ export default function ResearchView({ setActiveTab }) {
           {COLLABORATIONS.map((c) => (
             <div
               key={c.id}
-              className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 hover:border-[#C59B27] shadow-sm hover:shadow-lg transition-all space-y-4"
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 hover:border-[#C59B27] shadow-sm hover:shadow-lg transition-all space-y-4"
             >
               <div className="flex items-center justify-between">
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#FAF8F5] text-[#8B1E24] border border-[#C59B27]/40 uppercase tracking-wide">
+                <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-[#FAF8F5] text-[#8B1E24] border border-[#C59B27]/40 uppercase tracking-wide">
                   {c.badge}
                 </span>
-                <span className="text-xs font-mono text-[#0F2537]/60">
+                <span className="text-xs sm:text-sm font-mono text-[#0F2537]/70">
                   {c.location}
                 </span>
               </div>
 
               <div>
-                <h3 className="font-serif text-2xl font-bold text-[#0F2537]">
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
                   {c.institution}
                 </h3>
-                <p className="text-xs text-[#8B1E24] font-medium mt-0.5">
+                <p className="text-sm text-[#8B1E24] font-semibold mt-0.5">
                   {c.department}
                 </p>
               </div>
 
-              <div className="space-y-2 text-xs text-[#0F2537]/80 pt-2 border-t border-gray-100">
+              <div className="space-y-2.5 text-sm text-[#0F2537]/80 pt-3 border-t border-gray-100 leading-relaxed">
                 <p>
                   <strong className="text-[#0F2537]">Collaborator:</strong> {c.leadCollaborator}
                 </p>
                 <p>
                   <strong className="text-[#0F2537]">Focus:</strong> {c.focus}
                 </p>
-                <p className="italic text-[#0F2537]/70">
+                <p className="italic text-[#0F2537]/75">
                   <strong className="text-[#0F2537] not-italic">Milestones:</strong> {c.landmarkJointWork}
                 </p>
               </div>
@@ -387,23 +387,23 @@ export default function ResearchView({ setActiveTab }) {
           {PAST_GRANTS.map((grant, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm space-y-3 flex flex-col justify-between"
+              className="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200 shadow-sm space-y-3 flex flex-col justify-between"
             >
-              <div className="space-y-2">
-                <span className="text-[11px] font-mono text-[#8B1E24] font-bold uppercase block">
+              <div className="space-y-2.5">
+                <span className="text-xs font-mono text-[#8B1E24] font-bold uppercase block">
                   {grant.scheme}
                 </span>
-                <h3 className="font-serif text-lg font-bold text-[#0F2537] leading-snug">
+                <h3 className="font-serif text-xl font-bold text-[#0F2537] leading-snug">
                   {grant.title}
                 </h3>
-                <p className="text-xs text-[#0F2537]/70">
+                <p className="text-sm text-[#0F2537]/75">
                   <strong>Agency:</strong> {grant.agency}
                 </p>
-                <p className="text-xs text-[#0F2537]/80 leading-relaxed pt-2 border-t border-gray-100">
+                <p className="text-sm text-[#0F2537]/80 leading-relaxed pt-2.5 border-t border-gray-100">
                   {grant.impact}
                 </p>
               </div>
-              <div className="text-[11px] text-emerald-700 font-semibold font-mono pt-3">
+              <div className="text-xs sm:text-sm text-emerald-700 font-semibold font-mono pt-3">
                 Status: {grant.period}
               </div>
             </div>

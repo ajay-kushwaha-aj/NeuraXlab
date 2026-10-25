@@ -1,9 +1,9 @@
-// Authentic Lab Data for NeuraXlab (Dr. Venkata Prasuja Nakka Laboratory)
+// Authentic Lab Data for NeuroXlab (Dr. Venkata Prasuja Nakka Laboratory)
 // Department of Systems and Computational Biology, School of Life Sciences
 // University of Hyderabad (Institution of Eminence / NAAC A++)
 
 export const LAB_INFO = {
-  name: "NeuraXlab",
+  name: "NeuroXlab",
   tagline: "Systems & Translational Neuroscience Laboratory",
   pi: {
     name: "Dr. Venkata Prasuja Nakka",
@@ -18,9 +18,14 @@ export const LAB_INFO = {
     email: "prasuja@uohyd.ac.in",
     institutionalEmail: "prasuja@uohyd.ac.in",
     phone: "+91-40-23134581",
-    scholarUrl: "https://scholar.google.com/citations?user=f3v4i5IAAAAJ",
+    scholarUrl: "https://scholar.google.co.in/citations?user=mVnNpwIAAAAJ&hl=en",
     researchGateUrl: "https://www.researchgate.net/profile/Venkata-Prasuja-Nakka",
-    uohUrl: "https://uohyd.ac.in/systems-computational-biology/"
+    linkedInUrl: "https://www.linkedin.com/in/dr-venkata-prasuja",
+    orcidUrl: "https://orcid.org",
+    orcidStatus: "will provide",
+    scopusUrl: "https://www.scopus.com/authid/detail.uri?authorId=24329688400",
+    uohUrl: "https://uohyd.ac.in/systems-computational-biology/",
+    avatar: "/images/dr_prasuja_nakka.png"
   },
   metrics: {
     citations: "1,900+",
@@ -225,7 +230,7 @@ export const TEAM_MEMBERS = [
     role: "Principal Investigator & Group Leader",
     qualification: "Ph.D. (CDRI / JNU, 2009)",
     category: "pi",
-    avatar: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&auto=format&fit=crop&q=80",
+    avatar: "/images/dr_prasuja_nakka.png",
     bio: "Dr. Venkata Prasuja Nakka is a UGC-Assistant Professor (Level-11) in the Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad. He completed his Ph.D. from the premier Central Drug Research Institute (CSIR-CDRI) / Jawaharlal Nehru University (JNU), New Delhi, investigating endoplasmic reticulum-mediated survival and death mechanisms in cerebral ischemia. He subsequently conducted high-impact postdoctoral research at the University of Wisconsin–Madison (USA) and the National University of Singapore (NUS). He has published extensively in premier journals including Stroke, Molecular Neurobiology, and JCBFM, garnering over 1,900 citations.",
     researchInterests: [
       "Microbiota-Gut-Brain Axis in Ischemic Stroke",
@@ -247,7 +252,7 @@ export const TEAM_MEMBERS = [
     qualification: "Ph.D. in Nanobiotechnology (IIT Kharagpur)",
     category: "postdoc",
     avatar: "https://images.unsplash.com/photo-1594824813593-37d43f07a716?w=600&auto=format&fit=crop&q=80",
-    bio: "Dr. Mukherjee specializes in polymer-lipid hybrid nanoparticles for targeted drug delivery across biological barriers. Within NeuraXlab's 2026–2029 grant, she leads nanoparticle synthesis, characterization, and pharmacokinetic biodistribution studies.",
+    bio: "Dr. Mukherjee specializes in polymer-lipid hybrid nanoparticles for targeted drug delivery across biological barriers. Within NeuroXlab's 2026–2029 grant, she leads nanoparticle synthesis, characterization, and pharmacokinetic biodistribution studies.",
     researchInterests: ["Nanomedicine Formulation", "DLS & Electron Microscopy", "Blood-Brain Barrier Permeation", "Drug Release Kinetics"],
     contact: { email: "ananya.postdoc@uohyd.ac.in" }
   },
@@ -302,9 +307,9 @@ export const TEAM_MEMBERS = [
     qualification: "Ph.D. (2024)",
     category: "alumni",
     avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80",
-    bio: "Currently Postdoctoral Fellow at Max Planck Institute for Molecular Biomedicine, Germany. Worked on microglial phenotypes in ischemic stroke at NeuraXlab.",
+    bio: "Currently Postdoctoral Fellow at Max Planck Institute for Molecular Biomedicine, Germany. Worked on microglial phenotypes in ischemic stroke at NeuroXlab.",
     researchInterests: ["Neuroinflammation", "Microglia", "In vivo Imaging"],
-    contact: { email: "alumni@neuraxlab.org" }
+    contact: { email: "alumni@neuroxlab.org" }
   },
   {
     id: "alumni-2",
@@ -315,7 +320,7 @@ export const TEAM_MEMBERS = [
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80",
     bio: "Currently Ph.D. Scholar at National University of Singapore (NUS). Completed M.Sc. dissertation on non-coding RNA network modeling.",
     researchInterests: ["Computational Genomics", "Non-coding RNAs"],
-    contact: { email: "alumni@neuraxlab.org" }
+    contact: { email: "alumni@neuroxlab.org" }
   }
 ];
 

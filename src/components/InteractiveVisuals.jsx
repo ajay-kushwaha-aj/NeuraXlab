@@ -16,7 +16,7 @@ import {
  * GutBrainSystemsCanvas: A clean, minimal, high-aesthetic neural simulation
  * positioned strictly in vacant peripheral areas (left & right flanks)
  * outside the central editorial text column. Muted, sophisticated palette
- * matching University of Hyderabad & NeuraXlab identities.
+ * matching University of Hyderabad & NeuroXlab identities.
  */
 export function GutBrainSystemsCanvas() {
   const canvasRef = useRef(null);
@@ -571,7 +571,7 @@ export function InteractiveGutBrainAtlas() {
         'Systemic circulation of endotoxins (LPS) and peptidoglycans crossing leaky mucosal barriers.'
       ],
       biomarkers: ['Vagus Cholinergic Signal', 'Th17 / Treg Ratio', 'HIF1α', 'ZEB2', 'TRPC6', 'TNF-α', 'IL-1β'],
-      evidence: 'Investigated under NeuraXlab Systems Biology & Distant Organ Pathophysiology Program.'
+      evidence: 'Investigated under NeuroXlab Systems Biology & Distant Organ Pathophysiology Program.'
     },
     nodeC: {
       id: 'nodeC',
@@ -605,7 +605,7 @@ export function InteractiveGutBrainAtlas() {
         'Nanotherapy rescue: SCFA supplementation promotes mucosal stem cell proliferation, enhances mucin secretion, and tightens ZO-1/Occludin assemblies.'
       ],
       biomarkers: ['ZO-1', 'Occludin', 'Claudin-1', '16S Shannon Diversity', 'Bacteroidetes/Firmicutes Ratio', 'Fecal Butyrate'],
-      evidence: 'Documented in NeuraXlab Metagenomic Profiling & Cambridge Scholars Publishing treatises.'
+      evidence: 'Documented in NeuroXlab Metagenomic Profiling & Cambridge Scholars Publishing treatises.'
     }
   };
 

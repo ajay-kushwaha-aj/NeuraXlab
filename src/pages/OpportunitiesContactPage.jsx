@@ -88,7 +88,7 @@ export default function OpportunitiesContactPage() {
   };
 
   const mailtoLink = `mailto:prasuja@uohyd.ac.in?subject=${encodeURIComponent(
-    `[NeuraXlab Application] ${formData.track} - ${formData.name}`
+    `[NeuroXlab Application] ${formData.track} - ${formData.name}`
   )}&body=${encodeURIComponent(
     `Dear Dr. Venkata Prasuja Nakka,\n\nI am formally applying for the position: ${formData.track}.\n\nFull Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nHighest Degree / Institute: ${formData.qualification}\nNational Fellowship / Exam Qualified: ${formData.nationalExam}\nCV Link: ${formData.cvUrl}\n\nBrief Research Statement:\n${formData.statement}\n\nSincerely,\n${formData.name}`
   )}`;
@@ -104,8 +104,8 @@ export default function OpportunitiesContactPage() {
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
           Opportunities &amp; Contact
         </h1>
-        <p className="text-[#0F2537]/80 text-base sm:text-lg">
-          Join NeuraXlab under our active 2026–2029 Nano-SCFA &amp; Edaravone Extramural Project, pursue direct doctoral admissions, or submit research inquiries.
+        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
+          Join NeuroXlab under our active 2026–2029 Nano-SCFA &amp; Edaravone Extramural Project, pursue direct doctoral admissions, or submit research inquiries.
         </p>
       </div>
 
@@ -139,7 +139,7 @@ export default function OpportunitiesContactPage() {
                   {trk.project}
                 </p>
 
-                <div className="space-y-2 text-xs text-[#0F2537]/80 pt-2 border-t border-gray-100">
+                <div className="space-y-2 text-sm text-[#0F2537]/85 pt-3 border-t border-gray-100 leading-relaxed">
                   <p>
                     <strong className="text-[#0F2537]">Stipend / Emoluments:</strong> {trk.stipend}
                   </p>
@@ -149,7 +149,7 @@ export default function OpportunitiesContactPage() {
                   <p>
                     <strong className="text-[#0F2537]">Minimum Eligibility:</strong> {trk.eligibility}
                   </p>
-                  <p className="text-[#0F2537]/70 italic">
+                  <p className="text-[#0F2537]/75 italic">
                     <strong className="text-[#0F2537] not-italic">Desirable Skills:</strong> {trk.desirable}
                   </p>
                 </div>
@@ -158,7 +158,7 @@ export default function OpportunitiesContactPage() {
               <div className="pt-3 border-t border-gray-100">
                 <a
                   href="#application-portal"
-                  className="w-full text-center py-2 px-4 rounded-xl bg-[#8B1E24] hover:bg-[#641318] text-white text-xs font-bold block transition-colors"
+                  className="w-full text-center py-2.5 px-4 rounded-xl bg-[#8B1E24] hover:bg-[#641318] text-white text-sm font-bold block transition-colors"
                 >
                   Apply for this Track Below
                 </a>
@@ -374,13 +374,13 @@ export default function OpportunitiesContactPage() {
                 Official Institutional Laboratory Address
               </span>
               <h3 className="font-serif text-2xl font-bold text-white">
-                NeuraXlab Headquarters
+                NeuroXlab Headquarters
               </h3>
             </div>
 
-            <div className="space-y-4 text-xs sm:text-sm text-white/85">
+            <div className="space-y-4 text-sm text-white/90 leading-relaxed">
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#C59B27] mt-0.5 flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-[#C59B27] mt-1 flex-shrink-0" />
                 <div className="space-y-0.5">
                   <p className="font-bold text-white">Room No. F75C</p>
                   <p className="text-white/95">Department of Systems and Computational Biology</p>
@@ -393,19 +393,19 @@ export default function OpportunitiesContactPage() {
               <div className="flex items-center gap-3 pt-3 border-t border-white/10">
                 <Phone className="w-5 h-5 text-[#C59B27] flex-shrink-0" />
                 <div>
-                  <span className="text-[11px] text-white/60 block">Direct Laboratory Phone</span>
-                  <a href="tel:+914023134581" className="font-mono hover:text-[#E0B84C] font-bold">
+                  <span className="text-xs text-white/70 block">Direct Laboratory Phone</span>
+                  <a href="tel:+914023134581" className="font-mono hover:text-[#E0B84C] font-bold text-sm">
                     +91-40-23134581
                   </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 pt-3 border-t border-white/10">
-                <Mail className="w-5 h-5 text-[#C59B27] mt-0.5 flex-shrink-0" />
+                <Mail className="w-5 h-5 text-[#C59B27] mt-1 flex-shrink-0" />
                 <div className="space-y-1">
-                  <span className="text-[11px] text-white/60 block">Official Email Contact</span>
+                  <span className="text-xs text-white/70 block">Official Email Contact</span>
                   <div className="flex items-center gap-2">
-                    <a href="mailto:prasuja@uohyd.ac.in" className="font-mono hover:text-[#E0B84C] font-bold">
+                    <a href="mailto:prasuja@uohyd.ac.in" className="font-mono hover:text-[#E0B84C] font-bold text-sm">
                       prasuja@uohyd.ac.in
                     </a>
                   </div>
@@ -418,7 +418,7 @@ export default function OpportunitiesContactPage() {
                 href="https://maps.google.com/?q=School+of+Life+Sciences+University+of+Hyderabad"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-xs font-bold text-white flex items-center justify-center gap-2 transition-all border border-[#C59B27]/40 shadow"
+                className="w-full py-3.5 px-4 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-sm font-bold text-white flex items-center justify-center gap-2 transition-all border border-[#C59B27]/40 shadow"
               >
                 <Navigation className="w-4 h-4 text-[#E0B84C]" />
                 <span>Navigate via Google Maps</span>
@@ -428,33 +428,33 @@ export default function OpportunitiesContactPage() {
 
           {/* Transit & Access Guide */}
           <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-md space-y-4">
-            <h4 className="font-serif text-xl font-bold text-[#0F2537] flex items-center gap-2">
+            <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] flex items-center gap-2">
               <Navigation className="w-5 h-5 text-[#8B1E24]" />
               <span>Campus Transit &amp; Route Guide</span>
             </h4>
 
-            <div className="space-y-3 text-xs text-[#0F2537]/80">
+            <div className="space-y-3.5 text-sm text-[#0F2537]/85 leading-relaxed">
               <div className="flex items-start gap-3">
-                <Plane className="w-4 h-4 text-[#C59B27] mt-0.5 flex-shrink-0" />
+                <Plane className="w-4 h-4 text-[#C59B27] mt-1 flex-shrink-0" />
                 <div>
                   <strong className="text-[#0F2537]">Rajiv Gandhi Int'l Airport (RGIA):</strong>
-                  <p className="text-[#0F2537]/70">~32 km via Outer Ring Road (ORR) towards Gachibowli.</p>
+                  <p className="text-[#0F2537]/75">~32 km via Outer Ring Road (ORR) towards Gachibowli.</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Train className="w-4 h-4 text-[#C59B27] mt-0.5 flex-shrink-0" />
+                <Train className="w-4 h-4 text-[#C59B27] mt-1 flex-shrink-0" />
                 <div>
                   <strong className="text-[#0F2537]">Lingampally Railway Station:</strong>
-                  <p className="text-[#0F2537]/70">~3.5 km from Campus Main Gate (10 mins via auto/bus).</p>
+                  <p className="text-[#0F2537]/75">~3.5 km from Campus Main Gate (10 mins via auto/bus).</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <Car className="w-4 h-4 text-[#C59B27] mt-0.5 flex-shrink-0" />
+                <Car className="w-4 h-4 text-[#C59B27] mt-1 flex-shrink-0" />
                 <div>
                   <strong className="text-[#0F2537]">Secunderabad / Nampally Hub:</strong>
-                  <p className="text-[#0F2537]/70">~22 km via Mehdipatnam - Gachibowli - Prof. C.R. Rao Road.</p>
+                  <p className="text-[#0F2537]/75">~22 km via Mehdipatnam - Gachibowli - Prof. C.R. Rao Road.</p>
                 </div>
               </div>
             </div>
