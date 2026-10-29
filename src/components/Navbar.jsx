@@ -209,7 +209,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
             {/* Left Group: Brand Masthead + Desktop Navigation Links closely adjacent */}
             <div className="flex items-center gap-3 sm:gap-4 xl:gap-6 min-w-0">
               {/* Brand Masthead: University of Hyderabad Logo + NeuroXlab Logo & Title */}
-              <div className="flex items-center shrink-0 pr-3 sm:pr-4 border-r border-gray-200 gap-2 sm:gap-2.5">
+              <div className="flex items-center shrink-0 pr-1 sm:pr-2 gap-2 sm:gap-2.5">
                 <a
                   href="https://uohyd.ac.in/"
                   target="_blank"
@@ -395,7 +395,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
 
             {/* Mobile Footer */}
             <div className="pt-4 border-t border-gray-100 flex flex-col gap-1 text-center text-xs sm:text-sm text-[#0F2537]/70 py-1">
-              <div>SLS Annex Building • University of Hyderabad</div>
+              <div>School of Life Sciences • University of Hyderabad</div>
             </div>
           </div>
         )}

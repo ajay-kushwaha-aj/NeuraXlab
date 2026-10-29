@@ -29,7 +29,7 @@ export default function ActivitiesPage() {
     {
       id: 'fac-surgery',
       title: 'Preclinical Stroke & TBI Microsurgery Suite',
-      room: 'Room F75C, SLS Annex Building',
+      room: 'Room F75C, School of Life Sciences',
       badge: 'In Vivo Surgical Core',
       specifications: [
         'Stereotaxic surgical frame with digital micro-manipulators for precision cerebral targeting',
@@ -43,7 +43,7 @@ export default function ActivitiesPage() {
     {
       id: 'fac-nano',
       title: 'Nano-Formulation & UPR/Proteostasis Core',
-      room: 'Room F75C, SLS Annex Building',
+      room: 'Room F75C, School of Life Sciences',
       badge: 'Nanomedicine & Biochemistry',
       specifications: [
         'Malvern Zetasizer Nano ZS for Dynamic Light Scattering (DLS) & Zeta Potential profiling',
@@ -99,7 +99,7 @@ export default function ActivitiesPage() {
     {
       id: 'fac-behavior',
       title: 'In Vivo Neurobehavioral & Preclinical Rehabilitation Core',
-      room: 'Central Animal Facility & SLS Annex, UoH',
+      room: 'Central Animal Facility & School of Life Sciences, UoH',
       badge: 'Behavioral & Functional Recovery',
       specifications: [
         'Automated accelerating Rotarod apparatus for sensorimotor coordination and endurance scoring',
@@ -150,7 +150,7 @@ export default function ActivitiesPage() {
               Laboratory Facilities &amp; Technical Specifications
             </h2>
             <p className="text-sm text-[#0F2537]/75 mt-1">
-              Room F75C, SLS Annex Building, School of Life Sciences, University of Hyderabad.
+              Room F75C, School of Life Sciences, University of Hyderabad.
             </p>
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-mono self-start sm:self-auto border border-slate-200">
@@ -219,7 +219,7 @@ export default function ActivitiesPage() {
 
               <div className="px-6 sm:px-8 py-3.5 bg-[#FAF8F5] border-t border-gray-100 text-xs font-mono text-[#0F2537]/60 flex items-center justify-between">
                 <span>NeuroXlab Core Instrumentation</span>
-                <span className="text-[#8B1E24] font-bold">Room F75C SLS Annex</span>
+                <span className="text-[#8B1E24] font-bold">Room F75C School of Life Sciences</span>
               </div>
             </div>
           ))}

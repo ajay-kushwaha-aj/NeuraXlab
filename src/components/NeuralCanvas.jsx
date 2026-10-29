@@ -1,11 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 
 /**
- * NeuralCanvas: A restrained, elegant scientific neural network visualization.
- * Designed with authentic neuronal morphology (Cajal-inspired dendritic arbors,
- * tapering axonal projections, and delicate synaptic boutons).
- * Muted, low-brightness academic palette (University of Hyderabad gold & slate-azure)
- * with pruned, intentional connections and calm biological movement.
+ * NeuralCanvas
+ * 
+ * An authentic, high-performance interactive neuroscience visualization for the NeuroXLab hero.
+ * Features:
+ * - Organic, branching multipolar neuron morphologies along left and right flanks
+ * - Tapering dendrites with curved Bezier paths and synaptic boutons
+ * - Traveling action potential pulses across synaptic connections
+ * - Interactive mouse-responsive parallax, localized node illumination, and synaptic bridging
+ * - Central exclusion zone ensuring 100% text legibility
+ * - Ambient depth particles in deep navy, slate-cyan, and heritage gold
+ * - Full support for reduced-motion preferences, high-DPI scaling, and viewport auto-pause
  */
 export default function NeuralCanvas() {
   const canvasRef = useRef(null);
@@ -13,409 +19,736 @@ export default function NeuralCanvas() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
+    const parent = canvas.parentElement;
+    if (!parent) return;
 
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animId = null;
     let width = 0;
     let height = 0;
     let dpr = 1;
+    let isVisible = true;
 
-    // Refined, Restrained Academic Scientific Palette
-    const THEMES = [
-      {
-        soma: 'rgba(212, 175, 55, 0.48)',      // Muted Heritage Gold
-        halo: 'rgba(212, 175, 55, 0.07)',
-        fiber: 'rgba(212, 175, 55, 0.13)',
-        dendrite: 'rgba(212, 175, 55, 0.20)',
-        spine: 'rgba(224, 184, 76, 0.32)',
-        signal: 'rgba(253, 224, 71, 0.50)',
-        r: 212, g: 175, b: 55
-      },
-      {
-        soma: 'rgba(147, 197, 253, 0.42)',     // Academic Slate-Azure
-        halo: 'rgba(147, 197, 253, 0.06)',
-        fiber: 'rgba(147, 197, 253, 0.11)',
-        dendrite: 'rgba(147, 197, 253, 0.18)',
-        spine: 'rgba(186, 230, 253, 0.28)',
-        signal: 'rgba(186, 230, 253, 0.45)',
-        r: 147, g: 197, b: 253
-      },
-      {
-        soma: 'rgba(203, 213, 225, 0.38)',     // Platinum / Ivory
-        halo: 'rgba(203, 213, 225, 0.05)',
-        fiber: 'rgba(203, 213, 225, 0.09)',
-        dendrite: 'rgba(203, 213, 225, 0.15)',
-        spine: 'rgba(241, 245, 249, 0.25)',
-        signal: 'rgba(248, 250, 252, 0.40)',
-        r: 203, g: 213, b: 225
-      },
-      {
-        soma: 'rgba(168, 65, 73, 0.36)',       // Muted UoH Crimson Accent
-        halo: 'rgba(168, 65, 73, 0.05)',
-        fiber: 'rgba(168, 65, 73, 0.09)',
-        dendrite: 'rgba(168, 65, 73, 0.15)',
-        spine: 'rgba(244, 163, 168, 0.25)',
-        signal: 'rgba(254, 202, 202, 0.40)',
-        r: 168, g: 65, b: 73
-      }
-    ];
+    // Check reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const neurons = [];
-    const pathways = [];
-    const signals = [];
-    const maxSignals = 2;
-
-    // Central Text Exclusion Zone Mask parameters
-    const getTextMask = (w, h) => ({
-      cx: w / 2,
-      cy: h * 0.48,
-      rx: Math.min(w * 0.34, 500),
-      ry: h * 0.44,
-    });
-
-    const isInsideTextZone = (px, py, mask, padding = 1.0) => {
-      const dx = px - mask.cx;
-      const dy = py - mask.cy;
-      return (dx * dx) / (mask.rx * mask.rx * padding * padding) + 
-             (dy * dy) / (mask.ry * mask.ry * padding * padding) < 1.0;
+    // Mouse tracking state relative to hero container
+    const mouse = {
+      x: -1000,
+      y: -1000,
+      targetX: -1000,
+      targetY: -1000,
+      isHovering: false,
+      radius: 200,      // Interaction radius in CSS pixels
+      maxShift: 10      // Maximum parallax shift in CSS pixels
     };
 
-    const initNeurons = (w, h) => {
-      neurons.length = 0;
-      pathways.length = 0;
-      signals.length = 0;
+    // Color definitions matching the prompt specification
+    // Palette: Deep Navy background (#071725, #0B1E2D), Cyan/Blue branches (#4F9DCC, #75C8F2),
+    // Synaptic Gold highlights (#E7B944, #F5D27A), Pearl white accents
+    const COLORS = {
+      cyanPrimary: { r: 79, g: 157, b: 204 },    // #4F9DCC
+      cyanLight: { r: 117, g: 200, b: 242 },     // #75C8F2
+      goldAccent: { r: 231, g: 185, b: 68 },     // #E7B944
+      goldBright: { r: 245, g: 210, b: 122 },    // #F5D27A
+      pearl: { r: 215, g: 230, b: 245 }
+    };
 
-      const perFlank = w < 640 ? 4 : 6;
+    // Structure storage
+    const neurons = [];
+    const synapses = [];
+    const pulses = [];
+    const ambientParticles = [];
+
+    // Central exclusion zone mask definition
+    const getExclusionMask = (w, h) => {
+      const isMobile = w < 640;
+      const isTablet = w < 1024;
+      return {
+        cx: w * 0.5,
+        cy: h * 0.48,
+        rx: isMobile ? w * 0.46 : isTablet ? w * 0.38 : Math.min(w * 0.32, 460),
+        ry: isMobile ? h * 0.44 : h * 0.42
+      };
+    };
+
+    // Helper: calculate opacity multiplier based on proximity to center text zone
+    const getCentralFade = (x, y, mask) => {
+      const dx = (x - mask.cx) / mask.rx;
+      const dy = (y - mask.cy) / mask.ry;
+      const distSq = dx * dx + dy * dy;
+      if (distSq <= 0.8) return 0; // completely inside text core
+      if (distSq >= 1.4) return 1; // fully outside
+      // Smooth Hermite interpolation between 0.8 and 1.4
+      const t = (distSq - 0.8) / 0.6;
+      return t * t * (3 - 2 * t);
+    };
+
+    // Build hierarchical branching arbor for a neuron
+    const createDendriteBranch = (startX, startY, baseAngle, baseLength, depth, layer, maxDepth = 2) => {
+      const numSegments = 4;
+      const points = [{ x: startX, y: startY }];
+      let curX = startX;
+      let curY = startY;
+      let curAngle = baseAngle;
+      const segLength = baseLength / numSegments;
+
+      for (let s = 1; s <= numSegments; s++) {
+        // Natural biological wandering
+        const angleWobble = (Math.sin(s * 1.8 + depth * 2.3) * 0.22) + ((Math.random() - 0.5) * 0.15);
+        curAngle += angleWobble;
+        curX += Math.cos(curAngle) * segLength;
+        curY += Math.sin(curAngle) * segLength;
+        points.push({ x: curX, y: curY });
+      }
+
+      // Small synaptic boutons / spines along the branch
+      const boutons = [];
+      for (let p = 1; p < points.length; p++) {
+        if (Math.random() < 0.6) {
+          const pt = points[p];
+          const isGold = Math.random() < 0.35;
+          boutons.push({
+            x: pt.x + (Math.random() - 0.5) * 4,
+            y: pt.y + (Math.random() - 0.5) * 4,
+            radius: (Math.random() * 1.2 + 1.2) * layer.scale,
+            isGold,
+            pulsePhase: Math.random() * Math.PI * 2
+          });
+        }
+      }
+
+      const branch = {
+        points,
+        endPoint: points[points.length - 1],
+        depth,
+        width: Math.max(0.6, (3.0 - depth * 1.0) * layer.scale),
+        boutons,
+        subBranches: []
+      };
+
+      // Split into child branches if not at terminal depth
+      if (depth < maxDepth) {
+        const numChildren = Math.random() < 0.75 ? 2 : 1;
+        const spreadAngle = 0.45 + Math.random() * 0.2;
+        const childLength = baseLength * (0.65 + Math.random() * 0.15);
+
+        for (let c = 0; c < numChildren; c++) {
+          const branchSign = c === 0 ? -1 : 1;
+          const childAngle = curAngle + branchSign * (spreadAngle * (0.8 + Math.random() * 0.4));
+          const child = createDendriteBranch(
+            curX,
+            curY,
+            childAngle,
+            childLength,
+            depth + 1,
+            layer,
+            maxDepth
+          );
+          branch.subBranches.push(child);
+        }
+      }
+
+      return branch;
+    };
+
+    // Initialize all neurons across left and right flanks
+    const initNetwork = (w, h) => {
+      neurons.length = 0;
+      synapses.length = 0;
+      pulses.length = 0;
+      ambientParticles.length = 0;
+
+      const isMobile = w < 640;
+      const isTablet = w < 1024;
+
+      // Determine neuron counts per flank
+      const countPerSide = isMobile ? 2 : isTablet ? 3 : 4;
+      const flankWidth = isMobile ? w * 0.22 : isTablet ? w * 0.26 : Math.min(w * 0.28, 380);
+
+      // Define depth layers: 0: background (distant/soft), 1: midground, 2: foreground (crisp)
+      const layers = [
+        { id: 0, scale: 0.65, opacity: 0.35, maxShift: 3 },
+        { id: 1, scale: 0.90, opacity: 0.60, maxShift: 6 },
+        { id: 2, scale: 1.15, opacity: 0.85, maxShift: 10 }
+      ];
 
       for (let side = 0; side < 2; side++) {
-        for (let i = 0; i < perFlank; i++) {
-          const theme = THEMES[(side * perFlank + i) % THEMES.length];
-          const isPyramidal = i === 0 || i === 3;
-          const radius = isPyramidal ? 3.6 : 2.4;
+        // side 0: Left flank, side 1: Right flank
+        for (let i = 0; i < countPerSide; i++) {
+          const layer = layers[(i + side) % layers.length];
+          const isGoldSoma = (i + side) % 3 === 0;
 
-          const flankW = Math.min(w * 0.20, 240);
+          // Spatial distribution with organic jitter
+          const verticalBand = h / (countPerSide + 0.5);
+          const y = verticalBand * (i + 0.6 + (Math.random() - 0.5) * 0.4);
+
+          // Position somas well within the flanks
           const x = side === 0
-            ? Math.random() * (flankW - 40) + 30
-            : w - (Math.random() * (flankW - 40) + 30);
-          const y = ((i + 0.6 + (Math.random() - 0.5) * 0.4) / (perFlank + 0.5)) * h;
+            ? Math.random() * (flankWidth * 0.65) + 30
+            : w - (Math.random() * (flankWidth * 0.65) + 30);
 
-          const dendrites = [];
-          const numBranches = isPyramidal ? 4 : 3;
+          const somaRadius = (isGoldSoma ? 6.5 : 5.5) * layer.scale;
 
-          for (let b = 0; b < numBranches; b++) {
-            const isApical = isPyramidal && b === 0;
-            const baseAngle = isApical
-              ? (side === 0 ? -0.3 + (Math.random() - 0.5) * 0.3 : Math.PI + 0.3 + (Math.random() - 0.5) * 0.3)
-              : (b / numBranches) * Math.PI * 2 + (Math.random() - 0.5) * 0.4;
-            const length = isApical ? 38 + Math.random() * 18 : 18 + Math.random() * 12;
+          // Number of primary dendritic trunks radiating out
+          const numTrunks = isMobile ? 3 : 4 + Math.floor(Math.random() * 2);
+          const branches = [];
 
-            const spines = [];
-            const numSpines = isApical ? 5 : 3;
-            for (let s = 0; s < numSpines; s++) {
-              spines.push({
-                pos: 0.3 + (s / numSpines) * 0.6,
-                side: s % 2 === 0 ? 1 : -1,
-                len: 2.2 + Math.random() * 1.2,
-              });
-            }
+          // Primary stem angles: orient mainly toward center-up, center, center-down, and vertical
+          const baseAngles = side === 0
+            ? [-0.7, -0.25, 0.15, 0.6, 1.4] // Left flank points inward toward right
+            : [Math.PI - 0.6, Math.PI - 0.15, Math.PI + 0.25, Math.PI + 0.7, -1.4]; // Right flank points inward toward left
 
-            dendrites.push({
-              baseAngle,
-              length,
-              swaySpeed: 0.006 + Math.random() * 0.006,
-              swayAmp: 0.04 + Math.random() * 0.03,
-              phase: Math.random() * Math.PI * 2,
-              hasBifurcation: isApical || Math.random() > 0.5,
-              bifurcationOffset: 0.30,
-              spines,
-            });
+          for (let b = 0; b < numTrunks; b++) {
+            const angle = baseAngles[b % baseAngles.length] + (Math.random() - 0.5) * 0.35;
+            const branchLen = (isMobile ? 70 : 110 + Math.random() * 60) * layer.scale;
+            const branch = createDendriteBranch(x, y, angle, branchLen, 0, layer, isMobile ? 1 : 2);
+            branches.push(branch);
           }
 
           neurons.push({
-            id: side * perFlank + i,
+            id: `neuron-${side}-${i}`,
             side,
+            baseX: x,
+            baseY: y,
             x,
             y,
-            originX: x,
-            originY: y,
-            vx: (Math.random() - 0.5) * 0.06,
-            vy: (Math.random() - 0.5) * 0.06,
-            phaseX: Math.random() * Math.PI * 2,
-            phaseY: Math.random() * Math.PI * 2,
-            radius,
-            theme,
-            isPyramidal,
-            dendrites,
-            zoneAlpha: 1.0,
+            somaRadius,
+            layer,
+            isGold: isGoldSoma,
             pulsePhase: Math.random() * Math.PI * 2,
-            connectionCount: 0,
+            branches
           });
         }
       }
 
-      for (let i = 0; i < neurons.length; i++) {
-        const n1 = neurons[i];
-        const candidates = [];
+      // Collect terminal boutons from all branches to identify nearby synaptic clefts
+      const allTerminals = [];
+      neurons.forEach((n) => {
+        const collectEnds = (br) => {
+          allTerminals.push({ x: br.endPoint.x, y: br.endPoint.y, neuronId: n.id, layer: n.layer });
+          br.subBranches.forEach(collectEnds);
+        };
+        n.branches.forEach(collectEnds);
+      });
 
-        for (let j = i + 1; j < neurons.length; j++) {
-          const n2 = neurons[j];
-          if (n1.side !== n2.side) continue;
-          const dx = n1.x - n2.x;
-          const dy = n1.y - n2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist > 30 && dist < 200) {
-            candidates.push({ target: n2, dist });
+      // Find pairs of endpoints close enough to form subtle synaptic connections
+      const maxSynapseDist = isMobile ? 50 : 75;
+      for (let i = 0; i < allTerminals.length; i++) {
+        for (let j = i + 1; j < allTerminals.length; j++) {
+          const t1 = allTerminals[i];
+          const t2 = allTerminals[j];
+          if (t1.neuronId !== t2.neuronId) {
+            const dx = t1.x - t2.x;
+            const dy = t1.y - t2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < maxSynapseDist && Math.random() < 0.4) {
+              synapses.push({
+                x1: t1.x,
+                y1: t1.y,
+                x2: t2.x,
+                y2: t2.y,
+                dist,
+                alpha: 0.15 + (1 - dist / maxSynapseDist) * 0.25,
+                activity: Math.random() * 0.5,
+                isGold: Math.random() < 0.3
+              });
+            }
           }
         }
+      }
 
-        candidates.sort((a, b) => a.dist - b.dist);
-        const maxConns = n1.isPyramidal ? 2 : 1;
-        for (let c = 0; c < candidates.length; c++) {
-          if (n1.connectionCount >= maxConns) break;
-          const target = candidates[c].target;
-          if (target.connectionCount >= 2) continue;
-
-          n1.connectionCount++;
-          target.connectionCount++;
-
-          const midX = (n1.x + target.x) / 2 + (Math.random() - 0.5) * 16;
-          const midY = (n1.y + target.y) / 2 + (Math.random() - 0.5) * 16;
-
-          pathways.push({
-            from: n1,
-            to: target,
-            midX,
-            midY,
-            theme: n1.theme,
-          });
-        }
+      // Ambient background micro-particles for depth
+      const numParticles = isMobile ? 15 : isTablet ? 25 : 40;
+      for (let p = 0; p < numParticles; p++) {
+        // Keep particles mostly along flanks and top/bottom edges
+        const inFlank = Math.random() < 0.8;
+        const px = inFlank
+          ? (Math.random() < 0.5 ? Math.random() * flankWidth : w - Math.random() * flankWidth)
+          : Math.random() * w;
+        ambientParticles.push({
+          baseX: px,
+          baseY: Math.random() * h,
+          x: px,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+          radius: Math.random() * 1.8 + 0.8,
+          alpha: Math.random() * 0.35 + 0.15,
+          isGold: Math.random() < 0.28,
+          phase: Math.random() * Math.PI * 2
+        });
       }
     };
 
+    // Trigger an action potential pulse traveling along a branch
+    const spawnPulse = (neuron) => {
+      if (!neuron || neuron.branches.length === 0) return;
+      const branch = neuron.branches[Math.floor(Math.random() * neuron.branches.length)];
+      if (!branch || branch.points.length < 2) return;
+
+      // Extract coordinates along the branch chain
+      const path = [];
+      const addPath = (b) => {
+        b.points.forEach((pt) => path.push({ x: pt.x, y: pt.y }));
+        if (b.subBranches.length > 0) {
+          const nextB = b.subBranches[Math.floor(Math.random() * b.subBranches.length)];
+          addPath(nextB);
+        }
+      };
+      addPath(branch);
+
+      if (path.length >= 3) {
+        pulses.push({
+          path,
+          progress: 0,
+          speed: 0.007 + Math.random() * 0.006,
+          isGold: neuron.isGold || Math.random() < 0.35,
+          size: 2.2 * neuron.layer.scale
+        });
+      }
+    };
+
+    // Resize handler
     const handleResize = () => {
-      if (!canvas || !canvas.parentElement) return;
-      const rect = canvas.parentElement.getBoundingClientRect();
+      const rect = parent.getBoundingClientRect();
+      width = Math.floor(rect.width);
+      height = Math.floor(rect.height);
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = rect.width || window.innerWidth || 1200;
-      height = rect.height || window.innerHeight || 800;
+
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
 
-      initNeurons(width, height);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      initNetwork(width, height);
     };
+
+    // Mouse movement listener on hero section
+    const onPointerMove = (e) => {
+      const rect = parent.getBoundingClientRect();
+      mouse.targetX = e.clientX - rect.left;
+      mouse.targetY = e.clientY - rect.top;
+      mouse.isHovering = true;
+    };
+
+    const onPointerLeave = () => {
+      mouse.isHovering = false;
+      mouse.targetX = -1000;
+      mouse.targetY = -1000;
+    };
+
+    parent.addEventListener('pointermove', onPointerMove, { passive: true });
+    parent.addEventListener('pointerleave', onPointerLeave, { passive: true });
+
+    // Window resize observer
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+    resizeObserver.observe(parent);
+
+    // Pause when hero is not visible
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        isVisible = entries[0].isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
+    visibilityObserver.observe(parent);
+
+    const onVisibilityChange = () => {
+      if (document.hidden) isVisible = false;
+      else isVisible = true;
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
 
     handleResize();
-    window.addEventListener('resize', handleResize);
 
-    const mouse = { x: null, y: null };
-    const handleMouseMove = (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    };
+    // Occasional automatic pulse generation
+    let lastPulseTime = 0;
 
-    const handleMouseLeave = () => {
-      mouse.x = null;
-      mouse.y = null;
-    };
+    // =========================================================================
+    // ANIMATION & RENDERING LOOP
+    // =========================================================================
+    const render = (time) => {
+      if (!isVisible) {
+        animId = requestAnimationFrame(render);
+        return;
+      }
 
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseleave', handleMouseLeave);
-
-    let time = 0;
-
-    const render = () => {
-      time += 0.012;
       ctx.clearRect(0, 0, width, height);
-      const mask = getTextMask(width, height);
 
-      for (let i = 0; i < neurons.length; i++) {
-        const n = neurons[i];
+      const mask = getExclusionMask(width, height);
 
-        n.x += n.vx + Math.sin(time * 0.3 + n.phaseX) * 0.05;
-        n.y += n.vy + Math.cos(time * 0.3 + n.phaseY) * 0.05;
+      // Smooth mouse coordinates with interpolation (easing)
+      if (mouse.isHovering) {
+        mouse.x += (mouse.targetX - mouse.x) * 0.08;
+        mouse.y += (mouse.targetY - mouse.y) * 0.08;
+      } else {
+        // Gently return to resting position
+        mouse.x += (-1000 - mouse.x) * 0.04;
+        mouse.y += (-1000 - mouse.y) * 0.04;
+      }
 
-        const dx = n.x - mask.cx;
-        const dy = n.y - mask.cy;
-        const normDist = Math.sqrt((dx * dx) / (mask.rx * mask.rx) + (dy * dy) / (mask.ry * mask.ry));
+      // Periodically spark subtle action potentials
+      if (!prefersReducedMotion && time - lastPulseTime > 1800) {
+        if (neurons.length > 0 && pulses.length < 4) {
+          const randNeuron = neurons[Math.floor(Math.random() * neurons.length)];
+          spawnPulse(randNeuron);
+          lastPulseTime = time;
+        }
+      }
 
-        if (normDist < 1.12) {
-          const steer = (1.12 - normDist) * 0.3;
-          n.x += (dx >= 0 ? 1 : -1) * steer * 1.5;
-          n.y += (dy >= 0 ? 0.2 : -0.2) * steer;
+      // -----------------------------------------------------------------------
+      // 1. RENDER AMBIENT BACKGROUND PARTICLES
+      // -----------------------------------------------------------------------
+      ambientParticles.forEach((p) => {
+        if (!prefersReducedMotion) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
         }
 
-        n.zoneAlpha = normDist < 1.2 ? Math.max(0, (normDist - 0.98) / 0.22) : 1.0;
-
-        if (mouse.x !== null && !isInsideTextZone(mouse.x, mouse.y, mask, 0.95)) {
-          const mdx = n.x - mouse.x;
-          const mdy = n.y - mouse.y;
-          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-          if (mdist < 120 && mdist > 1) {
-            const force = (120 - mdist) / 120;
-            n.x += (mdx / mdist) * force * 0.35;
-            n.y += (mdy / mdist) * force * 0.35;
+        // Mouse displacement
+        let dispX = 0;
+        let dispY = 0;
+        if (mouse.isHovering) {
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouse.radius && dist > 0.1) {
+            const factor = (1 - dist / mouse.radius) * 4;
+            dispX = (dx / dist) * factor;
+            dispY = (dy / dist) * factor;
           }
         }
-      }
 
-      for (let p = 0; p < pathways.length; p++) {
-        const path = pathways[p];
-        const alpha = Math.min(path.from.zoneAlpha, path.to.zoneAlpha);
-        if (alpha < 0.05) continue;
-
-        ctx.beginPath();
-        ctx.moveTo(path.from.x, path.from.y);
-        ctx.quadraticCurveTo(path.midX, path.midY, path.to.x, path.to.y);
-        ctx.strokeStyle = path.theme.fiber;
-        ctx.lineWidth = 0.6;
-        ctx.stroke();
-
-        if (signals.length < maxSignals && Math.random() < 0.0012) {
-          signals.push({
-            pathway: path,
-            progress: 0,
-            speed: 0.005 + Math.random() * 0.003,
-            color: path.theme.signal,
-          });
-        }
-      }
-
-      for (let s = signals.length - 1; s >= 0; s--) {
-        const sig = signals[s];
-        sig.progress += sig.speed;
-
-        if (sig.progress >= 1) {
-          signals.splice(s, 1);
-          continue;
-        }
-
-        const t = sig.progress;
-        const p0 = sig.pathway.from;
-        const p1 = { x: sig.pathway.midX, y: sig.pathway.midY };
-        const p2 = sig.pathway.to;
-
-        const bx = (1 - t) * (1 - t) * p0.x + 2 * (1 - t) * t * p1.x + t * t * p2.x;
-        const by = (1 - t) * (1 - t) * p0.y + 2 * (1 - t) * t * p1.y + t * t * p2.y;
-
-        const sigAlpha = Math.sin(t * Math.PI) * 0.55;
-
-        ctx.beginPath();
-        ctx.arc(bx, by, 1.2, 0, Math.PI * 2);
-        ctx.fillStyle = sig.color;
-        ctx.globalAlpha = sigAlpha;
-        ctx.fill();
-        ctx.globalAlpha = 1.0;
-      }
-
-      for (let i = 0; i < neurons.length; i++) {
-        const n = neurons[i];
-        if (n.zoneAlpha < 0.05) continue;
-
-        const alpha = n.zoneAlpha;
-
-        for (let d = 0; d < n.dendrites.length; d++) {
-          const dendrite = n.dendrites[d];
-          const sway = Math.sin(time * dendrite.swaySpeed + dendrite.phase) * dendrite.swayAmp;
-          const angle = dendrite.baseAngle + sway;
-
-          const tipX = n.x + Math.cos(angle) * dendrite.length;
-          const tipY = n.y + Math.sin(angle) * dendrite.length;
-
-          const ctrlX = n.x + Math.cos(angle + 0.12) * (dendrite.length * 0.5);
-          const ctrlY = n.y + Math.sin(angle + 0.12) * (dendrite.length * 0.5);
-
+        const renderX = p.x + dispX;
+        const renderY = p.y + dispY;
+        const fade = getCentralFade(renderX, renderY, mask);
+        if (fade > 0.02) {
+          const col = p.isGold ? COLORS.goldAccent : COLORS.cyanPrimary;
+          const alpha = p.alpha * fade * (0.8 + Math.sin(time * 0.002 + p.phase) * 0.2);
           ctx.beginPath();
-          ctx.moveTo(n.x, n.y);
-          ctx.quadraticCurveTo(ctrlX, ctrlY, tipX, tipY);
-          ctx.strokeStyle = n.theme.dendrite;
-          ctx.lineWidth = 0.65;
-          ctx.stroke();
-
-          for (let sp = 0; sp < dendrite.spines.length; sp++) {
-            const spine = dendrite.spines[sp];
-            const spBaseX = n.x + (tipX - n.x) * spine.pos;
-            const spBaseY = n.y + (tipY - n.y) * spine.pos;
-            const spAngle = angle + (Math.PI / 2) * spine.side;
-            const spTipX = spBaseX + Math.cos(spAngle) * spine.len;
-            const spTipY = spBaseY + Math.sin(spAngle) * spine.len;
-
-            ctx.beginPath();
-            ctx.moveTo(spBaseX, spBaseY);
-            ctx.lineTo(spTipX, spTipY);
-            ctx.strokeStyle = n.theme.spine;
-            ctx.lineWidth = 0.45;
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.arc(spTipX, spTipY, 0.65, 0, Math.PI * 2);
-            ctx.fillStyle = n.theme.spine;
-            ctx.fill();
-          }
-
-          if (dendrite.hasBifurcation) {
-            const bifStartX = n.x + (tipX - n.x) * 0.6;
-            const bifStartY = n.y + (tipY - n.y) * 0.6;
-            const bifAngle = angle + dendrite.bifurcationOffset;
-            const bifLen = dendrite.length * 0.45;
-            const bifTipX = bifStartX + Math.cos(bifAngle) * bifLen;
-            const bifTipY = bifStartY + Math.sin(bifAngle) * bifLen;
-
-            ctx.beginPath();
-            ctx.moveTo(bifStartX, bifStartY);
-            ctx.lineTo(bifTipX, bifTipY);
-            ctx.strokeStyle = n.theme.dendrite;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-
-          ctx.beginPath();
-          ctx.arc(tipX, tipY, 0.85, 0, Math.PI * 2);
-          ctx.fillStyle = n.theme.spine;
+          ctx.arc(renderX, renderY, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${col.r}, ${col.g}, ${col.b}, ${alpha})`;
           ctx.fill();
         }
+      });
 
-        const haloRadius = n.radius * 1.5;
-        const grad = ctx.createRadialGradient(n.x, n.y, n.radius * 0.6, n.x, n.y, haloRadius);
-        grad.addColorStop(0, n.theme.halo);
-        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      // -----------------------------------------------------------------------
+      // 2. RENDER SYNAPTIC CONNECTIONS (CLEFTS)
+      // -----------------------------------------------------------------------
+      synapses.forEach((syn) => {
+        const midX = (syn.x1 + syn.x2) * 0.5;
+        const midY = (syn.y1 + syn.y2) * 0.5;
+        const fade = getCentralFade(midX, midY, mask);
+        if (fade > 0.05) {
+          // Check mouse proximity to illuminate synapse
+          let mouseBoost = 0;
+          if (mouse.isHovering) {
+            const dx = midX - mouse.x;
+            const dy = midY - mouse.y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < mouse.radius) {
+              mouseBoost = (1 - d / mouse.radius) * 0.45;
+            }
+          }
+
+          const col = syn.isGold ? COLORS.goldAccent : COLORS.cyanLight;
+          const alpha = Math.min(0.85, (syn.alpha + mouseBoost) * fade);
+
+          ctx.beginPath();
+          ctx.moveTo(syn.x1, syn.y1);
+          // Subtle natural arc
+          ctx.quadraticCurveTo(
+            midX + (Math.sin(time * 0.001) * 3),
+            midY + (Math.cos(time * 0.001) * 3),
+            syn.x2,
+            syn.y2
+          );
+          ctx.strokeStyle = `rgba(${col.r}, ${col.g}, ${col.b}, ${alpha})`;
+          ctx.lineWidth = 0.8 + mouseBoost;
+          ctx.stroke();
+
+          // Synaptic cleft micro-terminal nodes
+          ctx.beginPath();
+          ctx.arc(syn.x1, syn.y1, 1.3, 0, Math.PI * 2);
+          ctx.arc(syn.x2, syn.y2, 1.3, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${col.r}, ${col.g}, ${col.b}, ${alpha * 1.2})`;
+          ctx.fill();
+        }
+      });
+
+      // -----------------------------------------------------------------------
+      // 3. RENDER NEURONS & DENDRITIC TREES
+      // -----------------------------------------------------------------------
+      neurons.forEach((neuron) => {
+        // Calculate neuron mouse parallax displacement
+        let shiftX = 0;
+        let shiftY = 0;
+        let mouseProximity = 0;
+
+        if (mouse.isHovering) {
+          const dx = neuron.baseX - mouse.x;
+          const dy = neuron.baseY - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouse.radius && dist > 0.1) {
+            mouseProximity = (1 - dist / mouse.radius);
+            const moveAmt = mouseProximity * neuron.layer.maxShift;
+            // Shift away from mouse gently
+            shiftX = (dx / dist) * moveAmt;
+            shiftY = (dy / dist) * moveAmt;
+          }
+        }
+
+        neuron.x = neuron.baseX + shiftX;
+        neuron.y = neuron.baseY + shiftY;
+
+        const somaFade = getCentralFade(neuron.x, neuron.y, mask);
+        if (somaFade < 0.02) return;
+
+        const primaryCol = neuron.isGold ? COLORS.goldAccent : COLORS.cyanPrimary;
+        const brightCol = neuron.isGold ? COLORS.goldBright : COLORS.cyanLight;
+        const baseAlpha = (neuron.layer.opacity + mouseProximity * 0.3) * somaFade;
+
+        // Draw hierarchical dendritic branches
+        const drawBranch = (branch, parentX, parentY) => {
+          if (branch.points.length < 2) return;
+
+          ctx.beginPath();
+          ctx.moveTo(parentX, parentY);
+
+          for (let p = 1; p < branch.points.length; p++) {
+            const pt = branch.points[p];
+            // Apply slight branch parallax shift
+            const curPtX = pt.x + shiftX * 0.85;
+            const curPtY = pt.y + shiftY * 0.85;
+
+            // Compute midpoint for smooth quadratic curve
+            if (p < branch.points.length - 1) {
+              const nextPt = branch.points[p + 1];
+              const nextPtX = nextPt.x + shiftX * 0.85;
+              const nextPtY = nextPt.y + shiftY * 0.85;
+              const midX = (curPtX + nextPtX) * 0.5;
+              const midY = (curPtY + nextPtY) * 0.5;
+              ctx.quadraticCurveTo(curPtX, curPtY, midX, midY);
+            } else {
+              ctx.lineTo(curPtX, curPtY);
+            }
+          }
+
+          // Compute average fade for the branch
+          const endPt = branch.points[branch.points.length - 1];
+          const branchFade = getCentralFade(endPt.x + shiftX, endPt.y + shiftY, mask);
+          const bAlpha = Math.min(1.0, baseAlpha * (branchFade * 0.95));
+
+          if (bAlpha > 0.03) {
+            ctx.strokeStyle = `rgba(${primaryCol.r}, ${primaryCol.g}, ${primaryCol.b}, ${bAlpha})`;
+            ctx.lineWidth = branch.width;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.stroke();
+
+            // Draw synaptic boutons along the branch
+            branch.boutons.forEach((btn) => {
+              const bx = btn.x + shiftX * 0.85;
+              const by = btn.y + shiftY * 0.85;
+              const btnFade = getCentralFade(bx, by, mask);
+              if (btnFade > 0.05) {
+                const bCol = btn.isGold ? COLORS.goldBright : COLORS.cyanLight;
+                const bPulse = Math.sin(time * 0.003 + btn.pulsePhase) * 0.25;
+                const btnAlpha = Math.min(1.0, (bAlpha + bPulse + mouseProximity * 0.3) * btnFade);
+
+                ctx.beginPath();
+                ctx.arc(bx, by, btn.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${bCol.r}, ${bCol.g}, ${bCol.b}, ${btnAlpha})`;
+                ctx.fill();
+
+                // Subtle halo for selected prominent boutons
+                if (btn.isGold || mouseProximity > 0.3) {
+                  ctx.beginPath();
+                  ctx.arc(bx, by, btn.radius * 2.2, 0, Math.PI * 2);
+                  ctx.fillStyle = `rgba(${bCol.r}, ${bCol.g}, ${bCol.b}, ${btnAlpha * 0.25})`;
+                  ctx.fill();
+                }
+              }
+            });
+          }
+
+          // Recursively render child branches
+          const lastPt = branch.points[branch.points.length - 1];
+          branch.subBranches.forEach((sub) => {
+            drawBranch(sub, lastPt.x + shiftX * 0.85, lastPt.y + shiftY * 0.85);
+          });
+        };
+
+        // Draw all primary branches from the soma
+        neuron.branches.forEach((br) => {
+          drawBranch(br, neuron.x, neuron.y);
+        });
+
+        // ---------------------------------------------------------------------
+        // SOMA (CELL BODY) RENDERING
+        // ---------------------------------------------------------------------
+        // Soft outer radial halo
+        const haloRadius = neuron.somaRadius * 3.5;
+        const haloGrad = ctx.createRadialGradient(
+          neuron.x, neuron.y, neuron.somaRadius * 0.4,
+          neuron.x, neuron.y, haloRadius
+        );
+        haloGrad.addColorStop(0, `rgba(${brightCol.r}, ${brightCol.g}, ${brightCol.b}, ${baseAlpha * 0.5})`);
+        haloGrad.addColorStop(0.4, `rgba(${primaryCol.r}, ${primaryCol.g}, ${primaryCol.b}, ${baseAlpha * 0.18})`);
+        haloGrad.addColorStop(1, `rgba(${primaryCol.r}, ${primaryCol.g}, ${primaryCol.b}, 0)`);
 
         ctx.beginPath();
-        ctx.arc(n.x, n.y, haloRadius, 0, Math.PI * 2);
-        ctx.fillStyle = grad;
+        ctx.arc(neuron.x, neuron.y, haloRadius, 0, Math.PI * 2);
+        ctx.fillStyle = haloGrad;
         ctx.fill();
 
+        // Multipolar soma body with organic shape
         ctx.beginPath();
-        ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fillStyle = n.theme.soma;
-        ctx.fill();
+        const numSomaLobes = 6;
+        for (let a = 0; a < numSomaLobes; a++) {
+          const angle = (a / numSomaLobes) * Math.PI * 2;
+          const rWobble = neuron.somaRadius * (1 + Math.sin(angle * 3 + neuron.pulsePhase) * 0.2);
+          const px = neuron.x + Math.cos(angle) * rWobble;
+          const py = neuron.y + Math.sin(angle) * rWobble;
+          if (a === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.closePath();
 
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.radius * 0.35, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+        const somaGrad = ctx.createRadialGradient(
+          neuron.x - 1, neuron.y - 1, 0,
+          neuron.x, neuron.y, neuron.somaRadius
+        );
+        somaGrad.addColorStop(0, `rgba(255, 255, 255, ${Math.min(1.0, baseAlpha * 1.3)})`);
+        somaGrad.addColorStop(0.35, `rgba(${brightCol.r}, ${brightCol.g}, ${brightCol.b}, ${baseAlpha * 1.1})`);
+        somaGrad.addColorStop(1, `rgba(${primaryCol.r}, ${primaryCol.g}, ${primaryCol.b}, ${baseAlpha * 0.8})`);
+
+        ctx.fillStyle = somaGrad;
         ctx.fill();
+      });
+
+      // -----------------------------------------------------------------------
+      // 4. ACTION POTENTIAL PULSES
+      // -----------------------------------------------------------------------
+      if (!prefersReducedMotion) {
+        for (let i = pulses.length - 1; i >= 0; i--) {
+          const pulse = pulses[i];
+          pulse.progress += pulse.speed;
+
+          if (pulse.progress >= 1) {
+            pulses.splice(i, 1);
+            continue;
+          }
+
+          // Interpolate coordinate along path
+          const totalPoints = pulse.path.length;
+          const floatIdx = pulse.progress * (totalPoints - 1);
+          const idx = Math.floor(floatIdx);
+          const t = floatIdx - idx;
+
+          if (idx < totalPoints - 1) {
+            const p1 = pulse.path[idx];
+            const p2 = pulse.path[idx + 1];
+            const px = p1.x + (p2.x - p1.x) * t;
+            const py = p1.y + (p2.y - p1.y) * t;
+
+            const fade = getCentralFade(px, py, mask);
+            if (fade > 0.05) {
+              const col = pulse.isGold ? COLORS.goldBright : COLORS.cyanLight;
+              const alpha = Math.sin(pulse.progress * Math.PI) * fade;
+
+              // Glowing action potential bead
+              ctx.beginPath();
+              ctx.arc(px, py, pulse.size * 1.4, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.95})`;
+              ctx.fill();
+
+              // Outer pulse glow
+              ctx.beginPath();
+              ctx.arc(px, py, pulse.size * 3.5, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(${col.r}, ${col.g}, ${col.b}, ${alpha * 0.45})`;
+              ctx.fill();
+            }
+          }
+        }
       }
 
-      animationFrameId = requestAnimationFrame(render);
+      // -----------------------------------------------------------------------
+      // 5. INTERACTIVE MOUSE SYNAPTIC BRIDGE
+      // -----------------------------------------------------------------------
+      if (mouse.isHovering && !prefersReducedMotion) {
+        // Find closest neuron soma or major branch node to pointer
+        let closestNode = null;
+        let minDist = 130;
+
+        neurons.forEach((n) => {
+          const d = Math.sqrt((n.x - mouse.x) ** 2 + (n.y - mouse.y) ** 2);
+          if (d < minDist) {
+            minDist = d;
+            closestNode = { x: n.x, y: n.y, isGold: n.isGold };
+          }
+        });
+
+        if (closestNode) {
+          const bridgeFade = getCentralFade(mouse.x, mouse.y, mask);
+          if (bridgeFade > 0.1) {
+            const bridgeAlpha = (1 - minDist / 130) * 0.45 * bridgeFade;
+            const col = closestNode.isGold ? COLORS.goldBright : COLORS.cyanLight;
+
+            ctx.beginPath();
+            ctx.moveTo(mouse.x, mouse.y);
+            ctx.quadraticCurveTo(
+              (mouse.x + closestNode.x) * 0.5 + Math.sin(time * 0.005) * 6,
+              (mouse.y + closestNode.y) * 0.5 + Math.cos(time * 0.005) * 6,
+              closestNode.x,
+              closestNode.y
+            );
+            ctx.strokeStyle = `rgba(${col.r}, ${col.g}, ${col.b}, ${bridgeAlpha})`;
+            ctx.lineWidth = 1.0;
+            ctx.setLineDash([3, 4]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Small glowing pointer spark
+            ctx.beginPath();
+            ctx.arc(mouse.x, mouse.y, 2.0, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${col.r}, ${col.g}, ${col.b}, ${bridgeAlpha * 1.5})`;
+            ctx.fill();
+          }
+        }
+      }
+
+      animId = requestAnimationFrame(render);
     };
 
-    render();
+    animId = requestAnimationFrame(render);
 
+    // Cleanup on component unmount
     return () => {
-      window.removeEventListener('resize', handleResize);
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      canvas.removeEventListener('mouseleave', handleMouseLeave);
-      cancelAnimationFrame(animationFrameId);
+      if (animId) cancelAnimationFrame(animId);
+      parent.removeEventListener('pointermove', onPointerMove);
+      parent.removeEventListener('pointerleave', onPointerLeave);
+      resizeObserver.disconnect();
+      visibilityObserver.disconnect();
+      document.removeEventListener('visibilitychange', onVisibilityChange);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-auto opacity-75"
-      style={{ zIndex: 0 }}
       aria-hidden="true"
+      className="absolute inset-0 w-full h-full pointer-events-none z-0"
     />
   );
 }

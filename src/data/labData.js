@@ -548,7 +548,7 @@ export const FUNDING_AGENCIES = [
       },
       {
         name: "UGC Faculty Start-Up Grant",
-        detail: "Sanctioned infrastructure for stereotaxic stroke surgery, animal behavioral monitoring, and molecular proteostasis suites in Room F75C, SLS Annex."
+        detail: "Sanctioned infrastructure for stereotaxic stroke surgery, animal behavioral monitoring, and molecular proteostasis suites in Room F75C, School of Life Sciences."
       }
     ],
     dossierTarget: "past-grants",

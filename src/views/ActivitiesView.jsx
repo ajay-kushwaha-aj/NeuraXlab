@@ -90,10 +90,10 @@ export default function ActivitiesView() {
               tag: "Computational Hub"
             },
             {
-              title: "SLS Annex Building & Academic Seminars",
+              title: "School of Life Sciences & Academic Seminars",
               desc: "Department of Systems and Computational Biology, School of Life Sciences, UoH.",
               img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80",
-              tag: "SLS Annex"
+              tag: "School of Life Sciences"
             },
             {
               title: "University of Hyderabad Campus Fauna & Greenery",

@@ -313,7 +313,7 @@ export default function ContactView() {
                 Official Laboratory Headquarters
               </span>
               <h3 className="font-serif text-2xl font-bold text-white">
-                SLS Annex Building
+                School of Life Sciences
               </h3>
             </div>
 
