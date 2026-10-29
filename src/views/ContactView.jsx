@@ -152,11 +152,11 @@ export default function ContactView() {
                 Application Submitted Successfully!
               </h3>
               <p className="text-base text-emerald-800 max-w-md mx-auto leading-relaxed">
-                Thank you, <strong>{formData.name}</strong>. Your inquiry for <strong>{formData.position}</strong> has been logged. We have prepared a direct confirmation copy addressed to Dr. Nakka at <span className="font-mono text-xs sm:text-sm">prasuja@uohyd.ac.in</span>.
+                Thank you, <strong>{formData.name}</strong>. Your inquiry for <strong>{formData.position}</strong> has been logged. We have prepared a direct confirmation copy addressed to Dr. Nakka at <span className="font-mono text-xs sm:text-sm">nvprasuja@uohyd.ac.in</span>.
               </p>
               <div className="pt-2">
                 <a
-                  href={`mailto:prasuja@uohyd.ac.in?subject=NeuroXlab Application: ${encodeURIComponent(formData.position)} - ${encodeURIComponent(formData.name)}&body=Dear Dr. Nakka,%0D%0A%0D%0AI have submitted my inquiry for the ${encodeURIComponent(formData.position)} position.%0D%0A%0D%0AQualification: ${encodeURIComponent(formData.qualification)}%0D%0APhone: ${encodeURIComponent(formData.phone)}%0D%0ACV Link: ${encodeURIComponent(formData.cvUrl)}%0D%0A%0D%0AStatement:%0D%0A${encodeURIComponent(formData.statement)}%0D%0A%0D%0ASincerely,%0D%0A${encodeURIComponent(formData.name)}`}
+                  href={`mailto:nvprasuja@uohyd.ac.in?subject=NeuroXlab Application: ${encodeURIComponent(formData.position)} - ${encodeURIComponent(formData.name)}&body=Dear Dr. Nakka,%0D%0A%0D%0AI have submitted my inquiry for the ${encodeURIComponent(formData.position)} position.%0D%0A%0D%0AQualification: ${encodeURIComponent(formData.qualification)}%0D%0APhone: ${encodeURIComponent(formData.phone)}%0D%0ACV Link: ${encodeURIComponent(formData.cvUrl)}%0D%0A%0D%0AStatement:%0D%0A${encodeURIComponent(formData.statement)}%0D%0A%0D%0ASincerely,%0D%0A${encodeURIComponent(formData.name)}`}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#8B1E24] text-white text-sm font-bold hover:bg-[#641318] shadow transition-all"
                 >
                   <Mail className="w-4 h-4" />
@@ -321,11 +321,10 @@ export default function ContactView() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#C59B27] mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="font-bold text-white">Room No. F75C, First Floor</p>
-                  <p className="text-[#E0B84C] font-semibold">Department of Systems and Computational Biology</p>
-                  <p>SLS Annex Building, School of Life Sciences</p>
-                  <p>University of Hyderabad</p>
-                  <p>Prof. C.R. Rao Road, Gachibowli</p>
+                  <p className="font-bold text-white">Dr. N. Venkata Prasuja</p>
+                  <p className="text-[#E0B84C] font-semibold">Room No. F-75C, Dept. of Systems &amp; Computational Biology</p>
+                  <p>School of Life Sciences, University of Hyderabad</p>
+                  <p>Prof CR Rao Road, Gachibowli</p>
                   <p>Hyderabad – 500046, Telangana, India</p>
                 </div>
               </div>
@@ -344,8 +343,8 @@ export default function ContactView() {
                 <Mail className="w-5 h-5 text-[#C59B27] mt-0.5 flex-shrink-0" />
                 <div className="space-y-1">
                   <p className="text-xs text-white/60">Official Correspondence</p>
-                  <a href="mailto:prasuja@uohyd.ac.in" className="font-mono hover:text-[#E0B84C] block">
-                    prasuja@uohyd.ac.in
+                  <a href="mailto:nvprasuja@uohyd.ac.in" className="font-mono hover:text-[#E0B84C] block">
+                    nvprasuja@uohyd.ac.in
                   </a>
                 </div>
               </div>

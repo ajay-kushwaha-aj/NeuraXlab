@@ -87,7 +87,7 @@ export default function OpportunitiesContactPage() {
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const mailtoLink = `mailto:prasuja@uohyd.ac.in?subject=${encodeURIComponent(
+  const mailtoLink = `mailto:nvprasuja@uohyd.ac.in?subject=${encodeURIComponent(
     `[NeuroXlab Application] ${formData.track} - ${formData.name}`
   )}&body=${encodeURIComponent(
     `Dear Dr. Venkata Prasuja Nakka,\n\nI am formally applying for the position: ${formData.track}.\n\nFull Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nHighest Degree / Institute: ${formData.qualification}\nNational Fellowship / Exam Qualified: ${formData.nationalExam}\nCV Link: ${formData.cvUrl}\n\nBrief Research Statement:\n${formData.statement}\n\nSincerely,\n${formData.name}`
@@ -180,7 +180,7 @@ export default function OpportunitiesContactPage() {
               Candidate Application &amp; Inquiries
             </h2>
             <p className="text-xs text-[#0F2537]/75">
-              Generates a pre-addressed submission to <span className="font-mono text-[#8B1E24] font-bold">prasuja@uohyd.ac.in</span>.
+              Generates a pre-addressed submission to <span className="font-mono text-[#8B1E24] font-bold">nvprasuja@uohyd.ac.in</span>.
             </p>
           </div>
 
@@ -202,7 +202,7 @@ export default function OpportunitiesContactPage() {
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#8B1E24] hover:bg-[#641318] text-white text-xs font-bold shadow-md transition-all active:scale-95"
                 >
                   <Mail className="w-4 h-4 text-[#E0B84C]" />
-                  <span>Dispatch Email to prasuja@uohyd.ac.in</span>
+                  <span>Dispatch Email to nvprasuja@uohyd.ac.in</span>
                 </a>
               </div>
 
@@ -382,10 +382,10 @@ export default function OpportunitiesContactPage() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#C59B27] mt-1 flex-shrink-0" />
                 <div className="space-y-0.5">
-                  <p className="font-bold text-white">Room No. F75C</p>
-                  <p className="text-white/95">Department of Systems and Computational Biology</p>
-                  <p className="text-white/90">School of Life Sciences, University of Hyderabad</p>
-                  <p className="text-[#E0B84C] font-semibold">Prof. C.R. Rao Road, Gachibowli</p>
+                  <p className="font-bold text-white">Dr. N. Venkata Prasuja</p>
+                  <p className="text-[#E0B84C] font-semibold">Room No. F-75C, Dept. of Systems &amp; Computational Biology</p>
+                  <p className="text-white/95">School of Life Sciences, University of Hyderabad</p>
+                  <p className="text-white/90">Prof CR Rao Road, Gachibowli</p>
                   <p className="text-white/80">Hyderabad – 500046, Telangana, India</p>
                 </div>
               </div>
@@ -405,8 +405,8 @@ export default function OpportunitiesContactPage() {
                 <div className="space-y-1">
                   <span className="text-xs text-white/70 block">Official Email Contact</span>
                   <div className="flex items-center gap-2">
-                    <a href="mailto:prasuja@uohyd.ac.in" className="font-mono hover:text-[#E0B84C] font-bold text-sm">
-                      prasuja@uohyd.ac.in
+                    <a href="mailto:nvprasuja@uohyd.ac.in" className="font-mono hover:text-[#E0B84C] font-bold text-sm">
+                      nvprasuja@uohyd.ac.in
                     </a>
                   </div>
                 </div>

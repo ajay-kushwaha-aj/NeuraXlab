@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import { 
-  Users, 
-  GraduationCap, 
-  Award, 
-  BookOpen, 
-  CheckCircle2, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  ExternalLink, 
-  Calendar, 
-  Briefcase, 
-  ShieldCheck, 
-  FileText, 
+import {
+  Users,
+  GraduationCap,
+  Award,
+  BookOpen,
+  CheckCircle2,
+  Mail,
+  Phone,
+  MapPin,
+  ExternalLink,
+  Calendar,
+  Briefcase,
+  ShieldCheck,
+  FileText,
   ChevronRight,
   Sparkles,
   ArrowRight,
   TrendingUp,
-  Cpu
+  Cpu,
+  Compass,
+  Globe2,
+  Activity,
+  Dna,
+  Network
 } from 'lucide-react';
 import NeuroXlabLogo from '../components/NeuroXlabLogo';
 import { LAB_INFO, TEAM_MEMBERS } from '../data/labData';
@@ -52,22 +57,20 @@ export default function TeamPage({ setActiveTab }) {
         <div className="inline-flex p-1.5 rounded-2xl bg-white border-2 border-[#C59B27]/40 shadow-sm text-sm font-bold mt-4">
           <button
             onClick={() => setActiveTabSub('groupleader')}
-            className={`px-6 py-2.5 rounded-xl transition-all flex items-center gap-2 ${
-              activeTabSub === 'groupleader'
+            className={`px-6 py-2.5 rounded-xl transition-all flex items-center gap-2 ${activeTabSub === 'groupleader'
                 ? 'bg-[#8B1E24] text-white shadow-md'
                 : 'text-[#0F2537]/75 hover:text-[#8B1E24]'
-            }`}
+              }`}
           >
             <GraduationCap className="w-4 h-4" />
             <span>Group Leader Dossier</span>
           </button>
           <button
             onClick={() => setActiveTabSub('members')}
-            className={`px-6 py-2.5 rounded-xl transition-all flex items-center gap-2 ${
-              activeTabSub === 'members'
+            className={`px-6 py-2.5 rounded-xl transition-all flex items-center gap-2 ${activeTabSub === 'members'
                 ? 'bg-[#8B1E24] text-white shadow-md'
                 : 'text-[#0F2537]/75 hover:text-[#8B1E24]'
-            }`}
+              }`}
           >
             <Users className="w-4 h-4" />
             <span>Team Members &amp; Supervision</span>
@@ -76,336 +79,516 @@ export default function TeamPage({ setActiveTab }) {
       </div>
 
       {/* =========================================================================
-          TAB 1: GROUP LEADER DOSSIER (COMPLETE CV DOSSIER OF DR. NAKKA)
+          TAB 1: GROUP LEADER DOSSIER (VERIFIED ACADEMIC PROFILE OF DR. NAKKA)
           ========================================================================= */}
       {activeTabSub === 'groupleader' && (
         <div className="space-y-12 animate-in fade-in duration-300">
-          {/* 1. Spotlight Hero Profile Card */}
-          <div className="bg-white rounded-3xl border-2 border-[#C59B27]/60 shadow-xl overflow-hidden">
-            <div className="bg-[#8B1E24] text-white px-8 py-5 flex flex-wrap items-center justify-between gap-4 border-b-2 border-[#C59B27]">
-              <div className="flex items-center gap-3">
-                <Award className="w-7 h-7 text-[#E0B84C]" />
-                <div>
-                  <span className="text-xs uppercase tracking-widest text-[#E0B84C] font-mono">
-                    Principal Investigator &amp; Lab Director
-                  </span>
-                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
-                    Dr. Venkata Prasuja Nakka, Ph.D.
-                  </h2>
-                </div>
+          {/* 1. Profile Header & Introduction Card */}
+          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-md overflow-hidden">
+            {/* Top Accent Strip */}
+            <div className="bg-[#8B1E24] text-white px-6 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#C59B27]">
+              <div className="flex items-center gap-2.5">
+                <Award className="w-5 h-5 text-[#E0B84C]" />
+                <span className="text-xs uppercase tracking-widest text-[#E0B84C] font-mono font-semibold">
+                  PRINCIPAL INVESTIGATOR &amp; LAB DIRECTOR
+                </span>
               </div>
-              <div className="text-xs font-mono bg-white/10 px-4 py-2 rounded-xl border border-white/20 text-[#E0B84C] font-bold">
-                UGC-Assistant Professor (Level-11)
-              </div>
+              <span className="text-xs font-mono bg-white/10 px-3 py-1 rounded-lg border border-white/20 text-white font-medium">
+                University of Hyderabad (IoE)
+              </span>
             </div>
 
-            <div className="p-8 sm:p-12">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                {/* Portrait & Official Location Card */}
-                <div className="lg:col-span-4 space-y-6">
-                  <div className="relative rounded-2xl overflow-hidden border-4 border-[#C59B27] shadow-xl bg-[#0F2537] aspect-square max-w-[320px] mx-auto group">
+            <div className="p-6 sm:p-10 lg:p-12">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                {/* Left Column: Authentic Professional Portrait & Quick Contact */}
+                <div className="lg:col-span-4 flex flex-col items-center space-y-5">
+                  <div className="relative rounded-2xl overflow-hidden border-2 border-[#C59B27]/70 shadow-lg bg-[#0F2537] aspect-[3/4] w-full max-w-[280px] sm:max-w-[300px] group">
                     <img
-                      src={pi.avatar}
-                      alt={pi.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      src="/images/dr_prasuja_nakka.jpg"
+                      alt="Dr. Venkata Prasuja Nakka, Ph.D. - Official Institutional Portrait, University of Hyderabad"
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
 
-                  <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-gray-200 space-y-3.5 text-sm text-[#0F2537]">
-                    <div className="flex items-start gap-2.5">
-                      <MapPin className="w-4 h-4 text-[#8B1E24] mt-0.5 flex-shrink-0" />
-                      <div className="space-y-0.5">
-                        <p className="font-bold text-[#0F2537]">Room No. F75C, SLS Annex Building</p>
-                        <p className="font-semibold text-[#8B1E24]">Department of Systems and Computational Biology</p>
-                        <p className="text-[#0F2537]/80 font-medium">School of Life Sciences, University of Hyderabad</p>
-                        <p className="text-[#0F2537]/75">Prof. C.R. Rao Road, Gachibowli, Hyderabad – 500046</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2.5 pt-1">
-                      <Phone className="w-4 h-4 text-[#8B1E24] flex-shrink-0" />
-                      <a href="tel:+914023134581" className="font-mono text-sm hover:text-[#8B1E24]">
-                        +91-40-23134581
+                  <div className="w-full max-w-[300px] p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-2.5 text-xs">
+                    <div className="space-y-1">
+                      <span className="font-mono text-slate-500 uppercase block font-semibold">Institutional Email</span>
+                      <a href="mailto:nvprasuja@uohyd.ac.in" className="font-mono text-[#8B1E24] font-semibold hover:underline block truncate">
+                        nvprasuja@uohyd.ac.in
                       </a>
                     </div>
-
-                    <div className="flex items-start gap-2.5 pt-1">
-                      <Mail className="w-4 h-4 text-[#8B1E24] mt-0.5 flex-shrink-0" />
-                      <div className="space-y-0.5">
-                        <a href="mailto:prasuja@uohyd.ac.in" className="font-mono text-sm hover:text-[#8B1E24] block">
-                          prasuja@uohyd.ac.in
-                        </a>
-                      </div>
+                    <div className="space-y-1 pt-1.5 border-t border-slate-200/60">
+                      <span className="font-mono text-slate-500 uppercase block font-semibold">Primary Email</span>
+                      <a href="mailto:nvprasuja@gmail.com" className="font-mono text-slate-700 font-semibold hover:text-[#8B1E24] hover:underline block truncate">
+                        nvprasuja@gmail.com
+                      </a>
                     </div>
                   </div>
                 </div>
 
-                {/* Narrative, Appointments & Metrics */}
-                <div className="lg:col-span-8 space-y-6">
-                  <div className="space-y-3">
-                    <span className="text-xs font-mono font-bold uppercase text-[#8B1E24] bg-[#8B1E24]/10 px-3 py-1 rounded-md">
-                      Curriculum Vitae Dossier
+                {/* Right Column: Name, Subtitle, Affiliation & Introduction */}
+                <div className="lg:col-span-8 space-y-4">
+                  <div>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#8B1E24] bg-[#8B1E24]/10 px-2.5 py-1 rounded-md mb-2">
+                      Academic Leadership
                     </span>
-                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
-                      Systems Neurobiologist &amp; Translational Investigator
-                    </h3>
-                    <p className="text-base text-[#0F2537]/85 leading-relaxed font-normal">
-                      Dr. Venkata Prasuja Nakka is a nationally recruited Level-11 UGC-Assistant Professor in the Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad. He earned his Ph.D. from the premier Central Drug Research Institute (CSIR-CDRI) / Jawaharlal Nehru University (JNU), New Delhi, investigating organellar endoplasmic reticulum stress and apoptotic signaling in cerebral ischemia. He subsequently conducted extensive postdoctoral investigations at the University of Wisconsin–Madison (USA), the National University of Singapore (NUS), and UoH, pioneering discoveries in long non-coding RNAs, piRNAs, and post-translational ISGylation in stroke neuroprotection.
+                    <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-[#0F2537] tracking-tight">
+                      Dr. Venkata Prasuja Nakka, Ph.D.
+                    </h2>
+                    <p className="font-serif italic text-lg sm:text-xl font-medium text-[#8B1E24] mt-1">
+                      Systems Neurobiologist &amp; Translational Researcher
+                    </p>
+                    <p className="text-sm font-semibold text-slate-600 mt-1">
+                      Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad.
                     </p>
                   </div>
 
-                  {/* High Impact Pedigree Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                    <div className="bg-[#FAF8F5] p-5 rounded-2xl border border-gray-200 space-y-1.5">
-                      <span className="text-xs font-mono font-bold text-[#8B1E24] uppercase">Current Appointment</span>
-                      <p className="text-sm sm:text-base font-bold text-[#0F2537]">UGC-Assistant Professor (Level-11)</p>
-                      <p className="text-sm font-semibold text-[#8B1E24]">Department of Systems and Computational Biology</p>
-                      <p className="text-sm text-[#0F2537]/80">School of Life Sciences, University of Hyderabad (Institution of Eminence).</p>
-                    </div>
+                  <div className="space-y-3.5 text-slate-700 text-sm sm:text-base leading-relaxed font-normal pt-2 border-t border-slate-100">
+                    <p>
+                      Dr. Venkata Prasuja Nakka is an Assistant Professor in the Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad. He earned his Ph.D. through Jawaharlal Nehru University, New Delhi, with research conducted at the Central Drug Research Institute, Lucknow. His research focuses on the molecular mechanisms of ischemic stroke, cellular stress signaling, neuroinflammation, gut–brain interactions, and stroke-induced systemic injury.
+                    </p>
+                    <p>
+                      His postdoctoral research experience includes the University of Wisconsin–Madison, the National University of Singapore, and the University of Hyderabad, where he held SERB-Young Scientist and UGC-Postdoctoral Fellow positions. At NeuroXLab, he integrates experimental neuroscience with computational and systems-level approaches to investigate stroke pathology and advance translational therapeutic strategies, including nanotechnology-based drug delivery and neuroprotection.
+                    </p>
+                  </div>
 
-                    <div className="bg-[#FAF8F5] p-5 rounded-2xl border border-gray-200 space-y-1.5">
-                      <span className="text-xs font-mono font-bold text-[#C59B27] uppercase">Doctorate (Ph.D., 2009)</span>
-                      <p className="text-sm sm:text-base font-bold text-[#0F2537]">CSIR-CDRI / JNU New Delhi</p>
-                      <p className="text-sm text-[#0F2537]/80">Endoplasmic reticulum stress and caspase-12 apoptotic cascades in stroke.</p>
-                    </div>
-
-                    <div className="bg-[#FAF8F5] p-5 rounded-2xl border border-gray-200 space-y-1.5">
-                      <span className="text-xs font-mono font-bold text-[#8B1E24] uppercase">US Postdoctoral Fellow</span>
-                      <p className="text-sm sm:text-base font-bold text-[#0F2537]">University of Wisconsin–Madison</p>
-                      <p className="text-sm text-[#0F2537]/80">Dept. of Neurological Surgery (Prof. Raghu Vemuganti Lab). Stroke epigenomics.</p>
-                    </div>
-
-                    <div className="bg-[#FAF8F5] p-5 rounded-2xl border border-gray-200 space-y-1.5">
-                      <span className="text-xs font-mono font-bold text-[#C59B27] uppercase">International Postdoc</span>
-                      <p className="text-sm sm:text-base font-bold text-[#0F2537]">National University of Singapore (NUS)</p>
-                      <p className="text-sm text-[#0F2537]/80">Neurobiology and pharmacology of neurovascular unit injury.</p>
-                    </div>
+                  {/* Call to Action Button */}
+                  <div className="pt-2">
+                    <button
+                      onClick={() => {
+                        if (setActiveTab) {
+                          setActiveTab('research');
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                      }}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-[#8B1E24] hover:bg-[#A82931] border border-[#C59B27]/50 shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[44px] group"
+                    >
+                      <span>Explore His Research</span>
+                      <ArrowRight className="w-4 h-4 text-[#E0B84C] group-hover:translate-x-1 transition-transform" />
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Horizontal Bottom Bar: Scholarly & Professional Profiles */}
-            <div className="border-t border-gray-200 bg-[#FAF8F5] px-6 sm:px-8 py-4">
-              <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#8B1E24]" />
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#8B1E24]">
-                    Scholarly &amp; Professional Profiles:
+          {/* 2. Research Interests - Exactly 5 Verified Themes */}
+          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
+            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+                <Compass className="w-3.5 h-3.5 text-[#C59B27]" />
+                <span>Primary Scientific Thrusts</span>
+              </div>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+                Research Interests
+              </h3>
+              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {/* Card 1 */}
+              <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
+                    <Activity className="w-5 h-5" />
+                  </div>
+                  <h4 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                    Stroke Biology &amp; Neuroprotection
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Understanding the molecular mechanisms of ischemic stroke and developing neuroprotective strategies using experimental models.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 2 */}
+              <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
+                    <Cpu className="w-5 h-5" />
+                  </div>
+                  <h4 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                    Cellular Stress &amp; Signaling
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Investigating endoplasmic reticulum stress, the unfolded protein response, oxidative stress, and inflammatory pathways involved in neuronal injury and recovery.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 3 */}
+              <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
+                    <Dna className="w-5 h-5" />
+                  </div>
+                  <h4 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                    Gut–Brain Axis &amp; Metagenomics
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Exploring microbiome dynamics and gut–brain interactions in stroke using metagenomic and computational approaches.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 4 */}
+              <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
+                    <Network className="w-5 h-5" />
+                  </div>
+                  <h4 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                    Brain–Organ Crosstalk
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Investigating stroke-induced systemic effects, including distal organ damage and immune signaling networks.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 5 */}
+              <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group md:col-span-2 lg:col-span-1">
+                <div className="space-y-3">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
+                    <Sparkles className="w-5 h-5 text-[#C59B27]" />
+                  </div>
+                  <h4 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                    Translational Therapeutics
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Developing nanotechnology-based drug-delivery strategies and translational interventions for neuroprotection.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 3. Education & Postdoctoral Experience */}
+          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
+            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+                <GraduationCap className="w-3.5 h-3.5 text-[#C59B27]" />
+                <span>Academic Trajectory</span>
+              </div>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+                Education &amp; Postdoctoral Experience
+              </h3>
+              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+              {/* Education Column */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
+                  <GraduationCap className="w-5 h-5 text-[#8B1E24]" />
+                  <h4 className="font-serif text-xl font-bold text-[#0F2537]">
+                    Education
+                  </h4>
+                </div>
+
+                <div className="space-y-3.5">
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
+                    <span className="text-xs font-mono font-bold text-[#8B1E24] uppercase block">Doctor of Philosophy (Ph.D.)</span>
+                    <p className="font-serif text-base font-bold text-[#0F2537]">Jawaharlal Nehru University, New Delhi</p>
+                    <p className="text-xs sm:text-sm text-slate-600">Research conducted at Central Drug Research Institute (CDRI), Lucknow, India.</p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
+                    <span className="text-xs font-mono font-bold text-[#C59B27] uppercase block">Master of Science (M.Sc.)</span>
+                    <p className="font-serif text-base font-bold text-[#0F2537]">Acharya Nagarjuna University</p>
+                    <p className="text-xs sm:text-sm text-slate-600">Andhra Pradesh, India.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Postdoctoral Research Column */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
+                  <Globe2 className="w-5 h-5 text-[#8B1E24]" />
+                  <h4 className="font-serif text-xl font-bold text-[#0F2537]">
+                    Postdoctoral Research
+                  </h4>
+                </div>
+
+                <div className="space-y-3.5">
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
+                    <span className="text-xs font-mono font-bold text-[#8B1E24] uppercase block">United States</span>
+                    <p className="font-serif text-base font-bold text-[#0F2537]">University of Wisconsin–Madison, USA</p>
+                    <p className="text-xs sm:text-sm text-slate-600">Department of Neurological Surgery, School of Medicine and Public Health.</p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
+                    <span className="text-xs font-mono font-bold text-[#8B1E24] uppercase block">Singapore</span>
+                    <p className="font-serif text-base font-bold text-[#0F2537]">National University of Singapore, Singapore</p>
+                    <p className="text-xs sm:text-sm text-slate-600">Department of Pharmacy.</p>
+                  </div>
+
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
+                    <span className="text-xs font-mono font-bold text-[#8B1E24] uppercase block">India</span>
+                    <p className="font-serif text-base font-bold text-[#0F2537]">University of Hyderabad, India</p>
+                    <p className="text-xs sm:text-sm text-slate-600">SERB-Young Scientist and UGC-Postdoctoral Fellow, School of Life Sciences.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 4. Awards & Fellowships */}
+          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
+            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+                <Award className="w-3.5 h-3.5 text-[#C59B27]" />
+                <span>Honors &amp; Appointments</span>
+              </div>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+                Awards &amp; Fellowships
+              </h3>
+              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1.5 flex flex-col justify-between">
+                <div className="space-y-1">
+                  <span className="text-[11px] font-mono font-bold text-[#8B1E24] uppercase bg-[#8B1E24]/10 px-2 py-0.5 rounded">
+                    National Fellowship
+                  </span>
+                  <h4 className="font-serif text-base font-bold text-[#0F2537] pt-1">
+                    CSIR Junior Research Fellowship
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Awarded by the Council of Scientific and Industrial Research (CSIR), Govt. of India.
+                  </p>
+                </div>
+                <div className="text-xs font-mono font-bold text-slate-500 pt-2 border-t border-slate-200/60">
+                  Period: 2003 – 2005
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1.5 flex flex-col justify-between">
+                <div className="space-y-1">
+                  <span className="text-[11px] font-mono font-bold text-[#8B1E24] uppercase bg-[#8B1E24]/10 px-2 py-0.5 rounded">
+                    National Fellowship
+                  </span>
+                  <h4 className="font-serif text-base font-bold text-[#0F2537] pt-1">
+                    CSIR Senior Research Fellowship
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Awarded by the Council of Scientific and Industrial Research (CSIR), Govt. of India.
+                  </p>
+                </div>
+                <div className="text-xs font-mono font-bold text-slate-500 pt-2 border-t border-slate-200/60">
+                  Period: 2005 – 2008
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1.5 flex flex-col justify-between">
+                <div className="space-y-1">
+                  <span className="text-[11px] font-mono font-bold text-[#C59B27] uppercase bg-[#C59B27]/15 px-2 py-0.5 rounded">
+                    Faculty Appointment
+                  </span>
+                  <h4 className="font-serif text-base font-bold text-[#0F2537] pt-1">
+                    UGC Faculty Recharge Programme
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Selected under the UGC Faculty Recharge Programme as Assistant Professor, Cycle III.
+                  </p>
+                </div>
+                <div className="text-xs font-mono font-bold text-slate-500 pt-2 border-t border-slate-200/60">
+                  University Grants Commission (UGC)
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1.5 flex flex-col justify-between">
+                <div className="space-y-1">
+                  <span className="text-[11px] font-mono font-bold text-[#C59B27] uppercase bg-[#C59B27]/15 px-2 py-0.5 rounded">
+                    Conference Distinction
+                  </span>
+                  <h4 className="font-serif text-base font-bold text-[#0F2537] pt-1">
+                    Young Scientist Award (Gold Medal)
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    Conferred for oral presentation at the International Conference on Innovations in Pharma and Biopharma Industry (ICIPBI 2017), University of Hyderabad, India.
+                  </p>
+                </div>
+                <div className="text-xs font-mono font-bold text-slate-500 pt-2 border-t border-slate-200/60">
+                  ICIPBI 2017
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 5. Professional Service & Recognition */}
+          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
+            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#C59B27]" />
+                <span>Scholarly Contributions</span>
+              </div>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+                Professional Service &amp; Recognition
+              </h3>
+              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+            </div>
+
+            <div className="space-y-6">
+              {/* Editorial and Peer-Review Contributions */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-[#8B1E24]" />
+                  <h4 className="font-serif text-lg font-bold text-[#0F2537]">
+                    Editorial &amp; Peer-Review Contributions
+                  </h4>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-600">
+                  Peer-review contributions for internationally recognized scientific journals:
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {[
+                    "Metabolic Brain Disease",
+                    "Translational Stroke Research",
+                    "Neurochemistry International",
+                    "Molecular and Cellular Biochemistry",
+                    "Mathews Journal of Case Reports",
+                    "Journal of Pediatric Neurology",
+                    "Biochimica et Biophysica Acta (BBA) – General Subjects",
+                    "Brain Research Bulletin",
+                    "FASEB Journal",
+                    "Molecular Neurobiology",
+                    "Scientific Reports",
+                    "European Journal of Medical Research",
+                    "Journal of Molecular Neuroscience",
+                    "Stem Cell Research & Therapy",
+                    "Neurochemical Research"
+                  ].map((journal, jIdx) => (
+                    <span
+                      key={jIdx}
+                      className="px-3 py-1.5 rounded-lg bg-[#FAF8F5] border border-slate-200 text-xs font-medium text-[#0F2537] hover:border-[#8B1E24]/50 transition-colors"
+                    >
+                      {journal}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Research Project Review, Invited Book Chapters, Leadership */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                {/* Research Project Review */}
+                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-2">
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#8B1E24] block">
+                    Grant &amp; Project Review
+                  </span>
+                  <h5 className="font-serif text-base font-bold text-[#0F2537]">
+                    Research Project Review
+                  </h5>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Science and Engineering Research Board (SERB) / Anusandhan National Research Foundation (ANRF).
+                  </p>
+                </div>
+
+                {/* Invited Book Chapters */}
+                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-2">
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#C59B27] block">
+                    Academic Publishers
+                  </span>
+                  <h5 className="font-serif text-base font-bold text-[#0F2537]">
+                    Invited Book Chapters
+                  </h5>
+                  <ul className="text-xs text-slate-600 space-y-1">
+                    <li>• Springer Nature</li>
+                    <li>• Methods in Enzymology</li>
+                    <li>• Translational Stroke Research</li>
+                    <li>• Academic Press / Elsevier</li>
+                  </ul>
+                </div>
+
+                {/* Professional Leadership */}
+                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-2">
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#8B1E24] block">
+                    Elected Office
+                  </span>
+                  <h5 className="font-serif text-base font-bold text-[#0F2537]">
+                    Professional Leadership
+                  </h5>
+                  <p className="text-xs text-slate-700 leading-relaxed">
+                    <strong className="text-[#0F2537] font-semibold">Treasurer</strong>, Society for Neurochemistry, India (SNCI), since December 2024.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 6. Professional Society Memberships */}
+          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
+            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+                <Users className="w-3.5 h-3.5 text-[#C59B27]" />
+                <span>Learned Societies</span>
+              </div>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+                Professional Memberships
+              </h3>
+              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
+                <span className="text-[11px] font-mono font-bold text-[#8B1E24] uppercase block">Life Membership</span>
+                <h4 className="font-serif text-base font-bold text-[#0F2537]">Indian Academy of Neurosciences (IAN)</h4>
+              </div>
+              <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
+                <span className="text-[11px] font-mono font-bold text-[#8B1E24] uppercase block">Life Membership</span>
+                <h4 className="font-serif text-base font-bold text-[#0F2537]">Society for Neurochemistry, India (SNCI)</h4>
+              </div>
+              <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
+                <span className="text-[11px] font-mono font-bold text-[#8B1E24] uppercase block">Life Membership</span>
+                <h4 className="font-serif text-base font-bold text-[#0F2537]">Society for Biological Chemists, India (SBC)</h4>
+              </div>
+            </div>
+          </div>
+
+          {/* 7. Contact Section */}
+          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
+            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+                <Mail className="w-3.5 h-3.5 text-[#C59B27]" />
+                <span>Direct Correspondence</span>
+              </div>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+                Contact the Principal Investigator
+              </h3>
+              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <a
+                href="mailto:nvprasuja@gmail.com"
+                className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200 hover:border-[#8B1E24] transition-all group flex items-start gap-3.5 cursor-pointer"
+              >
+                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center shrink-0 group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div className="space-y-0.5 min-w-0">
+                  <span className="text-xs font-mono font-bold uppercase text-slate-500 block">Personal / Primary Email</span>
+                  <span className="font-mono text-sm sm:text-base font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors truncate block">
+                    nvprasuja@gmail.com
                   </span>
                 </div>
+              </a>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 flex-grow">
-                  <a
-                    href={LAB_INFO.pi.scholarUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#4285F4] hover:bg-[#4285F4]/5 transition-all text-[#0F2537] shadow-sm group"
-                    title="View Google Scholar Citations"
-                  >
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="w-5 h-5 rounded-full bg-[#4285F4]/10 text-[#4285F4] flex items-center justify-center font-bold text-xs shrink-0">G</span>
-                      <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#4285F4] truncate">Google Scholar</span>
-                    </div>
-                    <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#4285F4] shrink-0" />
-                  </a>
-
-                  <a
-                    href={LAB_INFO.pi.researchGateUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#00CCBB] hover:bg-[#00CCBB]/5 transition-all text-[#0F2537] shadow-sm group"
-                    title="View ResearchGate Profile"
-                  >
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="w-5 h-5 rounded-full bg-[#00CCBB]/10 text-[#009B8D] flex items-center justify-center font-bold text-xs shrink-0">RG</span>
-                      <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#009B8D] truncate">ResearchGate</span>
-                    </div>
-                    <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#009B8D] shrink-0" />
-                  </a>
-
-                  <a
-                    href={LAB_INFO.pi.linkedInUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#0077B5] hover:bg-[#0077B5]/5 transition-all text-[#0F2537] shadow-sm group"
-                    title="View LinkedIn Profile"
-                  >
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="w-5 h-5 rounded-full bg-[#0077B5]/10 text-[#0077B5] flex items-center justify-center font-bold text-xs shrink-0">in</span>
-                      <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#0077B5] truncate">LinkedIn</span>
-                    </div>
-                    <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#0077B5] shrink-0" />
-                  </a>
-
-                  <div className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-gray-50 border border-dashed border-gray-300 text-[#0F2537]/80 shadow-sm">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="w-5 h-5 rounded-full bg-[#A6CE39]/20 text-[#6B8E23] flex items-center justify-center font-bold text-[11px] shrink-0">iD</span>
-                      <span className="font-medium text-xs truncate">ORCID</span>
-                    </div>
-                    <span className="text-[10px] font-mono bg-amber-50 text-amber-700 px-2 py-0.5 rounded border border-amber-200 font-semibold shrink-0">will provide</span>
-                  </div>
-
-                  <a
-                    href={LAB_INFO.pi.scopusUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#E86C00] hover:bg-[#E86C00]/5 transition-all text-[#0F2537] shadow-sm group"
-                    title="View Scopus Profile"
-                  >
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="w-5 h-5 rounded-full bg-[#E86C00]/10 text-[#E86C00] flex items-center justify-center font-bold text-xs shrink-0">Sc</span>
-                      <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#E86C00] truncate">Scopus Profile</span>
-                    </div>
-                    <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#E86C00] shrink-0" />
-                  </a>
+              <a
+                href="mailto:nvprasuja@uohyd.ac.in"
+                className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200 hover:border-[#8B1E24] transition-all group flex items-start gap-3.5 cursor-pointer"
+              >
+                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center shrink-0 group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
+                  <Mail className="w-5 h-5" />
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 2. Educational Timeline & Qualifications */}
-          <div className="bg-white rounded-3xl p-8 sm:p-10 border border-gray-200 shadow-md space-y-6">
-            <div className="flex items-center gap-2 border-b border-gray-100 pb-4">
-              <GraduationCap className="w-6 h-6 text-[#8B1E24]" />
-              <h3 className="font-serif text-2xl font-bold text-[#0F2537]">
-                Chronological Education &amp; Fellowship Milestones
-              </h3>
-            </div>
-
-            <div className="space-y-4">
-              {[
-                {
-                  period: "2003 – 2009",
-                  degree: "Doctor of Philosophy (Ph.D.) in Neuroscience & Biochemistry",
-                  institution: "CSIR – Central Drug Research Institute (CDRI), Lucknow / Jawaharlal Nehru University (JNU), New Delhi",
-                  details: "Thesis: 'Studies on Endoplasmic Reticulum-Mediated Survival and Death Mechanisms in Cerebral Ischemia'. Mentored by Dr. Ram Raghubir, Division of Pharmacology.",
-                  badge: "Doctorate"
-                },
-                {
-                  period: "2003",
-                  degree: "CSIR-UGC National Eligibility Test (NET) for Junior Research Fellowship (JRF)",
-                  institution: "Council of Scientific and Industrial Research (CSIR), Govt. of India",
-                  details: "Awarded national research fellowship and eligibility for lectureship in chemical and life sciences.",
-                  badge: "National Competitive Exam"
-                },
-                {
-                  period: "2000 – 2002",
-                  degree: "Master of Science (M.Sc.) in Biochemistry",
-                  institution: "Acharya Nagarjuna University (ANU), Guntur, Andhra Pradesh",
-                  details: "Graduated with distinction; coursework in molecular enzymology, biophysical chemistry, and neurochemistry.",
-                  badge: "Postgraduate"
-                },
-                {
-                  period: "1997 – 2000",
-                  degree: "Bachelor of Science (B.Sc.) in Life Sciences",
-                  institution: "Acharya Nagarjuna University (ANU), Guntur, Andhra Pradesh",
-                  details: "Foundational studies in chemistry, botany, and zoology.",
-                  badge: "Undergraduate"
-                }
-              ].map((edu, idx) => (
-                <div key={idx} className="flex flex-col sm:flex-row items-start gap-4 p-4 rounded-2xl bg-[#FAF8F5] border border-gray-100">
-                  <div className="font-mono text-xs font-bold text-[#8B1E24] bg-white px-3 py-1.5 rounded-lg border border-gray-200 whitespace-nowrap">
-                    {edu.period}
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono uppercase bg-[#8B1E24]/10 text-[#8B1E24] font-bold px-2 py-0.5 rounded">
-                        {edu.badge}
-                      </span>
-                      <h4 className="font-serif text-lg font-bold text-[#0F2537]">
-                        {edu.degree}
-                      </h4>
-                    </div>
-                    <p className="text-sm font-bold text-[#C59B27]">{edu.institution}</p>
-                    <p className="text-sm text-[#0F2537]/80 leading-relaxed">{edu.details}</p>
-                  </div>
+                <div className="space-y-0.5 min-w-0">
+                  <span className="text-xs font-mono font-bold uppercase text-[#8B1E24] block">Institutional Email</span>
+                  <span className="font-mono text-sm sm:text-base font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors truncate block">
+                    nvprasuja@uohyd.ac.in
+                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 3. Teaching Experience, Awards & Animal Certifications */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Column 1: Teaching Experience */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-md space-y-4">
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-[#8B1E24]" />
-                <h4 className="font-serif text-xl font-bold text-[#0F2537]">
-                  Teaching Experience
-                </h4>
-              </div>
-              <p className="text-sm text-[#0F2537]/80">
-                Graduate and postgraduate course instruction at University of Hyderabad and Acharya Nagarjuna University:
-              </p>
-              <ul className="space-y-2.5 text-sm sm:text-base text-[#0F2537]/85 leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-1" />
-                  <span>Systems Biology of Acute CNS Diseases</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-1" />
-                  <span>Molecular Neurobiology &amp; Cellular Signaling</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-1" />
-                  <span>Advanced Enzymology &amp; Proteostasis</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-1" />
-                  <span>Preclinical Stroke Surgical Models &amp; Stereotaxy</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 2: Honors & Awards */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-md space-y-4">
-              <div className="flex items-center gap-2">
-                <Award className="w-5 h-5 text-[#C59B27]" />
-                <h4 className="font-serif text-xl font-bold text-[#0F2537]">
-                  Honors &amp; Awards
-                </h4>
-              </div>
-              <ul className="space-y-3 text-sm text-[#0F2537]/85 leading-relaxed">
-                <li className="p-3 rounded-xl bg-[#FAF8F5] border border-gray-100 space-y-1">
-                  <strong className="text-[#8B1E24] font-mono text-xs block font-bold">ICIPBI-2017 Gold Medal</strong>
-                  <span>Awarded for seminal contributions to pharmaceutical biotechnology and stroke neurotherapeutics.</span>
-                </li>
-                <li className="p-3 rounded-xl bg-[#FAF8F5] border border-gray-100 space-y-1">
-                  <strong className="text-[#8B1E24] font-mono text-xs block font-bold">UGC FRP National Selection (Level-11)</strong>
-                  <span>Prestigious central faculty recharge appointment to foster premier biomedical research.</span>
-                </li>
-                <li className="p-3 rounded-xl bg-[#FAF8F5] border border-gray-100 space-y-1">
-                  <strong className="text-[#8B1E24] font-mono text-xs block font-bold">SERB Young Scientist Project Award</strong>
-                  <span>Fast Track Scheme for Young Scientists, Department of Science &amp; Technology, Govt. of India.</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 3: Animal Trainings & Reviewer Service */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-md space-y-4">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-[#8B1E24]" />
-                <h4 className="font-serif text-xl font-bold text-[#0F2537]">
-                  Certifications &amp; Reviewer Service
-                </h4>
-              </div>
-              <div className="space-y-3 text-sm text-[#0F2537]/85 leading-relaxed">
-                <div>
-                  <strong className="text-[#0F2537] block font-mono text-xs text-[#8B1E24] font-bold">Animal Welfare Certifications:</strong>
-                  <p className="text-xs sm:text-sm text-[#0F2537]/80 mt-1 leading-relaxed">
-                    • RARC Certification, Univ. of Wisconsin–Madison (USA)<br/>
-                    • NUS IACUC Rodent Handling Training, Singapore<br/>
-                    • CPCSEA Small Animal Stereotaxy Accreditation, India
-                  </p>
-                </div>
-                <div className="pt-2 border-t border-gray-100">
-                  <strong className="text-[#0F2537] block font-mono text-xs text-[#8B1E24] font-bold">Journal Peer Reviewer Service:</strong>
-                  <p className="text-xs sm:text-sm text-[#0F2537]/80 mt-1 leading-relaxed">
-                    Stroke (AHA) • Molecular Neurobiology • Neurotoxicity Research • Brain Research Bulletin • Journal of Neurochemistry • Scientific Reports.
-                  </p>
-                </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -508,11 +691,10 @@ export default function TeamPage({ setActiveTab }) {
                   <button
                     key={btn.id}
                     onClick={() => setMemberFilter(btn.id)}
-                    className={`px-3.5 py-1.5 rounded-lg transition-all ${
-                      memberFilter === btn.id
+                    className={`px-3.5 py-1.5 rounded-lg transition-all ${memberFilter === btn.id
                         ? 'bg-[#8B1E24] text-white shadow-sm'
                         : 'text-[#0F2537]/70 hover:text-[#0F2537]'
-                    }`}
+                      }`}
                   >
                     {btn.label}
                   </button>

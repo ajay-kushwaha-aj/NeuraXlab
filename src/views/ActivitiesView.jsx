@@ -1,29 +1,14 @@
 import React, { useState } from 'react';
 import { 
-  Calendar, 
-  MapPin, 
-  Award, 
   Camera, 
   Maximize2, 
   CheckCircle2, 
-  Mic, 
-  Users, 
-  Presentation,
-  Globe2
+  Building2
 } from 'lucide-react';
-import { ACTIVITIES } from '../data/labData';
 import ImageLightboxModal from '../components/ImageLightboxModal';
 
 export default function ActivitiesView() {
-  const [filter, setFilter] = useState('All');
   const [lightboxData, setLightboxData] = useState({ isOpen: false, src: '', title: '', caption: '' });
-
-  const categories = ['All', 'National Workshop', 'Symposium', 'Invited Talk', 'International Conference'];
-
-  const filteredActivities =
-    filter === 'All'
-      ? ACTIVITIES
-      : ACTIVITIES.filter((act) => act.category === filter);
 
   const openLightbox = (src, title, caption) => {
     setLightboxData({ isOpen: true, src, title, caption });
@@ -34,7 +19,7 @@ export default function ActivitiesView() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
       {/* Lightbox Modal */}
       <ImageLightboxModal
         isOpen={lightboxData.isOpen}
@@ -47,114 +32,15 @@ export default function ActivitiesView() {
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
-          <Calendar className="w-3.5 h-3.5" />
-          <span>Symposia, Keynotes &amp; Outreach</span>
+          <Camera className="w-3.5 h-3.5" />
+          <span>Laboratory Suites &amp; Infrastructure</span>
         </div>
         <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
-          Activities, Workshops &amp; Gallery
+          Facilities &amp; Infrastructure Gallery
         </h1>
         <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
-          Convening national skill development workshops in biosciences, delivering invited neuroscience lectures at SNCI and NEHU, and presenting at international Society for Neuroscience (SfN) conventions.
+          Visual glimpses of research suites, stereotaxic stroke surgery workstations, nanomedicine formulation platforms, and campus facilities at the University of Hyderabad.
         </p>
-      </div>
-
-      {/* Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setFilter(cat)}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
-              filter === cat
-                ? 'bg-[#8B1E24] text-white shadow-md'
-                : 'bg-white text-[#0F2537]/80 hover:bg-[#FAF8F5] border border-gray-200'
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* Chronological Event Showcase Grid */}
-      <div id="events" className="grid grid-cols-1 lg:grid-cols-2 gap-8 scroll-mt-28">
-        {filteredActivities.map((act) => (
-          <div
-            key={act.id}
-            className="bg-white rounded-3xl overflow-hidden border border-gray-200 hover:border-[#C59B27] shadow-md hover:shadow-xl transition-all flex flex-col justify-between group"
-          >
-            <div>
-              {/* Event Image Banner with Lightbox Trigger */}
-              <div className="relative h-60 w-full overflow-hidden bg-[#0F2537]">
-                <img
-                  src={act.image}
-                  alt={act.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-                <span className="absolute top-4 left-4 text-xs font-mono font-bold uppercase bg-[#8B1E24] text-white px-3 py-1 rounded-full shadow">
-                  {act.category}
-                </span>
-                <button
-                  onClick={() =>
-                    openLightbox(
-                      act.image,
-                      act.title,
-                      `${act.venue} • ${act.date}. Organized / Presented by Dr. Venkata Prasuja Nakka.`
-                    )
-                  }
-                  className="absolute bottom-3 right-3 p-2 rounded-xl bg-black/60 text-white hover:bg-[#8B1E24] transition-colors"
-                  title="Enlarge Event Photograph"
-                >
-                  <Maximize2 className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* Event Text Body */}
-              <div className="p-6 sm:p-8 space-y-4">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-xs font-semibold text-[#8B1E24]">
-                    <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
-                    <span>{act.venue}</span>
-                  </div>
-                  <h3 className="font-serif text-2xl font-bold text-[#0F2537] leading-snug">
-                    {act.title}
-                  </h3>
-                  <div className="flex items-center gap-4 text-xs sm:text-sm text-[#0F2537]/70 font-mono pt-1">
-                    <span>Role: {act.role}</span>
-                    <span>•</span>
-                    <span>Date: {act.date}</span>
-                  </div>
-                </div>
-
-                <p className="text-sm sm:text-base text-[#0F2537]/85 leading-relaxed bg-[#FAF8F5] p-5 rounded-2xl border border-gray-100">
-                  {act.summary}
-                </p>
-
-                {/* Highlights */}
-                {act.highlights && (
-                  <div className="space-y-2 pt-1">
-                    <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0F2537]">
-                      Event Key Highlights:
-                    </p>
-                    <ul className="space-y-1.5">
-                      {act.highlights.map((h, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-[#0F2537]/85">
-                          <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-0.5" />
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="px-6 sm:px-8 py-4 bg-[#FAF8F5] border-t border-gray-100 text-xs sm:text-sm text-[#0F2537]/70 flex items-center justify-between">
-              <span>NeuroXlab Academic Outreach Archive</span>
-              <span className="font-medium text-[#8B1E24]">University of Hyderabad</span>
-            </div>
-          </div>
-        ))}
       </div>
 
       {/* Laboratory Life & Research Facilities Photo Gallery */}
@@ -163,13 +49,17 @@ export default function ActivitiesView() {
           <div>
             <div className="flex items-center gap-2">
               <Camera className="w-5 h-5 text-[#8B1E24]" />
-              <h2 className="font-serif text-3xl font-bold text-[#0F2537]">
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
                 Laboratory Facilities &amp; Campus Glimpses
               </h2>
             </div>
             <p className="text-sm sm:text-base text-[#0F2537]/70 mt-1">
               Visual glimpses of research suites, stereotaxic stroke surgery workstations, and UoH campus life.
             </p>
+          </div>
+          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-mono border border-slate-200">
+            <Building2 className="w-3.5 h-3.5 text-[#C59B27]" />
+            <span>School of Life Sciences</span>
           </div>
         </div>
 

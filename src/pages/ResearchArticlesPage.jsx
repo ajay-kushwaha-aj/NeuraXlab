@@ -1,409 +1,689 @@
-import React, { useState } from 'react';
-import { 
-  BookOpen, 
-  ExternalLink, 
-  Dna, 
-  Activity, 
-  Cpu, 
-  CheckCircle2, 
-  Globe2, 
-  Sparkles, 
-  FileText,
+import React, { useState, useMemo } from 'react';
+import {
+  BookOpen,
+  Search,
+  ExternalLink,
+  ChevronDown,
+  ChevronUp,
+  Quote,
+  Sparkles,
+  Layers,
   Calendar,
-  MapPin,
-  ChevronRight
+  Globe2,
+  FileText,
+  RotateCcw,
+  Compass,
+  CheckCircle2,
+  Activity,
+  Dna,
+  Cpu,
+  GraduationCap
 } from 'lucide-react';
-import { BOOK_CHAPTERS, RESEARCH_METHODOLOGY_ARTICLES } from '../data/labData';
+import BibtexModal from '../components/BibtexModal';
+import {
+  PUBLICATIONS,
+  BOOK_CHAPTERS,
+  CONFERENCE_PROCEEDINGS,
+  REPRESENTATIVE_HIGHLIGHTS,
+  LAB_INFO
+} from '../data/labData';
 
 export default function ResearchArticlesPage() {
-  const [selectedDeepDive, setSelectedDeepDive] = useState('lncrna');
+  // Navigation active tab: 'all', 'articles', 'books', 'conferences'
+  const [activeCategory, setActiveCategory] = useState('all');
 
-  const deepDives = [
-    {
-      id: 'lncrna',
-      title: 'Non-coding RNAs (lncRNAs & piRNAs) in Stroke',
-      citation: 'Stroke (AHA) 2011, 2012; PLoS ONE 2013',
-      impact: 'Pioneered the very first genome-wide transcriptome characterization of long non-coding RNAs and PIWI-interacting RNAs in the ischemic mammalian brain.',
-      mechanisms: [
-        'Discovered that transient focal ischemia in adult rats drastically alters the expression profiles of hundreds of previously uncharacterized lncRNAs.',
-        'Demonstrated that piRNAs, previously thought to be exclusive to germline cells, are abundantly expressed in the adult cerebral cortex and respond dynamically to ischemic insult.',
-        'Characterized the miR-29c / DNMT3a epigenetic regulatory loop, where ischemic miR-29c down-regulation promotes aberrant DNA hypermethylation and cell death.'
-      ],
-      leadAuthor: 'Nakka et al. (with Prof. Raghu Vemuganti, Univ. of Wisconsin–Madison)',
-      tag: 'Stroke Epigenetics'
-    },
-    {
-      id: 'apocynin',
-      title: 'Apocynin & UPR (eIF2α / XBP-1) Modulation',
-      citation: 'Brain Research Bulletin (2022) & Neurotoxicity Research (2010)',
-      impact: 'Demonstrated that low-dose apocynin post-treatment exerts profound neuroprotection by selective modulation of the Unfolded Protein Response arms.',
-      mechanisms: [
-        'Proved that apocynin stabilizes the endoplasmic reticulum chaperone BiP/GRP78, mitigating catastrophic eIF2α hyperphosphorylation.',
-        'Regulates the splicing of XBP-1 mRNA via the IRE1α endoribonuclease domain, promoting adaptive protein-folding homeostasis in penumbral neurons.',
-        'Reduces reactive oxygen species (ROS) mediated Caspase-12 and CHOP translocation to the nucleus.'
-      ],
-      leadAuthor: 'Nakka et al.',
-      tag: 'Organelle Stress & UPR'
-    },
-    {
-      id: 'trpc6',
-      title: 'Brain–Kidney Crosstalk (HIF1α–ZEB2–TRPC6 Axis)',
-      citation: 'Scientific Reports (2021) & Neurochemical Research (2020)',
-      impact: 'Unveiled the multi-organ pathological communication between acute ischemic cerebral insults and distant organ failure, specifically renal podocyte and microvascular collapse.',
-      mechanisms: [
-        'Identified that systemic hypoxia and circulating cytokines post-stroke induce renal TRPC6 cation channel overexpression.',
-        'Mapped the upstream HIF1α–ZEB2 transcriptional axis dictating podocyte foot process effacement and acute kidney injury.',
-        'Demonstrated that selective TRPC6 channel inhibition rescues both cerebral microvascular barrier function and distant glomerular filtration.'
-      ],
-      leadAuthor: 'Nakka et al.',
-      tag: 'Distant Organ Crosstalk'
-    },
-    {
-      id: 'limk1',
-      title: 'LIMK-1 / Cofilin-1 Pathway & Cytoskeletal Remodeling',
-      citation: 'Annals of Neurology (2017) & Molecular Neurobiology',
-      impact: 'Identified the molecular signaling mechanisms governing actin filament dynamics and neuronal morphological deterioration under acute neuroinflammatory challenge.',
-      mechanisms: [
-        'Uncovered the dysregulation of the LIM-kinase-1 (LIMK-1) and cofilin-1 phosphorylation cycle leading to dendritic spine loss.',
-        'Characterized actin filament destabilization as a primary anatomical substrate for rapid neurological deficit progression.',
-        'Provided a molecular rationale for actin-stabilizing therapeutics in protecting synaptic architecture.'
-      ],
-      leadAuthor: 'Nakka et al.',
-      tag: 'Cytoskeletal Dynamics'
-    }
+  // Search and filter state for Research Articles library
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedTopic, setSelectedTopic] = useState('All Topics');
+  const [selectedYear, setSelectedYear] = useState('All Years');
+
+  // Expanded abstracts mapping: { [pubId]: boolean }
+  const [expandedAbstracts, setExpandedAbstracts] = useState({});
+
+  // Citation modal state
+  const [activeBibtexPub, setActiveBibtexPub] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Available topics derived from verified dataset
+  const topics = [
+    'All Topics',
+    'Stroke Biology & Neuroprotection',
+    'Non-coding RNAs & Epigenetics',
+    'Cellular Stress & ER Stress/UPR',
+    'Neuroinflammation & Microglia–Macrophage Dynamics',
+    'Brain–Organ Crosstalk'
   ];
 
-  // Complete 5 Book Chapters & Edited Books (Items 15–19)
-  const allFiveBookChapters = [
-    {
-      itemNum: 'Item 15',
-      title: 'Pharmaco-Biotechnology and Nanotechnology: Therapeutic Applications and Strategies',
-      authors: 'Raghu Gogada, Praveen Boddana, Pradipta Banerjee, and Venkata Prasuja Nakka',
-      publisher: 'Cambridge Scholars Publishing, Newcastle upon Tyne, UK',
-      year: '2019',
-      isbn: '978-1-5275-3850-4',
-      badge: 'Authored / Edited International Book',
-      link: 'https://www.cambridgescholars.com/product/978-1-5275-3850-4',
-      summary: 'Comprehensive academic treatise covering pharmaceutical biotechnology, nanobiotechnology for targeted drug delivery across blood-brain barriers, biosensors, pharmacogenetics, and nutrigenetic interactions.'
-    },
-    {
-      itemNum: 'Item 16',
-      title: 'Endoplasmic Reticulum Stress in Brain Damage',
-      authors: 'Ram Raghubir, V. P. Nakka, and S. L. Mehta',
-      publisher: 'Academic Press / Elsevier (Methods in Enzymology, Vol. 489)',
-      year: '2011',
-      isbn: '978-0-12-386037-8',
-      doi: '10.1016/B978-0-12-386037-8.00014-9',
-      badge: 'Methods in Enzymology Compendium',
-      link: 'https://doi.org/10.1016/B978-0-12-386037-8.00014-9',
-      summary: 'Standardized protocols and biochemical procedures for isolating brain microsomal fractions, quantifying ER chaperone kinetics (BiP, PDI, Calreticulin), and measuring Caspase-12 cleavage after focal ischemia.'
-    },
-    {
-      itemNum: 'Item 17',
-      title: 'Neuroprotective Strategies and Organellar Stress Interplay in Acute CNS Injuries',
-      authors: 'V. P. Nakka, P. Prakash-Babu, and Raghu Vemuganti',
-      publisher: 'Springer Nature (Advances in Neurobiology)',
-      year: '2017',
-      isbn: '978-3-319-45345-3',
-      doi: '10.1007/978-3-319-45345-3_18',
-      badge: 'Springer Nature Book Chapter',
-      link: 'https://link.springer.com',
-      summary: 'Examines the intracellular and systemic crosstalk between the endoplasmic reticulum, mitochondria, and autophagic machinery in acute cerebral insults, providing a roadmap for multi-target neuroprotection.'
-    },
-    {
-      itemNum: 'Item 18',
-      title: 'Targeted Nanomedicine and Drug Delivery Vectors Across the Blood-Brain Barrier',
-      authors: 'Venkata Prasuja Nakka and Collaborators',
-      publisher: 'Academic Press / Elsevier',
-      year: '2021',
-      isbn: '978-0-12-822456-4',
-      doi: '10.1016/B978-0-12-822456-4.00008-2',
-      badge: 'Academic Press Book Chapter',
-      link: 'https://www.sciencedirect.com',
-      summary: 'Explores ligand-engineered polymeric and lipid nanoparticles designed to circumvent the tight endothelial junctions of the blood-brain barrier to deliver antioxidants and short-chain fatty acids.'
-    },
-    {
-      itemNum: 'Item 19',
-      title: 'Oxidative Stress and Autophagy in Cerebrovascular Pathophysiology',
-      authors: 'V. P. Nakka, Ram Raghubir, and Raghu Vemuganti',
-      publisher: 'Springer Science & Business Media',
-      year: '2023',
-      isbn: '978-981-19-8742-1',
-      doi: '10.1007/978-981-19-8742-1_12',
-      badge: 'Springer Science Book Chapter',
-      link: 'https://link.springer.com',
-      summary: 'Detailed molecular synthesis of free-radical generation during ischemic reperfusion and the protective versus maladaptive signaling thresholds of autophagic flux in penumbral tissue.'
-    }
-  ];
+  // Available years sorted descending
+  const years = useMemo(() => {
+    const setYears = new Set(PUBLICATIONS.map((p) => p.year));
+    return ['All Years', ...Array.from(setYears).sort((a, b) => b - a)];
+  }, []);
 
-  // The 3 International Conference Proceedings
-  const conferenceProceedings = [
-    {
-      id: 'conf-berlin',
-      city: 'Berlin, Germany',
-      conference: 'Joint Meeting of the International Society for Neurochemistry (ISN) and European Society for Neurochemistry (ESN)',
-      title: 'Endoplasmic Reticulum Stress and Caspase-12 Activation in Focal Cerebral Ischemia',
-      authors: 'V. P. Nakka and Ram Raghubir',
-      date: 'ISN-ESN Biennial Conference, Berlin',
-      scope: 'International European Keynote Presentation'
-    },
-    {
-      id: 'conf-san-francisco',
-      city: 'San Francisco, California, USA',
-      conference: 'Society for Neuroscience (SfN) Annual Meeting & American Stroke Association Sessions',
-      title: 'Genome-Wide Profiling of Long Noncoding RNAs and piRNAs in the Rat Brain Following Transient Ischemia',
-      authors: 'A. Dharap, V. P. Nakka, and Raghu Vemuganti',
-      date: 'SfN Global Meeting, San Francisco',
-      scope: 'International US Convention Presentation'
-    },
-    {
-      id: 'conf-taiwan',
-      city: 'Taipei, Taiwan',
-      conference: 'Asian-Pacific Society for Neurochemistry (APSN) Biennial Meeting',
-      title: 'ISGylation and Post-Translational Ubiquitin-Like Modifiers in Preconditioned Neuroprotection',
-      authors: 'V. P. Nakka, B. T. Lang, and Raghu Vemuganti',
-      date: 'APSN Congress, Taipei',
-      scope: 'Asia-Pacific Regional Neuroscience Congress'
-    }
-  ];
+  // Filtered publications
+  const filteredArticles = useMemo(() => {
+    return PUBLICATIONS.filter((item) => {
+      // Topic match
+      const matchesTopic = selectedTopic === 'All Topics' || item.topic === selectedTopic;
 
-  const activeDive = deepDives.find((d) => d.id === selectedDeepDive) || deepDives[0];
+      // Year match
+      const matchesYear = selectedYear === 'All Years' || item.year.toString() === selectedYear.toString();
+
+      // Search match across Title, Authors, Journal, Year, and Abstract
+      const q = searchQuery.toLowerCase().trim();
+      if (!q) return matchesTopic && matchesYear;
+
+      const matchesSearch =
+        item.title.toLowerCase().includes(q) ||
+        item.authors.toLowerCase().includes(q) ||
+        item.journal.toLowerCase().includes(q) ||
+        item.year.toString().includes(q) ||
+        (item.abstract && item.abstract.toLowerCase().includes(q));
+
+      return matchesTopic && matchesYear && matchesSearch;
+    });
+  }, [searchQuery, selectedTopic, selectedYear]);
+
+  const toggleAbstract = (id) => {
+    setExpandedAbstracts((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const handleOpenCitation = (pub) => {
+    setActiveBibtexPub(pub);
+    setIsModalOpen(true);
+  };
+
+  const resetFilters = () => {
+    setSearchQuery('');
+    setSelectedTopic('All Topics');
+    setSelectedYear('All Years');
+  };
+
+  const isFiltered = searchQuery !== '' || selectedTopic !== 'All Topics' || selectedYear !== 'All Years';
+
+  const scrollToAnchor = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-20 space-y-16">
-      {/* Page Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
-          <BookOpen className="w-3.5 h-3.5" />
-          <span>Department of Systems and Computational Biology</span>
-        </div>
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
-          Research Articles &amp; Book Chapters
-        </h1>
-        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
-          Thematic deep-dives into Dr. Venkata Prasuja Nakka's landmark molecular discoveries, 5 authoritative authored book chapters, and international conference proceedings.
-        </p>
-      </div>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-20 space-y-16">
+      {/* Citation Generator Modal */}
+      <BibtexModal
+        publication={activeBibtexPub}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
 
       {/* =========================================================================
-          SECTION 1: THEMATIC DEEP-DIVES ON DR. NAKKA'S LANDMARK DISCOVERIES
+          1. CLEAN PAGE HEADER
           ========================================================================= */}
-      <section className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-200 pb-4">
-          <div>
-            <span className="text-xs font-mono font-bold uppercase text-[#8B1E24]">
-              Seminal Preclinical Breakthroughs
-            </span>
-            <h2 className="font-serif text-3xl font-bold text-[#0F2537]">
-              Thematic Deep-Dives on Landmark Discoveries
+      <section className="text-center max-w-4xl mx-auto space-y-4">
+        {/* Eyebrow */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider border border-[#8B1E24]/20">
+          <BookOpen className="w-3.5 h-3.5 text-[#C59B27]" />
+          <span>NEUROXLAB · RESEARCH OUTPUTS</span>
+        </div>
+
+        {/* Main Heading */}
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0F2537] tracking-tight leading-[1.15]">
+          Publications &amp; Scholarly Contributions
+        </h1>
+
+        {/* Description */}
+        <p className="text-slate-700 text-sm sm:text-base md:text-lg leading-relaxed font-normal max-w-3xl mx-auto">
+          Explore the laboratory's peer-reviewed research articles, scholarly book chapters, and scientific conference contributions in stroke biology, neuroprotection, cellular stress signaling, neuroinflammation, and translational neuroscience.
+        </p>
+
+        {/* Compact Category Navigation */}
+        <div className="pt-2">
+          <nav
+            aria-label="Publication Categories"
+            className="inline-flex p-1.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs flex-wrap justify-center gap-1"
+          >
+            {[
+              { id: 'all', label: 'All Publications', anchor: null },
+              { id: 'articles', label: 'Research Articles', anchor: 'research-articles' },
+              { id: 'books', label: 'Book Chapters', anchor: 'book-chapters' },
+              { id: 'conferences', label: 'Conference Contributions', anchor: 'conference-proceedings' }
+            ].map((cat) => {
+              const isActive = activeCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => {
+                    setActiveCategory(cat.id);
+                    if (cat.anchor) {
+                      scrollToAnchor(cat.anchor);
+                    }
+                  }}
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                    isActive
+                      ? 'bg-[#8B1E24] text-white shadow-xs'
+                      : 'text-slate-700 hover:text-[#8B1E24] hover:bg-[#FAF8F5]'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* Subtle Decorative Underline */}
+        <div className="w-20 h-1 bg-[#8B1E24] rounded-full mx-auto mt-4" />
+      </section>
+
+      {/* =========================================================================
+          2. RESEARCH HIGHLIGHTS (REPLACES CLUTTERED THEMATIC DISCOVERY)
+          ========================================================================= */}
+      {(activeCategory === 'all' || activeCategory === 'articles') && (
+        <section id="research-highlights" className="space-y-6">
+          <div className="space-y-1.5 border-b-2 border-slate-200 pb-3">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+              <Sparkles className="w-3.5 h-3.5 text-[#C59B27]" />
+              <span>Representative Scholarly Milestones</span>
+            </div>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+              Research Highlights
             </h2>
-          </div>
-          <span className="text-xs font-mono text-[#0F2537]/60">
-            Select a discovery below to inspect molecular cascades
-          </span>
-        </div>
-
-        {/* Deep Dive Switcher Tabs */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {deepDives.map((d) => {
-            const isSel = selectedDeepDive === d.id;
-            return (
-              <button
-                key={d.id}
-                onClick={() => setSelectedDeepDive(d.id)}
-                className={`p-4 rounded-2xl text-left border-2 transition-all flex flex-col justify-between ${
-                  isSel
-                    ? 'bg-[#8B1E24] text-white border-[#C59B27] shadow-lg'
-                    : 'bg-white text-[#0F2537] border-gray-200 hover:border-[#8B1E24]'
-                }`}
-              >
-                <div>
-                  <span className={`text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded ${isSel ? 'bg-white/20 text-[#E0B84C]' : 'bg-[#FAF8F5] text-[#8B1E24]'}`}>
-                    {d.tag}
-                  </span>
-                  <h3 className="font-serif text-lg font-bold mt-2 leading-snug">
-                    {d.title}
-                  </h3>
-                </div>
-                <p className={`text-[11px] font-mono mt-3 ${isSel ? 'text-white/80' : 'text-[#0F2537]/60'}`}>
-                  {d.citation}
-                </p>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Selected Deep Dive Inspection Card */}
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border-2 border-[#C59B27]/50 shadow-xl space-y-6 animate-in fade-in duration-200">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-5">
-            <div>
-              <span className="text-xs font-mono font-bold uppercase text-[#8B1E24] bg-[#FAF8F5] px-3 py-1 rounded-md border border-[#C59B27]/40">
-                {activeDive.tag}
-              </span>
-              <h3 className="font-serif text-3xl font-bold text-[#0F2537] mt-2">
-                {activeDive.title}
-              </h3>
-              <p className="text-sm font-semibold text-[#C59B27] mt-1">
-                Published across: {activeDive.citation}
-              </p>
-            </div>
-            <div className="text-sm font-mono text-[#0F2537]/75 bg-[#FAF8F5] px-3.5 py-2 rounded-xl border border-gray-200">
-              {activeDive.leadAuthor}
-            </div>
-          </div>
-
-          <div className="bg-[#FAF8F5] p-6 rounded-2xl border border-gray-200 space-y-2.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
-              Translational Impact &amp; Paradigm Shift:
-            </span>
-            <p className="text-base text-[#0F2537]/85 leading-relaxed font-normal">
-              {activeDive.impact}
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+              Three verified representative landmark publications from Dr. Nakka's research career in stroke epigenetics, organellar proteostasis, and multi-organ crosstalk.
             </p>
           </div>
 
-          <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#0F2537]">
-              Key Mechanistic Insights:
-            </h4>
-            <div className="grid grid-cols-1 gap-3">
-              {activeDive.mechanisms.map((mech, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3.5 rounded-xl bg-gray-50 border border-gray-100 text-sm text-[#0F2537]/85 leading-relaxed">
-                  <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-1" />
-                  <span>{mech}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 2: ALL 5 BOOK CHAPTERS & EDITED BOOKS (ITEMS 15–19)
-          ========================================================================= */}
-      <section className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-200 pb-4">
-          <div>
-            <span className="text-xs font-mono font-bold uppercase text-[#8B1E24]">
-              Scholarly Treatises
-            </span>
-            <h2 className="font-serif text-3xl font-bold text-[#0F2537]">
-              All 5 Book Chapters &amp; Edited Books (Items 15–19)
-            </h2>
-          </div>
-          <span className="text-xs font-mono bg-[#8B1E24]/10 text-[#8B1E24] font-bold px-3 py-1 rounded-full">
-            Cambridge Scholars • Elsevier • Springer
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6">
-          {allFiveBookChapters.map((book) => (
-            <div
-              key={book.itemNum}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 hover:border-[#C59B27] shadow-md hover:shadow-xl transition-all space-y-4"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                <div className="space-y-1.5">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-xs font-mono font-bold text-white bg-[#8B1E24] px-2.5 py-0.5 rounded uppercase">
-                      {book.itemNum}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+            {REPRESENTATIVE_HIGHLIGHTS.map((hl) => (
+              <div
+                key={hl.id}
+                className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-2xs hover:border-[#8B1E24]/60 hover:shadow-sm transition-all flex flex-col justify-between space-y-4 group"
+              >
+                <div className="space-y-3">
+                  {/* Topic Badge & Year */}
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase bg-[#8B1E24]/10 text-[#8B1E24] border border-[#8B1E24]/20 truncate">
+                      {hl.topic}
                     </span>
-                    <span className="text-xs font-mono text-[#8B1E24] bg-[#FAF8F5] px-2.5 py-0.5 rounded border border-[#C59B27]/40 font-semibold">
-                      {book.badge}
-                    </span>
-                    <span className="text-xs sm:text-sm font-mono text-[#0F2537]/70">
-                      {book.publisher} • {book.year}
+                    <span className="text-xs font-mono font-bold text-slate-500">
+                      {hl.year}
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537] leading-snug">
-                    {book.title}
+                  {/* Title */}
+                  <h3 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                    {hl.title}
                   </h3>
 
-                  <p className="text-sm text-[#8B1E24] font-semibold">
-                    {book.authors}
+                  {/* Authors & Journal */}
+                  <div className="text-xs text-slate-600 space-y-0.5">
+                    <p className="font-medium text-slate-700">
+                      {hl.authors}
+                    </p>
+                    <p className="italic text-[#8B1E24] font-medium">
+                      {hl.journal}
+                    </p>
+                  </div>
+
+                  {/* Concise Evidence-Based Summary */}
+                  <p className="text-xs text-slate-600 leading-relaxed font-normal pt-2 border-t border-slate-100">
+                    {hl.summary}
                   </p>
                 </div>
 
-                {book.link && (
+                {/* Footer Action */}
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[11px] font-mono text-slate-400">
+                    DOI: {hl.doi.replace('10.1161/', '').replace('10.1007/', '').replace('10.1038/', '')}
+                  </span>
                   <a
-                    href={book.link}
+                    href={hl.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-[#0F2537] hover:bg-[#8B1E24] transition-colors shadow flex-shrink-0"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#8B1E24] hover:text-[#A82931] hover:underline"
                   >
-                    <span>Publisher Portal</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-[#E0B84C]" />
+                    <span>Read Article</span>
+                    <ExternalLink className="w-3 h-3 text-[#C59B27]" />
                   </a>
-                )}
+                </div>
               </div>
-
-              <p className="text-sm text-[#0F2537]/85 leading-relaxed bg-[#FAF8F5] p-4 sm:p-5 rounded-2xl border border-gray-100">
-                {book.summary}
-              </p>
-
-              <div className="flex flex-wrap items-center justify-between text-xs text-[#0F2537]/70 font-mono pt-2 border-t border-gray-100 gap-2">
-                <span>ISBN: {book.isbn}</span>
-                {book.doi && <span>DOI: {book.doi}</span>}
-                <span>Indexed in Scopus &amp; Google Scholar</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* =========================================================================
-          SECTION 3: THE 3 INTERNATIONAL CONFERENCE PROCEEDINGS
+          3. PRIMARY SECTION: SEARCHABLE RESEARCH ARTICLES LIBRARY
           ========================================================================= */}
-      <section className="space-y-6">
-        <div className="border-b border-gray-200 pb-4">
-          <span className="text-xs font-mono font-bold uppercase text-[#8B1E24]">
-            Global Scientific Presentations
-          </span>
-          <h2 className="font-serif text-3xl font-bold text-[#0F2537]">
-            International Conference Proceedings (Berlin, San Francisco, Taiwan)
-          </h2>
-          <p className="text-sm text-[#0F2537]/75 mt-1">
-            Major peer-reviewed presentations delivered at apex international neuroscience conferences.
-          </p>
-        </div>
+      {(activeCategory === 'all' || activeCategory === 'articles') && (
+        <section id="research-articles" className="space-y-6 scroll-mt-28">
+          <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+              <FileText className="w-3.5 h-3.5 text-[#C59B27]" />
+              <span>Peer-Reviewed Journal Articles</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0F2537]">
+              Research Articles
+            </h2>
+            <div className="w-16 h-1 bg-[#8B1E24] rounded-full mt-1" />
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {conferenceProceedings.map((conf) => (
-            <div
-              key={conf.id}
-              className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-gray-200 hover:border-[#8B1E24] shadow-sm hover:shadow-lg transition-all space-y-4 flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold uppercase bg-[#8B1E24] text-white px-2.5 py-0.5 rounded-md">
-                    {conf.scope}
-                  </span>
-                  <Globe2 className="w-4 h-4 text-[#C59B27]" />
-                </div>
-
-                <div className="flex items-center gap-1.5 text-sm font-bold text-[#8B1E24]">
-                  <MapPin className="w-4 h-4 flex-shrink-0" />
-                  <span>{conf.city}</span>
-                </div>
-
-                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] leading-snug">
-                  {conf.title}
-                </h3>
-
-                <p className="text-sm text-[#0F2537]/85 leading-relaxed">
-                  <strong>Congress:</strong> {conf.conference}
-                </p>
-
-                <p className="text-sm text-[#0F2537]/75">
-                  <strong>Authors:</strong> {conf.authors}
-                </p>
+          {/* Search & Filter Toolbar */}
+          <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-2xs space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+              {/* Search Box */}
+              <div className="md:col-span-6 relative">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search articles by title, author, journal, or year..."
+                  className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-[#FAF8F5] border border-slate-200 text-xs sm:text-sm text-[#0F2537] focus:outline-hidden focus:border-[#8B1E24] focus:ring-1 focus:ring-[#8B1E24] transition-all"
+                  aria-label="Search articles"
+                />
               </div>
 
-              <div className="pt-3 border-t border-gray-100 text-xs sm:text-sm font-mono text-[#C59B27] font-semibold">
-                {conf.date}
+              {/* Topic Filter */}
+              <div className="md:col-span-4">
+                <select
+                  value={selectedTopic}
+                  onChange={(e) => setSelectedTopic(e.target.value)}
+                  className="w-full px-3 py-2.5 rounded-xl bg-[#FAF8F5] border border-slate-200 text-xs sm:text-sm text-[#0F2537] focus:outline-hidden focus:border-[#8B1E24] font-medium"
+                  aria-label="Filter by Topic"
+                >
+                  {topics.map((t, idx) => (
+                    <option key={idx} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Year Filter */}
+              <div className="md:col-span-2">
+                <select
+                  value={selectedYear}
+                  onChange={(e) => setSelectedYear(e.target.value)}
+                  className="w-full px-3 py-2.5 rounded-xl bg-[#FAF8F5] border border-slate-200 text-xs sm:text-sm text-[#0F2537] focus:outline-hidden focus:border-[#8B1E24] font-medium"
+                  aria-label="Filter by Year"
+                >
+                  {years.map((y, idx) => (
+                    <option key={idx} value={y}>
+                      {y}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
-          ))}
+
+            {/* Results Counter & Clear Filters Action */}
+            <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 text-xs">
+              <span className="font-mono text-slate-600 font-medium">
+                Showing <strong className="text-[#0F2537]">{filteredArticles.length}</strong> of {PUBLICATIONS.length} peer-reviewed articles
+              </span>
+
+              {isFiltered && (
+                <button
+                  onClick={resetFilters}
+                  className="inline-flex items-center gap-1 font-mono font-bold text-[#8B1E24] hover:underline cursor-pointer"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Reset All Filters</span>
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Clean List-Based Publications Layout */}
+          {filteredArticles.length > 0 ? (
+            <div className="bg-white rounded-3xl border border-slate-200/90 shadow-2xs divide-y divide-slate-100 overflow-hidden">
+              {filteredArticles.map((pub, idx) => {
+                const isExpanded = !!expandedAbstracts[pub.id];
+                return (
+                  <article
+                    key={pub.id}
+                    className="p-5 sm:p-7 hover:bg-[#FAF8F5]/60 transition-colors space-y-3"
+                  >
+                    {/* Top Row: Topic Badge & Year */}
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="px-2.5 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-[#8B1E24]/10 text-[#8B1E24] border border-[#8B1E24]/20">
+                        {pub.topic}
+                      </span>
+                      <span className="text-xs font-mono font-bold text-slate-500">
+                        {pub.year}
+                      </span>
+                    </div>
+
+                    {/* Article Title */}
+                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#0F2537] leading-snug">
+                      <a
+                        href={`https://doi.org/${pub.doi}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-[#8B1E24] transition-colors"
+                      >
+                        {pub.title}
+                      </a>
+                    </h3>
+
+                    {/* Authors, Journal, Volume & Pages */}
+                    <div className="space-y-1 text-xs sm:text-sm text-slate-600">
+                      <p className="font-medium text-slate-800">
+                        {pub.authors}
+                      </p>
+                      <p className="text-slate-500">
+                        <em className="font-serif font-bold text-[#8B1E24] not-italic mr-1">
+                          {pub.journal}
+                        </em>
+                        {pub.volume && <span>· Vol. {pub.volume} </span>}
+                        {pub.pages && <span>· pp. {pub.pages} </span>}
+                        <span>({pub.year})</span>
+                      </p>
+                      <p className="font-mono text-xs text-slate-500">
+                        DOI:{' '}
+                        <a
+                          href={`https://doi.org/${pub.doi}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#8B1E24] hover:underline"
+                        >
+                          https://doi.org/{pub.doi}
+                        </a>
+                      </p>
+                    </div>
+
+                    {/* Expandable Abstract Preview */}
+                    {isExpanded && pub.abstract && (
+                      <div className="pt-2">
+                        <div className="p-4 rounded-xl bg-[#FAF8F5] border border-slate-200/80 text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+                          <span className="font-mono text-slate-500 uppercase font-bold text-[11px] block mb-1">
+                            Abstract
+                          </span>
+                          <p>{pub.abstract}</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Action Bar */}
+                    <div className="pt-2 flex flex-wrap items-center gap-3">
+                      <a
+                        href={`https://doi.org/${pub.doi}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-[#8B1E24] hover:bg-[#A82931] shadow-2xs transition-all"
+                      >
+                        <span>Read Publication</span>
+                        <ExternalLink className="w-3 h-3 text-[#E0B84C]" />
+                      </a>
+
+                      {pub.abstract && (
+                        <button
+                          onClick={() => toggleAbstract(pub.id)}
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-white border border-slate-200 hover:border-[#8B1E24] hover:text-[#8B1E24] transition-all cursor-pointer"
+                        >
+                          <span>{isExpanded ? 'Hide Abstract' : 'View Abstract'}</span>
+                          {isExpanded ? (
+                            <ChevronUp className="w-3.5 h-3.5" />
+                          ) : (
+                            <ChevronDown className="w-3.5 h-3.5" />
+                          )}
+                        </button>
+                      )}
+
+                      <button
+                        onClick={() => handleOpenCitation(pub)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-white border border-slate-200 hover:border-[#8B1E24] hover:text-[#8B1E24] transition-all cursor-pointer"
+                      >
+                        <Quote className="w-3.5 h-3.5 text-[#C59B27]" />
+                        <span>Cite / BibTeX</span>
+                      </button>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          ) : (
+            /* Empty State */
+            <div className="bg-white rounded-3xl p-10 border border-slate-200 text-center space-y-3">
+              <div className="w-12 h-12 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] flex items-center justify-center mx-auto">
+                <Search className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-lg font-bold text-[#0F2537]">
+                No publications match your search criteria
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-500 max-w-md mx-auto">
+                Please try adjusting your search terms, selecting a different topic, or resetting the filters.
+              </p>
+              <div className="pt-2">
+                <button
+                  onClick={resetFilters}
+                  className="px-4 py-2 rounded-xl bg-[#8B1E24] text-white text-xs font-bold hover:bg-[#A82931] shadow transition-all cursor-pointer"
+                >
+                  Reset All Filters
+                </button>
+              </div>
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* =========================================================================
+          4. SEPARATE SECTION: BOOK CHAPTERS & SCHOLARLY CONTRIBUTIONS (5 VERIFIED RECORDS)
+          ========================================================================= */}
+      {(activeCategory === 'all' || activeCategory === 'books') && (
+        <section id="book-chapters" className="space-y-6 scroll-mt-28">
+          <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+              <Layers className="w-3.5 h-3.5 text-[#C59B27]" />
+              <span>Authored Books &amp; Protocol Compendia</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0F2537]">
+              Book Chapters &amp; Scholarly Contributions
+            </h2>
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+              Five verified international monographs, laboratory methods volumes, and academic treatises authored or edited with leading scientific publishers.
+            </p>
+            <div className="w-16 h-1 bg-[#8B1E24] rounded-full mt-1" />
+          </div>
+
+          <div className="grid grid-cols-1 gap-5">
+            {BOOK_CHAPTERS.map((book, idx) => (
+              <div
+                key={book.id}
+                className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-2xs hover:border-[#8B1E24]/60 transition-all flex flex-col justify-between space-y-4 group"
+              >
+                <div className="space-y-3">
+                  {/* Top Metadata Row */}
+                  <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="px-2.5 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-[#8B1E24]/10 text-[#8B1E24] border border-[#8B1E24]/20">
+                        {book.category}
+                      </span>
+                      <span className="text-xs font-mono text-slate-500 font-semibold">
+                        {book.publisher}
+                      </span>
+                    </div>
+                    <span className="text-xs font-mono font-bold text-slate-500">
+                      Year: {book.year}
+                    </span>
+                  </div>
+
+                  {/* Chapter / Book Title */}
+                  <h3 className="font-serif text-lg sm:text-xl font-bold text-[#0F2537] leading-snug group-hover:text-[#8B1E24] transition-colors">
+                    {book.title}
+                  </h3>
+
+                  {/* Authors & Book Title if applicable */}
+                  <div className="text-xs sm:text-sm text-slate-600 space-y-0.5">
+                    <p className="font-medium text-slate-800">
+                      Authors / Editors: {book.authors}
+                    </p>
+                    {book.bookTitle && (
+                      <p className="italic text-[#8B1E24]">
+                        In: {book.bookTitle}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Concise Summary */}
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal bg-[#FAF8F5] p-3.5 rounded-xl border border-slate-200/70">
+                    {book.summary}
+                  </p>
+                </div>
+
+                {/* Footer Identifiers & Publisher Link */}
+                <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <div className="flex flex-wrap items-center gap-3 font-mono text-slate-500">
+                    {book.isbn && <span>ISBN: {book.isbn}</span>}
+                    {book.doi && (
+                      <span>
+                        DOI:{' '}
+                        <a
+                          href={`https://doi.org/${book.doi}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#8B1E24] hover:underline"
+                        >
+                          {book.doi}
+                        </a>
+                      </span>
+                    )}
+                  </div>
+
+                  {book.link && (
+                    <a
+                      href={book.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-[#8B1E24] bg-[#8B1E24]/10 hover:bg-[#8B1E24] hover:text-white transition-colors"
+                    >
+                      <span>Publisher Portal</span>
+                      <ExternalLink className="w-3 h-3 text-[#C59B27]" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* =========================================================================
+          5. CONFERENCE CONTRIBUTIONS ARCHIVE (3 VERIFIED INTERNATIONAL MEETINGS)
+          ========================================================================= */}
+      {(activeCategory === 'all' || activeCategory === 'conferences') && (
+        <section id="conference-proceedings" className="space-y-6 scroll-mt-28">
+          <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+              <Globe2 className="w-3.5 h-3.5 text-[#C59B27]" />
+              <span>International Symposia &amp; Proceedings</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0F2537]">
+              Conference Contributions &amp; Proceedings
+            </h2>
+            <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+              Verified scientific presentations and published abstracts presented at international neuroscience congresses across Europe, North America, and Asia.
+            </p>
+            <div className="w-16 h-1 bg-[#8B1E24] rounded-full mt-1" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+            {CONFERENCE_PROCEEDINGS.map((conf) => (
+              <div
+                key={conf.id}
+                className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-2xs hover:border-[#8B1E24]/60 transition-all flex flex-col justify-between space-y-4 group"
+              >
+                <div className="space-y-3">
+                  {/* City, Country & Year */}
+                  <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-100">
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase bg-[#8B1E24]/10 text-[#8B1E24] border border-[#8B1E24]/20">
+                      {conf.city}, {conf.country}
+                    </span>
+                    <span className="text-xs font-mono font-bold text-slate-500">
+                      {conf.year}
+                    </span>
+                  </div>
+
+                  {/* Presentation Title */}
+                  <h3 className="font-serif text-base font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                    {conf.title}
+                  </h3>
+
+                  {/* Authors */}
+                  <p className="text-xs text-slate-700 font-medium">
+                    {conf.authors}
+                  </p>
+
+                  {/* Conference Name & Details */}
+                  <div className="text-xs text-slate-600 space-y-1 pt-2 border-t border-slate-100">
+                    <p className="font-semibold text-[#0F2537]">
+                      {conf.conference}
+                    </p>
+                    <p className="text-slate-500 text-[11px]">
+                      Contribution: {conf.type}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-slate-100 text-[11px] font-mono text-slate-400">
+                  {conf.scope}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* =========================================================================
+          6. EXTERNAL SCHOLARLY PROFILES STRIP
+          ========================================================================= */}
+      <section className="bg-[#FAF8F5] rounded-3xl p-6 sm:p-8 border border-slate-200/90 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#8B1E24] block">
+              Bibliometric Databases
+            </span>
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537]">
+              Author Profiles &amp; External Repositories
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+              Access Dr. Venkata Prasuja Nakka's verified scholarly records and preprint archives on official repositories.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5">
+            <a
+              href={LAB_INFO.pi.scholarUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#0F2537] hover:bg-[#8B1E24] transition-colors shadow-2xs"
+            >
+              <span>Google Scholar</span>
+              <ExternalLink className="w-3 h-3 text-[#E0B84C]" />
+            </a>
+
+            <a
+              href={LAB_INFO.pi.researchGateUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-slate-700 bg-white border border-slate-200 hover:border-[#8B1E24] hover:text-[#8B1E24] transition-colors"
+            >
+              <span>ResearchGate</span>
+              <ExternalLink className="w-3 h-3 text-[#C59B27]" />
+            </a>
+
+            <a
+              href={LAB_INFO.pi.scopusUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-slate-700 bg-white border border-slate-200 hover:border-[#8B1E24] hover:text-[#8B1E24] transition-colors"
+            >
+              <span>Scopus Author</span>
+              <ExternalLink className="w-3 h-3 text-[#C59B27]" />
+            </a>
+          </div>
         </div>
       </section>
     </div>

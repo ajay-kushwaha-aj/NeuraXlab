@@ -177,8 +177,28 @@
   animation-play-state: paused !important;
 }
 
+/* Accessible Keyboard Focus Indicators */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid var(--color-uoh-maroon, #8B1E24) !important;
+  outline-offset: 2px !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
   .animate-scroll-up {
-    animation: none;
+    animation: none !important;
   }
 }

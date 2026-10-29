@@ -1,26 +1,44 @@
 import React, { useState } from 'react';
-import { 
-  Flame, 
-  CheckCircle2, 
-  ExternalLink, 
-  Maximize2, 
-  Layers, 
-  Globe2, 
-  ArrowRight, 
-  Dna, 
-  Activity, 
-  Cpu, 
+import {
+  Activity,
+  Dna,
+  Cpu,
   Sparkles,
-  Calendar,
+  Layers,
+  ArrowRight,
+  CheckCircle2,
+  Maximize2,
+  FileCheck2,
+  Globe2,
   Building2,
-  FileCheck2
+  Calendar,
+  ExternalLink,
+  ChevronRight,
+  AlertCircle,
+  FlaskConical,
+  Award,
+  ShieldCheck,
+  Compass,
+  FileText
 } from 'lucide-react';
-import { FLAGSHIP_GRANT, RESEARCH_PILLARS, COLLABORATIONS, PAST_GRANTS } from '../data/labData';
+import {
+  RESEARCH_HERO,
+  RESEARCH_OVERVIEW,
+  FEATURED_RESEARCH_DIRECTIONS,
+  ONGOING_PROJECTS,
+  RESEARCH_COLLABORATORS,
+  PAST_GRANTS,
+  LAB_INFO
+} from '../data/labData';
 import ImageLightboxModal from '../components/ImageLightboxModal';
 
 export default function ResearchView({ setActiveTab }) {
-  const [activePillarTab, setActivePillarTab] = useState('pillar-gut-brain');
-  const [lightboxData, setLightboxData] = useState({ isOpen: false, src: '', title: '', caption: '' });
+  const [lightboxData, setLightboxData] = useState({
+    isOpen: false,
+    src: '',
+    title: '',
+    caption: ''
+  });
 
   const openLightbox = (src, title, caption) => {
     setLightboxData({ isOpen: true, src, title, caption });
@@ -30,11 +48,16 @@ export default function ResearchView({ setActiveTab }) {
     setLightboxData({ ...lightboxData, isOpen: false });
   };
 
-  const selectedPillar = RESEARCH_PILLARS.find((p) => p.id === activePillarTab) || RESEARCH_PILLARS[0];
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-20 space-y-20">
-      {/* Lightbox Modal */}
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-20 space-y-16 sm:space-y-20">
+      {/* Lightbox Modal for Full Scientific Schematic Inspection */}
       <ImageLightboxModal
         isOpen={lightboxData.isOpen}
         imageSrc={lightboxData.src}
@@ -43,328 +66,651 @@ export default function ResearchView({ setActiveTab }) {
         onClose={closeLightbox}
       />
 
-      {/* Page Header Header */}
-      <div className="text-center max-w-4xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
-          <Layers className="w-3.5 h-3.5" />
-          <span>Department of Systems and Computational Biology</span>
+      {/* =========================================================================
+          1. RESEARCH PAGE HERO
+          ========================================================================= */}
+      <section className="text-center max-w-4xl mx-auto space-y-5 pt-4">
+        {/* Eyebrow */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider border border-[#8B1E24]/20">
+          <FlaskConical className="w-3.5 h-3.5 text-[#C59B27]" />
+          <span>{RESEARCH_HERO.eyebrow}</span>
         </div>
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
-          Research Projects &amp; Collaborations
+
+        {/* Main Heading */}
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0F2537] tracking-tight leading-[1.15]">
+          {RESEARCH_HERO.heading}
         </h1>
-        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
-          Advancing preclinical stroke neuroprotection through the convergence of gut microbiome ecology, organellar stress resolution, non-coding RNA epigenetics, and nanomedicine.
+
+        {/* Supporting Paragraph */}
+        <p className="text-slate-700 text-sm sm:text-base md:text-lg leading-relaxed font-normal max-w-3xl mx-auto">
+          {RESEARCH_HERO.paragraph}
         </p>
-      </div>
 
-      {/* 1. Flagship 2026–2029 Extramural Grant In-Depth */}
-      <section id="flagship-grant" className="bg-white rounded-3xl border-2 border-[#C59B27]/50 shadow-2xl overflow-hidden scroll-mt-28">
-        {/* Grant Header Bar */}
-        <div className="bg-[#8B1E24] text-white p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-[#E0B84C] text-xs font-bold uppercase tracking-wider">
-              <Flame className="w-3.5 h-3.5" />
-              <span>{FLAGSHIP_GRANT.status}</span>
-            </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white pt-2">
-              Flagship Extramural Nanotherapy Project
-            </h2>
-            <p className="text-xs text-white/80 font-mono">
-              Grant Term: {FLAGSHIP_GRANT.grantPeriod} • Principal Investigator: {FLAGSHIP_GRANT.pi}
-            </p>
-          </div>
-
-          <div className="flex-shrink-0 bg-white/10 rounded-2xl p-4 border border-white/20 text-center md:text-right">
-            <span className="text-[11px] uppercase tracking-wider text-[#E0B84C] font-mono">Project Budget</span>
-            <div className="text-2xl font-bold font-serif text-white">{FLAGSHIP_GRANT.budget}</div>
-            <span className="text-[10px] text-emerald-300 font-semibold">Active Multi-Year Funding</span>
+        {/* Supporting Research Themes */}
+        <div className="pt-2">
+          <p className="text-xs uppercase font-mono font-semibold text-slate-500 tracking-wider mb-3">
+            Core Scientific Themes
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+            {RESEARCH_HERO.themes.map((theme, idx) => (
+              <span
+                key={idx}
+                className="px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 text-xs sm:text-[13px] font-semibold text-[#0F2537] shadow-2xs hover:border-[#8B1E24]/60 hover:text-[#8B1E24] transition-colors"
+              >
+                {theme}
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* Grant Content Grid */}
-        <div className="p-6 sm:p-10 space-y-10">
-          {/* Title & Biological Rationale */}
-          <div className="space-y-4">
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537] leading-snug">
-              "{FLAGSHIP_GRANT.title}"
-            </h3>
-            <p className="text-[#0F2537]/85 text-base sm:text-lg leading-relaxed">
-              {FLAGSHIP_GRANT.summary}
+        {/* Subtle Decorative Underline */}
+        <div className="w-20 h-1 bg-[#8B1E24] rounded-full mx-auto mt-4" />
+      </section>
+
+      {/* =========================================================================
+          IN-PAGE QUICK ANCHOR NAVIGATION BAR
+          ========================================================================= */}
+      <nav
+        aria-label="Research Page Sections"
+        className="sticky top-20 z-20 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-sm p-2 flex items-center justify-center flex-wrap gap-1 sm:gap-2"
+      >
+        <button
+          onClick={() => scrollToSection('research-overview')}
+          className="px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 hover:text-[#8B1E24] hover:bg-[#FAF8F5] transition-all cursor-pointer"
+        >
+          Research Overview
+        </button>
+        <button
+          onClick={() => scrollToSection('research-directions')}
+          className="px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 hover:text-[#8B1E24] hover:bg-[#FAF8F5] transition-all cursor-pointer"
+        >
+          Featured Directions
+        </button>
+        <button
+          onClick={() => scrollToSection('ongoing-projects')}
+          className="px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 hover:text-[#8B1E24] hover:bg-[#FAF8F5] transition-all cursor-pointer"
+        >
+          Ongoing Projects
+        </button>
+        <button
+          onClick={() => scrollToSection('collaborators')}
+          className="px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 hover:text-[#8B1E24] hover:bg-[#FAF8F5] transition-all cursor-pointer"
+        >
+          Collaborators
+        </button>
+        <button
+          onClick={() => scrollToSection('funding-archive')}
+          className="px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 hover:text-[#8B1E24] hover:bg-[#FAF8F5] transition-all cursor-pointer"
+        >
+          Past Awards
+        </button>
+      </nav>
+
+      {/* =========================================================================
+          2. RESEARCH OVERVIEW
+          ========================================================================= */}
+      <section
+        id="research-overview"
+        className="space-y-8 scroll-mt-32"
+      >
+        <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+            <Compass className="w-3.5 h-3.5 text-[#C59B27]" />
+            <span>Theoretical &amp; Experimental Foundation</span>
+          </div>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0F2537]">
+            {RESEARCH_OVERVIEW.title}
+          </h2>
+          <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+        </div>
+
+        {/* 3 Structured Paragraphs */}
+        <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-sm space-y-5 text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
+          {RESEARCH_OVERVIEW.paragraphs.map((para, pIdx) => (
+            <p key={pIdx} className="leading-relaxed">
+              {para}
             </p>
-          </div>
+          ))}
+        </div>
 
-          {/* Interactive Scientific Diagram Card */}
-          <div className="relative rounded-2xl overflow-hidden border-2 border-[#C59B27] bg-[#0F2537] shadow-xl group">
-            <img
-              src="/images/nanotherapy_gut_brain.jpg"
-              alt="Microbiota-Gut-Brain Axis Nanotherapy Diagram"
-              className="w-full h-auto max-h-[550px] object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-            <div className="absolute bottom-4 left-6 right-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-white">
-              <div>
-                <p className="font-serif text-xl sm:text-2xl font-bold text-[#E0B84C]">
-                  Dual-Action Nanotherapy: Gut Microbiota &amp; Cerebral Protection
+        {/* 3 Compact Research Pillars Below */}
+        <div className="space-y-3">
+          <p className="text-xs uppercase font-mono font-semibold text-slate-500 tracking-wider">
+            Three Core Scientific Pillars
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Pillar 1: Mechanisms */}
+            <div className="bg-[#FAF8F5] rounded-2xl p-6 border border-slate-200/90 hover:border-[#8B1E24]/60 transition-all shadow-2xs hover:shadow-sm space-y-3 flex flex-col justify-between group">
+              <div className="space-y-2.5">
+                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
+                  <Activity className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#8B1E24] block">
+                    {RESEARCH_OVERVIEW.pillars[0].subtitle}
+                  </span>
+                  <h3 className="font-serif text-xl font-bold text-[#0F2537] mt-0.5">
+                    {RESEARCH_OVERVIEW.pillars[0].title}
+                  </h3>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {RESEARCH_OVERVIEW.pillars[0].description}
                 </p>
-                <p className="text-xs sm:text-sm text-white/90">
-                  Microbiome restoration, mucosal tight junction repair, blood-brain barrier rescue, and suppression of neuronal ER stress.
+              </div>
+            </div>
+
+            {/* Pillar 2: Systems Biology */}
+            <div className="bg-[#FAF8F5] rounded-2xl p-6 border border-slate-200/90 hover:border-[#8B1E24]/60 transition-all shadow-2xs hover:shadow-sm space-y-3 flex flex-col justify-between group">
+              <div className="space-y-2.5">
+                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
+                  <Dna className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#8B1E24] block">
+                    {RESEARCH_OVERVIEW.pillars[1].subtitle}
+                  </span>
+                  <h3 className="font-serif text-xl font-bold text-[#0F2537] mt-0.5">
+                    {RESEARCH_OVERVIEW.pillars[1].title}
+                  </h3>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {RESEARCH_OVERVIEW.pillars[1].description}
                 </p>
               </div>
-              <button
-                onClick={() =>
-                  openLightbox(
-                    '/images/nanotherapy_gut_brain.jpg',
-                    'Microbiota-Gut-Brain Axis & SCFA Nanotherapy in Stroke',
-                    'High-resolution biomedical schematic illustrating the bidirectional loop between stroke-induced gut dysbiosis, systemic endotoxemia, and targeted nano-formulated SCFA and edaravone neuroprotection.'
-                  )
-                }
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-white text-sm font-semibold shadow transition-all flex-shrink-0"
-              >
-                <Maximize2 className="w-4 h-4" />
-                <span>Enlarge Scientific Schematic</span>
-              </button>
             </div>
-          </div>
 
-          {/* Core Objectives & Methodological Pipeline */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-4">
-            {/* Objectives */}
-            <div className="bg-[#FAF8F5] rounded-2xl p-6 sm:p-8 border border-gray-200 space-y-4">
-              <div className="flex items-center gap-2">
-                <FileCheck2 className="w-5 h-5 text-[#8B1E24]" />
-                <h4 className="font-serif text-xl font-bold text-[#0F2537]">
-                  Core Scientific Objectives
-                </h4>
+            {/* Pillar 3: Translation */}
+            <div className="bg-[#FAF8F5] rounded-2xl p-6 border border-slate-200/90 hover:border-[#8B1E24]/60 transition-all shadow-2xs hover:shadow-sm space-y-3 flex flex-col justify-between group">
+              <div className="space-y-2.5">
+                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
+                  <Cpu className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#C59B27] block">
+                    {RESEARCH_OVERVIEW.pillars[2].subtitle}
+                  </span>
+                  <h3 className="font-serif text-xl font-bold text-[#0F2537] mt-0.5">
+                    {RESEARCH_OVERVIEW.pillars[2].title}
+                  </h3>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {RESEARCH_OVERVIEW.pillars[2].description}
+                </p>
               </div>
-              <ul className="space-y-3">
-                {FLAGSHIP_GRANT.objectives.map((obj, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-[#0F2537]/85 leading-relaxed">
-                    <span className="w-5 h-5 rounded-full bg-[#8B1E24] text-white text-xs flex items-center justify-center flex-shrink-0 mt-1 font-bold">
-                      {i + 1}
-                    </span>
-                    <span>{obj}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
-
-            {/* Methodologies */}
-            <div className="bg-[#FAF8F5] rounded-2xl p-6 sm:p-8 border border-gray-200 space-y-4">
-              <div className="flex items-center gap-2">
-                <Cpu className="w-5 h-5 text-[#C59B27]" />
-                <h4 className="font-serif text-xl font-bold text-[#0F2537]">
-                  Experimental Methodologies &amp; Pipeline
-                </h4>
-              </div>
-              <ul className="space-y-3">
-                {FLAGSHIP_GRANT.methodologies.map((m, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-[#0F2537]/85 leading-relaxed">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-1" />
-                    <span>{m}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Quick Opportunity Callout */}
-          <div className="bg-[#0F2537] text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 border border-[#C59B27]/40">
-            <div>
-              <span className="text-xs uppercase tracking-wider text-[#E0B84C] font-mono">Fellowship Openings</span>
-              <p className="font-serif text-base sm:text-lg font-bold">
-                Junior Research Fellow (JRF) &amp; Postdoc positions are currently open under this grant.
-              </p>
-            </div>
-            <button
-              onClick={() => setActiveTab('contact')}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-sm font-bold text-white transition-all shadow whitespace-nowrap"
-            >
-              <span>Apply for Project Positions</span>
-              <ArrowRight className="w-4 h-4 text-[#E0B84C]" />
-            </button>
           </div>
         </div>
       </section>
 
-      {/* 2. 4 Core Research Pillars (Interactive Tabs & Deep Dive) */}
-      <section id="research-pillars" className="space-y-8 scroll-mt-28">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
-            Comprehensive Scientific Framework
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#0F2537]">
-            The 4 Core Research Pillars
+      {/* =========================================================================
+          3. FEATURED RESEARCH DIRECTIONS (3 PROMINENT STORIES WITH ALTERNATING LAYOUTS)
+          ========================================================================= */}
+      <section
+        id="research-directions"
+        className="space-y-10 scroll-mt-32"
+      >
+        {/* Alias anchor for Navbar compatibility */}
+        <div id="research-pillars" className="scroll-mt-32" />
+
+        <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+            <Layers className="w-3.5 h-3.5 text-[#C59B27]" />
+            <span>Programmatic Research Thrusts</span>
+          </div>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0F2537]">
+            Featured Research Directions
           </h2>
-          <p className="text-base sm:text-lg text-[#0F2537]/80 leading-relaxed">
-            Select a pillar below to inspect detailed biological questions, organellar mechanisms, and experimental platforms.
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl">
+            Detailed investigation tracks integrating experimental rodent stroke models, metagenomic sequencing, organellar proteostasis, and translational nanomedicine.
           </p>
+          <div className="w-16 h-1 bg-[#8B1E24] rounded-full mt-1" />
         </div>
 
-        {/* Tab Controls */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-          {RESEARCH_PILLARS.map((p) => {
-            const isActive = activePillarTab === p.id;
-            return (
-              <button
-                key={p.id}
-                onClick={() => setActivePillarTab(p.id)}
-                className={`px-4 sm:px-6 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${
-                  isActive
-                    ? 'bg-[#8B1E24] text-white shadow-lg border border-[#C59B27]'
-                    : 'bg-white text-[#0F2537]/80 hover:bg-[#FAF8F5] border border-gray-200 hover:border-[#8B1E24]'
-                }`}
-              >
-                <span className="font-mono text-[11px] opacity-75">Pillar {p.number}</span>
-                <span className="hidden md:inline">•</span>
-                <span className="truncate max-w-[200px]">{p.title}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Selected Pillar Card */}
-        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#C59B27]/40 shadow-xl space-y-8 animate-in fade-in duration-300">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-6">
-            <div>
-              <span className="font-mono text-xs font-bold text-[#8B1E24] bg-[#FAF8F5] px-3 py-1 rounded-md border border-[#C59B27]/40 uppercase">
-                Core Pillar {selectedPillar.number}
+        <div className="space-y-12">
+          {/* DIRECTION 1: STROKE-INDUCED GUT DYSBIOSIS & RECOVERY */}
+          {/* Desktop: Text Left, Visual Right */}
+          <div
+            id="direction-1"
+            className="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden scroll-mt-32"
+          >
+            {/* Compatibility Anchor */}
+            <div id="pillar-gut-brain" className="scroll-mt-32" />
+            {/* Card Category Header */}
+            <div className="bg-[#8B1E24] text-white px-6 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#C59B27]">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#E0B84C]">
+                Research Direction 01 • {FEATURED_RESEARCH_DIRECTIONS[0].category}
               </span>
-              <h3 className="font-serif text-3xl sm:text-4xl font-bold text-[#0F2537] mt-2">
-                {selectedPillar.title}
-              </h3>
-              <p className="text-sm text-[#C59B27] font-semibold uppercase tracking-wider mt-1">
-                {selectedPillar.subtitle}
-              </p>
+              <span className="text-[11px] font-mono bg-white/10 px-2.5 py-0.5 rounded border border-white/20 text-white">
+                Experimental &amp; Metagenomics
+              </span>
             </div>
 
-            <div className="w-14 h-14 rounded-2xl bg-[#8B1E24]/10 text-[#8B1E24] flex items-center justify-center flex-shrink-0">
-              {selectedPillar.number === '01' && <Activity className="w-8 h-8" />}
-              {selectedPillar.number === '02' && <Cpu className="w-8 h-8" />}
-              {selectedPillar.number === '03' && <Dna className="w-8 h-8" />}
-              {selectedPillar.number === '04' && <Sparkles className="w-8 h-8" />}
+            <div className="p-6 sm:p-8 lg:p-10">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {/* Left: Text & Takeaway */}
+                <div className="lg:col-span-6 space-y-4">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537] leading-snug">
+                    {FEATURED_RESEARCH_DIRECTIONS[0].fullTitle}
+                  </h3>
+
+                  <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
+                    {FEATURED_RESEARCH_DIRECTIONS[0].description}
+                  </p>
+
+                  {/* Scientific Takeaway Callout */}
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border-l-4 border-[#8B1E24] border-y border-r border-slate-200/80 space-y-1">
+                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#8B1E24] block">
+                      Scientific Takeaway
+                    </span>
+                    <p className="text-xs sm:text-sm font-semibold text-[#0F2537] leading-relaxed">
+                      {FEATURED_RESEARCH_DIRECTIONS[0].takeaway}
+                    </p>
+                  </div>
+
+                  {/* Action Link to Ongoing Project */}
+                  <div className="pt-2">
+                    <button
+                      onClick={() => scrollToSection('ongoing-projects')}
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#8B1E24] hover:text-[#A82931] hover:underline cursor-pointer group"
+                    >
+                      <span>View Associated Extramural Award (ICMR 2026–2029)</span>
+                      <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Right: Scientific Visual */}
+                <div className="lg:col-span-6 space-y-2">
+                  <div className="relative rounded-2xl overflow-hidden border-2 border-[#C59B27]/70 bg-[#0F2537] shadow-md group">
+                    <img
+                      src={FEATURED_RESEARCH_DIRECTIONS[0].image}
+                      alt={FEATURED_RESEARCH_DIRECTIONS[0].imageAlt}
+                      className="w-full h-auto max-h-[380px] object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none opacity-80 group-hover:opacity-60 transition-opacity" />
+                    <div className="absolute bottom-3 right-3">
+                      <button
+                        onClick={() =>
+                          openLightbox(
+                            FEATURED_RESEARCH_DIRECTIONS[0].image,
+                            FEATURED_RESEARCH_DIRECTIONS[0].fullTitle,
+                            FEATURED_RESEARCH_DIRECTIONS[0].imageCaption
+                          )
+                        }
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#8B1E24] hover:bg-[#A82931] text-white text-xs font-semibold shadow transition-all cursor-pointer"
+                        title="Enlarge Scientific Schematic"
+                      >
+                        <Maximize2 className="w-3.5 h-3.5 text-[#E0B84C]" />
+                        <span>Enlarge Diagram</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-slate-500 italic leading-snug px-1">
+                    {FEATURED_RESEARCH_DIRECTIONS[0].imageCaption}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Lead Summary */}
-          <p className="text-base sm:text-lg text-[#0F2537]/85 leading-relaxed">
-            {selectedPillar.leadSummary}
-          </p>
+          {/* DIRECTION 2: MICROGLIA-MACROPHAGE NEUROINFLAMMATION & NANOMATERIALS */}
+          {/* Desktop: Visual Left, Text Right (Alternating) */}
+          <div
+            id="direction-2"
+            className="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden scroll-mt-32"
+          >
+            {/* Compatibility Anchor */}
+            <div id="pillar-nanomedicine" className="scroll-mt-32" />
+            {/* Card Category Header */}
+            <div className="bg-[#8B1E24] text-white px-6 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#C59B27]">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#E0B84C]">
+                Research Direction 02 • {FEATURED_RESEARCH_DIRECTIONS[1].category}
+              </span>
+              <span className="text-[11px] font-mono bg-white/10 px-2.5 py-0.5 rounded border border-white/20 text-white">
+                Translational Nanotherapeutics
+              </span>
+            </div>
 
-          {/* If Pillar 2, show the ER stress cellular illustration */}
-          {selectedPillar.id === 'pillar-er-stress' && (
-            <div className="relative rounded-2xl overflow-hidden border-2 border-[#C59B27] bg-[#0F2537] shadow-xl group my-6">
-              <img
-                src="/images/er_stress_organelle.jpg"
-                alt="ER Stress & UPR Organellar Biology Diagram"
-                className="w-full h-auto max-h-[500px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-6 right-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-white">
-                <div>
-                  <p className="font-serif text-xl sm:text-2xl font-bold text-[#E0B84C]">
-                    Organelle Proteostasis: ER Stress, BiP/GRP78 &amp; UPR Signaling
-                  </p>
-                  <p className="text-xs sm:text-sm text-white/90">
-                    The molecular triad of PERK, IRE1α, and ATF6 dictating neuronal survival vs. apoptosis.
+            <div className="p-6 sm:p-8 lg:p-10">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {/* Left on Desktop: Scientific Visual */}
+                <div className="lg:col-span-6 order-2 lg:order-1 space-y-2">
+                  <div className="relative rounded-2xl overflow-hidden border-2 border-[#C59B27]/70 bg-[#0F2537] shadow-md group">
+                    <img
+                      src={FEATURED_RESEARCH_DIRECTIONS[1].image}
+                      alt={FEATURED_RESEARCH_DIRECTIONS[1].imageAlt}
+                      className="w-full h-auto max-h-[380px] object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none opacity-80 group-hover:opacity-60 transition-opacity" />
+                    <div className="absolute bottom-3 right-3">
+                      <button
+                        onClick={() =>
+                          openLightbox(
+                            FEATURED_RESEARCH_DIRECTIONS[1].image,
+                            FEATURED_RESEARCH_DIRECTIONS[1].fullTitle,
+                            FEATURED_RESEARCH_DIRECTIONS[1].imageCaption
+                          )
+                        }
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#8B1E24] hover:bg-[#A82931] text-white text-xs font-semibold shadow transition-all cursor-pointer"
+                        title="Enlarge Scientific Illustration"
+                      >
+                        <Maximize2 className="w-3.5 h-3.5 text-[#E0B84C]" />
+                        <span>Enlarge Diagram</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-slate-500 italic leading-snug px-1">
+                    {FEATURED_RESEARCH_DIRECTIONS[1].imageCaption}
                   </p>
                 </div>
+
+                {/* Right on Desktop: Text, Scope & Takeaway */}
+                <div className="lg:col-span-6 order-1 lg:order-2 space-y-4">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537] leading-snug">
+                    {FEATURED_RESEARCH_DIRECTIONS[1].fullTitle}
+                  </h3>
+
+                  <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
+                    {FEATURED_RESEARCH_DIRECTIONS[1].description}
+                  </p>
+
+                  {/* Preclinical Scope Notice */}
+                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600 flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 text-[#8B1E24] shrink-0 mt-0.5" />
+                    <p className="leading-relaxed">
+                      <strong>Preclinical Scope:</strong> {FEATURED_RESEARCH_DIRECTIONS[1].scopeNote}
+                    </p>
+                  </div>
+
+                  {/* Scientific Takeaway Callout */}
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border-l-4 border-[#8B1E24] border-y border-r border-slate-200/80 space-y-1">
+                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#8B1E24] block">
+                      Scientific Takeaway
+                    </span>
+                    <p className="text-xs sm:text-sm font-semibold text-[#0F2537] leading-relaxed">
+                      {FEATURED_RESEARCH_DIRECTIONS[1].takeaway}
+                    </p>
+                  </div>
+
+                  {/* Action Link to Ongoing Projects */}
+                  <div className="pt-2">
+                    <button
+                      onClick={() => scrollToSection('ongoing-projects')}
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#8B1E24] hover:text-[#A82931] hover:underline cursor-pointer group"
+                    >
+                      <span>View Associated Nanomaterial Project (ICMR Co-PI)</span>
+                      <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* DIRECTION 3: ER STRESS & DIABETES-ASSOCIATED STROKE */}
+          {/* Desktop: Text Left, Visual Right */}
+          <div
+            id="direction-3"
+            className="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden scroll-mt-32"
+          >
+            {/* Compatibility Anchor */}
+            <div id="pillar-er-stress" className="scroll-mt-32" />
+            {/* Card Category Header */}
+            <div className="bg-[#8B1E24] text-white px-6 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#C59B27]">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#E0B84C]">
+                Research Direction 03 • {FEATURED_RESEARCH_DIRECTIONS[2].category}
+              </span>
+              <span className="text-[11px] font-mono bg-white/10 px-2.5 py-0.5 rounded border border-white/20 text-white">
+                Organellar Proteostasis
+              </span>
+            </div>
+
+            <div className="p-6 sm:p-8 lg:p-10">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {/* Left: Text & Takeaway */}
+                <div className="lg:col-span-6 space-y-4">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537] leading-snug">
+                    {FEATURED_RESEARCH_DIRECTIONS[2].fullTitle}
+                  </h3>
+
+                  <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
+                    {FEATURED_RESEARCH_DIRECTIONS[2].description}
+                  </p>
+
+                  {/* Scientific Takeaway Callout */}
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border-l-4 border-[#8B1E24] border-y border-r border-slate-200/80 space-y-1">
+                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#8B1E24] block">
+                      Scientific Takeaway
+                    </span>
+                    <p className="text-xs sm:text-sm font-semibold text-[#0F2537] leading-relaxed">
+                      {FEATURED_RESEARCH_DIRECTIONS[2].takeaway}
+                    </p>
+                  </div>
+
+                  {/* Action Link to Ongoing Projects */}
+                  <div className="pt-2">
+                    <button
+                      onClick={() => scrollToSection('ongoing-projects')}
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#8B1E24] hover:text-[#A82931] hover:underline cursor-pointer group"
+                    >
+                      <span>View Associated Extramural Award (ANRF-PAIR)</span>
+                      <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Right: Scientific Visual */}
+                <div className="lg:col-span-6 space-y-2">
+                  <div className="relative rounded-2xl overflow-hidden border-2 border-[#C59B27]/70 bg-[#0F2537] shadow-md group">
+                    <img
+                      src={FEATURED_RESEARCH_DIRECTIONS[2].image}
+                      alt={FEATURED_RESEARCH_DIRECTIONS[2].imageAlt}
+                      className="w-full h-auto max-h-[380px] object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none opacity-80 group-hover:opacity-60 transition-opacity" />
+                    <div className="absolute bottom-3 right-3">
+                      <button
+                        onClick={() =>
+                          openLightbox(
+                            FEATURED_RESEARCH_DIRECTIONS[2].image,
+                            FEATURED_RESEARCH_DIRECTIONS[2].fullTitle,
+                            FEATURED_RESEARCH_DIRECTIONS[2].imageCaption
+                          )
+                        }
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#8B1E24] hover:bg-[#A82931] text-white text-xs font-semibold shadow transition-all cursor-pointer"
+                        title="Enlarge Cellular Model"
+                      >
+                        <Maximize2 className="w-3.5 h-3.5 text-[#E0B84C]" />
+                        <span>Enlarge Diagram</span>
+                      </button>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-slate-500 italic leading-snug px-1">
+                    {FEATURED_RESEARCH_DIRECTIONS[2].imageCaption}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          4. ONGOING RESEARCH PROJECTS (4 VERIFIED EXTRAMURAL PROJECTS)
+          ========================================================================= */}
+      <section
+        id="ongoing-projects"
+        className="space-y-8 scroll-mt-32"
+      >
+        {/* Alias anchor for Navbar compatibility */}
+        <div id="flagship-grant" className="scroll-mt-32" />
+
+        <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+            <FileCheck2 className="w-3.5 h-3.5 text-[#C59B27]" />
+            <span>Extramural Grants &amp; Investigations</span>
+          </div>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0F2537]">
+            Ongoing Research Projects
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl">
+            Funded extramural research projects active at the Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad.
+          </p>
+          <div className="w-16 h-1 bg-[#8B1E24] rounded-full mt-1" />
+        </div>
+
+        {/* Important Data-Verification Advisory Card */}
+        <div className="bg-[#FAF8F5] border-l-4 border-[#C59B27] rounded-2xl p-5 sm:p-6 border-y border-r border-slate-200/90 space-y-2">
+          <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#8B1E24]">
+            <AlertCircle className="w-4 h-4 text-[#C59B27]" />
+            <span>Data-Verification Advisory on Source Project Identifiers</span>
+          </div>
+          <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+            Institutional source records record the same ICMR identifier (<strong className="font-mono text-[#0F2537]">IRPGS-2025-01-02193</strong>) for both the multi-year gut dysbiosis award (2026–2029; Principal Investigator) and the engineered nanomaterials project (2024–2027; Co-Principal Investigator). These entries represent distinct research durations, scopes, and investigator appointments, and are noted here for routine verification against apex sanction records without altering source data.
+          </p>
+        </div>
+
+        {/* 4 Structured Project Cards in a 2x2 Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          {ONGOING_PROJECTS.map((project, idx) => (
+            <div
+              key={project.id}
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm hover:border-[#8B1E24]/60 transition-all flex flex-col justify-between space-y-5 group"
+            >
+              {/* Card Header: Funding Agency & Duration */}
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-2.5 pb-3 border-b border-slate-100">
+                  <div className="flex items-center gap-2">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#8B1E24]/10 text-[#8B1E24] border border-[#8B1E24]/20 uppercase">
+                      {project.fundingAgency}
+                    </span>
+                    <span className="text-xs font-mono font-semibold text-slate-500">
+                      Duration: {project.duration}
+                    </span>
+                  </div>
+
+                  <span className="px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold bg-[#C59B27]/15 text-[#8B1E24] border border-[#C59B27]/30">
+                    {project.role}
+                  </span>
+                </div>
+
+                {/* Project Title */}
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-[#0F2537] leading-snug group-hover:text-[#8B1E24] transition-colors">
+                  {project.title}
+                </h3>
+
+                {/* Metadata Strip */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-[#FAF8F5] p-3 rounded-xl border border-slate-200/70">
+                  <div>
+                    <span className="text-slate-500 font-mono uppercase block font-semibold">Funding Agency</span>
+                    <span className="font-semibold text-[#0F2537]">{project.fundingAgencyFull}</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 font-mono uppercase block font-semibold">Investigator Role</span>
+                    <span className="font-semibold text-[#8B1E24]">{project.role}</span>
+                  </div>
+                  {project.projectId && (
+                    <div className="sm:col-span-2 pt-1 border-t border-slate-200/60 flex items-center justify-between gap-2">
+                      <span className="text-slate-500 font-mono uppercase font-semibold">Project ID:</span>
+                      <span className="font-mono text-slate-700 font-bold">{project.projectId}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Short Supported Description */}
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                  {project.description}
+                </p>
+              </div>
+
+              {/* Card Footer: Link to Associated Research Direction */}
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-mono text-slate-500">
+                  Focus: {project.relatedDirectionTitle}
+                </span>
                 <button
-                  onClick={() =>
-                    openLightbox(
-                      '/images/er_stress_organelle.jpg',
-                      'Endoplasmic Reticulum Stress & UPR Signaling in Ischemia',
-                      'Detailed cellular biology render depicting BiP/GRP78 dissociation, phospho-eIF2α translation inhibition, and autophagosomal clearance mechanisms during cerebral ischemia-reperfusion.'
-                    )
-                  }
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-white text-sm font-semibold shadow transition-all flex-shrink-0"
+                  onClick={() => scrollToSection(project.relatedDirectionId)}
+                  className="inline-flex items-center gap-1 text-xs font-bold text-[#8B1E24] hover:text-[#A82931] hover:underline cursor-pointer group/btn"
                 >
-                  <Maximize2 className="w-4 h-4" />
-                  <span>Enlarge Cellular Render</span>
+                  <span>Explore Direction</span>
+                  <ChevronRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
                 </button>
               </div>
             </div>
-          )}
-
-          {/* Two-Column Breakdown: Inquiries vs Experimental Tools */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-[#FAF8F5] rounded-2xl p-6 sm:p-8 border border-gray-200 space-y-4">
-              <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] flex items-center gap-2">
-                <span>Biological Inquiries</span>
-              </h4>
-              <ul className="space-y-3">
-                {selectedPillar.keyQuestions.map((q, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5 text-sm text-[#0F2537]/85 leading-relaxed">
-                    <span className="text-[#8B1E24] font-bold text-lg">•</span>
-                    <span>{q}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="bg-[#FAF8F5] rounded-2xl p-6 sm:p-8 border border-gray-200 space-y-4">
-              <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] flex items-center gap-2">
-                <span>Specialized Experimental Platforms</span>
-              </h4>
-              <ul className="space-y-3">
-                {selectedPillar.experimentalTools.map((tool, idx) => (
-                  <li key={idx} className="flex items-center gap-2.5 text-sm text-[#0F2537]/85 leading-relaxed">
-                    <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0" />
-                    <span>{tool}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* 3. National & International Collaborations */}
-      <section id="collaborations" className="space-y-8 scroll-mt-28">
-        <div className="text-center max-w-3xl mx-auto space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
-            Global Academic Synergies
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#0F2537]">
-            Research Collaborations
+      {/* =========================================================================
+          5. RESEARCH COLLABORATORS (8 VERIFIED COLLABORATORS)
+          ========================================================================= */}
+      <section
+        id="collaborators"
+        className="space-y-8 scroll-mt-32"
+      >
+        <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+            <Globe2 className="w-3.5 h-3.5 text-[#C59B27]" />
+            <span>Academic Synergies &amp; Research Network</span>
+          </div>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0F2537]">
+            Research Collaborators
           </h2>
-          <p className="text-base sm:text-lg text-[#0F2537]/80 leading-relaxed">
-            Translational partnerships with world-renowned neurological research institutions and national apex laboratories.
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl">
+            Active and verified scientific partnerships with leading neuroscience institutes, national apex centres, and central central university investigators.
           </p>
+          <div className="w-16 h-1 bg-[#8B1E24] rounded-full mt-1" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {COLLABORATIONS.map((c) => (
+        {/* 8 Collaborator Cards in a Responsive Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+          {RESEARCH_COLLABORATORS.map((collab) => (
             <div
-              key={c.id}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 hover:border-[#C59B27] shadow-sm hover:shadow-lg transition-all space-y-4"
+              key={collab.id}
+              className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-2xs hover:border-[#8B1E24]/60 hover:shadow-sm transition-all flex flex-col justify-between space-y-4 group"
             >
-              <div className="flex items-center justify-between">
-                <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-[#FAF8F5] text-[#8B1E24] border border-[#C59B27]/40 uppercase tracking-wide">
-                  {c.badge}
-                </span>
-                <span className="text-xs sm:text-sm font-mono text-[#0F2537]/70">
-                  {c.location}
-                </span>
+              <div className="space-y-3">
+                {/* Header Tag */}
+                <div className="flex items-center justify-between gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#8B1E24]/10 text-[#8B1E24] uppercase border border-[#8B1E24]/20">
+                    {collab.badge}
+                  </span>
+                  <span className="text-[11px] font-mono text-slate-500 font-semibold">
+                    {collab.country}
+                  </span>
+                </div>
+
+                {/* Collaborator Name & Title */}
+                <div>
+                  <h3 className="font-serif text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                    {collab.name}
+                  </h3>
+                  <p className="text-xs font-semibold text-[#8B1E24] mt-0.5">
+                    {collab.title}
+                  </p>
+                </div>
+
+                {/* Institutional Affiliation */}
+                <div className="text-xs text-slate-600 space-y-1 pt-2 border-t border-slate-100">
+                  <p className="font-medium text-[#0F2537]">
+                    {collab.department}
+                  </p>
+                  <p className="text-slate-500 font-normal">
+                    {collab.institution}
+                  </p>
+                  <p className="text-slate-500 text-[11px]">
+                    {collab.location}
+                  </p>
+                </div>
               </div>
 
-              <div>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
-                  {c.institution}
-                </h3>
-                <p className="text-sm text-[#8B1E24] font-semibold mt-0.5">
-                  {c.department}
-                </p>
-              </div>
-
-              <div className="space-y-2.5 text-sm text-[#0F2537]/80 pt-3 border-t border-gray-100 leading-relaxed">
-                <p>
-                  <strong className="text-[#0F2537]">Collaborator:</strong> {c.leadCollaborator}
-                </p>
-                <p>
-                  <strong className="text-[#0F2537]">Focus:</strong> {c.focus}
-                </p>
-                <p className="italic text-[#0F2537]/75">
-                  <strong className="text-[#0F2537] not-italic">Milestones:</strong> {c.landmarkJointWork}
+              {/* Collaborative Focus Scope */}
+              <div className="pt-3 border-t border-slate-100">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                  Collaborative Area
+                </span>
+                <p className="text-xs text-slate-700 leading-relaxed font-normal">
+                  {collab.collaborativeFocus}
                 </p>
               </div>
             </div>
@@ -372,42 +718,92 @@ export default function ResearchView({ setActiveTab }) {
         </div>
       </section>
 
-      {/* 4. Past Extramural Grants Archive */}
-      <section className="bg-[#FAF8F5] rounded-3xl p-8 sm:p-12 border border-gray-200 space-y-6">
-        <div className="space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
-            Funding Track Record
-          </span>
-          <h2 className="font-serif text-3xl font-bold text-[#0F2537]">
+      {/* =========================================================================
+          6. PAST EXTRAMURAL GRANTS & INSTITUTIONAL SCHEMES ARCHIVE
+          ========================================================================= */}
+      <section
+        id="funding-archive"
+        className="space-y-6 scroll-mt-32"
+      >
+        <div className="space-y-2 border-b-2 border-slate-200 pb-4">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
+            <Award className="w-3.5 h-3.5 text-[#C59B27]" />
+            <span>Funding Track Record</span>
+          </div>
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
             Past Extramural Grants &amp; Institutional Awards
           </h2>
+          <div className="w-16 h-1 bg-[#8B1E24] rounded-full mt-1" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {PAST_GRANTS.map((grant, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200 shadow-sm space-y-3 flex flex-col justify-between"
+              className="bg-[#FAF8F5] rounded-2xl p-6 border border-slate-200/90 shadow-2xs space-y-3 flex flex-col justify-between"
             >
-              <div className="space-y-2.5">
-                <span className="text-xs font-mono text-[#8B1E24] font-bold uppercase block">
+              <div className="space-y-2">
+                <span className="text-[11px] font-mono text-[#8B1E24] font-bold uppercase block">
                   {grant.scheme}
                 </span>
-                <h3 className="font-serif text-xl font-bold text-[#0F2537] leading-snug">
+                <h3 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] leading-snug">
                   {grant.title}
                 </h3>
-                <p className="text-sm text-[#0F2537]/75">
-                  <strong>Agency:</strong> {grant.agency}
+                <p className="text-xs text-slate-600">
+                  <strong className="text-[#0F2537]">Agency:</strong> {grant.agency}
                 </p>
-                <p className="text-sm text-[#0F2537]/80 leading-relaxed pt-2.5 border-t border-gray-100">
+                <p className="text-xs text-slate-700 leading-relaxed pt-2 border-t border-slate-200/70">
                   {grant.impact}
                 </p>
               </div>
-              <div className="text-xs sm:text-sm text-emerald-700 font-semibold font-mono pt-3">
+              <div className="text-xs text-emerald-800 font-bold font-mono pt-3 border-t border-slate-200/70">
                 Status: {grant.period}
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* =========================================================================
+          7. TRANSLATIONAL INQUIRIES & CALL-TO-ACTION
+          ========================================================================= */}
+      <section className="bg-[#0F2537] text-white rounded-3xl p-8 sm:p-10 lg:p-12 border-2 border-[#C59B27]/60 shadow-xl space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="lg:col-span-8 space-y-3">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#E0B84C]">
+              Translational Collaboration &amp; Trainee Opportunities
+            </span>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+              Interested in Collaborating or Joining NeuroXLab?
+            </h3>
+            <p className="text-xs sm:text-sm text-white/80 leading-relaxed max-w-2xl font-normal">
+              We welcome scientific inquiries from prospective doctoral scholars with national fellowships (CSIR/UGC JRF, DBT, ICMR), postdoctoral applicants, and academic or clinical collaborators. Direct inquiries can be addressed to Dr. Venkata Prasuja Nakka at{' '}
+              <a href="mailto:nvprasuja@uohyd.ac.in" className="font-mono text-[#E0B84C] hover:underline font-semibold">
+                nvprasuja@uohyd.ac.in
+              </a>.
+            </p>
+          </div>
+
+          <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-center lg:items-end">
+            <button
+              onClick={() => {
+                if (setActiveTab) {
+                  setActiveTab('contact');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg transition-all cursor-pointer border border-[#C59B27]/40 min-h-[44px]"
+            >
+              <span>Explore Open Positions</span>
+              <ArrowRight className="w-4 h-4 text-[#E0B84C]" />
+            </button>
+            <a
+              href="mailto:nvprasuja@uohyd.ac.in"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-semibold transition-all border border-white/20 min-h-[44px]"
+            >
+              <span>Email Laboratory PI</span>
+            </a>
+          </div>
         </div>
       </section>
     </div>

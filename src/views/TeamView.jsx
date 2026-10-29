@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { 
-  Users, 
-  GraduationCap, 
-  Mail, 
-  MapPin, 
-  Phone, 
-  ExternalLink, 
-  Award, 
-  Briefcase, 
-  BookOpen, 
-  CheckCircle2, 
-  ArrowRight 
+import {
+  Users,
+  GraduationCap,
+  Mail,
+  MapPin,
+  Phone,
+  ExternalLink,
+  Award,
+  Briefcase,
+  BookOpen,
+  CheckCircle2,
+  ArrowRight
 } from 'lucide-react';
 import { TEAM_MEMBERS, LAB_INFO } from '../data/labData';
 
@@ -51,7 +51,7 @@ export default function TeamView({ setActiveTab }) {
                 Principal Investigator &amp; Lab Director
               </span>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
-                Dr. Venkata Prasuja Nakka, Ph.D.
+                Dr. Venkata Prasuja Nakka
               </h2>
             </div>
           </div>
@@ -65,40 +65,27 @@ export default function TeamView({ setActiveTab }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Left Column: Photo & Contact Telemetry */}
             <div className="lg:col-span-4 space-y-6">
-              <div className="relative rounded-2xl overflow-hidden border-4 border-[#C59B27] shadow-xl bg-[#0F2537] aspect-square max-w-[320px] mx-auto group">
+              <div className="relative rounded-2xl overflow-hidden border-4 border-[#C59B27] shadow-xl bg-[#0F2537] aspect-[3/4] max-w-[300px] mx-auto group">
                 <img
                   src={pi.avatar}
                   alt={pi.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
               {/* Direct Office & Contact Card */}
               <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-gray-200 space-y-3 text-xs text-[#0F2537]">
-                <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-[#8B1E24] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-bold text-[#0F2537]">Room No. F75C, SLS Annex Building</p>
-                    <p className="font-semibold text-[#8B1E24]">Department of Systems and Computational Biology</p>
-                    <p className="text-[#0F2537]/75 font-medium">School of Life Sciences, University of Hyderabad</p>
-                    <p className="text-[#0F2537]/70">Prof. C.R. Rao Road, Gachibowli, Hyderabad – 500046</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2.5 pt-1">
-                  <Phone className="w-4 h-4 text-[#8B1E24] flex-shrink-0" />
-                  <a href="tel:+914023134581" className="font-mono hover:text-[#8B1E24]">
-                    +91-40-23134581
+                <div className="space-y-1">
+                  <span className="font-mono text-slate-500 uppercase block font-semibold">Institutional Email</span>
+                  <a href="mailto:nvprasuja@uohyd.ac.in" className="font-mono text-[#8B1E24] font-semibold hover:underline block truncate">
+                    nvprasuja@uohyd.ac.in
                   </a>
                 </div>
-
-                <div className="flex items-start gap-2.5 pt-1">
-                  <Mail className="w-4 h-4 text-[#8B1E24] mt-0.5 flex-shrink-0" />
-                  <div>
-                    <a href="mailto:prasuja@uohyd.ac.in" className="font-mono hover:text-[#8B1E24] block">
-                      prasuja@uohyd.ac.in
-                    </a>
-                  </div>
+                <div className="space-y-1 pt-1.5 border-t border-slate-200/60">
+                  <span className="font-mono text-slate-500 uppercase block font-semibold">Primary Email</span>
+                  <a href="mailto:nvprasuja@gmail.com" className="font-mono text-slate-700 font-semibold hover:text-[#8B1E24] hover:underline block truncate">
+                    nvprasuja@gmail.com
+                  </a>
                 </div>
               </div>
             </div>
@@ -106,140 +93,143 @@ export default function TeamView({ setActiveTab }) {
             {/* Right Column: Pedigree, Biography & Research Philosophy */}
             <div className="lg:col-span-8 space-y-6">
               <div className="space-y-3">
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
-                  Academic Journey &amp; Research Leadership
-                </h3>
-                <p className="text-sm sm:text-base text-[#0F2537]/85 leading-relaxed">
-                  {pi.bio}
+                {/* Section label */}
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
+                  <Award className="w-3.5 h-3.5 text-[#C59B27]" />
+                  <span>Principal Investigator &amp; Lab Director</span>
+                </div>
+
+                {/* Heading */}
+                <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-[#0F2537] tracking-tight">
+                  Dr. Venkata Prasuja Nakka, Ph.D.
+                </h2>
+
+                {/* Subtitle */}
+                <p className="font-serif italic text-lg sm:text-xl font-medium text-[#8B1E24]">
+                  Systems Neurobiologist &amp; Translational Researcher
                 </p>
+
+                {/* Intro paragraphs */}
+                <div className="space-y-3.5 text-slate-700 text-sm sm:text-base leading-relaxed font-normal pt-1">
+                  <p>
+                    Dr. Venkata Prasuja Nakka is an Assistant Professor in the Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad. He earned his Ph.D. through Jawaharlal Nehru University, New Delhi, with research conducted at the Central Drug Research Institute, Lucknow. His research focuses on the molecular mechanisms of ischemic stroke, cellular stress signaling, neuroinflammation, gut–brain interactions, and stroke-induced systemic injury.
+                  </p>
+                  <p>
+                    His postdoctoral research experience includes the University of Wisconsin–Madison, the National University of Singapore, and the University of Hyderabad, where he held SERB-Young Scientist and UGC-Postdoctoral Fellow positions. At NeuroXLab, he integrates experimental neuroscience with computational and systems-level approaches to investigate stroke pathology and advance translational therapeutic strategies, including nanotechnology-based drug delivery and neuroprotection.
+                  </p>
+                </div>
+
+                {/* Button: Explore His Research */}
+                <div className="pt-2">
+                  <button
+                    onClick={() => {
+                      if (setActiveTab) {
+                        setActiveTab('research');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-[#8B1E24] hover:bg-[#A82931] border border-[#C59B27]/50 shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[44px] group"
+                  >
+                    <span>Explore His Research</span>
+                    <ArrowRight className="w-4 h-4 text-[#E0B84C] group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
 
-              {/* Pedigree Timeline Cards */}
-              <div className="space-y-3 pt-2">
-                <h4 className="font-serif text-lg font-bold text-[#0F2537] flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5 text-[#8B1E24]" />
-                  <span>Academic Qualifications &amp; Appointments</span>
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  <div className="p-3.5 rounded-xl bg-[#FAF8F5] border border-gray-200 space-y-1">
-                    <span className="font-mono text-[#8B1E24] font-bold">Doctor of Philosophy (Ph.D., 2009)</span>
-                    <p className="font-semibold text-[#0F2537]">CSIR – Central Drug Research Institute (CDRI) / JNU</p>
-                    <p className="text-[#0F2537]/70">Thesis on endoplasmic reticulum stress &amp; neuronal apoptosis in cerebral ischemia.</p>
+              {/* Academic Qualifications & Postdoctoral Experience */}
+              <div className="space-y-4 pt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Education */}
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-gray-200 space-y-2">
+                    <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#8B1E24] uppercase">
+                      <GraduationCap className="w-4 h-4" />
+                      <span>Education</span>
+                    </div>
+                    <div className="space-y-1.5 text-xs">
+                      <div>
+                        <strong className="text-[#0F2537] block font-semibold">Ph.D.</strong>
+                        <p className="text-[#0F2537]/75">Jawaharlal Nehru University, New Delhi / Central Drug Research Institute, Lucknow, India.</p>
+                      </div>
+                      <div className="pt-1 border-t border-gray-200/60">
+                        <strong className="text-[#0F2537] block font-semibold">M.Sc.</strong>
+                        <p className="text-[#0F2537]/75">Acharya Nagarjuna University, Andhra Pradesh, India.</p>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-[#FAF8F5] border border-gray-200 space-y-1">
-                    <span className="font-mono text-[#8B1E24] font-bold">Postdoctoral Fellow (USA)</span>
-                    <p className="font-semibold text-[#0F2537]">University of Wisconsin–Madison</p>
-                    <p className="text-[#0F2537]/70">Department of Neurological Surgery (Prof. Raghu Vemuganti Lab). Pioneered non-coding RNA stroke profiling.</p>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-[#FAF8F5] border border-gray-200 space-y-1">
-                    <span className="font-mono text-[#8B1E24] font-bold">Postdoctoral Fellow (Singapore)</span>
-                    <p className="font-semibold text-[#0F2537]">National University of Singapore (NUS)</p>
-                    <p className="text-[#0F2537]/70">Neurobiology and pharmacology of neurovascular unit damage and cellular stress responses.</p>
-                  </div>
-
-                  <div className="p-3.5 rounded-xl bg-[#FAF8F5] border border-gray-200 space-y-1">
-                    <span className="font-mono text-[#8B1E24] font-bold">National Faculty Selection (Level-11)</span>
-                    <p className="font-semibold text-[#0F2537]">UGC Faculty Recharge Programme (FRP)</p>
-                    <p className="text-[#0F2537]/70">Recruited nationwide by UGC to drive translational neurobiology at University of Hyderabad.</p>
+                  {/* Postdoctoral Research */}
+                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-gray-200 space-y-2">
+                    <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#8B1E24] uppercase">
+                      <Award className="w-4 h-4 text-[#C59B27]" />
+                      <span>Postdoctoral Research</span>
+                    </div>
+                    <div className="space-y-1.5 text-xs">
+                      <div>
+                        <strong className="text-[#0F2537] block font-semibold">University of Wisconsin–Madison, USA</strong>
+                        <p className="text-[#0F2537]/75">Department of Neurological Surgery, School of Medicine and Public Health.</p>
+                      </div>
+                      <div className="pt-1 border-t border-gray-200/60">
+                        <strong className="text-[#0F2537] block font-semibold">National University of Singapore, Singapore</strong>
+                        <p className="text-[#0F2537]/75">Department of Pharmacy.</p>
+                      </div>
+                      <div className="pt-1 border-t border-gray-200/60">
+                        <strong className="text-[#0F2537] block font-semibold">University of Hyderabad, India</strong>
+                        <p className="text-[#0F2537]/75">SERB-Young Scientist and UGC-Postdoctoral Fellow, School of Life Sciences.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Research Thrusts / Badges */}
+              {/* Research Interests (5 Cards) */}
               <div className="space-y-3 pt-2">
                 <h4 className="font-serif text-lg font-bold text-[#0F2537]">
-                  Primary Areas of Investigation
+                  Research Interests
                 </h4>
-                <div className="flex flex-wrap gap-2">
-                  {pi.researchInterests.map((interest, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 rounded-full text-xs font-semibold bg-[#FAF8F5] text-[#8B1E24] border border-[#C59B27]/40"
-                    >
-                      {interest}
-                    </span>
-                  ))}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 text-xs">
+                  <div className="p-3 rounded-xl bg-[#FAF8F5] border border-gray-200 space-y-0.5">
+                    <strong className="text-[#8B1E24] font-semibold block">Stroke Biology &amp; Neuroprotection</strong>
+                    <p className="text-[#0F2537]/75">Molecular mechanisms and experimental neuroprotective strategies.</p>
+                  </div>
+                  <div className="p-3 rounded-xl bg-[#FAF8F5] border border-gray-200 space-y-0.5">
+                    <strong className="text-[#8B1E24] font-semibold block">Cellular Stress &amp; Signaling</strong>
+                    <p className="text-[#0F2537]/75">ER stress, UPR, oxidative stress, and inflammatory cascades.</p>
+                  </div>
+                  <div className="p-3 rounded-xl bg-[#FAF8F5] border border-gray-200 space-y-0.5">
+                    <strong className="text-[#8B1E24] font-semibold block">Gut–Brain Axis &amp; Metagenomics</strong>
+                    <p className="text-[#0F2537]/75">Microbiome dynamics and computational metagenomic integration.</p>
+                  </div>
+                  <div className="p-3 rounded-xl bg-[#FAF8F5] border border-gray-200 space-y-0.5">
+                    <strong className="text-[#8B1E24] font-semibold block">Brain–Organ Crosstalk</strong>
+                    <p className="text-[#0F2537]/75">Distal organ damage and systemic neuroimmune signaling.</p>
+                  </div>
+                  <div className="p-3 rounded-xl bg-[#FAF8F5] border border-gray-200 space-y-0.5 sm:col-span-2 lg:col-span-1">
+                    <strong className="text-[#8B1E24] font-semibold block">Translational Therapeutics</strong>
+                    <p className="text-[#0F2537]/75">Nanotechnology-based drug delivery and neuroprotection.</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Horizontal Bottom Bar: Scholarly & Professional Profiles */}
+        {/* Verified Direct Contact Strip */}
         <div className="border-t border-gray-200 bg-[#FAF8F5] px-6 sm:px-8 py-4">
-          <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-2 shrink-0">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#8B1E24]" />
+              <Mail className="w-4 h-4 text-[#8B1E24]" />
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#8B1E24]">
-                Scholarly &amp; Professional Profiles:
+                Contact the Principal Investigator:
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 flex-grow">
-              <a
-                href={LAB_INFO.pi.scholarUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#4285F4] hover:bg-[#4285F4]/5 transition-all text-[#0F2537] shadow-sm group"
-                title="View Google Scholar Citations"
-              >
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="w-5 h-5 rounded-full bg-[#4285F4]/10 text-[#4285F4] flex items-center justify-center font-bold text-xs shrink-0">G</span>
-                  <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#4285F4] truncate">Google Scholar</span>
-                </div>
-                <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#4285F4] shrink-0" />
+            <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
+              <a href="mailto:nvprasuja@uohyd.ac.in" className="inline-flex items-center gap-1.5 font-bold text-[#8B1E24] hover:underline">
+                <span>Institutional: nvprasuja@uohyd.ac.in</span>
               </a>
-
-              <a
-                href={LAB_INFO.pi.researchGateUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#00CCBB] hover:bg-[#00CCBB]/5 transition-all text-[#0F2537] shadow-sm group"
-                title="View ResearchGate Profile"
-              >
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="w-5 h-5 rounded-full bg-[#00CCBB]/10 text-[#009B8D] flex items-center justify-center font-bold text-xs shrink-0">RG</span>
-                  <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#009B8D] truncate">ResearchGate</span>
-                </div>
-                <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#009B8D] shrink-0" />
-              </a>
-
-              <a
-                href={LAB_INFO.pi.linkedInUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#0077B5] hover:bg-[#0077B5]/5 transition-all text-[#0F2537] shadow-sm group"
-                title="View LinkedIn Profile"
-              >
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="w-5 h-5 rounded-full bg-[#0077B5]/10 text-[#0077B5] flex items-center justify-center font-bold text-xs shrink-0">in</span>
-                  <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#0077B5] truncate">LinkedIn</span>
-                </div>
-                <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#0077B5] shrink-0" />
-              </a>
-
-              <div className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-gray-50 border border-dashed border-gray-300 text-[#0F2537]/80 shadow-sm">
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="w-5 h-5 rounded-full bg-[#A6CE39]/20 text-[#6B8E23] flex items-center justify-center font-bold text-[11px] shrink-0">iD</span>
-                  <span className="font-medium text-xs truncate">ORCID</span>
-                </div>
-                <span className="text-[10px] font-mono bg-amber-50 text-amber-700 px-2 py-0.5 rounded border border-amber-200 font-semibold shrink-0">will provide</span>
-              </div>
-
-              <a
-                href={LAB_INFO.pi.scopusUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-gray-200 hover:border-[#E86C00] hover:bg-[#E86C00]/5 transition-all text-[#0F2537] shadow-sm group"
-                title="View Scopus Profile"
-              >
-                <div className="flex items-center gap-2 min-w-0">
-                  <span className="w-5 h-5 rounded-full bg-[#E86C00]/10 text-[#E86C00] flex items-center justify-center font-bold text-xs shrink-0">Sc</span>
-                  <span className="font-semibold text-xs text-[#0F2537] group-hover:text-[#E86C00] truncate">Scopus Profile</span>
-                </div>
-                <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#E86C00] shrink-0" />
+              <span className="text-gray-300">•</span>
+              <a href="mailto:nvprasuja@gmail.com" className="inline-flex items-center gap-1.5 font-semibold text-slate-700 hover:text-[#8B1E24] hover:underline">
+                <span>Primary: nvprasuja@gmail.com</span>
               </a>
             </div>
           </div>
@@ -270,11 +260,10 @@ export default function TeamView({ setActiveTab }) {
               <button
                 key={btn.id}
                 onClick={() => setFilter(btn.id)}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
-                  filter === btn.id
-                    ? 'bg-[#8B1E24] text-white shadow-sm'
-                    : 'text-[#0F2537]/70 hover:text-[#0F2537]'
-                }`}
+                className={`px-3 py-1.5 rounded-lg transition-all ${filter === btn.id
+                  ? 'bg-[#8B1E24] text-white shadow-sm'
+                  : 'text-[#0F2537]/70 hover:text-[#0F2537]'
+                  }`}
               >
                 {btn.label}
               </button>

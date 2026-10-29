@@ -4,7 +4,6 @@ import {
   Menu,
   X,
   ExternalLink,
-  GraduationCap,
   BookOpen,
   Home,
   ChevronRight,
@@ -58,9 +57,10 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
       label: 'Research',
       hasDropdown: true,
       subItems: [
-        { id: 'projects', label: 'Projects [2026–2029 Grant & Extramural Grants]', sectionId: 'flagship-grant' },
-        { id: 'pillars', label: 'Core Research Pillars & Simulator', sectionId: 'research-pillars' },
-        { id: 'collaborations', label: 'Collaborations', sectionId: 'collaborations' },
+        { id: 'overview', label: 'Research Overview', sectionId: 'research-overview' },
+        { id: 'directions', label: 'Featured Research Directions', sectionId: 'research-directions' },
+        { id: 'projects', label: 'Ongoing Research Projects', sectionId: 'ongoing-projects' },
+        { id: 'collaborations', label: 'Research Collaborators', sectionId: 'collaborations' },
       ]
     },
     {
@@ -82,12 +82,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
     },
     {
       id: 'activities',
-      label: 'Activities',
-      hasDropdown: true,
-      subItems: [
-        { id: 'events', label: 'Events & Symposia', sectionId: 'events' },
-        { id: 'gallery', label: 'Research & Campus Gallery', sectionId: 'gallery' },
-      ]
+      label: 'Activities'
     },
     {
       id: 'contact',
@@ -146,75 +141,62 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
   return (
     <header ref={headerRef} className="sticky top-0 z-40 w-full shadow-md bg-white">
       {/* 1. Top Utility Bar in #8B1E24 with #C59B27 bottom border */}
-      <div className="bg-[#8B1E24] text-white border-b-2 border-[#C59B27] py-2 px-4 sm:px-6 lg:px-8 text-xs sm:text-sm select-none">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-2">
+      <div className="bg-[#8B1E24] text-white border-b-2 border-[#C59B27] py-1.5 px-4 sm:px-6 lg:px-8 text-[12px] sm:text-[13px] select-none">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-4">
           {/* Institutional Affirmation */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-2.5 gap-y-1 text-center font-sans tracking-wide">
-            <span className="font-bold text-[#E0B84C] tracking-wider">
-              IoE • NAAC A++
+          <div className="flex items-center gap-2 text-center sm:text-left tracking-wide font-sans">
+            <span className="font-semibold text-white">
+              University of Hyderabad
             </span>
-            <span className="text-white/40">|</span>
-            <span className="font-semibold uppercase tracking-wider text-white">
-              UNIVERSITY OF HYDERABAD
-            </span>
-            <span className="text-white/40">|</span>
-            <span className="text-[#FAF8F5]/90 font-medium">
-              हैदराबाद विश्वविद्यालय
-            </span>
-            <span className="text-white/40">•</span>
+            <span className="text-white/40" aria-hidden="true">•</span>
             <span className="text-white/85">
               School of Life Sciences
-            </span>
-            <span className="text-white/40">•</span>
-            <span className="text-[#E0B84C] font-semibold">
-              Department of Systems and Computational Biology
             </span>
           </div>
 
           {/* External Scholarly & Institutional Links */}
-          <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-white/95">
+          <div className="flex items-center gap-2.5 sm:gap-3 text-white/70">
             <a
               href="https://uohyd.ac.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-[#E0B84C] transition-colors"
+              className="inline-flex items-center gap-1 hover:text-white transition-colors"
             >
               <span>uohyd.ac.in</span>
-              <ExternalLink className="w-3.5 h-3.5 text-[#C59B27]" />
+              <ExternalLink className="w-3 h-3 text-white/40" />
             </a>
-            <span className="text-white/30">•</span>
+            <span className="text-white/30" aria-hidden="true">•</span>
             <a
               href={LAB_INFO.pi.scholarUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-[#E0B84C] transition-colors font-medium"
+              className="inline-flex items-center gap-1 hover:text-white transition-colors"
               title="Dr. Nakka on Google Scholar"
             >
-              <GraduationCap className="w-4 h-4 text-[#C59B27]" />
               <span>Scholar</span>
-              <ExternalLink className="w-3.5 h-3.5 text-[#C59B27]" />
+              <ExternalLink className="w-3 h-3 text-white/40" />
             </a>
-            <span className="text-white/30">•</span>
+            <span className="text-white/30" aria-hidden="true">•</span>
             <a
               href={LAB_INFO.pi.researchGateUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-[#E0B84C] transition-colors"
+              className="inline-flex items-center gap-1 hover:text-white transition-colors"
               title="Dr. Nakka on ResearchGate"
             >
               <span>ResearchGate</span>
-              <ExternalLink className="w-3.5 h-3.5 text-[#C59B27]" />
+              <ExternalLink className="w-3 h-3 text-white/40" />
             </a>
-            <span className="text-white/30">•</span>
+            <span className="text-white/30" aria-hidden="true">•</span>
             <a
               href={LAB_INFO.pi.linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-[#E0B84C] transition-colors"
+              className="inline-flex items-center gap-1 hover:text-white transition-colors"
               title="Dr. Nakka on LinkedIn"
             >
               <span>LinkedIn</span>
-              <ExternalLink className="w-3.5 h-3.5 text-[#C59B27]" />
+              <ExternalLink className="w-3 h-3 text-white/40" />
             </a>
           </div>
         </div>
