@@ -259,8 +259,17 @@ export default function Footer({ setActiveTab }) {
             </div>
           </div>
 
-          {/* Understated Developer Credit */}
-          <div className="flex justify-center lg:justify-end pt-1">
+          {/* Understated Developer Credit & Discreet Admin CMS Access */}
+          <div className="flex flex-col sm:flex-row items-center justify-between pt-1 gap-2">
+            <button
+              onClick={() => navigateTo('admin')}
+              className="text-[11px] sm:text-xs text-white/40 hover:text-[#E0B84C] transition-colors flex items-center gap-1 cursor-pointer font-mono"
+              title="Administrator CMS Login"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-[#C59B27]/70" />
+              <span>Admin CMS Portal</span>
+            </button>
+
             <p className="text-[11px] sm:text-xs text-white/50 tracking-wide">
               Designed &amp; Developed by{' '}
               <a

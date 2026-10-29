@@ -172,6 +172,9 @@ export default function ActivitiesPage() {
                     src={fac.image}
                     alt={fac.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      e.target.src = '/images/golgi_cox_neuron.png';
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
                   <span className="absolute top-4 left-4 text-xs font-mono font-bold uppercase bg-[#8B1E24] text-white px-3 py-1 rounded-full shadow">

@@ -27,8 +27,21 @@ import {
   REPRESENTATIVE_HIGHLIGHTS,
   LAB_INFO
 } from '../data/labData';
+import { useCMS } from '../cms/context/CMSContext';
 
 export default function ResearchArticlesPage() {
+  const { publications: cmsPubs } = useCMS();
+  const rawPubs = cmsPubs && cmsPubs.length > 0 ? cmsPubs : [];
+  const effectiveArticles = rawPubs.length > 0
+    ? rawPubs.filter(p => !p.pubType || p.pubType === 'journal_article' || p.pubType === 'review_article')
+    : PUBLICATIONS;
+  const effectiveBooks = rawPubs.length > 0
+    ? rawPubs.filter(p => p.pubType === 'book_chapter')
+    : BOOK_CHAPTERS;
+  const effectiveConfs = rawPubs.length > 0
+    ? rawPubs.filter(p => p.pubType === 'conference_proceeding')
+    : CONFERENCE_PROCEEDINGS;
+
   // Navigation active tab: 'all', 'articles', 'books', 'conferences'
   const [activeCategory, setActiveCategory] = useState('all');
 
@@ -56,13 +69,13 @@ export default function ResearchArticlesPage() {
 
   // Available years sorted descending
   const years = useMemo(() => {
-    const setYears = new Set(PUBLICATIONS.map((p) => p.year));
+    const setYears = new Set(effectiveArticles.map((p) => p.pubYear || p.year));
     return ['All Years', ...Array.from(setYears).sort((a, b) => b - a)];
-  }, []);
+  }, [effectiveArticles]);
 
   // Filtered publications
   const filteredArticles = useMemo(() => {
-    return PUBLICATIONS.filter((item) => {
+    return effectiveArticles.filter((item) => {
       // Topic match
       const matchesTopic = selectedTopic === 'All Topics' || item.topic === selectedTopic;
 
@@ -321,7 +334,7 @@ export default function ResearchArticlesPage() {
             {/* Results Counter & Clear Filters Action */}
             <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 text-xs">
               <span className="font-mono text-slate-600 font-medium">
-                Showing <strong className="text-[#0F2537]">{filteredArticles.length}</strong> of {PUBLICATIONS.length} peer-reviewed articles
+                Showing <strong className="text-[#0F2537]">{filteredArticles.length}</strong> of {effectiveArticles.length} peer-reviewed articles
               </span>
 
               {isFiltered && (
@@ -489,7 +502,7 @@ export default function ResearchArticlesPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-5">
-            {BOOK_CHAPTERS.map((book, idx) => (
+            {effectiveBooks.map((book, idx) => (
               <div
                 key={book.id}
                 className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-2xs hover:border-[#8B1E24]/60 transition-all flex flex-col justify-between space-y-4 group"
@@ -590,7 +603,7 @@ export default function ResearchArticlesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
-            {CONFERENCE_PROCEEDINGS.map((conf) => (
+            {effectiveConfs.map((conf) => (
               <div
                 key={conf.id}
                 className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-2xs hover:border-[#8B1E24]/60 transition-all flex flex-col justify-between space-y-4 group"

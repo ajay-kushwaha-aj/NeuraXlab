@@ -36,6 +36,7 @@ import NeuroXlabLogo from '../components/NeuroXlabLogo';
 import ImageLightboxModal from '../components/ImageLightboxModal';
 import uohSeal from '../assets/uoh_seal.png';
 import { LAB_INFO, TEAM_MEMBERS, FUNDING_AGENCIES } from '../data/labData';
+import { useCMS } from '../cms/context/CMSContext';
 
 /**
  * InteractiveNeuronHeroCanvas
@@ -1080,10 +1081,11 @@ function InteractiveNeuronHeroCanvas() {
 }
 
 export default function HomePage({ setActiveTab }) {
+  const { announcements: cmsAnnouncements, teamMembers: cmsTeam } = useCMS();
   const [isTickerPaused, setIsTickerPaused] = useState(false);
   const [lightboxData, setLightboxData] = useState({ isOpen: false, src: '', title: '', caption: '' });
   const [showGroupOverlay, setShowGroupOverlay] = useState(true);
-  const pi = TEAM_MEMBERS.find((m) => m.id === 'pi') || TEAM_MEMBERS[0];
+  const pi = (cmsTeam && cmsTeam.find((m) => m.id === 'pi' || m.category === 'pi')) || TEAM_MEMBERS[0];
   const activeAward = FUNDING_AGENCIES.find((a) => a.categoryType === 'active_award') || FUNDING_AGENCIES[0];
   const completedProject = FUNDING_AGENCIES.find((a) => a.categoryType === 'completed_project') || FUNDING_AGENCIES[1];
   const institutionalScheme = FUNDING_AGENCIES.find((a) => a.categoryType === 'institutional_scheme') || FUNDING_AGENCIES[2];
@@ -1579,6 +1581,97 @@ export default function HomePage({ setActiveTab }) {
         </div>
       </section>
 
+      {/* 2b. Principal Investigator & Lab Director Spotlight */}
+      <section
+        id="pi-spotlight-section"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24"
+      >
+        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden">
+          {/* Top Accent Strip */}
+          <div className="bg-[#8B1E24] text-white px-6 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#C59B27]">
+            <div className="flex items-center gap-2">
+              <Award className="w-4 h-4 text-[#E0B84C]" />
+              <span className="text-xs uppercase tracking-widest text-[#E0B84C] font-mono font-semibold">
+                PRINCIPAL INVESTIGATOR &amp; LAB DIRECTOR
+              </span>
+            </div>
+            <span className="text-xs font-mono bg-white/10 px-2.5 py-0.5 rounded border border-white/20 text-white font-medium">
+              University of Hyderabad (IoE)
+            </span>
+          </div>
+
+          <div className="p-6 sm:p-8 lg:p-10">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+              {/* Left: PI Portrait */}
+              <div className="md:col-span-4 lg:col-span-3 flex justify-center">
+                <div
+                  onClick={() =>
+                    openLightbox(
+                      pi.avatar || pi.avatarUrl || '/images/dr_prasuja_nakka.jpg',
+                      pi.name || pi.fullName || 'Dr. Venkata Prasuja Nakka, Ph.D.',
+                      'Principal Investigator & Lab Director — Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad'
+                    )
+                  }
+                  className="relative w-48 sm:w-56 aspect-[3/4] rounded-2xl overflow-hidden border-2 border-[#C59B27]/70 shadow-lg bg-[#0F2537] group cursor-pointer"
+                  title="Click to enlarge portrait"
+                >
+                  <img
+                    src={pi.avatar || pi.avatarUrl || '/images/dr_prasuja_nakka.jpg'}
+                    alt={pi.name || pi.fullName || 'Dr. Venkata Prasuja Nakka, Ph.D.'}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      e.target.src = '/images/dr_prasuja_nakka.jpg';
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-1.5 text-xs font-medium">
+                    <ZoomIn className="w-4 h-4 text-[#E0B84C]" />
+                    <span>Enlarge Portrait</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Bio & Credentials */}
+              <div className="md:col-span-8 lg:col-span-9 space-y-4">
+                <div>
+                  <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#8B1E24] bg-[#8B1E24]/10 px-2.5 py-1 rounded-md mb-2">
+                    <span>Department of Systems and Computational Biology</span>
+                  </div>
+                  <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0F2537]">
+                    Dr. Venkata Prasuja Nakka, <span className="text-[#8B1E24] text-xl sm:text-2xl font-normal">Ph.D.</span>
+                  </h3>
+                  <p className="text-sm font-semibold text-[#8B1E24] mt-0.5">
+                    Level-11 UGC Assistant Professor &amp; Principal Investigator
+                  </p>
+                  <p className="text-xs text-slate-500 font-medium">
+                    School of Life Sciences, University of Hyderabad
+                  </p>
+                </div>
+
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+                  Dr. Venkata Prasuja Nakka directs the Systems and Translational Neurobiology Laboratory (NeuroXLab). His research investigates the molecular and cellular mechanisms of cerebral ischemia, focusing on endoplasmic reticulum (ER) stress, unfolded protein response (UPR) pathways, non-coding RNAs, and the microbiota–gut–brain axis. With doctoral training from CSIR-CDRI / JNU and international postdoctoral experience at the University of Wisconsin–Madison and the National University of Singapore, he spearheads extramurally funded projects (ICMR, ANRF) translating experimental neurobiology into therapeutic interventions.
+                </p>
+
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <button
+                    onClick={() => navigateTo('team')}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#8B1E24] hover:bg-[#A82931] shadow transition-colors cursor-pointer"
+                  >
+                    <span>Explore Group Leader Dossier</span>
+                    <ArrowRight className="w-4 h-4 text-[#E0B84C]" />
+                  </button>
+                  <button
+                    onClick={() => navigateTo('research')}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-[#0F2537] bg-[#FAF8F5] hover:bg-slate-100 border border-slate-200 shadow-xs transition-colors cursor-pointer"
+                  >
+                    <span>View Research Areas</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3. Research Area / About NeuroX Lab & Golgi-Cox Stained Neuron (Authentic Old Website Section) */}
       <section
         id="about-section"
@@ -1878,6 +1971,9 @@ export default function HomePage({ setActiveTab }) {
                     src={activeAward.logo}
                     alt={activeAward.fullName}
                     className="max-h-20 sm:max-h-24 max-w-[85%] object-contain group-hover/logo:scale-105 transition-transform duration-300 mx-auto"
+                    onError={(e) => {
+                      e.target.src = '/images/uoh_seal.png';
+                    }}
                   />
                 </a>
 
@@ -1996,6 +2092,9 @@ export default function HomePage({ setActiveTab }) {
                   src={completedProject.logo}
                   alt={completedProject.fullName}
                   className="max-h-16 sm:max-h-20 max-w-[85%] object-contain group-hover/logo:scale-105 transition-transform duration-300 mx-auto"
+                  onError={(e) => {
+                    e.target.src = '/images/uoh_seal.png';
+                  }}
                 />
               </a>
 
@@ -2083,6 +2182,9 @@ export default function HomePage({ setActiveTab }) {
                   src={institutionalScheme.logo}
                   alt={institutionalScheme.fullName}
                   className="max-h-16 sm:max-h-20 max-w-[85%] object-contain group-hover/logo:scale-105 transition-transform duration-300 mx-auto"
+                  onError={(e) => {
+                    e.target.src = '/images/uoh_seal.png';
+                  }}
                 />
               </a>
 
@@ -2179,7 +2281,31 @@ export default function HomePage({ setActiveTab }) {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {NEWS_ITEMS.map((item) => (
+          {((cmsAnnouncements && cmsAnnouncements.length > 0)
+            ? cmsAnnouncements.slice(0, 4).map(a => ({
+                id: a.id,
+                category: (a.category || 'news').replace('_', ' ').toUpperCase(),
+                badgeColor: a.category === 'grant_announcement'
+                  ? 'bg-[#8B1E24]/10 text-[#8B1E24] border border-[#8B1E24]/20'
+                  : a.category === 'recruitment'
+                    ? 'bg-emerald-50 text-emerald-800 border border-emerald-300/80'
+                    : 'bg-[#C59B27]/15 text-[#977313] border border-[#C59B27]/30',
+                date: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '2026',
+                title: a.title,
+                summary: a.summary,
+                linkText: a.destinationUrl ? 'Explore Link' : 'View Details',
+                action: () => {
+                  if (a.destinationUrl) {
+                    window.open(a.destinationUrl, '_blank', 'noopener,noreferrer');
+                  } else if (a.category === 'recruitment') {
+                    navigateTo('contact');
+                  } else {
+                    navigateTo('research');
+                  }
+                }
+              }))
+            : NEWS_ITEMS
+          ).map((item) => (
             <div
               key={item.id}
               className="bg-white rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5"

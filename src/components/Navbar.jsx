@@ -91,15 +91,19 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
   ];
 
   const handleNavClick = (tabId, sectionId = null) => {
-    setActiveTab(tabId);
+    if (typeof setActiveTab === 'function') {
+      setActiveTab(tabId, sectionId);
+    }
     if (setActiveSubSection) {
       setActiveSubSection(sectionId);
     }
     setMobileMenuOpen(false);
     setHoveredMenu(null);
 
-    // Scroll handling
-    if (sectionId) {
+    // Scroll handling: for top-level tabs (group-leader or team-roster), scroll to top smoothly so header & tabs are visible
+    if (sectionId === 'group-leader' || sectionId === 'team-roster' || !sectionId) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
       setTimeout(() => {
         const elem = document.getElementById(sectionId);
         if (elem) {
@@ -107,9 +111,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
         } else {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-      }, 100);
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 120);
     }
   };
 

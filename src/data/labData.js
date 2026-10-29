@@ -561,9 +561,12 @@ export const TEAM_MEMBERS = [
   {
     id: "pi",
     name: "Dr. Venkata Prasuja Nakka",
+    credentials: "Ph.D. (CDRI / JNU, 2009)",
     role: "Principal Investigator & Lab Director",
     subtitle: "Systems Neurobiologist & Translational Investigator",
-    qualification: "Ph.D. (CDRI / JNU, 2009)",
+    designation: "Level-11 UGC Assistant Professor",
+    affiliation: "Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad",
+    qualification: "Ph.D. (Central Drug Research Institute / JNU, New Delhi)",
     category: "pi",
     avatar: "/images/dr_prasuja_nakka.jpg",
     bio: "Dr. Venkata Prasuja Nakka is a Level-11 UGC Assistant Professor in the Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad. He earned his Ph.D. from the Central Drug Research Institute (CSIR-CDRI) and Jawaharlal Nehru University (JNU), New Delhi, investigating endoplasmic reticulum stress and apoptotic signaling in cerebral ischemia. His postdoctoral research experience spans the University of Wisconsin–Madison, the National University of Singapore, and the University of Hyderabad. His research focuses on the molecular and cellular mechanisms underlying ischemic brain injury, including organellar stress, oxidative stress, neuroinflammation, and neuroprotective signaling. His work also explores non-coding RNAs, piRNAs, ISGylation, and gut–brain interactions in stroke pathology. At NeuroXLab, he integrates experimental neuroscience with computational biology and systems-level approaches to understand stroke mechanisms and advance translational therapeutic strategies, including nanomedicine-based interventions for neuroprotection.",
@@ -573,95 +576,126 @@ export const TEAM_MEMBERS = [
       "At NeuroXLab, he integrates experimental neuroscience with computational biology and systems-level approaches to understand stroke mechanisms and advance translational therapeutic strategies, including nanomedicine-based interventions for neuroprotection."
     ],
     researchInterests: [
-      "Microbiota-Gut-Brain Axis in Ischemic Stroke",
-      "Endoplasmic Reticulum Stress & UPR",
-      "Nano-formulated SCFAs & Edaravone",
-      "Non-coding RNAs (lncRNAs, piRNAs)",
-      "Translational Stroke Therapeutics"
+      "Stroke Biology",
+      "Organelle ER Stress / UPR",
+      "Gut–Brain Axis",
+      "Translational Nanomedicine",
+      "Non-coding RNAs & Epigenetics"
     ],
     contact: {
       email: "nvprasuja@uohyd.ac.in",
       personalEmail: "nvprasuja@gmail.com",
-      office: "Room No. F75C, School of Life Sciences, UoH",
+      office: "Room No. F75C, School of Life Sciences, University of Hyderabad",
       phone: "+91-40-23134581"
     }
   },
   {
-    id: "postdoc-1",
-    name: "Dr. Ananya Mukherjee",
-    role: "Postdoctoral Research Associate",
-    qualification: "Ph.D. in Nanobiotechnology (IIT Kharagpur)",
+    id: "shailasri-s",
+    name: "Shailasri S.",
+    role: "PhD Research Scholar",
+    qualification: "M.Tech.",
+    qualificationFull: "M.Tech. Computational Biology (Pondicherry University)",
+    category: "phd",
+    avatar: "/images/shailasri_s.jpg",
+    summaryBio: "PhD research scholar investigating mechanistic links between gut microbial dysregulation and brain pathology. Her work focuses on microbial-derived short-chain fatty acids (SCFAs) as key mediators of gut–brain communication, integrating in vivo Middle Cerebral Artery Occlusion (MCAO) rodent models with multi-omics profiling to understand blood-brain barrier integrity, immune signaling, and neuroprotection in stroke and neurodegenerative disorders.",
+    fullBio: "I am a PhD research scholar. I completed M.Tech. Computational Biology from Pondicherry University. My research aims to elucidate the mechanistic links between gut microbial dysregulation and brain pathology, a special emphasis on understanding how microbial-derived short-chain fatty acids (SCFAs) which are key mediators of gut-brain communication through an Integrative Multi-Omics approach and in-vivo Middle cerebral artery occlusion (MCAO) in rodents and integrating molecular profiling with experimental approaches. A central focus will be placed on Dysbiotic microbiota can alter the production of key metabolites which can modulate blood-brain barrier integrity, immune signaling, and neuronal survival pathways. The ultimate goal is to identify novel biomarkers and therapeutic strategies that target the gut microbiome to mitigate risk of neurological disorders. In addition, my research focuses on elucidating the pathological crosstalk between neurodegenerative disorders, including Alzheimer's and Parkinson's, and stroke through integrative multi-omics approaches and experimental validation.",
+    researchInterests: [
+      "Gut–Brain Axis",
+      "Microbial SCFAs",
+      "MCAO Models",
+      "Integrative Multi-Omics"
+    ],
+    contact: {
+      email: "25lsph05@uohyd.ac.in",
+      altEmail: "25phd05@uohyd.ac.in"
+    }
+  },
+  {
+    id: "sateesh-n",
+    name: "Sateesh N.",
+    role: "PhD Research Scholar",
+    qualification: "M.Sc.",
+    qualificationFull: "M.Sc. Life Sciences",
+    category: "phd",
+    avatar: "/images/sateesh_n.jpg",
+    summaryBio: "PhD research scholar focusing on the molecular mechanisms underlying stroke pathophysiology using Middle Cerebral Artery Occlusion (MCAO) in rodents. His research investigates neuronal injury, inflammation, and programmed cell death pathways using in vitro and in vivo models mimicking hypoxia and cerebral ischemia–reperfusion injury to identify critical molecular drivers and validate therapeutic targets.",
+    fullBio: "I am a PhD research scholar. My research interest focus on understanding the molecular mechanism underlying stroke pathophysiology using Middle Cerebral Artery Occlusion (MCAO) in rodents. My research primarily investigates neuronal injury, inflammation, and cell death mechanisms using invitro and in vivo models that mimic hypoxia and cerebral ischemia-reperfusion. My work aims to identify key molecular drivers of stroke-induced neuronal damage, experimentally validate critical pathways such as inflammation and apoptosis, and evaluate potential therapeutic targets for intervention.",
+    researchInterests: [
+      "Stroke Pathophysiology",
+      "MCAO Models",
+      "Neuroinflammation",
+      "Cerebral Ischemia"
+    ],
+    contact: {
+      email: "25lsph04@uohyd.ac.in",
+      altEmail: "25phd04@uohyd.ac.in"
+    }
+  },
+  {
+    id: "suvarna-annapureddy",
+    name: "Dr. Suvarna Annapureddy",
+    role: "Postdoctoral Research Fellow",
+    qualification: "PhD",
+    qualificationFull: "Ph.D. in Life Sciences / Neurobiology",
     category: "postdoc",
-    avatar: "https://images.unsplash.com/photo-1594824813593-37d43f07a716?w=600&auto=format&fit=crop&q=80",
-    bio: "Dr. Mukherjee specializes in polymer-lipid hybrid nanoparticles for targeted drug delivery across biological barriers. Within NeuroXlab's 2026–2029 grant, she leads nanoparticle synthesis, characterization, and pharmacokinetic biodistribution studies.",
-    researchInterests: ["Nanomedicine Formulation", "DLS & Electron Microscopy", "Blood-Brain Barrier Permeation", "Drug Release Kinetics"],
-    contact: { email: "ananya.postdoc@uohyd.ac.in" }
+    avatar: "/images/suvarna_annapureddy.jpg",
+    summaryBio: "I am a neurobiology researcher focused on unraveling the molecular and metabolic mechanisms underlying neurological dysfunction, particularly in the context of diabetes-associated brain injury. My research integrates in vivo rodent models with advanced biochemical and molecular approaches to investigate how oxidative stress, dysregulated lipid metabolism, and neurochemical alterations drive cognitive impairment and neurodegeneration. I have extensive expertise in behavioral neuroscience assays, including the Morris Water Maze, alongside techniques such as PCR, nucleic acid and protein isolation, and flow cytometry. My work further explores the therapeutic potential of bioactive compounds, particularly seaweed-derived molecules, as modulators of neuroprotection and metabolic balance. Through a combination of experimental rigor and translational focus, I aim to generate mechanistic insights that can inform the development of targeted interventions for complex neurological disorders linked to metabolic diseases.",
+    fullBio: "I am a neurobiology researcher focused on unraveling the molecular and metabolic mechanisms underlying neurological dysfunction, particularly in the context of diabetes-associated brain injury. My research integrates in vivo rodent models with advanced biochemical and molecular approaches to investigate how oxidative stress, dysregulated lipid metabolism, and neurochemical alterations drive cognitive impairment and neurodegeneration. I have extensive expertise in behavioral neuroscience assays, including the Morris Water Maze, alongside techniques such as PCR, nucleic acid and protein isolation, and flow cytometry. My work further explores the therapeutic potential of bioactive compounds, particularly seaweed-derived molecules, as modulators of neuroprotection and metabolic balance. Through a combination of experimental rigor and translational focus, I aim to generate mechanistic insights that can inform the development of targeted interventions for complex neurological disorders linked to metabolic diseases.",
+    researchInterests: [
+      "Neurobiology & Metabolism",
+      "Diabetes-Associated Brain Injury",
+      "Oxidative Stress & Lipids",
+      "Behavioral Neuroscience"
+    ],
+    contact: {
+      email: "drannapureddysuvarna@gmail.com"
+    }
   },
   {
-    id: "phd-1",
-    name: "K. Rajesh Kumar",
-    role: "Senior Research Scholar (CSIR-JRF / SRF)",
-    qualification: "M.Sc. Biochemistry (UoH)",
-    category: "phd",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80",
-    bio: "Rajesh investigates the molecular crosstalk between endoplasmic reticulum stress, mitochondrial dysfunction, and autophagic flux in rodent MCAO stroke models. He conducts animal stereotaxy, infarct volumetric quantification, and Western blotting.",
-    researchInterests: ["MCAO Stroke Surgery", "UPR Signaling Cascades", "Autophagic Flux", "Infarct Morphometry"],
-    contact: { email: "rajesh.kumar@uohyd.ac.in" }
-  },
+    id: "aparna-v",
+    name: "Aparna V.",
+    role: "Project Associate",
+    qualification: "M.Sc.",
+    qualificationFull: "M.Sc. Molecular Biology / Life Sciences",
+    category: "staff",
+    avatar: "/images/aparna_v.jpg",
+    summaryBio: "Systems neurobiology researcher operating at the interface of in vivo stroke models and integrative multi-omics. Her research investigates how endoplasmic reticulum stress and metabolic dysfunction influence neurovascular injury through gut–brain axis interactions, combining MCAO rodent models and histological analysis with computational RNA-seq and microbiome profiling to guide novel therapeutic strategies for complex neurovascular disorders.",
+    fullBio: "I am a systems neurobiology researcher working at the interface of in vivo stroke models and integrative multi-omics. My research focuses on understanding how endoplasmic reticulum stress and metabolic dysfunction influence neurovascular injury through gut–brain axis interactions. I combine experimental approaches, including MCAO rodent models and histological analysis, with computational methods such as RNA-seq and microbiome profiling to uncover molecular mechanisms underlying stroke pathology. My goal is to develop mechanistic insights that can guide novel therapeutic strategies for complex neurovascular disorders.",
+    researchInterests: [
+      "Systems Neurobiology",
+      "ER Stress / UPR",
+      "In Vivo MCAO Models",
+      "Gut–Brain Axis"
+    ],
+    contact: {
+      email: "20ilmb21@uohyd.ac.in"
+    }
+  }
+];
+
+// Verified Alumni Members & Former Lab Trainees
+export const ALUMNI_MEMBERS = [
   {
-    id: "phd-2",
-    name: "Sneha Rao",
-    role: "Ph.D. Research Scholar (DBT-JRF / PMRF Fellow)",
-    qualification: "M.Sc. Biotechnology (JNU New Delhi)",
-    category: "phd",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&auto=format&fit=crop&q=80",
-    bio: "Sneha is pioneering our metagenomics and gut-brain axis experiments. She profiles longitudinal 16S rRNA sequencing of fecal microbiomes following ischemic stroke and monitors circulating cytokine dynamics.",
-    researchInterests: ["16S Metagenomics", "Gut Microbiota Profiling", "Multiplex Cytokines", "Bioinformatics"],
-    contact: { email: "sneha.rao@uohyd.ac.in" }
-  },
-  {
-    id: "phd-3",
-    name: "Mohammed Zaid",
-    role: "Ph.D. Research Scholar (UoH Research Fellow)",
-    qualification: "M.Tech Bioinformatics",
-    category: "phd",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80",
-    bio: "Zaid integrates systems biology with molecular neurobiology, focusing on the HIF1α–ZEB2–TRPC6 axis and distant organ crosstalk (brain-kidney axis) post-ischemia.",
-    researchInterests: ["Systems Neuroscience", "Brain-Kidney Crosstalk", "Network Modeling", "Transcriptomics"],
-    contact: { email: "zaid.bio@uohyd.ac.in" }
-  },
-  {
-    id: "msc-1",
-    name: "Sai Varshini P.",
-    role: "M.Sc. Systems Biology Project Trainee",
-    qualification: "B.Sc. Life Sciences",
-    category: "trainee",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop&q=80",
-    bio: "Varshini is analyzing short-chain fatty acid receptor (GPR41/43) expression networks across single-cell RNA-seq datasets in rodent stroke models.",
-    researchInterests: ["Single-cell RNA-seq", "G-protein Coupled Receptors", "Microbiome Metabolomics"],
-    contact: { email: "sai.varshini@uohyd.ac.in" }
-  },
-  {
-    id: "alumni-1",
+    id: "alumni-haritha",
     name: "Dr. P. Haritha",
     role: "Former Ph.D. Scholar",
-    qualification: "Ph.D. (2024)",
-    category: "alumni",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80",
-    bio: "Currently Postdoctoral Fellow at Max Planck Institute for Molecular Biomedicine, Germany. Worked on microglial phenotypes in ischemic stroke at NeuroXlab.",
-    researchInterests: ["Neuroinflammation", "Microglia", "In vivo Imaging"],
-    contact: { email: "alumni@neuroxlab.org" }
+    period: "Ph.D. Awarded 2024",
+    qualification: "Ph.D. in Life Sciences",
+    currentDestination: "Postdoctoral Fellow, Max Planck Institute for Molecular Biomedicine, Germany",
+    description: "Investigated microglial activation phenotypes, neuroinflammatory cascades, and ischemic stroke cell survival mechanisms at NeuroXLab.",
+    researchInterests: ["Neuroinflammation", "Microglial Dynamics", "In Vivo Stroke Imaging"],
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80"
   },
   {
-    id: "alumni-2",
+    id: "alumni-vikramaditya",
     name: "Vikramaditya S.",
     role: "Former M.Sc. Trainee",
-    qualification: "M.Sc. Systems Biology (2025)",
-    category: "alumni",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80",
-    bio: "Currently Ph.D. Scholar at National University of Singapore (NUS). Completed M.Sc. dissertation on non-coding RNA network modeling.",
-    researchInterests: ["Computational Genomics", "Non-coding RNAs"],
-    contact: { email: "alumni@neuroxlab.org" }
+    period: "M.Sc. Class of 2025",
+    qualification: "M.Sc. Systems Biology",
+    currentDestination: "Ph.D. Scholar, National University of Singapore (NUS)",
+    description: "Conducted his Master's thesis dissertation on computational network modeling of stroke-responsive long non-coding RNAs (lncRNAs) and epigenetic regulators at NeuroXLab.",
+    researchInterests: ["Computational Genomics", "Non-coding RNAs", "Systems Modeling"],
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80"
   }
 ];
 
