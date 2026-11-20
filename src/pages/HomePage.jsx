@@ -1443,38 +1443,12 @@ export default function HomePage({ setActiveTab }) {
         </div>
       </section>
 
-      {/* 2. Large Image Section of Group Photo with Hanger */}
+      {/* 2. Large Image Section of Group Photo */}
       <section
         id="group-photo-section"
-        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24 pt-6"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24"
       >
-        {/* Wall Hanging Mount & Cord Hanger Assembly */}
-        <div className="flex flex-col items-center justify-center -mb-3 relative z-20 pointer-events-none">
-          {/* Wall Hanging Brass Peg / Pin */}
-          <div className="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#E0B84C] via-[#C59B27] to-[#7A5B0B] shadow-md border border-amber-200 ring-2 ring-black/10 mx-auto" />
-
-          {/* Symmetrical Suspension Hanging Wires */}
-          <svg className="w-36 sm:w-48 h-7 overflow-visible -my-0.5" viewBox="0 0 160 28" fill="none">
-            <line x1="80" y1="2" x2="16" y2="26" stroke="#C59B27" strokeWidth="1.75" opacity="0.85" />
-            <line x1="80" y1="2" x2="144" y2="26" stroke="#C59B27" strokeWidth="1.75" opacity="0.85" />
-            <circle cx="80" cy="2" r="2.5" fill="#E0B84C" stroke="#7A5B0B" strokeWidth="0.75" />
-          </svg>
-
-          {/* The Hanger: NeuroXlab Research Team Plaque */}
-          <div className="relative inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-gradient-to-r from-[#8B1E24] via-[#A82931] to-[#8B1E24] text-white text-xs sm:text-sm font-bold border-2 border-[#C59B27] shadow-xl pointer-events-auto">
-            <Users className="w-4 h-4 text-[#E0B84C]" />
-            <span>NeuroXlab Research Team</span>
-          </div>
-
-          {/* Dual Brass Clips connecting Hanger to Photo Frame */}
-          <div className="flex justify-between w-40 sm:w-52 h-3.5 -mt-1">
-            <div className="w-2.5 h-full bg-gradient-to-b from-[#C59B27] to-[#977313] rounded-sm shadow-sm" />
-            <div className="w-2.5 h-full bg-gradient-to-b from-[#C59B27] to-[#977313] rounded-sm shadow-sm" />
-          </div>
-        </div>
-
-        {/* The Hanging Picture Frame */}
-        <div className="relative rounded-3xl overflow-hidden border-2 sm:border-[3px] border-[#C59B27]/50 shadow-2xl shadow-slate-900/50 group bg-[#0F2537]">
+        <div className="relative rounded-3xl overflow-hidden border-2 border-[#C59B27]/40 shadow-2xl group bg-[#0F2537]">
           {/* Main Large Group Photograph - 16:9 Ratio Preserved */}
           <div
             onClick={() => setShowGroupOverlay((prev) => !prev)}
@@ -1502,8 +1476,14 @@ export default function HomePage({ setActiveTab }) {
               }`}
             />
 
-            {/* Top Bar with ONLY the +lens Zoom Button in Corner */}
-            <div className="absolute top-3 right-3 sm:top-5 sm:right-5 z-10">
+            {/* Top Bar with Badge on Left and +lens Zoom Button on Right */}
+            <div className="absolute top-3 left-3 right-3 sm:top-5 sm:left-5 sm:right-5 flex items-center justify-between gap-2 z-10">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#8B1E24]/90 backdrop-blur-md text-white text-xs sm:text-sm font-semibold border border-[#C59B27]/50 shadow-lg">
+                <Users className="w-3.5 h-3.5 text-[#E0B84C]" />
+                NeuroXlab Research Team
+              </span>
+
+              {/* +lens Zoom Button in Corner */}
               <button
                 type="button"
                 onClick={(e) => {
