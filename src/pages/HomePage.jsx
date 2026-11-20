@@ -1471,17 +1471,15 @@ export default function HomePage({ setActiveTab }) {
 
             {/* Subtle Gradient Overlay - disappears smoothly on hover (desktop) or on tap (mobile) */}
             <div
-              className={`absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none transition-opacity duration-500 ease-in-out ${
-                showGroupOverlay ? 'opacity-100 sm:group-hover:opacity-0' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none transition-opacity duration-500 ease-in-out ${showGroupOverlay ? 'opacity-100 sm:group-hover:opacity-0' : 'opacity-0'
+                }`}
             />
 
             {/* Top Bar with Badges and Interactive Controls */}
             <div className="absolute top-3 left-3 right-3 sm:top-5 sm:left-5 sm:right-5 flex items-center justify-between gap-2 z-10">
               <span
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#8B1E24]/90 backdrop-blur-md text-white text-xs sm:text-sm font-semibold border border-[#C59B27]/50 shadow-lg transition-opacity duration-500 ${
-                  showGroupOverlay ? 'opacity-100 sm:group-hover:opacity-0' : 'opacity-0 sm:opacity-100'
-                }`}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#8B1E24]/90 backdrop-blur-md text-white text-xs sm:text-sm font-semibold border border-[#C59B27]/50 shadow-lg transition-opacity duration-500 ${showGroupOverlay ? 'opacity-100 sm:group-hover:opacity-0' : 'opacity-0 sm:opacity-100'
+                  }`}
               >
                 <Users className="w-3.5 h-3.5 text-[#E0B84C]" />
                 NeuroXlab Research Team
@@ -1534,9 +1532,8 @@ export default function HomePage({ setActiveTab }) {
 
             {/* Bottom Glassmorphic Caption Bar */}
             <div
-              className={`absolute bottom-0 inset-x-0 p-3 sm:p-6 bg-gradient-to-t from-black/95 via-black/75 to-transparent pointer-events-none transition-opacity duration-500 ease-in-out ${
-                showGroupOverlay ? 'opacity-100 sm:group-hover:opacity-0' : 'opacity-0'
-              }`}
+              className={`absolute bottom-0 inset-x-0 p-3 sm:p-6 bg-gradient-to-t from-black/95 via-black/75 to-transparent pointer-events-none transition-opacity duration-500 ease-in-out ${showGroupOverlay ? 'opacity-100 sm:group-hover:opacity-0' : 'opacity-0'
+                }`}
             >
               <div className="space-y-1 max-w-2xl">
                 <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono text-[#E0B84C]">
@@ -2283,27 +2280,27 @@ export default function HomePage({ setActiveTab }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {((cmsAnnouncements && cmsAnnouncements.length > 0)
             ? cmsAnnouncements.slice(0, 4).map(a => ({
-                id: a.id,
-                category: (a.category || 'news').replace('_', ' ').toUpperCase(),
-                badgeColor: a.category === 'grant_announcement'
-                  ? 'bg-[#8B1E24]/10 text-[#8B1E24] border border-[#8B1E24]/20'
-                  : a.category === 'recruitment'
-                    ? 'bg-emerald-50 text-emerald-800 border border-emerald-300/80'
-                    : 'bg-[#C59B27]/15 text-[#977313] border border-[#C59B27]/30',
-                date: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '2026',
-                title: a.title,
-                summary: a.summary,
-                linkText: a.destinationUrl ? 'Explore Link' : 'View Details',
-                action: () => {
-                  if (a.destinationUrl) {
-                    window.open(a.destinationUrl, '_blank', 'noopener,noreferrer');
-                  } else if (a.category === 'recruitment') {
-                    navigateTo('contact');
-                  } else {
-                    navigateTo('research');
-                  }
+              id: a.id,
+              category: (a.category || 'news').replace('_', ' ').toUpperCase(),
+              badgeColor: a.category === 'grant_announcement'
+                ? 'bg-[#8B1E24]/10 text-[#8B1E24] border border-[#8B1E24]/20'
+                : a.category === 'recruitment'
+                  ? 'bg-emerald-50 text-emerald-800 border border-emerald-300/80'
+                  : 'bg-[#C59B27]/15 text-[#977313] border border-[#C59B27]/30',
+              date: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '2026',
+              title: a.title,
+              summary: a.summary,
+              linkText: a.destinationUrl ? 'Explore Link' : 'View Details',
+              action: () => {
+                if (a.destinationUrl) {
+                  window.open(a.destinationUrl, '_blank', 'noopener,noreferrer');
+                } else if (a.category === 'recruitment') {
+                  navigateTo('contact');
+                } else {
+                  navigateTo('research');
                 }
-              }))
+              }
+            }))
             : NEWS_ITEMS
           ).map((item) => (
             <div

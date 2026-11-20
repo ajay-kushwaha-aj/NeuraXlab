@@ -677,7 +677,7 @@ export const TEAM_MEMBERS = [
 export const ALUMNI_MEMBERS = [
   {
     id: "alumni-haritha",
-    name: "Dr. P. Haritha",
+    name: "Dr. Ajay Kushwaha",
     role: "Former Ph.D. Scholar",
     period: "Ph.D. Awarded 2024",
     qualification: "Ph.D. in Life Sciences",
