@@ -1443,12 +1443,38 @@ export default function HomePage({ setActiveTab }) {
         </div>
       </section>
 
-      {/* 2. Large Image Section of Group Photo */}
+      {/* 2. Large Image Section of Group Photo with Hanger */}
       <section
         id="group-photo-section"
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24"
+        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24 pt-6"
       >
-        <div className="relative rounded-3xl overflow-hidden border-2 border-[#C59B27]/40 shadow-2xl group bg-[#0F2537]">
+        {/* Wall Hanging Mount & Cord Hanger Assembly */}
+        <div className="flex flex-col items-center justify-center -mb-3 relative z-20 pointer-events-none">
+          {/* Wall Hanging Brass Peg / Pin */}
+          <div className="w-3.5 h-3.5 rounded-full bg-gradient-to-br from-[#E0B84C] via-[#C59B27] to-[#7A5B0B] shadow-md border border-amber-200 ring-2 ring-black/10 mx-auto" />
+
+          {/* Symmetrical Suspension Hanging Wires */}
+          <svg className="w-36 sm:w-48 h-7 overflow-visible -my-0.5" viewBox="0 0 160 28" fill="none">
+            <line x1="80" y1="2" x2="16" y2="26" stroke="#C59B27" strokeWidth="1.75" opacity="0.85" />
+            <line x1="80" y1="2" x2="144" y2="26" stroke="#C59B27" strokeWidth="1.75" opacity="0.85" />
+            <circle cx="80" cy="2" r="2.5" fill="#E0B84C" stroke="#7A5B0B" strokeWidth="0.75" />
+          </svg>
+
+          {/* The Hanger: NeuroXlab Research Team Plaque */}
+          <div className="relative inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-gradient-to-r from-[#8B1E24] via-[#A82931] to-[#8B1E24] text-white text-xs sm:text-sm font-bold border-2 border-[#C59B27] shadow-xl pointer-events-auto">
+            <Users className="w-4 h-4 text-[#E0B84C]" />
+            <span>NeuroXlab Research Team</span>
+          </div>
+
+          {/* Dual Brass Clips connecting Hanger to Photo Frame */}
+          <div className="flex justify-between w-40 sm:w-52 h-3.5 -mt-1">
+            <div className="w-2.5 h-full bg-gradient-to-b from-[#C59B27] to-[#977313] rounded-sm shadow-sm" />
+            <div className="w-2.5 h-full bg-gradient-to-b from-[#C59B27] to-[#977313] rounded-sm shadow-sm" />
+          </div>
+        </div>
+
+        {/* The Hanging Picture Frame */}
+        <div className="relative rounded-3xl overflow-hidden border-2 sm:border-[3px] border-[#C59B27]/50 shadow-2xl shadow-slate-900/50 group bg-[#0F2537]">
           {/* Main Large Group Photograph - 16:9 Ratio Preserved */}
           <div
             onClick={() => setShowGroupOverlay((prev) => !prev)}
@@ -1469,71 +1495,38 @@ export default function HomePage({ setActiveTab }) {
               className="w-full h-full object-cover object-center group-hover:scale-[1.015] transition-transform duration-700 ease-out"
             />
 
-            {/* Subtle Gradient Overlay - disappears smoothly on hover (desktop) or on tap (mobile) */}
+            {/* Subtle Gradient Overlay - toggles smoothly when tapped */}
             <div
-              className={`absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none transition-opacity duration-500 ease-in-out ${showGroupOverlay ? 'opacity-100 sm:group-hover:opacity-0' : 'opacity-0'
-                }`}
+              className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none transition-opacity duration-500 ease-in-out ${
+                showGroupOverlay ? 'opacity-100' : 'opacity-0'
+              }`}
             />
 
-            {/* Top Bar with Badges and Interactive Controls */}
-            <div className="absolute top-3 left-3 right-3 sm:top-5 sm:left-5 sm:right-5 flex items-center justify-between gap-2 z-10">
-              <span
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#8B1E24]/90 backdrop-blur-md text-white text-xs sm:text-sm font-semibold border border-[#C59B27]/50 shadow-lg transition-opacity duration-500 ${showGroupOverlay ? 'opacity-100 sm:group-hover:opacity-0' : 'opacity-0 sm:opacity-100'
-                  }`}
+            {/* Top Bar with ONLY the +lens Zoom Button in Corner */}
+            <div className="absolute top-3 right-3 sm:top-5 sm:right-5 z-10">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openLightbox(
+                    '/images/group_photo.jpg',
+                    'NeuroXlab Research Group',
+                    'Principal investigator, postdoctoral scholars, doctoral fellows, and project dissertation trainees at the Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad.'
+                  );
+                }}
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#8B1E24]/90 hover:bg-[#8B1E24] backdrop-blur-md text-white flex items-center justify-center border border-[#C59B27]/60 shadow-lg active:scale-90 transition-all cursor-pointer"
+                title="Enlarge photo in full screen"
+                aria-label="Enlarge photo in full screen"
               >
-                <Users className="w-3.5 h-3.5 text-[#E0B84C]" />
-                NeuroXlab Research Team
-              </span>
-
-              {/* Action Buttons: Toggle Overlay on Mobile & Enlarge Lightbox */}
-              <div className="flex items-center gap-2">
-                {/* Mobile Tap-to-toggle indicator pill */}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowGroupOverlay((prev) => !prev);
-                  }}
-                  className="sm:hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/75 hover:bg-black/90 backdrop-blur-md text-white text-xs font-medium border border-white/30 shadow-lg active:scale-95 transition-all"
-                  aria-label={showGroupOverlay ? "Hide text to see full picture" : "Show information"}
-                >
-                  {showGroupOverlay ? (
-                    <>
-                      <EyeOff className="w-3.5 h-3.5 text-[#E0B84C]" />
-                      <span>Hide Text</span>
-                    </>
-                  ) : (
-                    <>
-                      <Eye className="w-3.5 h-3.5 text-[#E0B84C]" />
-                      <span>Show Info</span>
-                    </>
-                  )}
-                </button>
-
-                {/* Enlarge / Fullscreen Lightbox Button */}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    openLightbox(
-                      '/images/group_photo.jpg',
-                      'NeuroXlab Research Group',
-                      'Principal investigator, postdoctoral scholars, doctoral fellows, and project dissertation trainees at the Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad.'
-                    );
-                  }}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#8B1E24]/90 hover:bg-[#8B1E24] backdrop-blur-md text-white text-xs font-semibold border border-[#C59B27]/60 shadow-lg active:scale-95 transition-all cursor-pointer"
-                  title="Enlarge photo in full screen"
-                >
-                  <ZoomIn className="w-3.5 h-3.5 text-[#E0B84C]" />
-                  <span className="hidden sm:inline">Enlarge</span>
-                </button>
-              </div>
+                <ZoomIn className="w-4 h-4 text-[#E0B84C]" />
+              </button>
             </div>
 
-            {/* Bottom Glassmorphic Caption Bar */}
+            {/* Bottom Caption Bar - auto-hides when picture is tapped */}
             <div
-              className={`absolute bottom-0 inset-x-0 p-3 sm:p-6 bg-gradient-to-t from-black/95 via-black/75 to-transparent pointer-events-none transition-opacity duration-500 ease-in-out ${showGroupOverlay ? 'opacity-100 sm:group-hover:opacity-0' : 'opacity-0'
-                }`}
+              className={`absolute bottom-0 inset-x-0 p-4 sm:p-6 bg-gradient-to-t from-black/95 via-black/75 to-transparent pointer-events-none transition-opacity duration-500 ease-in-out ${
+                showGroupOverlay ? 'opacity-100' : 'opacity-0'
+              }`}
             >
               <div className="space-y-1 max-w-2xl">
                 <div className="flex items-center gap-2 text-[10px] sm:text-xs font-mono text-[#E0B84C]">
@@ -1544,35 +1537,10 @@ export default function HomePage({ setActiveTab }) {
                 <h3 className="font-serif text-base sm:text-2xl lg:text-3xl font-bold text-white leading-tight">
                   Systems &amp; Translational Neuroscience Group
                 </h3>
-                {/* On mobile, this heavy paragraph is hidden so it doesn't cover the photo; on desktop it shows */}
-                <p className="hidden sm:block text-xs sm:text-[13px] text-white/85 leading-relaxed">
+                <p className="text-xs sm:text-[13px] text-white/85 leading-relaxed line-clamp-2 sm:line-clamp-none">
                   Principal investigator, postdoctoral scholars, doctoral fellows, and project dissertation trainees at the Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad.
                 </p>
               </div>
-            </div>
-          </div>
-
-          {/* Mobile Information Drawer beneath Photo (clean, easy-to-read, never obscures the photo) */}
-          <div className="sm:hidden p-4 bg-[#081521] border-t border-white/10 text-white space-y-2">
-            <p className="text-xs text-white/85 leading-relaxed font-sans">
-              Principal investigator, postdoctoral scholars, doctoral fellows, and project dissertation trainees at the Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad.
-            </p>
-            <div className="pt-1 flex items-center justify-between text-[11px] text-[#E0B84C] font-mono">
-              <span>💡 Tap photo above to toggle text</span>
-              <button
-                type="button"
-                onClick={() =>
-                  openLightbox(
-                    '/images/group_photo.jpg',
-                    'NeuroXlab Research Group',
-                    'Principal investigator, postdoctoral scholars, doctoral fellows, and project dissertation trainees at the Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad.'
-                  )
-                }
-                className="font-semibold underline underline-offset-2 flex items-center gap-1"
-              >
-                <ZoomIn className="w-3 h-3" />
-                <span>Full View</span>
-              </button>
             </div>
           </div>
         </div>
