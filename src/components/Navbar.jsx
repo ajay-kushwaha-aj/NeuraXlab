@@ -143,10 +143,10 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
   return (
     <header ref={headerRef} className="sticky top-0 z-40 w-full shadow-md bg-white">
       {/* 1. Top Utility Bar in #8B1E24 with #C59B27 bottom border */}
-      <div className="bg-[#8B1E24] text-white border-b-2 border-[#C59B27] py-1.5 px-4 sm:px-6 lg:px-8 text-[12px] sm:text-[13px] select-none">
+      <div className="bg-[#8B1E24] text-white border-b border-[#C59B27]/40 py-1.5 px-4 sm:px-6 lg:px-8 text-[12px] sm:text-[13px] select-none">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-4">
           {/* Institutional Affirmation */}
-          <div className="flex items-center gap-2 text-center sm:text-left tracking-wide font-sans">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 sm:gap-2 text-center sm:text-left tracking-wide font-sans">
             <span className="font-semibold text-white">
               University of Hyderabad
             </span>
@@ -157,7 +157,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
           </div>
 
           {/* External Scholarly & Institutional Links */}
-          <div className="flex items-center gap-2.5 sm:gap-3 text-white/70">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-white/70">
             <a
               href="https://uohyd.ac.in"
               target="_blank"
@@ -216,7 +216,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
                   href="https://uohyd.ac.in/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 hover:scale-105 transition-transform shrink-0"
+                  className="flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 transition-opacity hover:opacity-90 shrink-0"
                   title="University of Hyderabad - Official Website"
                 >
                   <img
@@ -231,15 +231,15 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
 
                 <button
                   onClick={() => handleNavClick('home')}
-                  className="flex items-center gap-2 sm:gap-2.5 text-left group focus:outline-none"
+                  className="flex items-center gap-2 sm:gap-2.5 text-left group focus:outline-none cursor-pointer"
                   aria-label="NeuroXlab Home"
                 >
-                  <NeuroXlabLogo className="h-10 w-10 sm:h-11 sm:w-11 drop-shadow-sm group-hover:scale-105 transition-transform" />
+                  <NeuroXlabLogo className="h-10 w-10 sm:h-11 sm:w-11" />
                   <div className="flex flex-col">
-                    <span className="brand-title text-xl sm:text-2xl font-extrabold tracking-tight text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-none">
+                    <span className="brand-title text-xl sm:text-2xl font-bold tracking-tight text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-none">
                       Neuro<span className="text-[#C59B27]">X</span>lab
                     </span>
-                    <span className="text-xs font-semibold text-[#8B1E24] tracking-tight leading-tight hidden sm:block mt-0.5">
+                    <span className="text-xs font-medium text-slate-500 tracking-tight leading-tight hidden sm:block mt-0.5">
                       Systems &amp; Computational Biology
                     </span>
                   </div>
@@ -262,9 +262,9 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
                       >
                         <button
                           onClick={() => handleNavClick(item.id)}
-                          className={`inline-flex items-center gap-1.5 px-3 xl:px-3.5 py-2 rounded-lg text-sm xl:text-base font-semibold transition-all whitespace-nowrap ${isActive
-                            ? 'text-[#8B1E24] bg-[#8B1E24]/8 font-bold'
-                            : 'text-[#0F2537]/85 hover:text-[#8B1E24] hover:bg-[#FAF8F5]'
+                          className={`inline-flex items-center gap-1.5 px-3 xl:px-3.5 py-2 rounded-lg text-sm xl:text-base font-medium transition-colors whitespace-nowrap cursor-pointer ${isActive
+                            ? 'text-[#8B1E24] bg-[#8B1E24]/8 font-semibold'
+                            : 'text-slate-700 hover:text-[#8B1E24] hover:bg-slate-50'
                             }`}
                           aria-expanded={isHovered}
                           aria-haspopup="true"
@@ -272,18 +272,18 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
                           <span>{item.label}</span>
                           <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isHovered ? 'rotate-180 text-[#8B1E24]' : 'text-gray-400'}`} />
                           {isActive && (
-                            <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#8B1E24] rounded-full shadow-[0_1px_4px_rgba(139,30,36,0.6)]" />
+                            <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#8B1E24] rounded-full" />
                           )}
                         </button>
 
                         {/* Hover Dropdown Submenu */}
                         {isHovered && (
                           <div
-                            className="absolute left-0 mt-1 w-80 bg-white rounded-2xl shadow-xl border border-[#C59B27]/40 py-2.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
+                            className="absolute left-0 mt-1 w-80 bg-white rounded-xl shadow-lg border border-slate-200 py-2.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
                           >
-                            <div className="px-3.5 pb-2 mb-1 border-b border-gray-100 flex items-center justify-between text-xs font-mono font-semibold text-[#8B1E24]">
-                              <span>{item.label} Explorer</span>
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27]" />
+                            <div className="px-3.5 pb-2 mb-1 border-b border-gray-100 flex items-center justify-between text-xs font-mono font-medium text-slate-500">
+                              <span>{item.label}</span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#8B1E24]" />
                             </div>
                             {item.subItems.map((sub) => (
                               <button
@@ -292,10 +292,10 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
                                   e.stopPropagation();
                                   handleNavClick(item.id, sub.sectionId);
                                 }}
-                                className="w-full text-left px-3.5 py-2 text-sm font-medium text-[#0F2537] hover:bg-[#FAF8F5] hover:text-[#8B1E24] transition-colors flex items-center justify-between group/sub"
+                                className="w-full text-left px-3.5 py-2 text-sm font-normal text-slate-700 hover:bg-slate-50 hover:text-[#8B1E24] transition-colors flex items-center justify-between group/sub cursor-pointer"
                               >
                                 <span>{sub.label}</span>
-                                <ChevronRight className="w-4 h-4 text-gray-400 group-hover/sub:text-[#8B1E24] group-hover/sub:translate-x-0.5 transition-all" />
+                                <ChevronRight className="w-4 h-4 text-gray-400 group-hover/sub:text-[#8B1E24] group-hover/sub:translate-x-0.5 transition-transform" />
                               </button>
                             ))}
                           </div>
@@ -407,7 +407,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
       {
         activeTab !== 'home' && (
           <div className="bg-[#FAF8F5] border-b border-gray-200 py-2.5 px-4 sm:px-6 lg:px-8 xl:px-10 text-sm font-medium text-[#0F2537]/75">
-            <div className="max-w-[1536px] mx-auto flex items-center gap-2 overflow-x-auto">
+            <div className="max-w-[1536px] mx-auto flex items-center gap-2 overflow-x-auto w-full max-w-full">
               <button
                 onClick={() => handleNavClick('home')}
                 className="inline-flex items-center gap-1 text-[#0F2537]/60 hover:text-[#8B1E24] transition-colors"

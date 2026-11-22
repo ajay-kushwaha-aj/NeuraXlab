@@ -30,7 +30,8 @@ import {
   ArrowUpRight,
   Compass,
   Award,
-  Building2
+  Building2,
+  Layers
 } from 'lucide-react';
 import NeuroXlabLogo from '../components/NeuroXlabLogo';
 import ImageLightboxModal from '../components/ImageLightboxModal';
@@ -1337,90 +1338,92 @@ export default function HomePage({ setActiveTab }) {
       <section
         id="hero-section"
         style={{ minHeight: 'calc(100vh - var(--navbar-height, 104px))' }}
-        className="relative min-h-[calc(100vh-104px)] min-h-[calc(100dvh-104px)] flex flex-col justify-between items-center overflow-hidden bg-[#071725] text-white px-4 sm:px-6 lg:px-8 border-b-4 border-[#C59B27]"
+        className="relative min-h-[calc(100vh-104px)] min-h-[calc(100dvh-104px)] flex flex-col justify-between items-center overflow-hidden bg-[#071725] text-white px-4 sm:px-6 lg:px-8 border-b border-white/10"
       >
         {/* Interactive Branching Neuron & Impulse HTML5 Canvas */}
         <InteractiveNeuronHeroCanvas />
 
-        {/* Central Readability Vignette to keep the core typography crisp and unobstructed */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_54%_62%_at_50%_50%,_rgba(7,23,37,0.84)_0%,_rgba(7,23,37,0.45)_62%,_transparent_100%)] pointer-events-none z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#05101B]/85 via-transparent to-[#040D17]/40 pointer-events-none z-[1]" />
+        {/* Central Readability Vignette to keep typography calm and clear */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_56%_64%_at_50%_50%,_rgba(7,23,37,0.88)_0%,_rgba(7,23,37,0.5)_62%,_transparent_100%)] pointer-events-none z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#05101B]/90 via-transparent to-[#040D17]/40 pointer-events-none z-[1]" />
 
         {/* Top spacer to balance vertical layout */}
         <div className="w-full h-1 sm:h-2 shrink-0" aria-hidden="true" />
 
         {/* Centered Main Hero Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto py-6 sm:py-8 text-center space-y-6 sm:space-y-7 flex flex-col items-center justify-center my-auto">
-          {/* Institutional Crest Shield & NeuroXlab Emblem */}
-          <div className="flex items-center justify-center gap-4 sm:gap-6 mb-1">
+        <div className="relative z-10 w-full max-w-5xl mx-auto py-8 sm:py-10 text-center space-y-6 flex flex-col items-center justify-center my-auto">
+          {/* Institutional Affirmation & Identity */}
+          <div className="flex items-center justify-center gap-3.5 mb-1">
             <a
               href="https://uohyd.ac.in/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center h-20 w-20 sm:h-22 sm:w-22 rounded-xl overflow-hidden border-2 border-[#C59B27] bg-white shadow-xl hover:scale-105 transition-transform duration-300 shrink-0 p-2"
+              className="flex items-center justify-center h-14 w-14 sm:h-16 sm:w-16 rounded-xl overflow-hidden border border-white/20 bg-white/95 p-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-white/40 cursor-pointer shrink-0"
               title="University of Hyderabad (Institution of Eminence)"
             >
               <img
                 src={uohSeal}
                 alt="University of Hyderabad Official Crest Seal"
-                className="h-full w-full object-contain"
+                className="h-full w-full object-contain transition-transform duration-200 hover:scale-105"
               />
             </a>
 
-            {/* Vertical divider line */}
-            <div className="h-12 sm:h-14 w-px bg-white/30 mx-1 sm:mx-1.5" aria-hidden="true" />
+            <div className="h-9 w-px bg-white/20" aria-hidden="true" />
 
-            {/* Official NeuroXlab Emblem */}
-            <NeuroXlabLogo className="h-20 w-20 sm:h-22 sm:w-22" withFrame={true} />
+            <div
+              className="h-14 w-14 sm:h-16 sm:w-16 rounded-xl overflow-hidden border border-white/20 bg-white p-2 flex items-center justify-center shrink-0 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:border-white/40 cursor-pointer group"
+              title="NeuroXlab Emblem"
+            >
+              <NeuroXlabLogo className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-105" withFrame={false} />
+            </div>
           </div>
 
-          {/* Departmental & Institutional Identity Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0B1E2D]/75 backdrop-blur-md border border-[#C59B27]/45 text-xs sm:text-sm text-white/95 shadow-md">
-            <span className="font-semibold text-[#E7B944]">Department of Systems and Computational Biology</span>
-            <span className="text-white/40">•</span>
-            <span className="text-[#D1DCE5]">School of Life Sciences, University of Hyderabad</span>
+          {/* Departmental & Institutional Identity Stamp */}
+          <div className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-1 rounded-2xl sm:rounded-full bg-white/[0.06] backdrop-blur-md border border-white/15 text-[11px] sm:text-xs text-slate-300 max-w-full text-center leading-normal">
+            <span className="font-medium text-[#C59B27]">Department of Systems and Computational Biology</span>
+            <span className="text-white/30 hidden sm:inline">•</span>
+            <span className="text-slate-300">School of Life Sciences, University of Hyderabad</span>
           </div>
 
           {/* Main Editorial Hero Headings */}
-          <div className="space-y-3 sm:space-y-4 max-w-4xl mx-auto">
-            <h1 className="brand-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-none drop-shadow-xl">
-              Neuro<span className="text-[#E7B944] drop-shadow-[0_0_25px_rgba(231,185,68,0.65)]">X</span>lab
+          <div className="space-y-3 max-w-3xl mx-auto">
+            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-none">
+              Neuro<span className="text-[#C59B27]">X</span>lab
             </h1>
 
-            {/* Authentic Motto from Old Website */}
-            <p className="font-serif italic text-base sm:text-lg md:text-xl text-[#E7B944]/95 font-medium tracking-wide drop-shadow-sm">
+            <p className="font-serif italic text-base sm:text-lg md:text-xl text-slate-200 font-normal tracking-wide">
               "{LAB_INFO.motto}"
             </p>
 
-            <p className="text-sm sm:text-base lg:text-[17px] text-[#D1DCE5] max-w-[780px] mx-auto font-sans font-normal leading-[1.6]">
-              Investigating the microbiota-gut-brain axis, organellar ER stress, post-stroke epigenetics, and nano-formulated therapeutics for ischemic cerebral recovery.
+            <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto font-sans font-normal leading-relaxed pt-1">
+              Investigating the microbiota–gut–brain axis, organellar ER stress, post-stroke epigenetics, and nano-formulated therapeutics for ischemic cerebral recovery.
             </p>
           </div>
 
           {/* Primary Action Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <button
               onClick={() => navigateTo('research')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-[#8B1E24] hover:bg-[#A82931] border border-[#E7B944]/40 shadow-[0_0_24px_rgba(139,30,36,0.55)] hover:shadow-[0_0_30px_rgba(168,41,49,0.75)] transition-all active:scale-95 group cursor-pointer min-h-[44px]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-white bg-[#8B1E24] hover:bg-[#73181D] border border-white/15 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer min-h-[44px] group"
             >
-              <span>Explore Our Research</span>
-              <ArrowRight className="w-4 h-4 text-[#E7B944] group-hover:translate-x-1 transition-transform" />
+              <span>Explore research</span>
+              <ArrowRight className="w-4 h-4 text-[#C59B27] group-hover:translate-x-1 transition-transform duration-200" />
             </button>
 
             <button
               onClick={() => navigateTo('team')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 transition-all hover:border-[#E7B944] cursor-pointer min-h-[44px]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white bg-white/[0.08] hover:bg-white/[0.16] hover:border-white/30 backdrop-blur-md border border-white/15 hover:shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer min-h-[44px]"
             >
-              <Users className="w-4 h-4 text-[#E7B944]" />
-              <span>Meet the Team</span>
+              <Users className="w-4 h-4 text-slate-300" />
+              <span>Meet the team</span>
             </button>
 
             <button
               onClick={() => navigateTo('publications')}
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium text-white/85 hover:text-[#E7B944] transition-colors group cursor-pointer min-h-[44px]"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium text-slate-300 hover:text-white hover:translate-x-0.5 transition-all duration-200 cursor-pointer min-h-[44px] group"
             >
               <span>Publications</span>
-              <ArrowUpRight className="w-4 h-4 text-[#E7B944] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-200" />
             </button>
           </div>
         </div>
@@ -1432,13 +1435,13 @@ export default function HomePage({ setActiveTab }) {
               const elem = document.getElementById('group-photo-section');
               if (elem) elem.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="inline-flex flex-col items-center text-white/60 hover:text-[#E7B944] transition-colors focus:outline-none group cursor-pointer p-2 min-h-[44px]"
+            className="inline-flex flex-col items-center text-slate-400 hover:text-slate-200 transition-colors focus:outline-none cursor-pointer p-2 min-h-[44px]"
             aria-label="Scroll to group photo section"
           >
-            <span className="text-xs uppercase font-mono tracking-widest text-[#E7B944] mb-1 font-semibold">
-              Explore Lab & Research
+            <span className="text-xs font-mono tracking-wider text-slate-400 mb-1">
+              Explore lab &amp; research
             </span>
-            <ChevronDown className="w-4 h-4 animate-bounce text-[#E7B944]" />
+            <ChevronDown className="w-4 h-4 text-slate-400" />
           </button>
         </div>
       </section>
@@ -1531,17 +1534,17 @@ export default function HomePage({ setActiveTab }) {
         id="pi-spotlight-section"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24"
       >
-        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
           {/* Top Accent Strip */}
-          <div className="bg-[#8B1E24] text-white px-6 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#C59B27]">
+          <div className="bg-[#8B1E24] text-white px-6 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-3 border-b border-white/10">
             <div className="flex items-center gap-2">
-              <Award className="w-4 h-4 text-[#E0B84C]" />
-              <span className="text-xs uppercase tracking-widest text-[#E0B84C] font-mono font-semibold">
-                PRINCIPAL INVESTIGATOR &amp; LAB DIRECTOR
+              <Award className="w-4 h-4 text-[#C59B27]" />
+              <span className="text-xs tracking-wider text-slate-100 font-mono font-medium">
+                Principal Investigator &amp; Lab Director
               </span>
             </div>
-            <span className="text-xs font-mono bg-white/10 px-2.5 py-0.5 rounded border border-white/20 text-white font-medium">
-              University of Hyderabad (IoE)
+            <span className="text-xs font-mono bg-white/10 px-2.5 py-0.5 rounded text-white/90 font-normal">
+              University of Hyderabad
             </span>
           </div>
 
@@ -1557,20 +1560,20 @@ export default function HomePage({ setActiveTab }) {
                       'Principal Investigator & Lab Director — Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad'
                     )
                   }
-                  className="relative w-48 sm:w-56 aspect-[3/4] rounded-2xl overflow-hidden border-2 border-[#C59B27]/70 shadow-lg bg-[#0F2537] group cursor-pointer"
+                  className="relative w-48 sm:w-56 aspect-[3/4] rounded-xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-200 bg-slate-900 group cursor-pointer"
                   title="Click to enlarge portrait"
                 >
                   <img
                     src={pi.avatar || pi.avatarUrl || '/images/dr_prasuja_nakka.jpg'}
                     alt={pi.name || pi.fullName || 'Dr. Venkata Prasuja Nakka, Ph.D.'}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                     onError={(e) => {
                       e.target.src = '/images/dr_prasuja_nakka.jpg';
                     }}
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-1.5 text-xs font-medium">
-                    <ZoomIn className="w-4 h-4 text-[#E0B84C]" />
-                    <span>Enlarge Portrait</span>
+                    <ZoomIn className="w-4 h-4 text-slate-200" />
+                    <span>Enlarge portrait</span>
                   </div>
                 </div>
               </div>
@@ -1578,37 +1581,37 @@ export default function HomePage({ setActiveTab }) {
               {/* Right: Bio & Credentials */}
               <div className="md:col-span-8 lg:col-span-9 space-y-4">
                 <div>
-                  <div className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#8B1E24] bg-[#8B1E24]/10 px-2.5 py-1 rounded-md mb-2">
+                  <div className="inline-flex items-center gap-2 text-xs font-mono font-medium text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded mb-2">
                     <span>Department of Systems and Computational Biology</span>
                   </div>
-                  <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0F2537]">
-                    Dr. Venkata Prasuja Nakka, <span className="text-[#8B1E24] text-xl sm:text-2xl font-normal">Ph.D.</span>
+                  <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900">
+                    Dr. Venkata Prasuja Nakka, <span className="text-slate-600 text-xl sm:text-2xl font-normal">Ph.D.</span>
                   </h3>
                   <p className="text-sm font-semibold text-[#8B1E24] mt-0.5">
                     Level-11 UGC Assistant Professor &amp; Principal Investigator
                   </p>
-                  <p className="text-xs text-slate-500 font-medium">
+                  <p className="text-xs text-slate-500 font-normal">
                     School of Life Sciences, University of Hyderabad
                   </p>
                 </div>
 
-                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
                   Dr. Venkata Prasuja Nakka directs the Systems and Translational Neurobiology Laboratory (NeuroXLab). His research investigates the molecular and cellular mechanisms of cerebral ischemia, focusing on endoplasmic reticulum (ER) stress, unfolded protein response (UPR) pathways, non-coding RNAs, and the microbiota–gut–brain axis. With doctoral training from CSIR-CDRI / JNU and international postdoctoral experience at the University of Wisconsin–Madison and the National University of Singapore, he spearheads extramurally funded projects (ICMR, ANRF) translating experimental neurobiology into therapeutic interventions.
                 </p>
 
                 <div className="flex flex-wrap items-center gap-3 pt-2">
                   <button
                     onClick={() => navigateTo('team')}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-[#8B1E24] hover:bg-[#A82931] shadow transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-white bg-[#8B1E24] hover:bg-[#73181D] hover:shadow-sm hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer group"
                   >
-                    <span>Explore Group Leader Dossier</span>
-                    <ArrowRight className="w-4 h-4 text-[#E0B84C]" />
+                    <span>View group leader profile</span>
+                    <ArrowRight className="w-4 h-4 text-[#C59B27] group-hover:translate-x-1 transition-transform duration-200" />
                   </button>
                   <button
                     onClick={() => navigateTo('research')}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-[#0F2537] bg-[#FAF8F5] hover:bg-slate-100 border border-slate-200 shadow-xs transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 hover:shadow-xs hover:-translate-y-0.5 active:translate-y-0 border border-slate-200 transition-all duration-200 cursor-pointer"
                   >
-                    <span>View Research Areas</span>
+                    <span>View research areas</span>
                   </button>
                 </div>
               </div>
@@ -1617,33 +1620,32 @@ export default function HomePage({ setActiveTab }) {
         </div>
       </section>
 
-      {/* 3. Research Area / About NeuroX Lab & Golgi-Cox Stained Neuron (Authentic Old Website Section) */}
+      {/* 3. Research Area / About NeuroX Lab & Golgi-Cox Stained Neuron */}
       <section
         id="about-section"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24"
       >
-        {/* Standardized Section Heading: Research Area */}
-        <div className="space-y-3 border-b-2 border-slate-200 pb-5">
+        <div className="space-y-3 border-b border-slate-200 pb-5">
           <div className="flex items-center justify-between gap-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
-              <Activity className="w-3.5 h-3.5 text-[#C59B27]" />
-              <span>Scientific Foundation</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+              <Activity className="w-3.5 h-3.5 text-slate-500" />
+              <span>Scientific foundation</span>
             </div>
             <button
               onClick={() => navigateTo('research')}
-              className="text-xs font-bold text-[#8B1E24] hover:text-[#A82931] hover:underline inline-flex items-center gap-1 cursor-pointer"
+              className="text-xs font-semibold text-[#8B1E24] hover:underline inline-flex items-center gap-1 cursor-pointer"
             >
-              <span>Explore Full Research Dossier</span>
+              <span>Explore research dossier</span>
               <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F2537] tracking-tight">
-                Research Area
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                Research area
               </h2>
-              <div className="w-20 h-1 bg-[#8B1E24] rounded-full mt-2" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
             <p className="text-sm sm:text-base text-slate-600 max-w-xl font-normal leading-relaxed">
               Deciphering ischemic neurovascular injury, organelle stress cascades, and gut–brain crosstalk to uncover therapeutic targets.
@@ -1651,22 +1653,20 @@ export default function HomePage({ setActiveTab }) {
           </div>
         </div>
 
-        <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-xl overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
             {/* Left Column: Scientific Architecture & Disease Visual Stage */}
-            <div className="flex flex-col justify-between bg-[#FAF8F5] rounded-2xl p-5 sm:p-6 border border-slate-200/80 shadow-xs h-full">
-              {/* Top Sub-Header: aligns with right side header */}
+            <div className="flex flex-col justify-between bg-slate-50/70 rounded-xl p-5 border border-slate-200/80 h-full">
               <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-200/80">
-                <div className="inline-flex items-center gap-2 text-xs font-bold text-[#8B1E24] uppercase tracking-wider">
-                  <Activity className="w-3.5 h-3.5 text-[#C59B27]" />
-                  <span>Scientific Architecture</span>
+                <div className="inline-flex items-center gap-2 text-xs font-medium text-slate-700">
+                  <Activity className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Scientific architecture</span>
                 </div>
-                <span className="text-[11px] font-mono text-slate-400 font-semibold uppercase">
-                  High-Res Schematic
+                <span className="text-[11px] font-mono text-slate-500">
+                  High-res schematic
                 </span>
               </div>
 
-              {/* Main Image Stage */}
               <div className="my-4 flex-1 flex flex-col justify-center">
                 <div
                   onClick={() =>
@@ -1676,64 +1676,62 @@ export default function HomePage({ setActiveTab }) {
                       'High-resolution scientific visualization illustrating ischemic neurovascular crosstalk, neuronal stress signaling, synaptic architecture, and neuroinflammatory microglia-macrophage dynamics.'
                     )
                   }
-                  className="relative aspect-[4/3] w-full rounded-xl overflow-hidden border-2 border-[#C59B27]/40 shadow-md bg-slate-900 group cursor-pointer"
+                  className="relative aspect-[4/3] w-full rounded-lg overflow-hidden border border-slate-200 bg-slate-900 group cursor-pointer"
                   title="Click to enlarge scientific visual"
                 >
                   <img
                     src="/images/neurobiology_stroke_disease.jpg"
                     alt="Neurovascular crosstalk, cellular stress signaling, and microglia–macrophage dynamics in stroke neurobiology"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover object-center transition-opacity group-hover:opacity-95"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4">
-                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#0F2537]/90 text-white text-xs font-semibold backdrop-blur-md border border-[#C59B27]/40 shadow-lg">
-                      <ZoomIn className="w-3.5 h-3.5 text-[#E0B84C]" />
-                      Enlarge Visual
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-4">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 text-white text-xs font-medium backdrop-blur-md border border-white/20">
+                      <ZoomIn className="w-3.5 h-3.5 text-slate-300" />
+                      Enlarge visual
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Bottom Caption & Model Highlights */}
               <div className="space-y-3 pt-3 border-t border-slate-200/80">
-                <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-sans">
-                  <strong className="text-[#0F2537] font-semibold">Figure: </strong>
+                <p className="text-xs text-slate-600 leading-relaxed font-sans">
+                  <strong className="text-slate-900 font-semibold">Figure: </strong>
                   Neurovascular crosstalk, cellular stress signaling cascades, and microglia–macrophage phenotypic dynamics in ischemic stroke neurobiology.
                 </p>
 
                 <div className="grid grid-cols-2 gap-2 text-center">
-                  <div className="px-3 py-2 rounded-xl bg-white border border-slate-200/70">
-                    <span className="text-[10px] font-mono font-bold text-slate-400 uppercase block">Model Systems</span>
-                    <span className="text-xs font-bold text-[#0F2537]">Preclinical MCAO</span>
+                  <div className="px-3 py-2 rounded-lg bg-white border border-slate-200">
+                    <span className="text-[10px] font-mono text-slate-500 block">Model systems</span>
+                    <span className="text-xs font-semibold text-slate-900">Preclinical MCAO</span>
                   </div>
-                  <div className="px-3 py-2 rounded-xl bg-white border border-slate-200/70">
-                    <span className="text-[10px] font-mono font-bold text-slate-400 uppercase block">Core Focus</span>
-                    <span className="text-xs font-bold text-[#8B1E24]">Neuroprotection</span>
+                  <div className="px-3 py-2 rounded-lg bg-white border border-slate-200">
+                    <span className="text-[10px] font-mono text-slate-500 block">Core focus</span>
+                    <span className="text-xs font-semibold text-[#8B1E24]">Neuroprotection</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Right Column: Mission Text & Core Research Pillars */}
-            <div className="flex flex-col justify-between space-y-6 text-[#0F2537] h-full">
+            <div className="flex flex-col justify-between space-y-6 text-slate-900 h-full">
               <div className="space-y-4">
-                {/* Top Sub-Header: aligns with left side header */}
                 <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-200/80">
-                  <div className="inline-flex items-center gap-2 text-xs font-bold text-[#8B1E24] uppercase tracking-wider">
-                    <Sparkles className="w-3.5 h-3.5 text-[#C59B27]" />
-                    <span>Mission & Overview</span>
+                  <div className="inline-flex items-center gap-2 text-xs font-medium text-slate-700">
+                    <Layers className="w-3.5 h-3.5 text-slate-500" />
+                    <span>Mission &amp; overview</span>
                   </div>
-                  <span className="text-[11px] font-mono text-slate-400 font-semibold uppercase">
+                  <span className="text-[11px] font-mono text-slate-500">
                     Dr. Nakka Laboratory
                   </span>
                 </div>
 
-                <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0F2537] leading-tight">
-                  Understanding the Neurobiology of Disease & Stroke
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 leading-tight">
+                  Understanding the neurobiology of disease and stroke
                 </h3>
 
-                <div className="space-y-3.5 text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
+                <div className="space-y-3.5 text-slate-600 text-sm leading-relaxed font-normal">
                   <p>
-                    <strong className="text-[#8B1E24] font-semibold">NeuroX Lab</strong> investigates the molecular and cellular mechanisms underlying stroke and related neurological disorders, with a focus on oxidative stress, neuroinflammation, cellular stress signaling, and microglia–macrophage dynamics.
+                    <strong className="text-slate-900 font-semibold">NeuroXlab</strong> investigates the molecular and cellular mechanisms underlying stroke and related neurological disorders, with a focus on oxidative stress, neuroinflammation, cellular stress signaling, and microglia–macrophage dynamics.
                   </p>
 
                   <p>
@@ -1746,27 +1744,27 @@ export default function HomePage({ setActiveTab }) {
                 </div>
               </div>
 
-              {/* Quick scientific focus pills in a structured 2x2 grid */}
+              {/* Quick scientific focus pills */}
               <div className="space-y-2.5 pt-4 border-t border-slate-100">
-                <span className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
-                  Primary Thrust Areas
+                <span className="text-[11px] font-mono text-slate-500 block">
+                  Primary thrust areas
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-medium">
-                  <div className="px-3 py-2 rounded-xl bg-[#FAF8F5] border border-slate-200/80 text-[#0F2537] font-semibold flex items-center gap-2">
+                  <div className="px-3 py-2 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-800 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8B1E24] shrink-0" />
-                    <span className="truncate">Stroke & Neuroinflammation</span>
+                    <span className="truncate">Stroke &amp; neuroinflammation</span>
                   </div>
-                  <div className="px-3 py-2 rounded-xl bg-[#FAF8F5] border border-slate-200/80 text-[#0F2537] font-semibold flex items-center gap-2">
+                  <div className="px-3 py-2 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-800 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] shrink-0" />
-                    <span className="truncate">Gut–Brain Axis & Multi-Omics</span>
+                    <span className="truncate">Gut–brain axis &amp; multi-omics</span>
                   </div>
-                  <div className="px-3 py-2 rounded-xl bg-[#FAF8F5] border border-slate-200/80 text-[#0F2537] font-semibold flex items-center gap-2">
+                  <div className="px-3 py-2 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-800 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#8B1E24] shrink-0" />
-                    <span className="truncate">Nanomedicine & Drug Delivery</span>
+                    <span className="truncate">Nanomedicine &amp; drug delivery</span>
                   </div>
-                  <div className="px-3 py-2 rounded-xl bg-[#FAF8F5] border border-slate-200/80 text-[#0F2537] font-semibold flex items-center gap-2">
+                  <div className="px-3 py-2 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-800 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#C59B27] shrink-0" />
-                    <span className="truncate">Neuroprotection & Translation</span>
+                    <span className="truncate">Neuroprotection &amp; translation</span>
                   </div>
                 </div>
               </div>
@@ -1780,28 +1778,27 @@ export default function HomePage({ setActiveTab }) {
         id="research-directions-section"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24"
       >
-        {/* Section Header with Category Pill & Lead Scientific Rationale */}
-        <div className="space-y-3 border-b-2 border-slate-200 pb-5">
+        <div className="space-y-3 border-b border-slate-200 pb-5">
           <div className="flex items-center justify-between gap-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
-              <Compass className="w-3.5 h-3.5 text-[#C59B27]" />
-              <span>Investigative Portfolio</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+              <Compass className="w-3.5 h-3.5 text-slate-500" />
+              <span>Research directions</span>
             </div>
             <button
               onClick={() => navigateTo('research')}
-              className="text-xs font-bold text-[#8B1E24] hover:text-[#A82931] hover:underline inline-flex items-center gap-1 cursor-pointer"
+              className="text-xs font-semibold text-[#8B1E24] hover:underline inline-flex items-center gap-1 cursor-pointer"
             >
-              <span>Explore Full Research Dossier</span>
+              <span>Explore research dossier</span>
               <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F2537] tracking-tight">
-                Research Directions
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                Research directions
               </h2>
-              <div className="w-20 h-1 bg-[#8B1E24] rounded-full mt-2" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
             <p className="text-sm sm:text-base text-slate-600 max-w-xl font-normal leading-relaxed">
               Our research integrates experimental neuroscience with complementary computational approaches and engineered nanoformulations to advance therapeutics for stroke and CNS disorders.
@@ -1810,48 +1807,45 @@ export default function HomePage({ setActiveTab }) {
         </div>
 
         {/* 6 Clearly Differentiated Research Direction Themes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {RESEARCH_DIRECTIONS.map((theme) => {
             const Icon = theme.icon;
             return (
               <div
                 key={theme.id}
                 onClick={() => navigateTo('research', theme.targetSection)}
-                className="group relative bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 hover:border-[#8B1E24]/60 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 cursor-pointer min-h-[260px]"
+                className="group relative bg-white rounded-2xl p-6 border border-slate-200 hover:border-[#8B1E24]/35 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between overflow-hidden cursor-pointer min-h-[250px]"
               >
-                {/* Top subtle hover accent bar */}
-                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#8B1E24] via-[#C59B27] to-[#8B1E24] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
                 <div className="space-y-4">
                   {/* Icon & Theme Number */}
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 text-[#8B1E24] group-hover:bg-[#8B1E24] group-hover:text-white group-hover:border-[#8B1E24] flex items-center justify-center transition-all duration-300 shadow-xs">
-                      <Icon className="w-6 h-6" />
+                    <div className="w-10 h-10 rounded-lg bg-slate-100 text-slate-700 group-hover:bg-[#8B1E24]/10 group-hover:text-[#8B1E24] flex items-center justify-center transition-all duration-200">
+                      <Icon className="w-5 h-5 transition-transform duration-200 group-hover:scale-110" />
                     </div>
-                    <span className="text-xs font-mono font-bold text-slate-400 group-hover:text-[#C59B27] transition-colors tracking-widest">
+                    <span className="text-xs font-mono text-slate-400 group-hover:text-[#8B1E24] transition-colors">
                       {theme.num}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-serif text-lg sm:text-xl font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                  <h3 className="font-serif text-lg font-bold text-slate-900 group-hover:text-[#8B1E24] transition-colors leading-snug">
                     {theme.title}
                   </h3>
 
-                  {/* Scientific Explanation - Un-clamped, comfortable readable font scale */}
+                  {/* Scientific Explanation */}
                   <p className="text-sm text-slate-600 leading-relaxed font-normal">
                     {theme.description}
                   </p>
                 </div>
 
                 {/* Link to Further Details */}
-                <div className="pt-4 mt-5 border-t border-slate-100 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B1E24] group-hover:text-[#A82931] transition-colors">
+                <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B1E24]">
                     <span>{theme.linkText}</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-200" />
                   </span>
-                  <span className="text-[10px] font-mono text-slate-400 uppercase font-semibold">
-                    Dossier Pillar
+                  <span className="text-[10px] font-mono text-slate-400">
+                    Dossier pillar
                   </span>
                 </div>
               </div>
@@ -1860,29 +1854,28 @@ export default function HomePage({ setActiveTab }) {
         </div>
       </section>
 
-      {/* 5. Research Funding & Support - Separated Active, Completed & Institutional Schemes */}
+      {/* 5. Research Funding & Support */}
       <section
         id="research-funding-section"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24"
       >
-        {/* Section Header */}
-        <div className="space-y-3 border-b-2 border-slate-200 pb-5">
+        <div className="space-y-3 border-b border-slate-200 pb-5">
           <div className="flex items-center justify-between gap-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
-              <Award className="w-3.5 h-3.5 text-[#C59B27]" />
-              <span>Grants & Institutional Support</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+              <Award className="w-3.5 h-3.5 text-slate-500" />
+              <span>Funding &amp; institutional support</span>
             </div>
-            <span className="text-xs font-mono text-slate-400 font-semibold uppercase tracking-wider hidden sm:inline">
-              Apex National Sponsoring Bodies
+            <span className="text-xs font-mono text-slate-500 hidden sm:inline">
+              Apex national sponsoring bodies
             </span>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div className="shrink-0">
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-extrabold text-[#0F2537] tracking-tight whitespace-nowrap">
-                Research Funding & Support
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight sm:whitespace-nowrap whitespace-normal">
+                Research funding &amp; support
               </h2>
-              <div className="w-20 h-1 bg-[#8B1E24] rounded-full mt-2" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
             <p className="text-sm sm:text-base text-slate-600 max-w-xl font-normal leading-relaxed">
               Competitive extramural research awards, completed scientific investigations, and national faculty infrastructure schemes backing NeuroXlab investigations.
@@ -1893,15 +1886,13 @@ export default function HomePage({ setActiveTab }) {
         {/* Category 1: Active Extramural Award (Featured Card) */}
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 rounded-full">
-              Active Extramural Research Award (2026–2029)
+            <span className="w-2 h-2 rounded-full bg-emerald-600" />
+            <span className="text-xs font-mono font-medium text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+              Active extramural grant (2026–2029)
             </span>
           </div>
 
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border-2 border-emerald-600/30 hover:border-emerald-600 shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-600 via-[#C59B27] to-emerald-600" />
-
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
               {/* Left Column: Agency Logo Stage & Core Metadata */}
               <div className="lg:col-span-4 space-y-4">
@@ -1909,13 +1900,13 @@ export default function HomePage({ setActiveTab }) {
                   href={activeAward.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="h-28 sm:h-32 w-full rounded-2xl bg-[#FAF8F5] border border-slate-200/80 p-4 flex items-center justify-center hover:bg-white hover:border-[#C59B27]/70 hover:shadow-md transition-all duration-300 group/logo cursor-pointer block"
+                  className="h-28 sm:h-32 w-full rounded-xl bg-slate-50 border border-slate-200 p-4 flex items-center justify-center hover:bg-white hover:border-slate-300 transition-colors block cursor-pointer"
                   title={`Visit ${activeAward.fullName} Official Website`}
                 >
                   <img
                     src={activeAward.logo}
                     alt={activeAward.fullName}
-                    className="max-h-20 sm:max-h-24 max-w-[85%] object-contain group-hover/logo:scale-105 transition-transform duration-300 mx-auto"
+                    className="max-h-20 sm:max-h-24 max-w-[85%] object-contain mx-auto"
                     onError={(e) => {
                       e.target.src = '/images/uoh_seal.png';
                     }}
@@ -1923,7 +1914,7 @@ export default function HomePage({ setActiveTab }) {
                 </a>
 
                 <div className="space-y-1">
-                  <h3 className="font-serif text-lg font-bold text-[#0F2537]">
+                  <h3 className="font-serif text-lg font-bold text-slate-900">
                     {activeAward.fullName}
                   </h3>
                   <p className="text-xs text-slate-500 font-medium leading-relaxed">
@@ -1933,19 +1924,19 @@ export default function HomePage({ setActiveTab }) {
 
                 {/* Key Metrics: Amount & Period */}
                 <div className="grid grid-cols-2 gap-2 pt-1">
-                  <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/60">
-                    <span className="text-[10px] font-mono text-emerald-800 uppercase font-bold block">
-                      Grant Outlay
+                  <div className="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                    <span className="text-[10px] font-mono text-slate-500 uppercase font-semibold block">
+                      Grant outlay
                     </span>
-                    <span className="text-sm font-bold text-emerald-950 font-sans">
+                    <span className="text-sm font-bold text-slate-900 tabular-nums">
                       ₹38.5 Lakhs
                     </span>
                   </div>
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
-                    <span className="text-[10px] font-mono text-slate-500 uppercase font-bold block">
+                  <div className="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                    <span className="text-[10px] font-mono text-slate-500 uppercase font-semibold block">
                       Period
                     </span>
-                    <span className="text-xs font-bold text-[#0F2537] font-mono">
+                    <span className="text-xs font-bold text-slate-900 font-mono tabular-nums">
                       2026 – 2029
                     </span>
                   </div>
@@ -1959,23 +1950,23 @@ export default function HomePage({ setActiveTab }) {
               {/* Right Column: Project Title & Specific Objectives */}
               <div className="lg:col-span-8 space-y-4">
                 <div>
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#8B1E24] bg-[#8B1E24]/10 px-2.5 py-0.5 rounded">
-                    Extramural Project Title
+                  <span className="text-[11px] font-mono font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
+                    Extramural project title
                   </span>
-                  <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] mt-2 leading-snug">
+                  <h4 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 mt-2 leading-snug">
                     "{activeAward.projectTitle}"
                   </h4>
                 </div>
 
                 {/* Specific Project Objectives Checklist */}
                 <div className="space-y-2 pt-1">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
-                    <ShieldCheck className="w-4 h-4 text-[#8B1E24]" />
-                    <span>Project Specific Objectives & Work Packages:</span>
+                  <span className="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-slate-500" />
+                    <span>Project specific objectives &amp; work packages:</span>
                   </span>
                   <ul className="space-y-2">
                     {activeAward.objectives.map((obj, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed bg-[#FAF8F5] p-3 rounded-xl border border-slate-100">
+                      <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed bg-slate-50/80 p-3 rounded-lg border border-slate-100">
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                         <span>{obj}</span>
                       </li>
@@ -1987,7 +1978,7 @@ export default function HomePage({ setActiveTab }) {
                 <div className="pt-3 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100">
                   <button
                     onClick={() => navigateTo('research', activeAward.dossierTarget)}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[#8B1E24] hover:bg-[#A82931] shadow transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-white bg-[#8B1E24] hover:bg-[#73181D] transition-colors cursor-pointer"
                   >
                     <span>{activeAward.dossierLabel}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -1997,9 +1988,9 @@ export default function HomePage({ setActiveTab }) {
                     href={activeAward.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-[#8B1E24] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-[#8B1E24] transition-colors"
                   >
-                    <span>Visit ICMR Official Portal</span>
+                    <span>Visit ICMR portal</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -2011,16 +2002,14 @@ export default function HomePage({ setActiveTab }) {
         {/* Category 2 & 3: Completed Projects and Institutional Schemes in 2 Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 pt-2">
           {/* Card 1: Completed Extramural Project (ANRF / SERB) */}
-          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 hover:border-[#8B1E24]/50 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
-            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-slate-400 via-[#C59B27] to-slate-400" />
-
+          <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs flex flex-col justify-between">
             <div className="space-y-4">
               {/* Header Badge */}
               <div className="flex items-center justify-between gap-2">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
-                  Completed Extramural Project
+                <span className="text-[11px] font-mono font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                  Completed extramural project
                 </span>
-                <span className="text-xs font-mono text-slate-500 font-semibold">
+                <span className="text-xs font-mono text-slate-500">
                   {completedProject.scheme}
                 </span>
               </div>
@@ -2030,13 +2019,13 @@ export default function HomePage({ setActiveTab }) {
                 href={completedProject.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-24 sm:h-28 w-full rounded-2xl bg-[#FAF8F5] border border-slate-200/80 p-3.5 flex items-center justify-center hover:bg-white hover:border-[#C59B27]/60 hover:shadow-sm transition-all duration-300 group/logo cursor-pointer block"
+                className="h-24 sm:h-28 w-full rounded-xl bg-slate-50 border border-slate-200 p-3.5 flex items-center justify-center hover:bg-white hover:border-slate-300 transition-colors block cursor-pointer"
                 title={`Visit ${completedProject.fullName} Official Website`}
               >
                 <img
                   src={completedProject.logo}
                   alt={completedProject.fullName}
-                  className="max-h-16 sm:max-h-20 max-w-[85%] object-contain group-hover/logo:scale-105 transition-transform duration-300 mx-auto"
+                  className="max-h-16 sm:max-h-20 max-w-[85%] object-contain mx-auto"
                   onError={(e) => {
                     e.target.src = '/images/uoh_seal.png';
                   }}
@@ -2045,7 +2034,7 @@ export default function HomePage({ setActiveTab }) {
 
               {/* Agency & Ministry */}
               <div className="space-y-0.5">
-                <h4 className="font-serif text-lg font-bold text-[#0F2537]">
+                <h4 className="font-serif text-lg font-bold text-slate-900">
                   {completedProject.fullName}
                 </h4>
                 <p className="text-[11px] text-slate-500 font-medium">
@@ -2054,24 +2043,24 @@ export default function HomePage({ setActiveTab }) {
               </div>
 
               {/* Project Title */}
-              <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 space-y-1">
-                <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">
-                  Project Title
+              <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                <span className="text-[10px] font-mono text-slate-500 uppercase block">
+                  Project title
                 </span>
-                <h5 className="font-serif text-sm sm:text-base font-bold text-[#0F2537] leading-snug">
+                <h5 className="font-serif text-sm sm:text-base font-bold text-slate-900 leading-snug">
                   "{completedProject.projectTitle}"
                 </h5>
               </div>
 
               {/* Specific Outcomes & Objectives */}
               <div className="space-y-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
-                  Key Scientific Outcomes & Scope:
+                <span className="text-xs font-semibold text-slate-700">
+                  Key scientific outcomes &amp; scope:
                 </span>
                 <ul className="space-y-2">
                   {completedProject.objectives.map((obj, i) => (
                     <li key={i} className="flex items-start gap-2 text-xs sm:text-[13px] text-slate-600 leading-relaxed">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#C59B27] shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-slate-500 shrink-0 mt-0.5" />
                       <span>{obj}</span>
                     </li>
                   ))}
@@ -2083,7 +2072,7 @@ export default function HomePage({ setActiveTab }) {
             <div className="pt-4 mt-5 border-t border-slate-100 flex items-center justify-between">
               <button
                 onClick={() => navigateTo('research', completedProject.dossierTarget)}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B1E24] hover:text-[#A82931] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B1E24] hover:underline cursor-pointer"
               >
                 <span>{completedProject.dossierLabel}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -2092,26 +2081,24 @@ export default function HomePage({ setActiveTab }) {
                 href={completedProject.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-[#8B1E24] transition-colors"
+                className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-slate-700 transition-colors"
               >
-                <span>ANRF Portal</span>
+                <span>ANRF portal</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
           </div>
 
           {/* Card 2: Institutional Support & National Faculty Schemes (UGC) */}
-          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 hover:border-[#8B1E24]/50 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
-            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-600 via-[#C59B27] to-amber-600" />
-
+          <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs flex flex-col justify-between">
             <div className="space-y-4">
-              {/* Header Badge with Explicit Clarification */}
+              {/* Header Badge */}
               <div className="flex items-center justify-between gap-2">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-amber-900 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200/80">
-                  Institutional Support & Faculty Schemes
+                <span className="text-[11px] font-mono font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                  Institutional support &amp; faculty schemes
                 </span>
-                <span className="text-[11px] font-mono text-slate-500 font-semibold">
-                  Tenured Appointment
+                <span className="text-[11px] font-mono text-slate-500">
+                  Tenured appointment
                 </span>
               </div>
 
@@ -2120,13 +2107,13 @@ export default function HomePage({ setActiveTab }) {
                 href={institutionalScheme.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-24 sm:h-28 w-full rounded-2xl bg-[#FAF8F5] border border-slate-200/80 p-3.5 flex items-center justify-center hover:bg-white hover:border-[#C59B27]/60 hover:shadow-sm transition-all duration-300 group/logo cursor-pointer block"
+                className="h-24 sm:h-28 w-full rounded-xl bg-slate-50 border border-slate-200 p-3.5 flex items-center justify-center hover:bg-white hover:border-slate-300 transition-colors block cursor-pointer"
                 title={`Visit ${institutionalScheme.fullName} Official Website`}
               >
                 <img
                   src={institutionalScheme.logo}
                   alt={institutionalScheme.fullName}
-                  className="max-h-16 sm:max-h-20 max-w-[85%] object-contain group-hover/logo:scale-105 transition-transform duration-300 mx-auto"
+                  className="max-h-16 sm:max-h-20 max-w-[85%] object-contain mx-auto"
                   onError={(e) => {
                     e.target.src = '/images/uoh_seal.png';
                   }}
@@ -2135,7 +2122,7 @@ export default function HomePage({ setActiveTab }) {
 
               {/* Agency & Ministry */}
               <div className="space-y-0.5">
-                <h4 className="font-serif text-lg font-bold text-[#0F2537]">
+                <h4 className="font-serif text-lg font-bold text-slate-900">
                   {institutionalScheme.fullName}
                 </h4>
                 <p className="text-[11px] text-slate-500 font-medium">
@@ -2144,20 +2131,20 @@ export default function HomePage({ setActiveTab }) {
               </div>
 
               {/* Explicit Verification Callout Note */}
-              <div className="p-3 rounded-xl bg-amber-50/60 border border-amber-200/70 text-xs text-amber-900 leading-relaxed font-sans">
-                <strong className="font-bold block text-amber-950 mb-0.5">Institutional Scheme Scope:</strong>
+              <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 leading-relaxed font-sans">
+                <strong className="font-semibold block text-slate-900 mb-0.5">Institutional scheme scope:</strong>
                 {institutionalScheme.clarificationNotice}
               </div>
 
               {/* 2 Supported Schemes Details */}
               <div className="space-y-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
-                  Sanctioned Institutional Schemes:
+                <span className="text-xs font-semibold text-slate-700">
+                  Sanctioned institutional schemes:
                 </span>
                 <div className="space-y-2">
                   {institutionalScheme.schemesList.map((sch, i) => (
-                    <div key={i} className="p-3 rounded-xl bg-slate-50 border border-slate-200/70 space-y-0.5">
-                      <h6 className="text-xs font-bold text-[#0F2537]">
+                    <div key={i} className="p-3 rounded-lg bg-slate-50 border border-slate-200 space-y-0.5">
+                      <h6 className="text-xs font-semibold text-slate-900">
                         {sch.name}
                       </h6>
                       <p className="text-xs text-slate-600 leading-relaxed">
@@ -2173,7 +2160,7 @@ export default function HomePage({ setActiveTab }) {
             <div className="pt-4 mt-5 border-t border-slate-100 flex items-center justify-between">
               <button
                 onClick={() => navigateTo('activities')}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B1E24] hover:text-[#A82931] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#8B1E24] hover:underline cursor-pointer"
               >
                 <span>{institutionalScheme.dossierLabel}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -2182,9 +2169,9 @@ export default function HomePage({ setActiveTab }) {
                 href={institutionalScheme.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-[#8B1E24] transition-colors"
+                className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-slate-700 transition-colors"
               >
-                <span>UGC Portal</span>
+                <span>UGC portal</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
@@ -2192,32 +2179,32 @@ export default function HomePage({ setActiveTab }) {
         </div>
       </section>
 
-      {/* 6. News & Announcements - Subtle & Refined Editorial Dispatch Strip */}
+      {/* 6. News & Announcements */}
       <section
         id="news-announcements-section"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24"
       >
-        <div className="space-y-3 border-b-2 border-slate-200 pb-5">
+        <div className="space-y-3 border-b border-slate-200 pb-5">
           <div className="flex items-center justify-between gap-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-[#C59B27]" />
-              <span>Dispatches & Milestones</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+              <BookOpen className="w-3.5 h-3.5 text-slate-500" />
+              <span>News &amp; announcements</span>
             </div>
             <button
               onClick={() => navigateTo('activities')}
-              className="text-xs font-bold text-[#8B1E24] hover:text-[#A82931] hover:underline inline-flex items-center gap-1 cursor-pointer"
+              className="text-xs font-semibold text-[#8B1E24] hover:underline inline-flex items-center gap-1 cursor-pointer"
             >
-              <span>View All Activities</span>
+              <span>View all activities</span>
               <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F2537] tracking-tight">
-                News & Announcements
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                News &amp; announcements
               </h2>
-              <div className="w-20 h-1 bg-[#8B1E24] rounded-full mt-2" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
             <p className="text-sm sm:text-base text-slate-600 max-w-xl font-normal leading-relaxed">
               Key extramural grant developments, recent publications, and academic positions.
@@ -2229,12 +2216,12 @@ export default function HomePage({ setActiveTab }) {
           {((cmsAnnouncements && cmsAnnouncements.length > 0)
             ? cmsAnnouncements.slice(0, 4).map(a => ({
               id: a.id,
-              category: (a.category || 'news').replace('_', ' ').toUpperCase(),
+              category: (a.category || 'news').replace('_', ' '),
               badgeColor: a.category === 'grant_announcement'
-                ? 'bg-[#8B1E24]/10 text-[#8B1E24] border border-[#8B1E24]/20'
+                ? 'bg-slate-100 text-slate-700 border border-slate-200'
                 : a.category === 'recruitment'
-                  ? 'bg-emerald-50 text-emerald-800 border border-emerald-300/80'
-                  : 'bg-[#C59B27]/15 text-[#977313] border border-[#C59B27]/30',
+                  ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                  : 'bg-slate-100 text-slate-700 border border-slate-200',
               date: a.publishedAt ? new Date(a.publishedAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : '2026',
               title: a.title,
               summary: a.summary,
@@ -2253,20 +2240,20 @@ export default function HomePage({ setActiveTab }) {
           ).map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between group hover:-translate-y-0.5"
+              className="bg-white rounded-xl p-5 border border-slate-200 shadow-xs flex flex-col justify-between group"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between gap-2">
-                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${item.badgeColor}`}>
+                  <span className={`text-[11px] font-medium capitalize px-2 py-0.5 rounded ${item.badgeColor}`}>
                     {item.category}
                   </span>
                   <span className="text-[11px] font-mono text-slate-400 flex items-center gap-1">
-                    <Calendar className="w-3 h-3 text-[#C59B27]" />
+                    <Calendar className="w-3 h-3 text-slate-400" />
                     {item.date}
                   </span>
                 </div>
 
-                <h3 className="font-serif text-sm sm:text-[15px] font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug line-clamp-3">
+                <h3 className="font-serif text-sm sm:text-[15px] font-bold text-slate-900 group-hover:text-[#8B1E24] transition-colors leading-snug line-clamp-3">
                   {item.title}
                 </h3>
 
@@ -2278,10 +2265,10 @@ export default function HomePage({ setActiveTab }) {
               <div className="pt-3 mt-4 border-t border-slate-100 flex items-center justify-between">
                 <button
                   onClick={item.action}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-[#8B1E24] group-hover:text-[#A82931] transition-colors cursor-pointer py-1"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#8B1E24] hover:underline cursor-pointer py-1"
                 >
                   <span>{item.linkText}</span>
-                  <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
@@ -2289,33 +2276,33 @@ export default function HomePage({ setActiveTab }) {
         </div>
       </section>
 
-      {/* 7. Latest Updates (Upward Scrolling Points with Pause-on-Hover & Links) */}
+      {/* 7. Latest Updates */}
       <section
         id="latest-updates-section"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 scroll-mt-24"
       >
-        <div className="space-y-3 border-b-2 border-slate-200 pb-5">
+        <div className="space-y-3 border-b border-slate-200 pb-5">
           <div className="flex items-center justify-between gap-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
-              <Bell className="w-3.5 h-3.5 text-[#C59B27]" />
-              <span>Bulletin Board</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+              <Bell className="w-3.5 h-3.5 text-slate-500" />
+              <span>Latest updates</span>
             </div>
 
             {/* Interactive pause/resume button */}
             <button
               onClick={() => setIsTickerPaused(!isTickerPaused)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 hover:border-[#8B1E24] text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 transition-colors shadow-xs cursor-pointer min-h-[38px]"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 transition-colors cursor-pointer min-h-[36px]"
               title={isTickerPaused ? 'Resume live scrolling' : 'Pause scrolling'}
             >
               {isTickerPaused ? (
                 <>
-                  <Play className="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />
-                  <span>Resume Live Feed</span>
+                  <Play className="w-3 h-3 text-emerald-600 fill-emerald-600" />
+                  <span>Resume feed</span>
                 </>
               ) : (
                 <>
-                  <Pause className="w-3.5 h-3.5 text-[#8B1E24] fill-[#8B1E24]" />
-                  <span>Pause Feed</span>
+                  <Pause className="w-3 h-3 text-slate-600 fill-slate-600" />
+                  <span>Pause feed</span>
                 </>
               )}
             </button>
@@ -2323,10 +2310,10 @@ export default function HomePage({ setActiveTab }) {
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F2537] tracking-tight">
-                Latest Updates
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                Latest updates
               </h2>
-              <div className="w-20 h-1 bg-[#8B1E24] rounded-full mt-2" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
             <p className="text-sm sm:text-base text-slate-600 max-w-xl font-normal leading-relaxed">
               Chronological feed of grant approvals, research publications, invited talks, and fellowship notifications.
@@ -2336,17 +2323,17 @@ export default function HomePage({ setActiveTab }) {
 
         {/* Upward Scrolling Points Ticker Container */}
         <div
-          className="relative bg-white rounded-3xl border border-slate-200/90 shadow-md p-4 sm:p-6 overflow-hidden ticker-wrapper"
+          className="relative bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-6 overflow-hidden ticker-wrapper"
           onMouseEnter={() => setIsTickerPaused(true)}
           onMouseLeave={() => setIsTickerPaused(false)}
         >
           {/* Top Fading Mask Overlay */}
-          <div className="absolute top-0 inset-x-0 h-14 bg-gradient-to-b from-white via-white/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 inset-x-0 h-12 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
 
           {/* Fixed-height scrollable window */}
-          <div className="h-[440px] overflow-hidden relative">
+          <div className="h-[400px] overflow-hidden relative">
             <div
-              className="animate-scroll-up space-y-4"
+              className="animate-scroll-up space-y-3"
               style={{
                 animationPlayState: isTickerPaused ? 'paused' : 'running'
               }}
@@ -2354,21 +2341,21 @@ export default function HomePage({ setActiveTab }) {
               {scrollingUpdates.map((item, idx) => (
                 <div
                   key={`${item.id}-${idx}`}
-                  className="bg-[#FAF8F5] hover:bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 hover:border-[#C59B27] shadow-xs hover:shadow-lg transition-all duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group/item"
+                  className="bg-slate-50/70 hover:bg-white rounded-xl p-4 border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm hover:translate-x-1 transition-all duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group/item cursor-pointer"
                 >
-                  <div className="flex items-start sm:items-center gap-3.5">
+                  <div className="flex items-start sm:items-center gap-3">
                     {/* Date and Category Tag Badge */}
                     <div className="shrink-0 flex sm:flex-col items-center sm:items-start gap-2 sm:gap-1">
-                      <span className="text-[11px] font-mono font-bold text-slate-500 whitespace-nowrap">
+                      <span className="text-[11px] font-mono text-slate-500 whitespace-nowrap">
                         {item.date}
                       </span>
-                      <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border ${item.tagColor}`}>
+                      <span className="text-[10px] font-medium capitalize px-2 py-0.5 rounded bg-white border border-slate-200 text-slate-700 group-hover/item:border-slate-300 transition-colors">
                         {item.tag}
                       </span>
                     </div>
 
                     {/* Point description */}
-                    <p className="text-sm font-medium text-[#0F2537] leading-snug group-hover/item:text-[#8B1E24] transition-colors">
+                    <p className="text-sm text-slate-800 leading-snug group-hover/item:text-[#8B1E24] transition-colors">
                       {item.text}
                     </p>
                   </div>
@@ -2381,7 +2368,7 @@ export default function HomePage({ setActiveTab }) {
                           href={item.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-[#8B1E24] hover:text-white bg-[#8B1E24]/10 hover:bg-[#8B1E24] transition-colors"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium text-[#8B1E24] hover:bg-[#8B1E24] hover:text-white transition-all duration-200 hover:shadow-2xs"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <span>{item.linkText}</span>
@@ -2390,7 +2377,7 @@ export default function HomePage({ setActiveTab }) {
                       ) : (
                         <button
                           onClick={() => navigateTo(item.linkTarget)}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-[#8B1E24] hover:text-white bg-[#8B1E24]/10 hover:bg-[#8B1E24] transition-colors cursor-pointer"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-medium text-[#8B1E24] hover:bg-[#8B1E24] hover:text-white transition-all duration-200 hover:shadow-2xs cursor-pointer"
                         >
                           <span>{item.linkText}</span>
                           <ChevronRight className="w-3.5 h-3.5" />
@@ -2404,7 +2391,7 @@ export default function HomePage({ setActiveTab }) {
           </div>
 
           {/* Bottom Fading Mask Overlay */}
-          <div className="absolute bottom-0 inset-x-0 h-14 bg-gradient-to-t from-white via-white/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
         </div>
       </section>
     </div>

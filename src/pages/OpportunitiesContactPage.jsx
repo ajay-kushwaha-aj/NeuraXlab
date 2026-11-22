@@ -147,77 +147,67 @@ export default function OpportunitiesContactPage() {
   )}`;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-24 space-y-16 sm:space-y-20">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-24 space-y-16">
       {/* 1. Editorial Hero Header Banner */}
-      <section className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#0F2537] via-[#132c42] to-[#0A1926] text-white border-2 border-[#C59B27]/50 shadow-2xl p-6 sm:p-10 lg:p-12">
-        {/* Subtle Decorative Radial Accents */}
-        <div
-          className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#C59B27]/10 blur-3xl pointer-events-none"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#8B1E24]/20 blur-3xl pointer-events-none"
-          aria-hidden="true"
-        />
-
+      <section className="relative rounded-2xl overflow-hidden bg-[#0F2537] text-white border border-white/10 shadow-xs p-6 sm:p-8 lg:p-10">
         <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           <div className="space-y-4 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#C59B27]/40 text-xs font-bold uppercase tracking-wider text-[#E0B84C]">
-              <Briefcase className="w-3.5 h-3.5 text-[#E0B84C]" />
-              <span>Extramural Grants, Fellowships & Lab Inquiries</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-slate-200 text-xs font-mono font-medium">
+              <Briefcase className="w-3.5 h-3.5 text-slate-300" />
+              <span>Extramural grants, fellowships &amp; lab inquiries</span>
             </div>
 
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
-              Opportunities & <span className="text-[#E0B84C]">Contact</span>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+              Opportunities &amp; Contact
             </h1>
 
-            <p className="text-white/85 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-2xl">
-              Join <strong className="text-white font-semibold">NeuroXlab</strong> under our active 2026–2029 Nano-SCFA & Edaravone Extramural Project, pursue direct doctoral admissions at the University of Hyderabad, or initiate academic collaborations.
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal max-w-2xl">
+              Join <strong className="text-white font-semibold">NeuroXlab</strong> under our active 2026–2029 Nano-SCFA &amp; Edaravone Extramural Project, pursue direct doctoral admissions at the University of Hyderabad, or initiate academic collaborations.
             </p>
 
             {/* Quick Highlight Pills */}
-            <div className="flex flex-wrap items-center gap-2.5 pt-2">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-semibold">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Active 2026–2029 JRF/SRF Opening
+            <div className="flex flex-wrap items-center gap-2.5 pt-1">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-500/15 border border-emerald-400/20 text-emerald-300 text-xs font-medium">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span>Active 2026–2029 JRF/SRF Opening</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/15 text-white/90 text-xs font-medium">
-                <Award className="w-3.5 h-3.5 text-[#E0B84C]" />
-                CSIR / UGC / DBT / ICMR / GATE Eligible
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/10 border border-white/10 text-slate-200 text-xs font-medium">
+                <Award className="w-3.5 h-3.5 text-slate-300" />
+                <span>CSIR / UGC / DBT / ICMR / GATE Eligible</span>
               </span>
             </div>
           </div>
 
           {/* Right Quick-Dispatch Card inside Hero */}
-          <div className="lg:w-[340px] shrink-0 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-[#C59B27]/40 space-y-4 shadow-xl">
-            <div className="flex items-center justify-between border-b border-white/15 pb-3">
+          <div className="lg:w-[320px] shrink-0 bg-white/5 rounded-xl p-5 border border-white/10 space-y-3.5">
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#E0B84C] block font-bold">
-                  Principal Investigator Desk
+                <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-medium">
+                  Principal investigator desk
                 </span>
                 <h2 className="font-serif text-lg font-bold text-white">
                   Dr. Venkata Prasuja Nakka
                 </h2>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-[#8B1E24] border border-[#C59B27]/50 flex items-center justify-center shrink-0 shadow">
-                <Mail className="w-5 h-5 text-[#E0B84C]" />
+              <div className="w-9 h-9 rounded-lg bg-[#8B1E24] border border-white/10 flex items-center justify-center shrink-0">
+                <Mail className="w-4 h-4 text-white" />
               </div>
             </div>
 
             <div className="space-y-2 text-xs text-white/85">
-              <div className="flex items-center justify-between gap-2 bg-[#0A1926]/70 px-3 py-2.5 rounded-xl border border-white/10">
+              <div className="flex items-center justify-between gap-2 bg-black/30 px-3 py-2 rounded-lg border border-white/5">
                 <div className="truncate">
-                  <span className="text-[10px] font-mono text-white/50 uppercase block">
-                    Official Submission Email
+                  <span className="text-[10px] font-mono text-slate-400 uppercase block">
+                    Official submission email
                   </span>
-                  <span className="font-mono font-bold text-[#E0B84C] text-xs sm:text-sm">
+                  <span className="font-mono font-medium text-slate-200 text-xs sm:text-sm">
                     nvprasuja@uohyd.ac.in
                   </span>
                 </div>
                 <button
                   type="button"
                   onClick={() => copyEmailToClipboard('nvprasuja@uohyd.ac.in')}
-                  className="px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-semibold inline-flex items-center gap-1 transition-colors cursor-pointer shrink-0"
+                  className="px-2 py-1 rounded-md bg-white/10 hover:bg-white/20 text-white text-[11px] font-medium inline-flex items-center gap-1 transition-colors cursor-pointer shrink-0"
                   title="Copy official email address"
                 >
                   {copiedEmail ? (
@@ -227,7 +217,7 @@ export default function OpportunitiesContactPage() {
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3.5 h-3.5 text-[#E0B84C]" />
+                      <Copy className="w-3.5 h-3.5 text-slate-300" />
                       <span>Copy</span>
                     </>
                   )}
@@ -237,10 +227,10 @@ export default function OpportunitiesContactPage() {
 
             <a
               href="#application-portal"
-              className="w-full py-2.5 px-4 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] border border-[#C59B27]/50 text-white text-xs font-bold flex items-center justify-center gap-2 shadow-lg transition-all"
+              className="w-full py-2.5 px-4 rounded-lg bg-[#8B1E24] hover:bg-[#A82931] text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-xs transition-colors"
             >
               <span>Jump to Application Portal</span>
-              <ArrowRight className="w-4 h-4 text-[#E0B84C]" />
+              <ArrowRight className="w-3.5 h-3.5 text-white" />
             </a>
           </div>
         </div>
@@ -248,11 +238,11 @@ export default function OpportunitiesContactPage() {
 
       {/* 2. Open Recruitment Tracks Section */}
       <section className="space-y-8">
-        <div className="space-y-3 border-b border-slate-200 pb-5">
+        <div className="space-y-2 border-b border-slate-200 pb-4">
           <div className="flex items-center justify-between gap-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B1E24]/5 border border-[#8B1E24]/15 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-[#C59B27]" />
-              <span>Open Positions &amp; Fellowships</span>
+            <div className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-md">
+              <Briefcase className="w-3.5 h-3.5 text-slate-500" />
+              <span>Open positions &amp; fellowships</span>
             </div>
             <span className="text-xs font-mono text-slate-400 font-medium hidden sm:inline">
               Select a track to pre-fill application
@@ -261,10 +251,10 @@ export default function OpportunitiesContactPage() {
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#0F2537] tracking-tight">
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
                 Recruitment Tracks &amp; Eligibility
               </h2>
-              <div className="w-16 h-1 bg-[#8B1E24] rounded-full mt-2" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
             <p className="text-sm text-slate-500 max-w-lg leading-relaxed">
               Explore available research positions across funded extramural grants, direct doctoral admissions, and master's dissertations.
@@ -272,7 +262,7 @@ export default function OpportunitiesContactPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
           {recruitmentTracks.map((trk) => {
             const Icon = trk.icon;
             const isSelected = selectedTrackId === trk.id;
@@ -280,95 +270,92 @@ export default function OpportunitiesContactPage() {
               <div
                 key={trk.id}
                 onClick={() => handleSelectTrackAndScroll(trk)}
-                className={`group relative bg-white rounded-3xl p-6 sm:p-7 transition-all duration-300 flex flex-col justify-between border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-[#8B1E24]/60 hover:-translate-y-1.5 cursor-pointer ${
-                  isSelected ? 'ring-2 ring-[#8B1E24] border-[#8B1E24] shadow-xl' : ''
+                className={`group relative bg-white rounded-2xl p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-md flex flex-col justify-between border shadow-xs cursor-pointer ${
+                  isSelected
+                    ? 'border-[#8B1E24] ring-2 ring-[#8B1E24]'
+                    : 'border-slate-200 hover:border-slate-300'
                 }`}
               >
-                {/* Top Accent Strip with Hover Expansion */}
-                <div
-                  className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 group-hover:from-[#8B1E24] group-hover:via-[#C59B27] group-hover:to-[#0F2537] group-hover:h-1.5 transition-all duration-300"
-                />
-
-                <div className="space-y-5 pt-1">
+                <div className="space-y-4">
                   {/* Top Row: Badge & Track Number */}
                   <div className="flex items-center justify-between gap-2">
                     <span
-                      className={`inline-flex items-center gap-1.5 text-[11px] font-mono font-bold uppercase px-3 py-1 rounded-full border ${trk.badgeStyle} transition-colors`}
+                      className={`inline-flex items-center gap-1.5 text-[11px] font-mono font-medium px-2.5 py-0.5 rounded border ${trk.badgeStyle}`}
                     >
-                      <span className={`w-1.5 h-1.5 rounded-full ${trk.statusDot} ${trk.id === 'track-grant-2026' ? 'animate-pulse' : ''}`} />
+                      <span className={`w-1.5 h-1.5 rounded-full ${trk.statusDot}`} />
                       {trk.badge}
                     </span>
-                    <span className="text-xs font-mono font-bold text-slate-400 tracking-wider group-hover:text-slate-600 transition-colors">
-                      TRACK {trk.num}
+                    <span className="text-xs font-mono font-medium text-slate-400">
+                      Track {trk.num}
                     </span>
                   </div>
 
                   {/* Icon + Title + Project */}
-                  <div className="flex items-start gap-3.5">
-                    <div className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border border-slate-200 bg-slate-50 text-[#8B1E24] group-hover:bg-[#8B1E24] group-hover:text-white group-hover:border-[#8B1E24] group-hover:scale-105 transition-all duration-300 shadow-2xs">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border border-slate-200 bg-slate-50 text-[#8B1E24]">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                      <h3 className="font-serif text-xl font-bold text-slate-900 group-hover:text-[#8B1E24] transition-colors leading-snug">
                         {trk.title}
                       </h3>
-                      <p className="text-xs font-semibold text-[#8B1E24] mt-1">
+                      <p className="text-xs font-semibold text-[#8B1E24] mt-0.5">
                         {trk.project}
                       </p>
                     </div>
                   </div>
 
                   {/* Key Stipend & Duration Banner */}
-                  <div className="grid grid-cols-2 gap-3 bg-slate-50/80 group-hover:bg-rose-50/30 p-3.5 rounded-2xl border border-slate-100 group-hover:border-rose-100/60 transition-colors duration-300 text-xs">
+                  <div className="grid grid-cols-2 gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs">
                     <div>
-                      <span className="text-[10px] font-mono uppercase text-slate-400 font-bold block">
-                        Fellowship / Stipend
+                      <span className="text-[10px] font-mono uppercase text-slate-400 font-medium block">
+                        Fellowship / stipend
                       </span>
-                      <span className="font-bold text-[#0F2537] text-xs leading-tight block mt-0.5">
+                      <span className="font-semibold text-slate-900 text-xs leading-tight block mt-0.5 tabular-nums">
                         {trk.stipend}
                       </span>
                     </div>
-                    <div className="border-l border-slate-200/80 pl-3">
-                      <span className="text-[10px] font-mono uppercase text-slate-400 font-bold block">
+                    <div className="border-l border-slate-200 pl-3">
+                      <span className="text-[10px] font-mono uppercase text-slate-400 font-medium block">
                         Duration
                       </span>
-                      <span className="font-semibold text-slate-700 text-xs leading-tight block mt-0.5">
+                      <span className="font-medium text-slate-700 text-xs leading-tight block mt-0.5 tabular-nums">
                         {trk.duration}
                       </span>
                     </div>
                   </div>
 
                   {/* Requirements List (Clean, Structured, Highly Scannable) */}
-                  <div className="space-y-3 pt-1 text-xs">
+                  <div className="space-y-2.5 pt-1 text-xs">
                     <div className="flex items-start gap-2.5">
-                      <GraduationCap className="w-4 h-4 text-[#8B1E24] shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                      <GraduationCap className="w-4 h-4 text-[#8B1E24] shrink-0 mt-0.5" />
                       <div className="space-y-0.5">
-                        <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block">
-                          Degree Requirement
+                        <span className="text-[11px] font-mono font-medium text-slate-400 block">
+                          Degree requirement
                         </span>
-                        <p className="text-slate-700 font-medium leading-relaxed">
+                        <p className="text-slate-700 font-normal leading-relaxed">
                           {trk.degree}
                         </p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-2.5">
-                      <Award className="w-4 h-4 text-[#C59B27] shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                      <Award className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
                       <div className="space-y-0.5">
-                        <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block">
-                          National Eligibility
+                        <span className="text-[11px] font-mono font-medium text-slate-400 block">
+                          National eligibility
                         </span>
-                        <p className="text-slate-700 font-medium leading-relaxed">
+                        <p className="text-slate-700 font-normal leading-relaxed">
                           {trk.exam}
                         </p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-2.5">
-                      <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                      <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                       <div className="space-y-0.5">
-                        <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 block">
-                          Preferred Research Experience
+                        <span className="text-[11px] font-mono font-medium text-slate-400 block">
+                          Preferred experience
                         </span>
                         <p className="text-slate-600 italic leading-relaxed">
                           {trk.desirable}
@@ -386,10 +373,10 @@ export default function OpportunitiesContactPage() {
                       e.stopPropagation();
                       handleSelectTrackAndScroll(trk);
                     }}
-                    className="w-full py-3 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 bg-[#0F2537] group-hover:bg-[#8B1E24] text-white shadow-sm group-hover:shadow-md transition-all duration-300 cursor-pointer"
+                    className="w-full py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 bg-[#0F2537] hover:bg-[#8B1E24] text-white transition-colors cursor-pointer shadow-xs"
                   >
-                    <span>Apply for this Track</span>
-                    <ArrowRight className="w-4 h-4 text-[#E0B84C] group-hover:translate-x-1.5 transition-transform" />
+                    <span>Apply for this track</span>
+                    <ArrowRight className="w-4 h-4 text-white" />
                   </button>
                 </div>
               </div>
@@ -401,29 +388,26 @@ export default function OpportunitiesContactPage() {
       {/* 3. Interactive Application Portal & Headquarters Contact Dossier */}
       <section
         id="application-portal"
-        className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch scroll-mt-24"
+        className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch scroll-mt-24"
       >
         {/* Left Column: Interactive Application Form (7 Columns on Desktop) */}
         <div className="lg:col-span-7 flex flex-col h-full">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-9 border border-slate-200/90 shadow-xl shadow-slate-200/50 relative overflow-hidden flex-1 flex flex-col justify-between">
-            {/* Top Sleek Accent Line */}
-            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#8B1E24] via-[#C59B27] to-[#0F2537]" />
-
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs relative overflow-hidden flex-1 flex flex-col justify-between">
             <div className="space-y-6">
               {/* Form Header */}
-              <div className="space-y-2 border-b border-slate-100 pb-5">
+              <div className="space-y-2 border-b border-slate-100 pb-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold uppercase text-[#8B1E24] bg-[#8B1E24]/5 px-3 py-1 rounded-full border border-[#8B1E24]/15">
-                    <FileText className="w-3.5 h-3.5 text-[#8B1E24]" />
-                    Interactive Submission Portal
+                  <span className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-md">
+                    <FileText className="w-3.5 h-3.5 text-slate-500" />
+                    Interactive submission portal
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-slate-500 font-medium">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    Direct PI Dispatch • Verified Secure
+                    Direct PI dispatch · Verified secure
                   </span>
                 </div>
 
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537] pt-1">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 pt-1">
                   Candidate Application &amp; Research Inquiry
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
@@ -512,7 +496,7 @@ export default function OpportunitiesContactPage() {
                   {/* Row 1: Name & Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5 group">
-                      <label className="block text-[13px] font-semibold text-slate-700">
+                      <label className="block text-xs font-semibold text-slate-700">
                         Candidate Full Name <span className="text-[#8B1E24]">*</span>
                       </label>
                       <div className="relative">
@@ -524,13 +508,13 @@ export default function OpportunitiesContactPage() {
                           value={formData.name}
                           onChange={handleChange}
                           placeholder="Dr. / Mr. / Ms. Full Name"
-                          className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-[#8B1E24] focus:ring-4 focus:ring-[#8B1E24]/10 text-sm bg-slate-50/50 hover:bg-slate-50 focus:bg-white text-slate-900 placeholder:text-slate-400 outline-none transition-all duration-200"
+                          className="w-full pl-10 pr-3.5 py-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-slate-300 focus:bg-white focus:border-[#8B1E24] focus:ring-1 focus:ring-[#8B1E24] text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1.5 group">
-                      <label className="block text-[13px] font-semibold text-slate-700">
+                      <label className="block text-xs font-semibold text-slate-700">
                         Contact Email Address <span className="text-[#8B1E24]">*</span>
                       </label>
                       <div className="relative">
@@ -542,7 +526,7 @@ export default function OpportunitiesContactPage() {
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="candidate@university.edu"
-                          className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-[#8B1E24] focus:ring-4 focus:ring-[#8B1E24]/10 text-sm bg-slate-50/50 hover:bg-slate-50 focus:bg-white text-slate-900 placeholder:text-slate-400 outline-none transition-all duration-200"
+                          className="w-full pl-10 pr-3.5 py-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-slate-300 focus:bg-white focus:border-[#8B1E24] focus:ring-1 focus:ring-[#8B1E24] text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors"
                         />
                       </div>
                     </div>
@@ -551,7 +535,7 @@ export default function OpportunitiesContactPage() {
                   {/* Row 2: Phone & Recruitment Track */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5 group">
-                      <label className="block text-[13px] font-semibold text-slate-700">
+                      <label className="block text-xs font-semibold text-slate-700">
                         Phone / Mobile Number <span className="text-[#8B1E24]">*</span>
                       </label>
                       <div className="relative">
@@ -563,13 +547,13 @@ export default function OpportunitiesContactPage() {
                           value={formData.phone}
                           onChange={handleChange}
                           placeholder="+91-9876543210"
-                          className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-[#8B1E24] focus:ring-4 focus:ring-[#8B1E24]/10 text-sm bg-slate-50/50 hover:bg-slate-50 focus:bg-white text-slate-900 placeholder:text-slate-400 outline-none transition-all duration-200"
+                          className="w-full pl-10 pr-3.5 py-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-slate-300 focus:bg-white focus:border-[#8B1E24] focus:ring-1 focus:ring-[#8B1E24] text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1.5 group">
-                      <label className="block text-[13px] font-semibold text-slate-700">
+                      <label className="block text-xs font-semibold text-slate-700">
                         Recruitment Track <span className="text-[#8B1E24]">*</span>
                       </label>
                       <div className="relative">
@@ -577,7 +561,7 @@ export default function OpportunitiesContactPage() {
                           name="track"
                           value={formData.track}
                           onChange={handleChange}
-                          className="w-full pl-3.5 pr-10 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-[#8B1E24] focus:ring-4 focus:ring-[#8B1E24]/10 text-sm bg-slate-50/50 hover:bg-slate-50 focus:bg-white text-slate-900 font-medium outline-none transition-all duration-200 appearance-none truncate cursor-pointer"
+                          className="w-full pl-3.5 pr-10 py-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-slate-300 focus:bg-white focus:border-[#8B1E24] focus:ring-1 focus:ring-[#8B1E24] text-xs sm:text-sm text-slate-900 font-medium outline-none transition-colors appearance-none truncate cursor-pointer"
                         >
                           <option value="Project Fellow (JRF / SRF) - 2026–2029 Nano-SCFA & Edaravone Grant">
                             Project Fellow (JRF/SRF) • 2026–2029 Grant
@@ -603,7 +587,7 @@ export default function OpportunitiesContactPage() {
                   {/* Row 3: Qualification & National Fellowship */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5 group">
-                      <label className="block text-[13px] font-semibold text-slate-700">
+                      <label className="block text-xs font-semibold text-slate-700">
                         Highest Qualification &amp; Institution <span className="text-[#8B1E24]">*</span>
                       </label>
                       <div className="relative">
@@ -615,13 +599,13 @@ export default function OpportunitiesContactPage() {
                           value={formData.qualification}
                           onChange={handleChange}
                           placeholder="e.g. M.Sc. Biochemistry (UoH, 2025)"
-                          className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-[#8B1E24] focus:ring-4 focus:ring-[#8B1E24]/10 text-sm bg-slate-50/50 hover:bg-slate-50 focus:bg-white text-slate-900 placeholder:text-slate-400 outline-none transition-all duration-200"
+                          className="w-full pl-10 pr-3.5 py-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-slate-300 focus:bg-white focus:border-[#8B1E24] focus:ring-1 focus:ring-[#8B1E24] text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1.5 group">
-                      <label className="block text-[13px] font-semibold text-slate-700">
+                      <label className="block text-xs font-semibold text-slate-700">
                         National Fellowship / Examination <span className="text-[#8B1E24]">*</span>
                       </label>
                       <div className="relative">
@@ -633,7 +617,7 @@ export default function OpportunitiesContactPage() {
                           value={formData.nationalExam}
                           onChange={handleChange}
                           placeholder="e.g. CSIR-UGC NET JRF / GATE / DBT-BET"
-                          className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-[#8B1E24] focus:ring-4 focus:ring-[#8B1E24]/10 text-sm bg-slate-50/50 hover:bg-slate-50 focus:bg-white text-slate-900 placeholder:text-slate-400 outline-none transition-all duration-200"
+                          className="w-full pl-10 pr-3.5 py-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-slate-300 focus:bg-white focus:border-[#8B1E24] focus:ring-1 focus:ring-[#8B1E24] text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors"
                         />
                       </div>
                     </div>
@@ -641,7 +625,7 @@ export default function OpportunitiesContactPage() {
 
                   {/* Row 4: CV Link */}
                   <div className="space-y-1.5 group">
-                    <label className="block text-[13px] font-semibold text-slate-700">
+                    <label className="block text-xs font-semibold text-slate-700">
                       Curriculum Vitae Link (Drive / Dropbox / OneDrive) <span className="text-[#8B1E24]">*</span>
                     </label>
                     <div className="relative">
@@ -653,7 +637,7 @@ export default function OpportunitiesContactPage() {
                         value={formData.cvUrl}
                         onChange={handleChange}
                         placeholder="https://drive.google.com/file/d/.../view?usp=sharing"
-                        className="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-[#8B1E24] focus:ring-4 focus:ring-[#8B1E24]/10 text-sm bg-slate-50/50 hover:bg-slate-50 focus:bg-white text-slate-900 placeholder:text-slate-400 outline-none transition-all duration-200"
+                        className="w-full pl-10 pr-3.5 py-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-slate-300 focus:bg-white focus:border-[#8B1E24] focus:ring-1 focus:ring-[#8B1E24] text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-colors"
                       />
                     </div>
                     <p className="text-[11px] text-slate-500 flex items-center gap-1.5 pt-0.5">
@@ -665,7 +649,7 @@ export default function OpportunitiesContactPage() {
                   {/* Row 5: Research Statement */}
                   <div className="space-y-1.5 group">
                     <div className="flex items-center justify-between">
-                      <label className="block text-[13px] font-semibold text-slate-700">
+                      <label className="block text-xs font-semibold text-slate-700">
                         Brief Statement of Research Interest <span className="text-[#8B1E24]">*</span>
                       </label>
                       <span className="text-[11px] text-slate-400">2–3 sentences</span>
@@ -677,7 +661,7 @@ export default function OpportunitiesContactPage() {
                       value={formData.statement}
                       onChange={handleChange}
                       placeholder="Briefly state your prior experience (e.g. MCAO surgery, nanoparticle synthesis, Western blotting, or 16S microbiome analysis) and motivation..."
-                      className="w-full p-3.5 rounded-xl border border-slate-200 hover:border-slate-300 focus:border-[#8B1E24] focus:ring-4 focus:ring-[#8B1E24]/10 text-sm bg-slate-50/50 hover:bg-slate-50 focus:bg-white text-slate-900 placeholder:text-slate-400 leading-relaxed outline-none transition-all duration-200 resize-none"
+                      className="w-full p-3.5 rounded-lg border border-slate-200 bg-slate-50 hover:border-slate-300 focus:bg-white focus:border-[#8B1E24] focus:ring-1 focus:ring-[#8B1E24] text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 leading-relaxed outline-none transition-colors resize-none"
                     />
                   </div>
 
@@ -685,13 +669,13 @@ export default function OpportunitiesContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 px-6 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-[#8B1E24] to-[#A3232A] hover:from-[#72181D] hover:to-[#8B1E24] shadow-md hover:shadow-lg hover:shadow-[#8B1E24]/20 transition-all duration-200 flex items-center justify-center gap-2 active:scale-[0.99] disabled:opacity-50 cursor-pointer"
+                    className="w-full py-3 px-6 rounded-lg font-semibold text-xs sm:text-sm text-white bg-[#8B1E24] hover:bg-[#A82931] shadow-xs transition-colors flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
                   >
                     {isSubmitting ? (
-                      <span>Formatting Application Dossier...</span>
+                      <span>Formatting application dossier...</span>
                     ) : (
                       <>
-                        <Send className="w-4 h-4 text-[#E0B84C]" />
+                        <Send className="w-4 h-4 text-white" />
                         <span>Submit &amp; Generate Pre-Addressed Email</span>
                       </>
                     )}
@@ -705,12 +689,10 @@ export default function OpportunitiesContactPage() {
         {/* Right Column: Official Institutional Address & Transit Dossier (5 Columns on Desktop) */}
         <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6">
           {/* Card 1: Official Institutional Laboratory Headquarters */}
-          <div className="bg-[#0F2537] text-white rounded-3xl p-6 sm:p-7 border border-[#C59B27]/50 shadow-xl space-y-4 relative overflow-hidden shrink-0">
-            <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#C59B27] via-[#E0B84C] to-[#C59B27]" />
-
+          <div className="bg-[#0F2537] text-white rounded-2xl p-6 border border-white/10 shadow-xs space-y-4">
             <div className="space-y-1">
-              <span className="text-[10px] uppercase tracking-widest text-[#E0B84C] font-mono font-bold block">
-                Official Institutional Laboratory Address
+              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-mono font-medium block">
+                Official institutional laboratory address
               </span>
               <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">
                 NeuroXlab Headquarters
@@ -719,13 +701,13 @@ export default function OpportunitiesContactPage() {
 
             <div className="space-y-3 text-sm text-white/90 leading-relaxed">
               {/* Physical Address Block */}
-              <div className="flex items-start gap-3 bg-white/5 p-3.5 rounded-2xl border border-white/10">
-                <MapPin className="w-4 h-4 text-[#E0B84C] mt-1 shrink-0" />
+              <div className="flex items-start gap-3 bg-white/5 p-3.5 rounded-xl border border-white/10">
+                <MapPin className="w-4 h-4 text-slate-300 mt-1 shrink-0" />
                 <div className="space-y-0.5 text-xs">
                   <p className="font-bold text-white text-sm">
                     Dr. N. Venkata Prasuja
                   </p>
-                  <p className="text-[#E0B84C] font-medium">
+                  <p className="text-slate-300 font-medium">
                     Room No. F-75C, Dept. of Systems &amp; Computational Biology
                   </p>
                   <p className="text-white/90">
@@ -738,18 +720,18 @@ export default function OpportunitiesContactPage() {
               </div>
 
               {/* Direct Phone Row */}
-              <div className="flex items-center justify-between gap-3 bg-white/5 px-3.5 py-2.5 rounded-xl border border-white/10">
+              <div className="flex items-center justify-between gap-3 bg-white/5 px-3.5 py-2.5 rounded-lg border border-white/10">
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="w-8 h-8 rounded-lg bg-[#C59B27]/15 border border-[#C59B27]/40 flex items-center justify-center shrink-0">
-                    <Phone className="w-3.5 h-3.5 text-[#E0B84C]" />
+                  <div className="w-7 h-7 rounded-md bg-white/10 flex items-center justify-center shrink-0">
+                    <Phone className="w-3.5 h-3.5 text-slate-300" />
                   </div>
                   <div className="truncate">
                     <span className="text-[9px] font-mono uppercase tracking-wider text-white/50 block">
-                      Direct Lab Phone
+                      Direct lab phone
                     </span>
                     <a
                       href="tel:+914023134581"
-                      className="font-mono hover:text-[#E0B84C] font-bold text-xs text-white transition-colors"
+                      className="font-mono hover:underline font-medium text-xs text-white transition-colors"
                     >
                       +91-40-23134581
                     </a>
@@ -759,7 +741,7 @@ export default function OpportunitiesContactPage() {
                 <button
                   type="button"
                   onClick={() => copyPhoneToClipboard('+91-40-23134581')}
-                  className="px-2 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-medium inline-flex items-center gap-1 transition-colors cursor-pointer shrink-0"
+                  className="px-2 py-1 rounded-md bg-white/10 hover:bg-white/20 text-white text-[11px] font-medium inline-flex items-center gap-1 transition-colors cursor-pointer shrink-0"
                   title="Copy phone number"
                 >
                   {copiedPhone ? (
@@ -769,7 +751,7 @@ export default function OpportunitiesContactPage() {
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3 h-3 text-[#E0B84C]" />
+                      <Copy className="w-3 h-3 text-slate-300" />
                       <span>Copy</span>
                     </>
                   )}
@@ -777,18 +759,18 @@ export default function OpportunitiesContactPage() {
               </div>
 
               {/* Official Email Row */}
-              <div className="flex items-center justify-between gap-3 bg-white/5 px-3.5 py-2.5 rounded-xl border border-white/10">
+              <div className="flex items-center justify-between gap-3 bg-white/5 px-3.5 py-2.5 rounded-lg border border-white/10">
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="w-8 h-8 rounded-lg bg-[#C59B27]/15 border border-[#C59B27]/40 flex items-center justify-center shrink-0">
-                    <Mail className="w-3.5 h-3.5 text-[#E0B84C]" />
+                  <div className="w-7 h-7 rounded-md bg-white/10 flex items-center justify-center shrink-0">
+                    <Mail className="w-3.5 h-3.5 text-slate-300" />
                   </div>
                   <div className="truncate">
                     <span className="text-[9px] font-mono uppercase tracking-wider text-white/50 block">
-                      Official Email
+                      Official email
                     </span>
                     <a
                       href="mailto:nvprasuja@uohyd.ac.in"
-                      className="font-mono hover:text-[#E0B84C] font-bold text-xs text-white transition-colors truncate block"
+                      className="font-mono hover:underline font-medium text-xs text-white transition-colors truncate block"
                     >
                       nvprasuja@uohyd.ac.in
                     </a>
@@ -798,7 +780,7 @@ export default function OpportunitiesContactPage() {
                 <button
                   type="button"
                   onClick={() => copyEmailToClipboard('nvprasuja@uohyd.ac.in')}
-                  className="px-2 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-[11px] font-medium inline-flex items-center gap-1 transition-colors cursor-pointer shrink-0"
+                  className="px-2 py-1 rounded-md bg-white/10 hover:bg-white/20 text-white text-[11px] font-medium inline-flex items-center gap-1 transition-colors cursor-pointer shrink-0"
                   title="Copy email address"
                 >
                   {copiedEmail ? (
@@ -808,7 +790,7 @@ export default function OpportunitiesContactPage() {
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3 h-3 text-[#E0B84C]" />
+                      <Copy className="w-3 h-3 text-slate-300" />
                       <span>Copy</span>
                     </>
                   )}
@@ -821,46 +803,46 @@ export default function OpportunitiesContactPage() {
               href="https://maps.google.com/?q=School+of+Life+Sciences+University+of+Hyderabad"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 px-4 rounded-xl bg-[#8B1E24] hover:bg-[#A82931] text-xs font-bold text-white flex items-center justify-center gap-2 transition-all border border-[#C59B27]/40 shadow-md"
+              className="w-full py-2.5 px-4 rounded-lg bg-[#8B1E24] hover:bg-[#A82931] text-xs font-semibold text-white flex items-center justify-center gap-2 transition-colors shadow-xs"
             >
-              <Navigation className="w-3.5 h-3.5 text-[#E0B84C]" />
+              <Navigation className="w-3.5 h-3.5 text-white" />
               <span>Navigate via Google Maps</span>
               <ExternalLink className="w-3 h-3 text-white/70 ml-0.5" />
             </a>
           </div>
 
           {/* Card 2: Campus Transit & Route Guide (Visitor Logistics) */}
-          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-md space-y-4 flex-1 flex flex-col justify-between">
+          <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-3.5 flex-1 flex flex-col justify-between">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-[#8B1E24]/10 text-[#8B1E24] flex items-center justify-center shrink-0">
-                  <Navigation className="w-4 h-4" />
+                <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
+                  <Navigation className="w-4 h-4 text-slate-600" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold block">
-                    Visitor Logistics
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-medium block">
+                    Visitor logistics
                   </span>
-                  <h4 className="font-serif text-lg sm:text-xl font-bold text-[#0F2537]">
+                  <h4 className="font-serif text-lg font-bold text-slate-900">
                     Campus Transit &amp; Route Guide
                   </h4>
                 </div>
               </div>
-              <span className="text-[11px] font-mono font-semibold text-[#8B1E24] bg-[#8B1E24]/5 border border-[#8B1E24]/15 px-2.5 py-0.5 rounded-full">
+              <span className="text-[11px] font-mono font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-md">
                 UoH Campus
               </span>
             </div>
 
             <div className="space-y-2.5 text-xs text-slate-600 leading-relaxed flex-1 flex flex-col justify-around">
-              <div className="flex items-start gap-3 p-3 rounded-2xl bg-slate-50/70 border border-slate-100">
-                <div className="w-7 h-7 rounded-lg bg-white border border-slate-200/80 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                <div className="w-7 h-7 rounded-md bg-white border border-slate-200 flex items-center justify-center shrink-0 mt-0.5">
                   <Plane className="w-3.5 h-3.5 text-[#8B1E24]" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
-                    <strong className="text-slate-800 font-bold text-xs truncate">
+                    <strong className="text-slate-800 font-semibold text-xs truncate">
                       Rajiv Gandhi Int'l Airport (RGIA)
                     </strong>
-                    <span className="text-[11px] font-mono font-bold text-[#8B1E24] shrink-0">~36 km</span>
+                    <span className="text-[11px] font-mono font-medium text-slate-500 tabular-nums shrink-0">~36 km</span>
                   </div>
                   <p className="text-slate-500 text-[11px] mt-0.5">
                     35–40 mins via Nehru ORR exit towards Gachibowli / Financial District.
@@ -868,16 +850,16 @@ export default function OpportunitiesContactPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3 rounded-2xl bg-slate-50/70 border border-slate-100">
-                <div className="w-7 h-7 rounded-lg bg-white border border-slate-200/80 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                  <Train className="w-3.5 h-3.5 text-[#C59B27]" />
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                <div className="w-7 h-7 rounded-md bg-white border border-slate-200 flex items-center justify-center shrink-0 mt-0.5">
+                  <Train className="w-3.5 h-3.5 text-slate-700" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
-                    <strong className="text-slate-800 font-bold text-xs truncate">
+                    <strong className="text-slate-800 font-semibold text-xs truncate">
                       Lingampally Railway Station / MMTS
                     </strong>
-                    <span className="text-[11px] font-mono font-bold text-[#977313] shrink-0">~6 km</span>
+                    <span className="text-[11px] font-mono font-medium text-slate-500 tabular-nums shrink-0">~6 km</span>
                   </div>
                   <p className="text-slate-500 text-[11px] mt-0.5">
                     Closest railhead to University South Gate (15 mins via auto/cab).
@@ -885,16 +867,16 @@ export default function OpportunitiesContactPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3 rounded-2xl bg-slate-50/70 border border-slate-100">
-                <div className="w-7 h-7 rounded-lg bg-white border border-slate-200/80 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                  <Car className="w-3.5 h-3.5 text-[#0F2537]" />
+              <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                <div className="w-7 h-7 rounded-md bg-white border border-slate-200 flex items-center justify-center shrink-0 mt-0.5">
+                  <Car className="w-3.5 h-3.5 text-slate-700" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-2">
-                    <strong className="text-slate-800 font-bold text-xs truncate">
+                    <strong className="text-slate-800 font-semibold text-xs truncate">
                       Secunderabad / Nampally Hub
                     </strong>
-                    <span className="text-[11px] font-mono font-bold text-slate-500 shrink-0">~22-26 km</span>
+                    <span className="text-[11px] font-mono font-medium text-slate-500 tabular-nums shrink-0">~22–26 km</span>
                   </div>
                   <p className="text-slate-500 text-[11px] mt-0.5">
                     Accessible via Raidurg Metro Station or Mehdipatnam – Gachibowli corridor.
@@ -905,7 +887,7 @@ export default function OpportunitiesContactPage() {
 
             <div className="pt-2 border-t border-slate-100 text-[11px] text-slate-400 flex items-center justify-between font-mono">
               <span>South Gate Entry • School of Life Sciences</span>
-              <span className="text-emerald-600 font-semibold">Visitor Parking Available</span>
+              <span className="text-emerald-700 font-medium">Visitor Parking Available</span>
             </div>
           </div>
         </div>

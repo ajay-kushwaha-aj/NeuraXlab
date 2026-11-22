@@ -98,7 +98,7 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#0F2537]">
+    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#0F2537] overflow-x-hidden w-full max-w-full">
       {/* Institutional Top Ribbon, Brand Masthead & Dropdown Navigation */}
       <Navbar 
         activeTab={activeTab} 
@@ -108,7 +108,7 @@ function AppContent() {
       />
 
       {/* Main Dedicated Page Router */}
-      <main className="flex-grow">
+      <main className="flex-grow w-full max-w-full overflow-x-hidden">
         <ErrorBoundary>
           {activeTab === 'home' && <HomePage setActiveTab={handleTabChange} />}
           {activeTab === 'research' && <ResearchPage setActiveTab={handleTabChange} />}

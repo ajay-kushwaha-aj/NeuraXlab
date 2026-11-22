@@ -49,7 +49,7 @@ const galleryFacilities = [
       'Preparative ultracentrifuges for microsomal organelle fractionation and purity verification',
       'Real-time quantitative RT-qPCR thermal cyclers (CFX96) for lncRNA/piRNA expression profiling'
     ],
-    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&auto=format&fit=crop&q=80'
+    image: '/images/nanotherapy_gut_brain.jpg'
   },
   {
     id: 'fac-computational',
@@ -264,14 +264,14 @@ export default function ActivitiesPage() {
 
       {/* Header Banner */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider border border-[#8B1E24]/20">
-          <Camera className="w-3.5 h-3.5 text-[#C59B27]" />
-          <span>NeuroXlab Activities &amp; Gallery</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium border border-slate-200">
+          <Camera className="w-3.5 h-3.5 text-slate-500" />
+          <span>NeuroXlab activities &amp; gallery</span>
         </div>
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537] tracking-tight">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 tracking-tight">
           Facilities &amp; Event Gallery
         </h1>
-        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed">
+        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
           Explore the experimental suites, surgical workstations, scientific conferences, national workshops, and academic symposia powering research and academic engagement at the University of Hyderabad.
         </p>
 
@@ -279,17 +279,17 @@ export default function ActivitiesPage() {
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <a
             href="#gallery"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0F2537] hover:bg-[#8B1E24] text-white text-xs font-bold transition-all shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0F2537] hover:bg-[#8B1E24] text-white text-xs font-semibold transition-colors shadow-xs"
           >
-            <Microscope className="w-3.5 h-3.5 text-[#E0B84C]" />
-            <span>Laboratory Facilities Core</span>
+            <Microscope className="w-3.5 h-3.5 text-white" />
+            <span>Laboratory facilities core</span>
           </a>
           <a
             href="#events"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 text-xs font-bold transition-all shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 text-xs font-semibold transition-colors shadow-xs"
           >
-            <Calendar className="w-3.5 h-3.5 text-[#8B1E24]" />
-            <span>Scientific Events &amp; Symposia</span>
+            <Calendar className="w-3.5 h-3.5 text-slate-500" />
+            <span>Scientific events &amp; symposia</span>
           </a>
         </div>
       </div>
@@ -298,20 +298,20 @@ export default function ActivitiesPage() {
           SECTION 1: FACILITIES & INFRASTRUCTURE CORE
           ========================================================================= */}
       <section id="gallery" className="space-y-8 animate-in fade-in duration-300 scroll-mt-24">
-        <div className="border-b border-gray-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div className="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
-            <span className="text-xs font-mono font-bold uppercase text-[#8B1E24]">
-              Experimental Infrastructure
+            <span className="text-xs font-mono font-medium text-slate-600 block">
+              Experimental infrastructure
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
               Laboratory Facilities &amp; Technical Specifications
             </h2>
-            <p className="text-sm text-[#0F2537]/75 mt-1">
+            <p className="text-sm text-slate-600 mt-1">
               Room F75C, School of Life Sciences, University of Hyderabad.
             </p>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-mono self-start sm:self-auto border border-slate-200">
-            <Building2 className="w-3.5 h-3.5 text-[#C59B27]" />
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-mono self-start sm:self-auto border border-slate-200">
+            <Building2 className="w-3.5 h-3.5 text-slate-500" />
             <span>School of Life Sciences</span>
           </div>
         </div>
@@ -320,21 +320,21 @@ export default function ActivitiesPage() {
           {galleryFacilities.map((fac) => (
             <div
               key={fac.id}
-              className="bg-white rounded-3xl overflow-hidden border-2 border-gray-200 hover:border-[#C59B27] shadow-md hover:shadow-xl transition-all flex flex-col justify-between group"
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-slate-300 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between group"
             >
               <div>
                 {/* Visual Header */}
-                <div className="relative h-60 w-full overflow-hidden bg-[#0F2537]">
+                <div className="relative h-60 w-full overflow-hidden bg-slate-900">
                   <img
                     src={fac.image}
                     alt={fac.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-opacity group-hover:opacity-95"
                     onError={(e) => {
                       e.target.src = '/images/golgi_cox_neuron.png';
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
-                  <span className="absolute top-4 left-4 text-xs font-mono font-bold uppercase bg-[#8B1E24] text-white px-3 py-1 rounded-full shadow">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                  <span className="absolute top-3.5 left-3.5 text-[11px] font-mono font-medium bg-[#8B1E24] text-white px-2.5 py-0.5 rounded shadow-xs">
                     {fac.badge}
                   </span>
                   <button
@@ -345,30 +345,30 @@ export default function ActivitiesPage() {
                         `${fac.room} • Technical Specifications Core Facility at NeuroXlab.`
                       )
                     }
-                    className="absolute bottom-3 right-3 p-2 rounded-xl bg-black/60 text-white hover:bg-[#8B1E24] transition-colors cursor-pointer"
-                    title="Enlarge Facility Photograph"
+                    className="absolute bottom-3 right-3 p-2 rounded-lg bg-black/60 text-white hover:bg-[#8B1E24] transition-colors cursor-pointer"
+                    title="Enlarge facility photograph"
                   >
                     <Maximize2 className="w-4 h-4" />
                   </button>
                   <div className="absolute bottom-3 left-4 text-white">
-                    <span className="text-xs font-mono text-[#E0B84C] font-semibold">{fac.room}</span>
+                    <span className="text-xs font-mono text-slate-200 font-medium">{fac.room}</span>
                   </div>
                 </div>
 
                 {/* Specifications Body */}
-                <div className="p-6 sm:p-8 space-y-4">
-                  <h3 className="font-serif text-2xl font-bold text-[#0F2537] leading-snug">
+                <div className="p-6 sm:p-7 space-y-4">
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
                     {fac.title}
                   </h3>
 
                   <div className="space-y-2 pt-1">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
-                      Core Instrument Configurations &amp; Capabilities:
+                    <span className="text-xs font-mono font-medium text-slate-500 block">
+                      Core instrument configurations &amp; capabilities:
                     </span>
-                    <ul className="space-y-2.5">
+                    <ul className="space-y-2">
                       {fac.specifications.map((spec, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm text-[#0F2537]/85 leading-relaxed">
-                          <CheckCircle2 className="w-4 h-4 text-[#8B1E24] flex-shrink-0 mt-1" />
+                        <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                          <CheckCircle2 className="w-4 h-4 text-[#8B1E24] shrink-0 mt-0.5" />
                           <span>{spec}</span>
                         </li>
                       ))}
@@ -377,9 +377,9 @@ export default function ActivitiesPage() {
                 </div>
               </div>
 
-              <div className="px-6 sm:px-8 py-3.5 bg-[#FAF8F5] border-t border-gray-100 text-xs font-mono text-[#0F2537]/60 flex items-center justify-between">
+              <div className="px-6 py-3 bg-slate-50 border-t border-slate-100 text-xs font-mono text-slate-500 flex items-center justify-between">
                 <span>NeuroXlab Core Instrumentation</span>
-                <span className="text-[#8B1E24] font-bold">Room F75C School of Life Sciences</span>
+                <span className="text-[#8B1E24] font-medium">Room F75C · School of Life Sciences</span>
               </div>
             </div>
           ))}
@@ -391,14 +391,14 @@ export default function ActivitiesPage() {
           ========================================================================= */}
       <section id="events" className="space-y-8 pt-6 animate-in fade-in duration-300 scroll-mt-24">
         {/* Section Header */}
-        <div className="border-b border-gray-200 pb-5 space-y-4">
+        <div className="border-b border-slate-200 pb-5 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-[#8B1E24] bg-[#8B1E24]/5 px-2.5 py-0.5 rounded-md">
-                <Calendar className="w-3.5 h-3.5 text-[#C59B27]" />
-                Academic Outreach &amp; Symposia
+              <span className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-md">
+                <Calendar className="w-3.5 h-3.5 text-slate-500" />
+                Academic outreach &amp; symposia
               </span>
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0F2537] mt-1">
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mt-1">
                 Scientific Events &amp; Conference Gallery
               </h2>
               <p className="text-sm text-slate-600 mt-1 max-w-2xl">
@@ -407,16 +407,16 @@ export default function ActivitiesPage() {
             </div>
 
             <div className="flex items-center gap-2 self-start sm:self-auto">
-              <span className="text-xs font-mono font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
-                {filteredEvents.length} {filteredEvents.length === 1 ? 'Event' : 'Events'} Displayed
+              <span className="text-xs font-mono font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200 tabular-nums">
+                {filteredEvents.length} {filteredEvents.length === 1 ? 'event' : 'events'} displayed
               </span>
             </div>
           </div>
 
           {/* Interactive Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-2 pt-2">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-1 flex items-center gap-1">
-              <Filter className="w-3.5 h-3.5 text-[#C59B27]" />
+            <span className="text-xs font-medium text-slate-400 mr-1 flex items-center gap-1">
+              <Filter className="w-3.5 h-3.5 text-slate-400" />
               Filter:
             </span>
             {eventCategories.map((cat) => {
@@ -428,14 +428,14 @@ export default function ActivitiesPage() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
                     isActive
-                      ? 'bg-[#8B1E24] text-white shadow-md shadow-[#8B1E24]/20'
+                      ? 'bg-[#8B1E24] text-white shadow-xs'
                       : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                   }`}
                 >
                   <span>{cat}</span>
-                  <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded font-mono tabular-nums ${
                     isActive ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-600'
                   }`}>
                     {count}
@@ -447,19 +447,19 @@ export default function ActivitiesPage() {
         </div>
 
         {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {filteredEvents.map((evt) => (
             <div
               key={evt.id}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-[#C59B27] shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-slate-300 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between group"
             >
               <div>
                 {/* Event Image Banner */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0F2537]">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-900">
                   <img
                     src={evt.image}
                     alt={evt.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-opacity group-hover:opacity-95"
                     onError={(e) => {
                       e.target.src = '/images/jss_snci_con_2025_clean.png';
                     }}
@@ -467,46 +467,46 @@ export default function ActivitiesPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
                   {/* Category Badge */}
-                  <span className={`absolute top-3.5 left-3.5 text-[11px] font-mono font-bold uppercase px-3 py-1 rounded-full shadow-sm ${evt.badgeColor}`}>
+                  <span className={`absolute top-3 left-3 text-[10px] font-mono font-medium px-2 py-0.5 rounded shadow-xs ${evt.badgeColor}`}>
                     {evt.badge}
                   </span>
 
                   {/* Lightbox Trigger Button */}
                   <button
                     onClick={() => openLightbox(evt.image, evt.title, `${evt.venue} (${evt.date}) • ${evt.summary}`)}
-                    className="absolute top-3.5 right-3.5 p-2 rounded-xl bg-black/60 text-white hover:bg-[#8B1E24] transition-colors cursor-pointer"
-                    title="Enlarge Event Photograph"
+                    className="absolute top-3 right-3 p-1.5 rounded-lg bg-black/60 text-white hover:bg-[#8B1E24] transition-colors cursor-pointer"
+                    title="Enlarge event photograph"
                   >
                     <Maximize2 className="w-3.5 h-3.5" />
                   </button>
 
                   {/* Date Badge at Bottom Left */}
-                  <div className="absolute bottom-3 left-3.5 flex items-center gap-1.5 text-white text-xs font-mono font-semibold">
-                    <Calendar className="w-3.5 h-3.5 text-[#E0B84C]" />
+                  <div className="absolute bottom-2.5 left-3 flex items-center gap-1.5 text-white text-xs font-mono font-medium">
+                    <Calendar className="w-3.5 h-3.5 text-slate-300" />
                     <span>{evt.date}</span>
                   </div>
                 </div>
 
                 {/* Card Content Body */}
-                <div className="p-5 sm:p-6 space-y-3.5">
+                <div className="p-5 space-y-3">
                   <div>
-                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#0F2537] leading-snug group-hover:text-[#8B1E24] transition-colors line-clamp-2">
+                    <h3 className="font-serif text-lg font-bold text-slate-900 leading-snug group-hover:text-[#8B1E24] transition-colors line-clamp-2">
                       {evt.title}
                     </h3>
-                    <p className="text-xs font-semibold text-[#977313] mt-1 line-clamp-1">
+                    <p className="text-xs font-semibold text-[#8B1E24] mt-1 line-clamp-1">
                       {evt.subtitle}
                     </p>
                   </div>
 
                   {/* Venue & Role Metadata */}
-                  <div className="space-y-1.5 text-xs text-slate-600 bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                  <div className="space-y-1.5 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
                     <div className="flex items-start gap-2">
                       <MapPin className="w-3.5 h-3.5 text-[#8B1E24] shrink-0 mt-0.5" />
                       <span className="line-clamp-1">{evt.venue}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Award className="w-3.5 h-3.5 text-[#C59B27] shrink-0" />
-                      <span className="font-semibold text-[#0F2537]">{evt.role}</span>
+                      <Award className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                      <span className="font-semibold text-slate-900">{evt.role}</span>
                     </div>
                   </div>
 
@@ -526,14 +526,14 @@ export default function ActivitiesPage() {
               </div>
 
               {/* Card Footer */}
-              <div className="px-5 sm:px-6 py-3 bg-[#FAF8F5] border-t border-slate-100 text-xs font-mono flex items-center justify-between text-slate-500">
-                <span className="text-[11px] uppercase tracking-wider">{evt.filterCategory}</span>
+              <div className="px-5 py-3 bg-slate-50 border-t border-slate-100 text-xs font-mono flex items-center justify-between text-slate-500">
+                <span className="text-[11px]">{evt.filterCategory}</span>
                 <button
                   type="button"
                   onClick={() => openLightbox(evt.image, evt.title, `${evt.venue} (${evt.date}) • ${evt.summary}`)}
-                  className="font-bold text-[#8B1E24] hover:text-[#641318] inline-flex items-center gap-1 transition-colors cursor-pointer"
+                  className="font-medium text-xs text-[#8B1E24] hover:underline inline-flex items-center gap-1 transition-colors cursor-pointer"
                 >
-                  <span>Enlarge Photo</span>
+                  <span>Enlarge photo</span>
                   <Maximize2 className="w-3 h-3" />
                 </button>
               </div>

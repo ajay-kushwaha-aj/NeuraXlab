@@ -24,6 +24,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   /* Academic base typography set for comfortable reading */
@@ -32,6 +34,8 @@
     line-height: 1.68;
     color: #0F2537;
     letter-spacing: -0.006em;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   /* Enhanced paragraph readability defaults */

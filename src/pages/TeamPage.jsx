@@ -17,7 +17,8 @@ import {
   Network,
   Sparkles,
   Globe2,
-  ZoomIn
+  ZoomIn,
+  FlaskConical
 } from 'lucide-react';
 import { LAB_INFO, TEAM_MEMBERS, ALUMNI_MEMBERS } from '../data/labData';
 import { useCMS } from '../cms/context/CMSContext';
@@ -33,7 +34,7 @@ function MemberEditorialCard({ member, openLightbox }) {
   const qualification = member.qualification || '';
 
   return (
-    <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-md transition-all p-6 sm:p-8 lg:p-10">
+    <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6 sm:p-8 lg:p-10">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 items-start">
         {/* Left Column: Authentic Portrait */}
         <div className="md:col-span-4 lg:col-span-3 flex justify-center md:justify-start">
@@ -47,19 +48,19 @@ function MemberEditorialCard({ member, openLightbox }) {
                 );
               }
             }}
-            className="relative w-44 sm:w-52 aspect-[3/4] rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100 group cursor-pointer shrink-0"
+            className="relative w-44 sm:w-52 aspect-[3/4] rounded-xl overflow-hidden border border-slate-200 shadow-2xs bg-slate-100 group cursor-pointer shrink-0"
             title="Click to view portrait"
           >
             <img
               src={avatar}
               alt={`${name}, ${qualification}`}
-              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-cover object-top transition-opacity group-hover:opacity-95"
               onError={(e) => {
                 e.target.src = '/images/default_avatar.jpg';
               }}
             />
             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
-              <ZoomIn className="w-5 h-5 text-[#E0B84C]" />
+              <ZoomIn className="w-5 h-5 text-white" />
             </div>
           </div>
         </div>
@@ -181,42 +182,42 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
         onClose={closeLightbox}
       />
 
-      {/* 1. Page Header matching exact design reference */}
+      {/* 1. Page Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#8B1E24]/10 text-[#8B1E24] text-xs font-bold uppercase tracking-wider">
-          <Users className="w-3.5 h-3.5 text-[#C59B27]" />
-          <span>ACADEMIC LEADERSHIP &amp; SCIENTIFIC ROSTER</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+          <Users className="w-3.5 h-3.5 text-slate-500" />
+          <span>Academic leadership &amp; scientific roster</span>
         </div>
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-[#0F2537]">
-          Meet the Team
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900">
+          Meet the team
         </h1>
-        <p className="text-[#0F2537]/80 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+        <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
           Explore the academic pedigree of Dr. Venkata Prasuja Nakka alongside our active postdoctoral fellows, doctoral scholars, and graduate trainees.
         </p>
 
         {/* Tab Switcher: Group Leader Dossier vs Team Members & Supervision */}
-        <div className="inline-flex p-1.5 rounded-2xl bg-white border-2 border-[#C59B27]/40 shadow-sm text-sm font-bold mt-4">
+        <div className="inline-flex p-1 rounded-xl bg-slate-100 border border-slate-200 text-xs sm:text-sm font-semibold mt-4">
           <button
             onClick={() => handleTabSwitch('groupleader')}
-            className={`px-6 py-2.5 rounded-xl transition-all flex items-center gap-2 cursor-pointer ${
+            className={`px-5 py-2 rounded-lg transition-colors flex items-center gap-2 cursor-pointer ${
               activeTabSub === 'groupleader'
-                ? 'bg-[#8B1E24] text-white shadow-md'
-                : 'text-[#0F2537]/75 hover:text-[#8B1E24]'
+                ? 'bg-white text-slate-900 shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <GraduationCap className="w-4 h-4 text-[#E0B84C]" />
-            <span>Group Leader Dossier</span>
+            <GraduationCap className="w-4 h-4 text-slate-600" />
+            <span>Group leader profile</span>
           </button>
           <button
             onClick={() => handleTabSwitch('members')}
-            className={`px-6 py-2.5 rounded-xl transition-all flex items-center gap-2 cursor-pointer ${
+            className={`px-5 py-2 rounded-lg transition-colors flex items-center gap-2 cursor-pointer ${
               activeTabSub === 'members'
-                ? 'bg-[#8B1E24] text-white shadow-md'
-                : 'text-[#0F2537]/75 hover:text-[#8B1E24]'
+                ? 'bg-white text-slate-900 shadow-xs'
+                : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Users className="w-4 h-4" />
-            <span>Team Members &amp; Supervision</span>
+            <Users className="w-4 h-4 text-slate-600" />
+            <span>Team members &amp; supervision</span>
           </button>
         </div>
       </div>
@@ -227,24 +228,24 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
       {activeTabSub === 'groupleader' && (
         <div id="group-leader" className="space-y-12 animate-in fade-in duration-300 scroll-mt-28">
           {/* 1. Profile Header & Introduction Card */}
-          <div className="bg-white rounded-3xl border border-slate-200/90 shadow-md overflow-hidden">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
             {/* Top Accent Strip */}
-            <div className="bg-[#8B1E24] text-white px-6 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#C59B27]">
+            <div className="bg-[#8B1E24] text-white px-6 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-3 border-b border-white/10">
               <div className="flex items-center gap-2.5">
-                <Award className="w-5 h-5 text-[#E0B84C]" />
-                <span className="text-xs uppercase tracking-widest text-[#E0B84C] font-mono font-semibold">
-                  PRINCIPAL INVESTIGATOR &amp; LAB DIRECTOR
+                <Award className="w-4 h-4 text-[#C59B27]" />
+                <span className="text-xs font-mono font-medium tracking-wide text-slate-100">
+                  Principal Investigator &amp; Lab Director
                 </span>
               </div>
-              <span className="text-xs font-mono bg-white/10 px-3 py-1 rounded-lg border border-white/20 text-white font-medium">
-                University of Hyderabad (IoE)
+              <span className="text-xs font-mono bg-white/10 px-2.5 py-0.5 rounded text-white font-normal">
+                University of Hyderabad
               </span>
             </div>
 
-            <div className="p-6 sm:p-10 lg:p-12">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="p-6 sm:p-8 lg:p-10">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
                 {/* Left Column: Authentic Professional Portrait & Quick Contact */}
-                <div className="lg:col-span-4 flex flex-col items-center space-y-5">
+                <div className="lg:col-span-4 flex flex-col items-center space-y-4">
                   <div
                     onClick={() =>
                       openLightbox(
@@ -253,20 +254,20 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
                         `${pi.role || 'Principal Investigator'} — ${pi.affiliation || 'University of Hyderabad'}`
                       )
                     }
-                    className="relative rounded-2xl overflow-hidden border-2 border-[#C59B27]/70 shadow-lg bg-[#0F2537] aspect-[3/4] w-full max-w-[280px] sm:max-w-[300px] group cursor-pointer"
+                    className="relative rounded-xl overflow-hidden border border-slate-200 shadow-xs bg-slate-900 aspect-[3/4] w-full max-w-[280px] sm:max-w-[300px] group cursor-pointer"
                     title="Click to enlarge portrait"
                   >
                     <img
                       src={pi.avatar || pi.avatarUrl || '/images/dr_prasuja_nakka.jpg'}
                       alt="Dr. Venkata Prasuja Nakka, Ph.D. - Official Institutional Portrait, University of Hyderabad"
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover object-top transition-opacity group-hover:opacity-95"
                       onError={(e) => {
                         e.target.src = '/images/dr_prasuja_nakka.jpg';
                       }}
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white gap-2 font-medium text-xs">
-                      <ZoomIn className="w-4 h-4 text-[#E0B84C]" />
-                      <span>Enlarge Portrait</span>
+                      <ZoomIn className="w-4 h-4 text-slate-200" />
+                      <span>Enlarge portrait</span>
                     </div>
                   </div>
 
@@ -318,16 +319,16 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
                 {/* Right Column: Name, Subtitle, Affiliation & Complete Introduction */}
                 <div className="lg:col-span-8 space-y-4">
                   <div>
-                    <span className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#8B1E24] bg-[#8B1E24]/10 px-2.5 py-1 rounded-md mb-2">
-                      Academic Leadership
+                    <span className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md mb-2">
+                      Academic leadership
                     </span>
-                    <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-[#0F2537] tracking-tight">
+                    <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
                       Dr. Venkata Prasuja Nakka, Ph.D.
                     </h2>
                     <p className="font-serif italic text-lg sm:text-xl font-medium text-[#8B1E24] mt-1">
                       Systems Neurobiologist &amp; Translational Researcher
                     </p>
-                    <p className="text-sm font-semibold text-slate-600 mt-1">
+                    <p className="text-sm text-slate-600 mt-1">
                       Department of Systems and Computational Biology, School of Life Sciences, University of Hyderabad.
                     </p>
                   </div>
@@ -346,8 +347,8 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
 
                   {/* Core Research Domains Badges */}
                   <div className="pt-4 border-t border-slate-100 space-y-2">
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 block">
-                      Core Scientific Thrusts:
+                    <span className="text-xs font-mono font-medium text-slate-500 block">
+                      Core scientific thrusts:
                     </span>
                     <div className="flex flex-wrap gap-2">
                       {[
@@ -359,7 +360,7 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
                       ].map((item, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 rounded-full text-xs font-semibold bg-[#FAF8F5] text-[#0F2537] border border-slate-200"
+                          className="px-3 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200"
                         >
                           {item}
                         </span>
@@ -372,26 +373,26 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
           </div>
 
           {/* 2. Research Interests */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
-            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
-                <Activity className="w-3.5 h-3.5 text-[#C59B27]" />
-                <span>Primary Scientific Thrusts</span>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
+            <div className="space-y-2 border-b border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600">
+                <Activity className="w-3.5 h-3.5 text-slate-500" />
+                <span>Primary scientific thrusts</span>
               </div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
                 Research Interests
               </h3>
-              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {/* Card 1 */}
-              <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+              <div className="bg-slate-50 rounded-xl p-5 border border-slate-200 hover:border-slate-300 transition-colors flex flex-col justify-between group">
                 <div className="space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
-                    <Activity className="w-5 h-5" />
+                  <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center">
+                    <Activity className="w-4 h-4" />
                   </div>
-                  <h4 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                  <h4 className="font-serif text-base sm:text-lg font-bold text-slate-900 leading-snug">
                     Stroke Biology &amp; Neuroprotection
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -401,12 +402,12 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
               </div>
 
               {/* Card 2 */}
-              <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+              <div className="bg-slate-50 rounded-xl p-5 border border-slate-200 hover:border-slate-300 transition-colors flex flex-col justify-between group">
                 <div className="space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
-                    <Cpu className="w-5 h-5" />
+                  <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center">
+                    <Cpu className="w-4 h-4" />
                   </div>
-                  <h4 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                  <h4 className="font-serif text-base sm:text-lg font-bold text-slate-900 leading-snug">
                     Cellular Stress &amp; Signaling
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -416,12 +417,12 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
               </div>
 
               {/* Card 3 */}
-              <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+              <div className="bg-slate-50 rounded-xl p-5 border border-slate-200 hover:border-slate-300 transition-colors flex flex-col justify-between group">
                 <div className="space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
-                    <Dna className="w-5 h-5" />
+                  <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center">
+                    <Dna className="w-4 h-4" />
                   </div>
-                  <h4 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                  <h4 className="font-serif text-base sm:text-lg font-bold text-slate-900 leading-snug">
                     Gut–Brain Axis &amp; Metagenomics
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -431,12 +432,12 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
               </div>
 
               {/* Card 4 */}
-              <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+              <div className="bg-slate-50 rounded-xl p-5 border border-slate-200 hover:border-slate-300 transition-colors flex flex-col justify-between group">
                 <div className="space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
-                    <Network className="w-5 h-5" />
+                  <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center">
+                    <Network className="w-4 h-4" />
                   </div>
-                  <h4 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                  <h4 className="font-serif text-base sm:text-lg font-bold text-slate-900 leading-snug">
                     Brain–Organ Crosstalk
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -446,12 +447,12 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
               </div>
 
               {/* Card 5 */}
-              <div className="bg-[#FAF8F5] rounded-2xl p-5 border border-slate-200/80 hover:border-[#8B1E24]/60 shadow-xs hover:shadow-md transition-all flex flex-col justify-between group md:col-span-2 lg:col-span-1">
+              <div className="bg-slate-50 rounded-xl p-5 border border-slate-200 hover:border-slate-300 transition-colors flex flex-col justify-between group md:col-span-2 lg:col-span-1">
                 <div className="space-y-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
-                    <Sparkles className="w-5 h-5 text-[#C59B27]" />
+                  <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center">
+                    <FlaskConical className="w-4 h-4" />
                   </div>
-                  <h4 className="font-serif text-base sm:text-lg font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-snug">
+                  <h4 className="font-serif text-base sm:text-lg font-bold text-slate-900 leading-snug">
                     Translational Therapeutics
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -463,16 +464,16 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
           </div>
 
           {/* 3. Education & Postdoctoral Experience */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
-            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
-                <GraduationCap className="w-3.5 h-3.5 text-[#C59B27]" />
-                <span>Academic Trajectory</span>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
+            <div className="space-y-2 border-b border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600">
+                <GraduationCap className="w-3.5 h-3.5 text-slate-500" />
+                <span>Academic trajectory</span>
               </div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
                 Education &amp; Postdoctoral Experience
               </h3>
-              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
@@ -480,21 +481,21 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
               <div className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
                   <GraduationCap className="w-5 h-5 text-[#8B1E24]" />
-                  <h4 className="font-serif text-xl font-bold text-[#0F2537]">
+                  <h4 className="font-serif text-xl font-bold text-slate-900">
                     Education
                   </h4>
                 </div>
 
                 <div className="space-y-3.5">
-                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
-                    <span className="text-xs font-mono font-bold text-[#8B1E24] uppercase block">Doctor of Philosophy (Ph.D.)</span>
-                    <p className="font-serif text-base font-bold text-[#0F2537]">Jawaharlal Nehru University, New Delhi</p>
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                    <span className="text-xs font-mono font-medium text-slate-600 block">Doctor of Philosophy (Ph.D.)</span>
+                    <p className="font-serif text-base font-bold text-slate-900">Jawaharlal Nehru University, New Delhi</p>
                     <p className="text-xs sm:text-sm text-slate-600">Research conducted at Central Drug Research Institute (CDRI), Lucknow, India.</p>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
-                    <span className="text-xs font-mono font-bold text-[#C59B27] uppercase block">Master of Science (M.Sc.)</span>
-                    <p className="font-serif text-base font-bold text-[#0F2537]">Acharya Nagarjuna University</p>
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                    <span className="text-xs font-mono font-medium text-slate-600 block">Master of Science (M.Sc.)</span>
+                    <p className="font-serif text-base font-bold text-slate-900">Acharya Nagarjuna University</p>
                     <p className="text-xs sm:text-sm text-slate-600">Andhra Pradesh, India.</p>
                   </div>
                 </div>
@@ -504,27 +505,27 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
               <div className="space-y-4">
                 <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
                   <Globe2 className="w-5 h-5 text-[#8B1E24]" />
-                  <h4 className="font-serif text-xl font-bold text-[#0F2537]">
+                  <h4 className="font-serif text-xl font-bold text-slate-900">
                     Postdoctoral Research
                   </h4>
                 </div>
 
                 <div className="space-y-3.5">
-                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
-                    <span className="text-xs font-mono font-bold text-[#8B1E24] uppercase block">United States</span>
-                    <p className="font-serif text-base font-bold text-[#0F2537]">University of Wisconsin–Madison, USA</p>
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                    <span className="text-xs font-mono font-medium text-slate-600 block">United States</span>
+                    <p className="font-serif text-base font-bold text-slate-900">University of Wisconsin–Madison, USA</p>
                     <p className="text-xs sm:text-sm text-slate-600">Department of Neurological Surgery, School of Medicine and Public Health.</p>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
-                    <span className="text-xs font-mono font-bold text-[#8B1E24] uppercase block">Singapore</span>
-                    <p className="font-serif text-base font-bold text-[#0F2537]">National University of Singapore, Singapore</p>
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                    <span className="text-xs font-mono font-medium text-slate-600 block">Singapore</span>
+                    <p className="font-serif text-base font-bold text-slate-900">National University of Singapore, Singapore</p>
                     <p className="text-xs sm:text-sm text-slate-600">Department of Pharmacy.</p>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
-                    <span className="text-xs font-mono font-bold text-[#8B1E24] uppercase block">India</span>
-                    <p className="font-serif text-base font-bold text-[#0F2537]">University of Hyderabad, India</p>
+                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                    <span className="text-xs font-mono font-medium text-slate-600 block">India</span>
+                    <p className="font-serif text-base font-bold text-slate-900">University of Hyderabad, India</p>
                     <p className="text-xs sm:text-sm text-slate-600">SERB-Young Scientist and UGC-Postdoctoral Fellow, School of Life Sciences.</p>
                   </div>
                 </div>
@@ -533,83 +534,83 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
           </div>
 
           {/* 4. Awards & Fellowships */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
-            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
-                <Award className="w-3.5 h-3.5 text-[#C59B27]" />
-                <span>Honors &amp; Appointments</span>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
+            <div className="space-y-2 border-b border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600">
+                <Award className="w-3.5 h-3.5 text-slate-500" />
+                <span>Honors &amp; appointments</span>
               </div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
                 Awards &amp; Fellowships
               </h3>
-              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1.5 flex flex-col justify-between">
+              <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5 flex flex-col justify-between">
                 <div className="space-y-1">
-                  <span className="text-[11px] font-mono font-bold text-[#8B1E24] uppercase bg-[#8B1E24]/10 px-2 py-0.5 rounded">
-                    National Fellowship
+                  <span className="text-[11px] font-mono font-medium text-slate-700 bg-slate-200/80 px-2 py-0.5 rounded">
+                    National fellowship
                   </span>
-                  <h4 className="font-serif text-base font-bold text-[#0F2537] pt-1">
+                  <h4 className="font-serif text-base font-bold text-slate-900 pt-1">
                     CSIR Junior Research Fellowship
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Awarded by the Council of Scientific and Industrial Research (CSIR), Govt. of India.
                   </p>
                 </div>
-                <div className="text-xs font-mono font-bold text-slate-500 pt-2 border-t border-slate-200/60">
+                <div className="text-xs font-mono text-slate-500 pt-2 border-t border-slate-200 tabular-nums">
                   Period: 2003 – 2005
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1.5 flex flex-col justify-between">
+              <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5 flex flex-col justify-between">
                 <div className="space-y-1">
-                  <span className="text-[11px] font-mono font-bold text-[#8B1E24] uppercase bg-[#8B1E24]/10 px-2 py-0.5 rounded">
-                    National Fellowship
+                  <span className="text-[11px] font-mono font-medium text-slate-700 bg-slate-200/80 px-2 py-0.5 rounded">
+                    National fellowship
                   </span>
-                  <h4 className="font-serif text-base font-bold text-[#0F2537] pt-1">
+                  <h4 className="font-serif text-base font-bold text-slate-900 pt-1">
                     CSIR Senior Research Fellowship
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Awarded by the Council of Scientific and Industrial Research (CSIR), Govt. of India.
                   </p>
                 </div>
-                <div className="text-xs font-mono font-bold text-slate-500 pt-2 border-t border-slate-200/60">
+                <div className="text-xs font-mono text-slate-500 pt-2 border-t border-slate-200 tabular-nums">
                   Period: 2005 – 2008
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1.5 flex flex-col justify-between">
+              <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5 flex flex-col justify-between">
                 <div className="space-y-1">
-                  <span className="text-[11px] font-mono font-bold text-[#C59B27] uppercase bg-[#C59B27]/15 px-2 py-0.5 rounded">
-                    Faculty Appointment
+                  <span className="text-[11px] font-mono font-medium text-slate-700 bg-slate-200/80 px-2 py-0.5 rounded">
+                    Faculty appointment
                   </span>
-                  <h4 className="font-serif text-base font-bold text-[#0F2537] pt-1">
+                  <h4 className="font-serif text-base font-bold text-slate-900 pt-1">
                     UGC Faculty Recharge Programme
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Selected under the UGC Faculty Recharge Programme as Assistant Professor, Cycle III.
                   </p>
                 </div>
-                <div className="text-xs font-mono font-bold text-slate-500 pt-2 border-t border-slate-200/60">
+                <div className="text-xs font-mono text-slate-500 pt-2 border-t border-slate-200">
                   University Grants Commission (UGC)
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1.5 flex flex-col justify-between">
+              <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5 flex flex-col justify-between">
                 <div className="space-y-1">
-                  <span className="text-[11px] font-mono font-bold text-[#C59B27] uppercase bg-[#C59B27]/15 px-2 py-0.5 rounded">
-                    Conference Distinction
+                  <span className="text-[11px] font-mono font-medium text-slate-700 bg-slate-200/80 px-2 py-0.5 rounded">
+                    Conference distinction
                   </span>
-                  <h4 className="font-serif text-base font-bold text-[#0F2537] pt-1">
+                  <h4 className="font-serif text-base font-bold text-slate-900 pt-1">
                     Young Scientist Award (Gold Medal)
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     Conferred for oral presentation at the International Conference on Innovations in Pharma and Biopharma Industry (ICIPBI 2017), University of Hyderabad, India.
                   </p>
                 </div>
-                <div className="text-xs font-mono font-bold text-slate-500 pt-2 border-t border-slate-200/60">
+                <div className="text-xs font-mono text-slate-500 pt-2 border-t border-slate-200 tabular-nums">
                   ICIPBI 2017
                 </div>
               </div>
@@ -617,16 +618,16 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
           </div>
 
           {/* 5. Professional Service & Recognition */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
-            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C59B27]" />
-                <span>Scholarly Contributions</span>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
+            <div className="space-y-2 border-b border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600">
+                <ShieldCheck className="w-3.5 h-3.5 text-slate-500" />
+                <span>Scholarly contributions</span>
               </div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
                 Professional Service &amp; Recognition
               </h3>
-              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
 
             <div className="space-y-6">
@@ -634,7 +635,7 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <FileText className="w-4 h-4 text-[#8B1E24]" />
-                  <h4 className="font-serif text-lg font-bold text-[#0F2537]">
+                  <h4 className="font-serif text-lg font-bold text-slate-900">
                     Editorial &amp; Peer-Review Contributions
                   </h4>
                 </div>
@@ -661,7 +662,7 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
                   ].map((journal, jIdx) => (
                     <span
                       key={jIdx}
-                      className="px-3 py-1.5 rounded-lg bg-[#FAF8F5] border border-slate-200 text-xs font-medium text-[#0F2537] hover:border-[#8B1E24]/50 transition-colors"
+                      className="px-2.5 py-1 rounded-md bg-slate-50 border border-slate-200 text-xs font-medium text-slate-800 hover:border-slate-300 transition-colors"
                     >
                       {journal}
                     </span>
@@ -672,11 +673,11 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
               {/* Research Project Review, Invited Book Chapters, Leadership */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
                 {/* Research Project Review */}
-                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-2">
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#8B1E24] block">
-                    Grant &amp; Project Review
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                  <span className="text-[11px] font-mono font-medium text-slate-600 block">
+                    Grant &amp; project review
                   </span>
-                  <h5 className="font-serif text-base font-bold text-[#0F2537]">
+                  <h5 className="font-serif text-base font-bold text-slate-900">
                     Research Project Review
                   </h5>
                   <p className="text-xs text-slate-600 leading-relaxed">
@@ -685,11 +686,11 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
                 </div>
 
                 {/* Invited Book Chapters */}
-                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-2">
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#C59B27] block">
-                    Academic Publishers
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                  <span className="text-[11px] font-mono font-medium text-slate-600 block">
+                    Academic publishers
                   </span>
-                  <h5 className="font-serif text-base font-bold text-[#0F2537]">
+                  <h5 className="font-serif text-base font-bold text-slate-900">
                     Invited Book Chapters
                   </h5>
                   <ul className="text-xs text-slate-600 space-y-1">
@@ -701,15 +702,15 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
                 </div>
 
                 {/* Professional Leadership */}
-                <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-2">
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#8B1E24] block">
-                    Elected Office
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                  <span className="text-[11px] font-mono font-medium text-slate-600 block">
+                    Elected office
                   </span>
-                  <h5 className="font-serif text-base font-bold text-[#0F2537]">
+                  <h5 className="font-serif text-base font-bold text-slate-900">
                     Professional Leadership
                   </h5>
                   <p className="text-xs text-slate-700 leading-relaxed">
-                    <strong className="text-[#0F2537] font-semibold">Treasurer</strong>, Society for Neurochemistry, India (SNCI), since December 2024.
+                    <strong className="text-slate-900 font-semibold">Treasurer</strong>, Society for Neurochemistry, India (SNCI), since December 2024.
                   </p>
                 </div>
               </div>
@@ -717,58 +718,58 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
           </div>
 
           {/* 6. Professional Society Memberships */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
-            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
-                <Users className="w-3.5 h-3.5 text-[#C59B27]" />
-                <span>Learned Societies</span>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
+            <div className="space-y-2 border-b border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600">
+                <Users className="w-3.5 h-3.5 text-slate-500" />
+                <span>Learned societies</span>
               </div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
                 Professional Memberships
               </h3>
-              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
-                <span className="text-[11px] font-mono font-bold text-[#8B1E24] uppercase block">Life Membership</span>
-                <h4 className="font-serif text-base font-bold text-[#0F2537]">Indian Academy of Neurosciences (IAN)</h4>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                <span className="text-[11px] font-mono font-medium text-slate-600 block">Life membership</span>
+                <h4 className="font-serif text-base font-bold text-slate-900">Indian Academy of Neurosciences (IAN)</h4>
               </div>
-              <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
-                <span className="text-[11px] font-mono font-bold text-[#8B1E24] uppercase block">Life Membership</span>
-                <h4 className="font-serif text-base font-bold text-[#0F2537]">Society for Neurochemistry, India (SNCI)</h4>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                <span className="text-[11px] font-mono font-medium text-slate-600 block">Life membership</span>
+                <h4 className="font-serif text-base font-bold text-slate-900">Society for Neurochemistry, India (SNCI)</h4>
               </div>
-              <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
-                <span className="text-[11px] font-mono font-bold text-[#8B1E24] uppercase block">Life Membership</span>
-                <h4 className="font-serif text-base font-bold text-[#0F2537]">Society for Biological Chemists, India (SBC)</h4>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+                <span className="text-[11px] font-mono font-medium text-slate-600 block">Life membership</span>
+                <h4 className="font-serif text-base font-bold text-slate-900">Society for Biological Chemists, India (SBC)</h4>
               </div>
             </div>
           </div>
 
           {/* 7. Contact Section */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-md space-y-6">
-            <div className="space-y-2 border-b-2 border-slate-200 pb-4">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8B1E24]">
-                <Mail className="w-3.5 h-3.5 text-[#C59B27]" />
-                <span>Direct Correspondence</span>
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-6">
+            <div className="space-y-2 border-b border-slate-200 pb-4">
+              <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600">
+                <Mail className="w-3.5 h-3.5 text-slate-500" />
+                <span>Direct correspondence</span>
               </div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
                 Contact the Principal Investigator
               </h3>
-              <div className="w-16 h-1 bg-[#8B1E24] rounded-full" />
+              <div className="w-12 h-0.5 bg-[#8B1E24] mt-2" />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <a
                 href="mailto:nvprasuja@gmail.com"
-                className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200 hover:border-[#8B1E24] transition-all group flex items-start gap-3.5 cursor-pointer"
+                className="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-colors group flex items-start gap-3.5 cursor-pointer"
               >
-                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center shrink-0 group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
-                  <Mail className="w-5 h-5" />
+                <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center shrink-0">
+                  <Mail className="w-4 h-4" />
                 </div>
                 <div className="space-y-0.5 min-w-0">
-                  <span className="text-xs font-mono font-bold uppercase text-slate-500 block">Personal / Primary Email</span>
-                  <span className="font-mono text-sm sm:text-base font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors truncate block">
+                  <span className="text-xs font-mono font-medium text-slate-500 block">Personal / Primary Email</span>
+                  <span className="font-mono text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#8B1E24] transition-colors truncate block">
                     nvprasuja@gmail.com
                   </span>
                 </div>
@@ -776,14 +777,14 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
 
               <a
                 href="mailto:nvprasuja@uohyd.ac.in"
-                className="p-5 rounded-2xl bg-[#FAF8F5] border border-slate-200 hover:border-[#8B1E24] transition-all group flex items-start gap-3.5 cursor-pointer"
+                className="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-300 transition-colors group flex items-start gap-3.5 cursor-pointer"
               >
-                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center shrink-0 group-hover:bg-[#8B1E24] group-hover:text-white transition-colors">
-                  <Mail className="w-5 h-5" />
+                <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 text-[#8B1E24] flex items-center justify-center shrink-0">
+                  <Mail className="w-4 h-4" />
                 </div>
                 <div className="space-y-0.5 min-w-0">
-                  <span className="text-xs font-mono font-bold uppercase text-[#8B1E24] block">Institutional Email</span>
-                  <span className="font-mono text-sm sm:text-base font-bold text-[#0F2537] group-hover:text-[#8B1E24] transition-colors truncate block">
+                  <span className="text-xs font-mono font-medium text-slate-500 block">Institutional Email</span>
+                  <span className="font-mono text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#8B1E24] transition-colors truncate block">
                     nvprasuja@uohyd.ac.in
                   </span>
                 </div>
@@ -801,16 +802,16 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
           {/* Postdoctoral Researchers & Research Fellows Section */}
           {postdocs.length > 0 && (
             <section id="postdoctoral-researchers" className="space-y-6 scroll-mt-24">
-              <div className="border-b-2 border-slate-200 pb-3 flex items-center justify-between gap-4">
+              <div className="border-b border-slate-200 pb-3 flex items-center justify-between gap-4">
                 <div className="space-y-1">
-                  <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#8B1E24]">
-                    Postdoctoral Scholars &amp; Research Scientists
+                  <span className="text-xs font-mono font-medium text-slate-600 block">
+                    Postdoctoral scholars &amp; research scientists
                   </span>
-                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
                     Postdoctoral Researchers &amp; Fellows
                   </h2>
                 </div>
-                <span className="text-xs font-mono text-slate-500 font-medium">
+                <span className="text-xs font-mono text-slate-500 font-medium tabular-nums">
                   {postdocs.length} Research Fellow{postdocs.length > 1 ? 's' : ''}
                 </span>
               </div>
@@ -830,16 +831,16 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
 
           {/* Doctoral Researchers Section */}
           <section id="doctoral-researchers" className="space-y-6 scroll-mt-24">
-            <div className="border-b-2 border-slate-200 pb-3 flex items-center justify-between gap-4">
+            <div className="border-b border-slate-200 pb-3 flex items-center justify-between gap-4">
               <div className="space-y-1">
-                <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#8B1E24]">
-                  Doctoral Program
+                <span className="text-xs font-mono font-medium text-slate-600 block">
+                  Doctoral program
                 </span>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
                   Doctoral Researchers
                 </h2>
               </div>
-              <span className="text-xs font-mono text-slate-500 font-medium">
+              <span className="text-xs font-mono text-slate-500 font-medium tabular-nums">
                 {doctoralResearchers.length} Ph.D. Scholar{doctoralResearchers.length > 1 ? 's' : ''}
               </span>
             </div>
@@ -858,16 +859,16 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
           {/* Research Associates & Project Staff Section */}
           {projectStaff.length > 0 && (
             <section id="project-staff" className="space-y-6 scroll-mt-24">
-              <div className="border-b-2 border-slate-200 pb-3 flex items-center justify-between gap-4">
+              <div className="border-b border-slate-200 pb-3 flex items-center justify-between gap-4">
                 <div className="space-y-1">
-                  <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#8B1E24]">
-                    Scientific &amp; Technical Personnel
+                  <span className="text-xs font-mono font-medium text-slate-600 block">
+                    Scientific &amp; technical personnel
                   </span>
-                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
                     Research Associates &amp; Project Staff
                   </h2>
                 </div>
-                <span className="text-xs font-mono text-slate-500 font-medium">
+                <span className="text-xs font-mono text-slate-500 font-medium tabular-nums">
                   {projectStaff.length} Project Associate{projectStaff.length > 1 ? 's' : ''}
                 </span>
               </div>
@@ -886,12 +887,12 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
 
           {/* Alumni Network Section */}
           <section id="alumni-network" className="space-y-6 scroll-mt-24">
-            <div className="border-b-2 border-slate-200 pb-3 flex items-center justify-between gap-4">
+            <div className="border-b border-slate-200 pb-3 flex items-center justify-between gap-4">
               <div className="space-y-1">
-                <span className="text-xs uppercase font-mono font-bold tracking-widest text-[#8B1E24]">
-                  Scholars &amp; Trainee Destinations
+                <span className="text-xs font-mono font-medium text-slate-600 block">
+                  Scholars &amp; trainee destinations
                 </span>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0F2537]">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
                   Alumni Network
                 </h2>
               </div>
@@ -901,7 +902,7 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
             </div>
 
             {/* 2-Column Grid on Desktop, 1-Column on Mobile */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
               {(allAlumni || []).map((alumnus, idx) => {
                 if (!alumnus) return null;
                 const rawInterests = alumnus.researchInterests;
@@ -919,36 +920,36 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
                 return (
                   <div
                     key={alumnus.id || `alumnus-${idx}`}
-                    className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 hover:border-[#C59B27]/70 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-4"
+                    className="bg-white rounded-2xl p-6 border border-slate-200 hover:border-slate-300 shadow-xs transition-colors flex flex-col justify-between space-y-4"
                   >
                     <div className="space-y-3.5">
                       {/* Header: Name, former role, graduation period */}
                       <div className="flex items-start justify-between gap-3">
                         <div>
                           {period && (
-                            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold font-mono border border-slate-200 mb-1">
+                            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-medium font-mono border border-slate-200 mb-1 tabular-nums">
                               <span>{period}</span>
                             </div>
                           )}
-                          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0F2537] leading-tight">
+                          <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 leading-tight">
                             {name}
                           </h3>
                           <p className="text-xs sm:text-sm font-semibold text-[#8B1E24]">
                             {role}
                           </p>
                         </div>
-                        <div className="w-10 h-10 rounded-xl bg-[#8B1E24]/10 text-[#8B1E24] flex items-center justify-center shrink-0">
-                          <GraduationCap className="w-5 h-5 text-[#C59B27]" />
+                        <div className="w-9 h-9 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
+                          <GraduationCap className="w-4 h-4 text-slate-600" />
                         </div>
                       </div>
 
                       {/* Current Placement / Destination Pill */}
                       {currentDestination && (
-                        <div className="p-3 rounded-xl bg-[#FAF8F5] border border-slate-200/80 space-y-1">
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-bold block">
-                            Subsequent / Current Position:
+                        <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 space-y-1">
+                          <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-medium block">
+                            Subsequent / current position:
                           </span>
-                          <p className="text-xs sm:text-[13px] font-bold text-[#0F2537]">
+                          <p className="text-xs sm:text-[13px] font-semibold text-slate-900">
                             {currentDestination}
                           </p>
                         </div>
@@ -965,14 +966,14 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
                     {/* Research Focus Tags */}
                     {interests.length > 0 && (
                       <div className="pt-3 border-t border-slate-100 space-y-1.5">
-                        <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 block">
-                          Past NeuroXLab Focus:
+                        <span className="text-[11px] font-mono font-medium text-slate-500 block">
+                          Past focus:
                         </span>
                         <div className="flex flex-wrap gap-1.5">
                           {interests.map((tag, tIdx) => (
                             <span
                               key={tIdx}
-                              className="px-2.5 py-0.5 rounded-md text-xs font-medium bg-[#FAF8F5] text-[#0F2537] border border-slate-200"
+                              className="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200"
                             >
                               {tag}
                             </span>
@@ -987,16 +988,16 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
           </section>
 
           {/* Interested in Working with Us? Section */}
-          <section className="bg-gradient-to-r from-[#0F2537] to-[#142e44] text-white rounded-3xl p-8 sm:p-10 border-2 border-[#C59B27]/50 shadow-xl">
+          <section className="bg-[#0F2537] text-white rounded-2xl p-8 sm:p-10 border border-white/10 shadow-xs">
             <div className="max-w-3xl mx-auto text-center space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#E0B84C] text-xs font-mono font-semibold border border-white/15">
-                <GraduationCap className="w-3.5 h-3.5 text-[#E0B84C]" />
-                <span>JOIN OUR LABORATORY</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-slate-200 text-xs font-mono font-medium">
+                <GraduationCap className="w-3.5 h-3.5 text-slate-300" />
+                <span>Join our laboratory</span>
               </div>
               <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
                 Interested in working with us?
               </h3>
-              <p className="text-white/85 text-sm sm:text-base leading-relaxed font-sans max-w-xl mx-auto">
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-sans max-w-xl mx-auto">
                 Explore research opportunities and learn more about joining NeuroXLab.
               </p>
               <div className="pt-2">
@@ -1007,10 +1008,10 @@ export default function TeamPage({ setActiveTab, activeSubSection, setActiveSubS
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
                   }}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white bg-[#8B1E24] hover:bg-[#A82931] border border-[#E0B84C]/50 shadow-lg hover:shadow-xl transition-all active:scale-95 cursor-pointer min-h-[44px]"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold text-white bg-[#8B1E24] hover:bg-[#A82931] border border-white/10 shadow-xs transition-colors cursor-pointer min-h-[44px]"
                 >
-                  <span>Explore Opportunities &amp; Contact</span>
-                  <ArrowRight className="w-4 h-4 text-[#E0B84C]" />
+                  <span>Explore opportunities &amp; contact</span>
+                  <ArrowRight className="w-4 h-4 text-white" />
                 </button>
               </div>
             </div>
