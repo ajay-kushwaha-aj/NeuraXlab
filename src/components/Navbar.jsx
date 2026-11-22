@@ -4,11 +4,8 @@ import {
   Menu,
   X,
   ExternalLink,
-  BookOpen,
   Home,
-  ChevronRight,
-  ArrowUpRight,
-  Sparkles
+  ChevronRight
 } from 'lucide-react';
 import NeuroXlabLogo from './NeuroXlabLogo';
 import uohSeal from '../assets/uoh_seal.png';
@@ -60,7 +57,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
         { id: 'overview', label: 'Research Overview', sectionId: 'research-overview' },
         { id: 'directions', label: 'Featured Research Directions', sectionId: 'research-directions' },
         { id: 'projects', label: 'Ongoing Research Projects', sectionId: 'ongoing-projects' },
-        { id: 'collaborations', label: 'Research Collaborators', sectionId: 'collaborations' },
+        { id: 'collaborations', label: 'Research Collaborators', sectionId: 'collaborators' },
       ]
     },
     {
@@ -68,8 +65,8 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
       label: 'Meet the Team',
       hasDropdown: true,
       subItems: [
-        { id: 'group-leader', label: 'Group Leader', sectionId: 'group-leader' },
-        { id: 'team-roster', label: 'Team Members & Supervision', sectionId: 'team-roster' },
+        { id: 'group-leader', label: 'Group Leader Dossier', sectionId: 'group-leader' },
+        { id: 'team-roster', label: 'Team Members & Alumni', sectionId: 'team-roster' },
       ]
     },
     {
@@ -100,7 +97,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
     setMobileMenuOpen(false);
     setHoveredMenu(null);
 
-    // Scroll handling: for top-level tabs (group-leader or team-roster), scroll to top smoothly so header & tabs are visible
+    // Scroll handling: for top-level tabs, scroll to top smoothly
     if (sectionId === 'group-leader' || sectionId === 'team-roster' || !sectionId) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
@@ -141,9 +138,9 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
   const currentSubItem = currentNavItem?.subItems?.find(s => s.sectionId === activeSubSection);
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-40 w-full shadow-md bg-white">
-      {/* 1. Top Utility Bar in #8B1E24 with #C59B27 bottom border */}
-      <div className="bg-[#8B1E24] text-white border-b border-[#C59B27]/40 py-1.5 px-4 sm:px-6 lg:px-8 text-[12px] sm:text-[13px] select-none">
+    <header ref={headerRef} className="sticky top-0 z-40 w-full shadow-2xs bg-white">
+      {/* 1. Top Institutional Ribbon in #8B1E24 with subtle border */}
+      <div className="bg-[#8B1E24] text-white border-b border-black/10 py-1.5 px-4 sm:px-6 lg:px-8 text-xs select-none">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-4">
           {/* Institutional Affirmation */}
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 sm:gap-2 text-center sm:text-left tracking-wide font-sans">
@@ -151,13 +148,13 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
               University of Hyderabad
             </span>
             <span className="text-white/40" aria-hidden="true">•</span>
-            <span className="text-white/85">
+            <span className="text-white/90">
               School of Life Sciences
             </span>
           </div>
 
           {/* External Scholarly & Institutional Links */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-white/70">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-white/75 font-mono text-[11px] sm:text-xs">
             <a
               href="https://uohyd.ac.in"
               target="_blank"
@@ -165,7 +162,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
               className="inline-flex items-center gap-1 hover:text-white transition-colors"
             >
               <span>uohyd.ac.in</span>
-              <ExternalLink className="w-3 h-3 text-white/40" />
+              <ExternalLink className="w-2.5 h-2.5 text-white/50" />
             </a>
             <span className="text-white/30" aria-hidden="true">•</span>
             <a
@@ -176,7 +173,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
               title="Dr. Nakka on Google Scholar"
             >
               <span>Scholar</span>
-              <ExternalLink className="w-3 h-3 text-white/40" />
+              <ExternalLink className="w-2.5 h-2.5 text-white/50" />
             </a>
             <span className="text-white/30" aria-hidden="true">•</span>
             <a
@@ -187,7 +184,7 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
               title="Dr. Nakka on ResearchGate"
             >
               <span>ResearchGate</span>
-              <ExternalLink className="w-3 h-3 text-white/40" />
+              <ExternalLink className="w-2.5 h-2.5 text-white/50" />
             </a>
             <span className="text-white/30" aria-hidden="true">•</span>
             <a
@@ -198,26 +195,27 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
               title="Dr. Nakka on LinkedIn"
             >
               <span>LinkedIn</span>
-              <ExternalLink className="w-3 h-3 text-white/40" />
+              <ExternalLink className="w-2.5 h-2.5 text-white/50" />
             </a>
           </div>
         </div>
       </div>
 
-      {/* 2. Brand Masthead & Navigation Bar */}
-      <nav className="bg-[#FFFFFF] border-b border-gray-200">
+      {/* 2. Main Brand Masthead & Desktop Navigation */}
+      <nav className="bg-white/95 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-[72px] gap-4">
-            {/* Left Group: Brand Masthead + Desktop Navigation Links closely adjacent */}
+          <div className="flex items-center justify-between h-16 sm:h-[68px] gap-4">
+            
+            {/* Left Group: Dual Institutional Badges & Brand Masthead */}
             <div className="flex items-center gap-3 sm:gap-4 xl:gap-6 min-w-0">
-              {/* Brand Masthead: University of Hyderabad Logo + NeuroXlab Logo & Title */}
               <div className="flex items-center shrink-0 pr-1 sm:pr-2 gap-2 sm:gap-2.5">
+                {/* UoH Seal */}
                 <a
                   href="https://uohyd.ac.in/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 transition-opacity hover:opacity-90 shrink-0"
-                  title="University of Hyderabad - Official Website"
+                  title="University of Hyderabad"
                 >
                   <img
                     src={uohSeal}
@@ -226,28 +224,29 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
                   />
                 </a>
 
-                {/* Little vertical line in between the logos */}
-                <div className="h-6 sm:h-7 w-px bg-gray-300 mx-0.5 sm:mx-1" aria-hidden="true" />
+                {/* Subtle vertical hairline divider */}
+                <div className="h-6 w-px bg-slate-200 mx-0.5" aria-hidden="true" />
 
+                {/* NeuroXlab Brand Link */}
                 <button
                   onClick={() => handleNavClick('home')}
                   className="flex items-center gap-2 sm:gap-2.5 text-left group focus:outline-none cursor-pointer"
                   aria-label="NeuroXlab Home"
                 >
-                  <NeuroXlabLogo className="h-10 w-10 sm:h-11 sm:w-11" />
+                  <NeuroXlabLogo className="h-10 w-10 sm:h-11 sm:w-11 shrink-0" />
                   <div className="flex flex-col">
-                    <span className="brand-title text-xl sm:text-2xl font-bold tracking-tight text-[#0F2537] group-hover:text-[#8B1E24] transition-colors leading-none">
+                    <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-slate-900 group-hover:text-[#8B1E24] transition-colors leading-none">
                       Neuro<span className="text-[#C59B27]">X</span>lab
                     </span>
-                    <span className="text-xs font-medium text-slate-500 tracking-tight leading-tight hidden sm:block mt-0.5">
+                    <span className="text-[11px] font-mono text-slate-500 tracking-tight leading-tight hidden sm:block mt-0.5">
                       Systems &amp; Computational Biology
                     </span>
                   </div>
                 </button>
               </div>
 
-              {/* Desktop Navigation Links directly adjacent to the Brand Title */}
-              <div className="hidden lg:flex items-center space-x-0.5 xl:space-x-1 shrink-0">
+              {/* Desktop Navigation Links */}
+              <div className="hidden lg:flex items-center gap-0.5 xl:gap-1 shrink-0">
                 {navItems.map((item) => {
                   const isActive = activeTab === item.id;
                   const isHovered = hoveredMenu === item.id;
@@ -262,26 +261,26 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
                       >
                         <button
                           onClick={() => handleNavClick(item.id)}
-                          className={`inline-flex items-center gap-1.5 px-3 xl:px-3.5 py-2 rounded-lg text-sm xl:text-base font-medium transition-colors whitespace-nowrap cursor-pointer ${isActive
-                            ? 'text-[#8B1E24] bg-[#8B1E24]/8 font-semibold'
-                            : 'text-slate-700 hover:text-[#8B1E24] hover:bg-slate-50'
-                            }`}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors cursor-pointer ${
+                            isActive
+                              ? 'text-[#8B1E24] bg-[#8B1E24]/8 font-semibold'
+                              : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
+                          }`}
                           aria-expanded={isHovered}
                           aria-haspopup="true"
                         >
                           <span>{item.label}</span>
-                          <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isHovered ? 'rotate-180 text-[#8B1E24]' : 'text-gray-400'}`} />
-                          {isActive && (
-                            <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#8B1E24] rounded-full" />
-                          )}
+                          <ChevronDown
+                            className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                              isHovered ? 'rotate-180 text-[#8B1E24]' : 'text-slate-400'
+                            }`}
+                          />
                         </button>
 
-                        {/* Hover Dropdown Submenu */}
+                        {/* Dropdown Menu */}
                         {isHovered && (
-                          <div
-                            className="absolute left-0 mt-1 w-80 bg-white rounded-xl shadow-lg border border-slate-200 py-2.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
-                          >
-                            <div className="px-3.5 pb-2 mb-1 border-b border-gray-100 flex items-center justify-between text-xs font-mono font-medium text-slate-500">
+                          <div className="absolute left-0 mt-1 w-72 bg-white rounded-xl shadow-lg border border-slate-200 p-1.5 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                            <div className="px-3 py-1.5 mb-1 border-b border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-400 uppercase font-semibold">
                               <span>{item.label}</span>
                               <span className="w-1.5 h-1.5 rounded-full bg-[#8B1E24]" />
                             </div>
@@ -292,10 +291,10 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
                                   e.stopPropagation();
                                   handleNavClick(item.id, sub.sectionId);
                                 }}
-                                className="w-full text-left px-3.5 py-2 text-sm font-normal text-slate-700 hover:bg-slate-50 hover:text-[#8B1E24] transition-colors flex items-center justify-between group/sub cursor-pointer"
+                                className="w-full text-left px-3 py-2 text-xs font-normal text-slate-700 hover:bg-slate-50 hover:text-[#8B1E24] rounded-lg transition-colors flex items-center justify-between group/sub cursor-pointer"
                               >
                                 <span>{sub.label}</span>
-                                <ChevronRight className="w-4 h-4 text-gray-400 group-hover/sub:text-[#8B1E24] group-hover/sub:translate-x-0.5 transition-transform" />
+                                <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover/sub:text-[#8B1E24] group-hover/sub:translate-x-0.5 transition-transform" />
                               </button>
                             ))}
                           </div>
@@ -308,15 +307,13 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
                     <button
                       key={item.id}
                       onClick={() => handleNavClick(item.id)}
-                      className={`relative px-3 xl:px-3.5 py-2 rounded-lg text-sm xl:text-base font-semibold transition-all whitespace-nowrap ${isActive
-                        ? 'text-[#8B1E24] bg-[#8B1E24]/8 font-bold'
-                        : 'text-[#0F2537]/85 hover:text-[#8B1E24] hover:bg-[#FAF8F5]'
-                        }`}
+                      className={`px-3 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-colors cursor-pointer ${
+                        isActive
+                          ? 'text-[#8B1E24] bg-[#8B1E24]/8 font-semibold'
+                          : 'text-slate-700 hover:text-slate-950 hover:bg-slate-100'
+                      }`}
                     >
                       {item.label}
-                      {isActive && (
-                        <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#8B1E24] rounded-full shadow-[0_1px_4px_rgba(139,30,36,0.6)]" />
-                      )}
                     </button>
                   );
                 })}
@@ -327,66 +324,71 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
             <div className="flex lg:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg text-[#0F2537] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#8B1E24]"
+                className="p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-hidden focus:ring-2 focus:ring-[#8B1E24]"
                 aria-expanded={mobileMenuOpen}
                 aria-label="Toggle navigation menu"
               >
                 {mobileMenuOpen ? (
-                  <X className="w-6 h-6 text-[#8B1E24]" />
+                  <X className="w-5 h-5 text-[#8B1E24]" />
                 ) : (
-                  <Menu className="w-6 h-6" />
+                  <Menu className="w-5 h-5" />
                 )}
               </button>
             </div>
           </div>
         </div>
 
-        {/* 3. Mobile Responsive Drawer with Collapsible Submenu Accordions */}
+        {/* 3. Mobile Responsive Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-200 px-4 pt-3 pb-6 space-y-1 shadow-2xl animate-in slide-in-from-top duration-200">
+          <div className="lg:hidden bg-white border-t border-slate-200 px-4 pt-3 pb-6 space-y-1 shadow-xl animate-in slide-in-from-top duration-200">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
               const hasSub = item.hasDropdown && item.subItems;
               const isSubOpen = openMobileSubmenus[item.id];
 
               return (
-                <div key={item.id} className="border-b border-gray-50 last:border-b-0">
+                <div key={item.id} className="border-b border-slate-100 last:border-b-0">
                   <div className="flex items-center justify-between">
                     <button
                       onClick={() => handleNavClick(item.id)}
-                      className={`flex-grow text-left px-3 py-2.5 rounded-lg text-base font-semibold transition-colors flex items-center justify-between ${isActive
-                        ? 'text-[#8B1E24] bg-[#8B1E24]/10 font-bold border-l-4 border-[#8B1E24]'
-                        : 'text-[#0F2537] hover:bg-[#FAF8F5]'
-                        }`}
+                      className={`flex-grow text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-between ${
+                        isActive
+                          ? 'text-[#8B1E24] bg-[#8B1E24]/8 font-semibold'
+                          : 'text-slate-800 hover:bg-slate-50'
+                      }`}
                     >
                       <span>{item.label}</span>
                       {isActive && !hasSub && (
-                        <span className="w-2 h-2 rounded-full bg-[#8B1E24]" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#8B1E24]" />
                       )}
                     </button>
 
                     {hasSub && (
                       <button
                         onClick={(e) => toggleMobileSubmenu(item.id, e)}
-                        className="p-2.5 text-gray-500 hover:text-[#8B1E24] focus:outline-none"
+                        className="p-2.5 text-slate-400 hover:text-[#8B1E24]"
                         aria-label={`Toggle ${item.label} submenu`}
                       >
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isSubOpen ? 'rotate-180 text-[#8B1E24]' : ''}`} />
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-200 ${
+                            isSubOpen ? 'rotate-180 text-[#8B1E24]' : ''
+                          }`}
+                        />
                       </button>
                     )}
                   </div>
 
-                  {/* Collapsible Submenu Accordion */}
+                  {/* Mobile Collapsible Submenu */}
                   {hasSub && isSubOpen && (
-                    <div className="pl-6 pr-2 py-1.5 space-y-1 bg-[#FAF8F5] rounded-xl my-1 border border-gray-200">
+                    <div className="pl-4 pr-2 py-1 space-y-1 bg-slate-50 rounded-lg my-1 border border-slate-100">
                       {item.subItems.map((sub) => (
                         <button
                           key={sub.id}
                           onClick={() => handleNavClick(item.id, sub.sectionId)}
-                          className="w-full text-left py-2.5 px-3 text-sm font-medium text-[#0F2537]/80 hover:text-[#8B1E24] hover:bg-white rounded-lg transition-colors flex items-center justify-between"
+                          className="w-full text-left py-2 px-3 text-xs font-normal text-slate-700 hover:text-[#8B1E24] hover:bg-white rounded-md transition-colors flex items-center justify-between"
                         >
                           <span>{sub.label}</span>
-                          <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
+                          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
                         </button>
                       ))}
                     </div>
@@ -395,45 +397,46 @@ export default function Navbar({ activeTab, setActiveTab, activeSubSection, setA
               );
             })}
 
-            {/* Mobile Footer */}
-            <div className="pt-4 border-t border-gray-100 flex flex-col gap-1 text-center text-xs sm:text-sm text-[#0F2537]/70 py-1">
-              <div>School of Life Sciences • University of Hyderabad</div>
+            {/* Mobile Footer Credit */}
+            <div className="pt-4 border-t border-slate-100 text-center text-xs text-slate-500 py-1">
+              <div>Department of Systems and Computational Biology</div>
+              <div className="text-[11px] text-slate-400">School of Life Sciences • University of Hyderabad</div>
             </div>
           </div>
         )}
       </nav>
 
       {/* 4. Breadcrumb Bar for Inner Pages */}
-      {
-        activeTab !== 'home' && (
-          <div className="bg-[#FAF8F5] border-b border-gray-200 py-2.5 px-4 sm:px-6 lg:px-8 xl:px-10 text-sm font-medium text-[#0F2537]/75">
-            <div className="max-w-[1536px] mx-auto flex items-center gap-2 overflow-x-auto w-full max-w-full">
-              <button
-                onClick={() => handleNavClick('home')}
-                className="inline-flex items-center gap-1 text-[#0F2537]/60 hover:text-[#8B1E24] transition-colors"
-              >
-                <Home className="w-3.5 h-3.5" />
-                <span>Home</span>
-              </button>
-              <ChevronRight className="w-3 h-3 text-gray-400 flex-shrink-0" />
-              <button
-                onClick={() => handleNavClick(activeTab)}
-                className={`font-semibold transition-colors ${currentSubItem ? 'text-[#0F2537]/70 hover:text-[#8B1E24]' : 'text-[#8B1E24]'}`}
-              >
-                {currentNavItem?.label || activeTab}
-              </button>
-              {currentSubItem && (
-                <>
-                  <ChevronRight className="w-3 h-3 text-gray-400 flex-shrink-0" />
-                  <span className="text-[#8B1E24] font-bold truncate">
-                    {currentSubItem.label}
-                  </span>
-                </>
-              )}
-            </div>
+      {activeTab !== 'home' && (
+        <div className="bg-slate-50 border-b border-slate-200 py-2 px-4 sm:px-6 lg:px-8 text-xs font-medium text-slate-600">
+          <div className="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto w-full max-w-full">
+            <button
+              onClick={() => handleNavClick('home')}
+              className="inline-flex items-center gap-1 text-slate-500 hover:text-[#8B1E24] transition-colors shrink-0"
+            >
+              <Home className="w-3.5 h-3.5" />
+              <span>Home</span>
+            </button>
+            <ChevronRight className="w-3 h-3 text-slate-400 shrink-0" />
+            <button
+              onClick={() => handleNavClick(activeTab)}
+              className={`transition-colors shrink-0 ${
+                currentSubItem ? 'text-slate-600 hover:text-[#8B1E24]' : 'text-[#8B1E24] font-semibold'
+              }`}
+            >
+              {currentNavItem?.label || activeTab}
+            </button>
+            {currentSubItem && (
+              <>
+                <ChevronRight className="w-3 h-3 text-slate-400 shrink-0" />
+                <span className="text-[#8B1E24] font-semibold truncate shrink-0">
+                  {currentSubItem.label}
+                </span>
+              </>
+            )}
           </div>
-        )
-      }
-    </header >
+        </div>
+      )}
+    </header>
   );
 }
